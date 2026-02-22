@@ -15,36 +15,129 @@ datasource db {
 }
 
 model User {
-  id           Int       @id @default(autoincrement())
-  email        String    @unique
-  phone_number String    @unique
-  password     String
-  avatar       Json
-  name         String?
-  bio          String?
-  address      String?
-  age          Int?
-  gender       String?
-  hobby        String?
-  major        String?
-  free_time_activity     String?
-  is_verified  Boolean   @default(false)
-  is_active    Boolean   @default(false)
-  is_block     Boolean   @default(false)
-  created_at   DateTime  @default(now())
-  updated_at   DateTime  @updatedAt
-  deleted_at   DateTime?
-  updated_by   Int?
-  deleted_by   Int?
+  id                 Int        @id @default(autoincrement())
+  email              String     @unique
+  phone_number       String?    @unique
+  password           String?
+  avatar             Json?
+  name               String?
+  bio                String?
+  address            String?
+  age                Int?
+  gender             String?
+  hobby              String?
+  major              String?
+  free_time_activity String?
+  is_verified        Boolean    @default(false)
+  is_active          Boolean    @default(false)
+  is_block           Boolean    @default(false)
+  created_at         DateTime   @default(now())
+  updated_at         DateTime   @updatedAt
+  deleted_at         DateTime?
+  updated_by         Int?
+  deleted_by         Int?
+  posts              Post[]
+  likes              Like[]
+  comments           Comment[]
+  roles              UserRole[]
+}
 
-  posts Post[]
+model Role {
+  id           Int      @id @default(autoincrement())
+  name         String   @unique @db.VarChar(50)
+  display_name String   @db.VarChar(100)
+  description  String?
+  is_active    Boolean  @default(true)
+  created_at   DateTime @default(now())
+  updated_at   DateTime @default(now())
+
+  permissions RolePermission[]
+  users       UserRole[]
+}
+
+model Permissions {
+  id           Int      @id @default(autoincrement())
+  name         String   @unique @db.VarChar(100)
+  display_name String   @db.VarChar(150)
+  description  String?
+  resource     String   @db.VarChar(50)
+  action       String   @db.VarChar(50)
+  is_active    Boolean  @default(true)
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+
+  roles RolePermission[]
+}
+
+model RolePermission {
+  id            Int      @id @default(autoincrement())
+  role_id       Int
+  permission_id Int
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+
+  role       Role        @relation(fields: [role_id], references: [id], onDelete: Cascade)
+  permission Permissions @relation(fields: [permission_id], references: [id], onDelete: Cascade)
+
+  @@unique([role_id, permission_id])
+}
+
+model UserRole {
+  id          Int       @id @default(autoincrement())
+  user_id     Int
+  role_id     Int
+  assigned_by Int
+  assigned_at DateTime?
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  role Role @relation(fields: [role_id], references: [id], onDelete: Cascade)
+
+  @@unique([user_id, role_id])
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean? @default(false)
-  author    User?    @relation(fields: [authorId], references: [id])
-  authorId  Int?
+  id            Int       @id @default(autoincrement())
+  title         String
+  content       String?
+  like_count    Int       @default(0)
+  comment_count Int       @default(0)
+  published     Boolean?  @default(false)
+  author        User?     @relation(fields: [authorId], references: [id])
+  authorId      Int?
+  created_at    DateTime  @default(now())
+  updated_at    DateTime  @updatedAt
+  deleted_at    DateTime?
+  updated_by    Int?
+  deleted_by    Int?
+  likes         Like[]
+  comments      Comment[]
+}
+
+model Like {
+  id         Int       @id @default(autoincrement())
+  post       Post?     @relation(fields: [postId], references: [id])
+  postId     Int?
+  user       User?     @relation(fields: [userId], references: [id])
+  userId     Int?
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  deleted_at DateTime?
+  updated_by Int?
+  deleted_by Int?
+}
+
+model Comment {
+  id         Int       @id @default(autoincrement())
+  post       Post?     @relation(fields: [postId], references: [id])
+  postId     Int?
+  user       User?     @relation(fields: [userId], references: [id])
+  userId     Int?
+  content    String?
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  deleted_at DateTime?
+  updated_by Int?
+  deleted_by Int?
 }
