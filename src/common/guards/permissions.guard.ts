@@ -1,6 +1,6 @@
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { PrismaService } from 'src/prisma.service';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { PERMISSIONS_KEY } from '../decorator/require-permissions.decorator';
 import { ErrorFactory } from '../error.factory';
 import { ErrorCode } from '../enums/error-codes.enum';

@@ -1,19 +1,20 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { WinstonModule } from 'nest-winston';
+import { WINSTON_MODULE_NEST_PROVIDER, WinstonModule } from 'nest-winston';
 import { winstonConfig } from './logger/winston.config';
 import { createMorganMiddleware } from './logger/morgan.middleware';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { ZodValidationPipe } from 'nestjs-zod';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     bufferLogs: true,
   });
 
-  const logger = WinstonModule.createLogger(winstonConfig);
-  app.useLogger(logger);
+  app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
 
-  app.use(createMorganMiddleware(logger));
+  app.use(createMorganMiddleware(app.get(WINSTON_MODULE_NEST_PROVIDER)));
+  app.useGlobalPipes(new ZodValidationPipe());
 
   const config = new DocumentBuilder()
     .setTitle('API Documentation')
