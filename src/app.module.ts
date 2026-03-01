@@ -1,7 +1,6 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { PrismaService } from './prisma.service';
 import { WinstonModule } from 'nest-winston';
 import { winstonConfig } from './logger/winston.config';
 import { MetricsModule } from './metrics/prometheus.module';
@@ -22,10 +21,35 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PermissionsGuard } from './common/guards/permissions.guard';
 import { AuthGuard } from './common/guards/auth.guard';
 import { JwtModule } from '@nestjs/jwt';
+import { AwsS3Module } from './aws-s3/aws-s3.module';
+import { EventEmitterModule } from '@nestjs/event-emitter';
+import { BullModule } from '@nestjs/bullmq';
+import { BullBoardModule } from '@bull-board/nestjs';
+import { ExpressAdapter } from '@bull-board/express';
+import { FileModule } from './file/file.module';
+import { PrismaModule } from './prisma/prisma.module';
+import { AvatarModule } from './avatar/avatar.module';
+import { ImageModule } from './image/image.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
+    EventEmitterModule.forRoot(),
+    BullModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        connection: {
+          host: config.get<string>('REDIS_HOST', 'localhost'),
+          port: config.get<number>('REDIS_PORT', 6379),
+          password: config.get<string>('REDIS_PASSWORD', ''),
+        },
+      }),
+    }),
+    BullBoardModule.forRoot({
+      route: '/admin/queues',
+      adapter: ExpressAdapter,
+    }),
     JwtModule.registerAsync({
       global: true,
       imports: [ConfigModule],
@@ -54,12 +78,16 @@ import { JwtModule } from '@nestjs/jwt';
     HealthModule,
     RedisModule,
     UserModule,
-    AuthModule
+    AuthModule,
+    AwsS3Module,
+    FileModule,
+    PrismaModule,
+    AvatarModule,
+    ImageModule
   ],
   controllers: [AppController],
   providers: [
     AppService, 
-    PrismaService,
     {
       provide: APP_INTERCEPTOR,
       useClass: TransformInterceptor,

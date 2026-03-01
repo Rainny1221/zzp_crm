@@ -285,7 +285,7 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 
 export type UserGroupByOutputType = {
   id: number
-  email: string
+  email: string | null
   phone_number: string | null
   password: string | null
   avatar: runtime.JsonValue | null
@@ -332,7 +332,7 @@ export type UserWhereInput = {
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   id?: Prisma.IntFilter<"User"> | number
-  email?: Prisma.StringFilter<"User"> | string
+  email?: Prisma.StringNullableFilter<"User"> | string | null
   phone_number?: Prisma.StringNullableFilter<"User"> | string | null
   password?: Prisma.StringNullableFilter<"User"> | string | null
   avatar?: Prisma.JsonNullableFilter<"User">
@@ -360,7 +360,7 @@ export type UserWhereInput = {
 
 export type UserOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  email?: Prisma.SortOrder
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
   phone_number?: Prisma.SortOrderInput | Prisma.SortOrder
   password?: Prisma.SortOrderInput | Prisma.SortOrder
   avatar?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -419,7 +419,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
 
 export type UserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  email?: Prisma.SortOrder
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
   phone_number?: Prisma.SortOrderInput | Prisma.SortOrder
   password?: Prisma.SortOrderInput | Prisma.SortOrder
   avatar?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -451,7 +451,7 @@ export type UserScalarWhereWithAggregatesInput = {
   OR?: Prisma.UserScalarWhereWithAggregatesInput[]
   NOT?: Prisma.UserScalarWhereWithAggregatesInput | Prisma.UserScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"User"> | number
-  email?: Prisma.StringWithAggregatesFilter<"User"> | string
+  email?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   phone_number?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   password?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   avatar?: Prisma.JsonNullableWithAggregatesFilter<"User">
@@ -474,7 +474,7 @@ export type UserScalarWhereWithAggregatesInput = {
 }
 
 export type UserCreateInput = {
-  email: string
+  email?: string | null
   phone_number?: string | null
   password?: string | null
   avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -502,7 +502,7 @@ export type UserCreateInput = {
 
 export type UserUncheckedCreateInput = {
   id?: number
-  email: string
+  email?: string | null
   phone_number?: string | null
   password?: string | null
   avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -529,7 +529,7 @@ export type UserUncheckedCreateInput = {
 }
 
 export type UserUpdateInput = {
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -557,7 +557,7 @@ export type UserUpdateInput = {
 
 export type UserUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -585,7 +585,7 @@ export type UserUncheckedUpdateInput = {
 
 export type UserCreateManyInput = {
   id?: number
-  email: string
+  email?: string | null
   phone_number?: string | null
   password?: string | null
   avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -608,7 +608,7 @@ export type UserCreateManyInput = {
 }
 
 export type UserUpdateManyMutationInput = {
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -632,7 +632,7 @@ export type UserUpdateManyMutationInput = {
 
 export type UserUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -748,10 +748,6 @@ export type UserNullableScalarRelationFilter = {
   isNot?: Prisma.UserWhereInput | null
 }
 
-export type StringFieldUpdateOperationsInput = {
-  set?: string
-}
-
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
@@ -847,7 +843,7 @@ export type UserUpdateOneWithoutCommentsNestedInput = {
 }
 
 export type UserCreateWithoutRolesInput = {
-  email: string
+  email?: string | null
   phone_number?: string | null
   password?: string | null
   avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -874,7 +870,7 @@ export type UserCreateWithoutRolesInput = {
 
 export type UserUncheckedCreateWithoutRolesInput = {
   id?: number
-  email: string
+  email?: string | null
   phone_number?: string | null
   password?: string | null
   avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -916,7 +912,7 @@ export type UserUpdateToOneWithWhereWithoutRolesInput = {
 }
 
 export type UserUpdateWithoutRolesInput = {
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -943,7 +939,7 @@ export type UserUpdateWithoutRolesInput = {
 
 export type UserUncheckedUpdateWithoutRolesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -969,7 +965,7 @@ export type UserUncheckedUpdateWithoutRolesInput = {
 }
 
 export type UserCreateWithoutPostsInput = {
-  email: string
+  email?: string | null
   phone_number?: string | null
   password?: string | null
   avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -996,7 +992,7 @@ export type UserCreateWithoutPostsInput = {
 
 export type UserUncheckedCreateWithoutPostsInput = {
   id?: number
-  email: string
+  email?: string | null
   phone_number?: string | null
   password?: string | null
   avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1038,7 +1034,7 @@ export type UserUpdateToOneWithWhereWithoutPostsInput = {
 }
 
 export type UserUpdateWithoutPostsInput = {
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1065,7 +1061,7 @@ export type UserUpdateWithoutPostsInput = {
 
 export type UserUncheckedUpdateWithoutPostsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1091,7 +1087,7 @@ export type UserUncheckedUpdateWithoutPostsInput = {
 }
 
 export type UserCreateWithoutLikesInput = {
-  email: string
+  email?: string | null
   phone_number?: string | null
   password?: string | null
   avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1118,7 +1114,7 @@ export type UserCreateWithoutLikesInput = {
 
 export type UserUncheckedCreateWithoutLikesInput = {
   id?: number
-  email: string
+  email?: string | null
   phone_number?: string | null
   password?: string | null
   avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1160,7 +1156,7 @@ export type UserUpdateToOneWithWhereWithoutLikesInput = {
 }
 
 export type UserUpdateWithoutLikesInput = {
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1187,7 +1183,7 @@ export type UserUpdateWithoutLikesInput = {
 
 export type UserUncheckedUpdateWithoutLikesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1213,7 +1209,7 @@ export type UserUncheckedUpdateWithoutLikesInput = {
 }
 
 export type UserCreateWithoutCommentsInput = {
-  email: string
+  email?: string | null
   phone_number?: string | null
   password?: string | null
   avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1240,7 +1236,7 @@ export type UserCreateWithoutCommentsInput = {
 
 export type UserUncheckedCreateWithoutCommentsInput = {
   id?: number
-  email: string
+  email?: string | null
   phone_number?: string | null
   password?: string | null
   avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1282,7 +1278,7 @@ export type UserUpdateToOneWithWhereWithoutCommentsInput = {
 }
 
 export type UserUpdateWithoutCommentsInput = {
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1309,7 +1305,7 @@ export type UserUpdateWithoutCommentsInput = {
 
 export type UserUncheckedUpdateWithoutCommentsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1514,7 +1510,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
-    email: string
+    email: string | null
     phone_number: string | null
     password: string | null
     avatar: runtime.JsonValue | null

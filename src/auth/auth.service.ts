@@ -1,58 +1,60 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { PrismaService } from 'src/prisma.service';
+import { ConfigService } from '@nestjs/config';
 import 'dotenv/config';
 import { ErrorFactory } from 'src/common/error.factory';
 import { ErrorCode } from 'src/common/enums/error-codes.enum';
+import { RedisService } from 'src/redis/redis.service';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private prisma: PrismaService,
     private jwtService: JwtService,
+    private redisService: RedisService,
+    private readonly configService: ConfigService,
   ) {}
 
   async validateOAuthUser(details: any) {
-    let user = await this.prisma.user.findUnique({
-      where: { email: details.email },
-      include: {
-        roles: {
-          include: { role: true },
-        },
-      },
-    });
-
-    if (!user) {
-      try {
-        user = await this.prisma.user.create({
-          data: {
-            email: details.email,
-            is_verified: true,
-            is_active: true,
-            roles: {
-              create: {
-                assigned_by: 1,
-                role: {
-                  connect: { name: 'user' },
+    try {
+      const user = await this.prisma.user.upsert({
+        where: { email: details.email },
+        update: {},
+        create: {
+          email: details.email,
+          is_verified: true,
+          is_active: true,
+          roles: {
+            create: {
+              assigned_by: 1,
+              assigned_at: new Date(),
+              role: {
+                connectOrCreate: {
+                  where: { name: 'USER' },
+                  create: { 
+                    name: 'USER',
+                    display_name: 'Người dùng',
+                  },
                 },
               },
             },
           },
-          include: {
-            roles: {
-              include: { role: true },
-            },
+        },
+        include: {
+          roles: {
+            include: { role: true },
           },
-        });
-      } catch (error) {
-        throw ErrorFactory.create(
-          ErrorCode.SYSTEM_ERROR_AUTH,
-          'Lỗi hệ thống khi khởi tạo tài khoản',
-        )
-      }
-    }
+        },
+      });
 
-    return user;
+      return user;
+    } catch (error) {
+      throw ErrorFactory.create(
+        ErrorCode.SYSTEM_ERROR_AUTH,
+        'Lỗi hệ thống khi khởi tạo tài khoản',
+      );
+    }
   }
 
   async generateTokens(user: any) {
@@ -66,18 +68,75 @@ export class AuthService {
 
     const [accessToken, refreshToken] = await Promise.all([
       this.jwtService.signAsync(payload, {
-        secret: process.env.JWT_ACCESS_SECRET,
+        secret: this.configService.get<string>('JWT_ACCESS_SECRET'),
         expiresIn: '15m',
       }),
       this.jwtService.signAsync(payload, {
-        secret: process.env.JWT_REFRESH_SECRET,
+        secret: this.configService.get<string>('JWT_REFRESH_SECRET'),
         expiresIn: '7d',
       }),
     ]);
+
+    await this.redisService.set(
+      `refresh_token:${payload.sub}`,
+      refreshToken,
+      60 * 60 * 24 * 7,
+    );
 
     return {
       accessToken,
       refreshToken,
     };
+  }
+
+  async logout(userId: number) {
+    await this.redisService.del(`refresh_token:${userId}`);
+  }
+
+  async refreshToken(refreshToken: string) {
+    try {
+      const payload = await this.jwtService.verifyAsync(refreshToken, {
+        secret: this.configService.get<string>('JWT_REFRESH_SECRET'),
+      });
+
+      const rfTokenCache = await this.redisService.get(`refresh_token:${payload.sub}`);
+
+      if (!rfTokenCache || rfTokenCache !== refreshToken) {
+        throw ErrorFactory.create(
+          ErrorCode.INVALID_TOKEN,
+          'Refresh token does not match or expired in cache',
+        );
+      }
+
+      const user = await this.prisma.user.findUnique({
+        where: { id: payload.sub },
+        include: {
+          roles: {
+            include: { role: true },
+          },
+        },
+      });
+
+      if (!user) {
+        throw ErrorFactory.create(
+          ErrorCode.USER_NOT_FOUND,
+          'User not found to refresh token',
+        );
+      }
+
+      const token = await this.generateTokens(user);
+      
+      return token;
+
+    } catch (error) {
+      if (error.name === 'TokenExpiredError' || error.name === 'JsonWebTokenError') {
+        throw ErrorFactory.create(
+          ErrorCode.INVALID_TOKEN,
+          'Refresh token is expired or invalid',
+        );
+      }
+
+      throw error;
+    }
   }
 }
