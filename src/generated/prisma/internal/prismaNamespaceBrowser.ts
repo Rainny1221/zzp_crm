@@ -58,7 +58,8 @@ export const ModelName = {
   UserRole: 'UserRole',
   Post: 'Post',
   Like: 'Like',
-  Comment: 'Comment'
+  Comment: 'Comment',
+  Matching: 'Matching'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -201,6 +202,24 @@ export const CommentScalarFieldEnum = {
 } as const
 
 export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
+
+
+export const MatchingScalarFieldEnum = {
+  id: 'id',
+  user_1_id: 'user_1_id',
+  user_2_id: 'user_2_id',
+  user_1_action: 'user_1_action',
+  user_2_action: 'user_2_action',
+  status: 'status',
+  matched_at: 'matched_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at',
+  updated_by: 'updated_by',
+  deleted_by: 'deleted_by'
+} as const
+
+export type MatchingScalarFieldEnum = (typeof MatchingScalarFieldEnum)[keyof typeof MatchingScalarFieldEnum]
 
 
 export const SortOrder = {

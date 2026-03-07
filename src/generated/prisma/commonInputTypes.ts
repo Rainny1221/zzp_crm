@@ -266,6 +266,40 @@ export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedBoolNullableFilter<$PrismaModel>
 }
 
+export type EnumUserActionNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.UserAction | Prisma.EnumUserActionFieldRefInput<$PrismaModel> | null
+  in?: $Enums.UserAction[] | Prisma.ListEnumUserActionFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.UserAction[] | Prisma.ListEnumUserActionFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumUserActionNullableFilter<$PrismaModel> | $Enums.UserAction | null
+}
+
+export type EnumMatchingStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.MatchingStatus | Prisma.EnumMatchingStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.MatchingStatus[] | Prisma.ListEnumMatchingStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MatchingStatus[] | Prisma.ListEnumMatchingStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMatchingStatusFilter<$PrismaModel> | $Enums.MatchingStatus
+}
+
+export type EnumUserActionNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.UserAction | Prisma.EnumUserActionFieldRefInput<$PrismaModel> | null
+  in?: $Enums.UserAction[] | Prisma.ListEnumUserActionFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.UserAction[] | Prisma.ListEnumUserActionFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumUserActionNullableWithAggregatesFilter<$PrismaModel> | $Enums.UserAction | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumUserActionNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumUserActionNullableFilter<$PrismaModel>
+}
+
+export type EnumMatchingStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.MatchingStatus | Prisma.EnumMatchingStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.MatchingStatus[] | Prisma.ListEnumMatchingStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MatchingStatus[] | Prisma.ListEnumMatchingStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMatchingStatusWithAggregatesFilter<$PrismaModel> | $Enums.MatchingStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumMatchingStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumMatchingStatusFilter<$PrismaModel>
+}
+
 export type NestedIntFilter<$PrismaModel = never> = {
   equals?: number | Prisma.IntFieldRefInput<$PrismaModel>
   in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>
@@ -502,6 +536,40 @@ export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedBoolNullableFilter<$PrismaModel>
   _max?: Prisma.NestedBoolNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumUserActionNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.UserAction | Prisma.EnumUserActionFieldRefInput<$PrismaModel> | null
+  in?: $Enums.UserAction[] | Prisma.ListEnumUserActionFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.UserAction[] | Prisma.ListEnumUserActionFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumUserActionNullableFilter<$PrismaModel> | $Enums.UserAction | null
+}
+
+export type NestedEnumMatchingStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.MatchingStatus | Prisma.EnumMatchingStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.MatchingStatus[] | Prisma.ListEnumMatchingStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MatchingStatus[] | Prisma.ListEnumMatchingStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMatchingStatusFilter<$PrismaModel> | $Enums.MatchingStatus
+}
+
+export type NestedEnumUserActionNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.UserAction | Prisma.EnumUserActionFieldRefInput<$PrismaModel> | null
+  in?: $Enums.UserAction[] | Prisma.ListEnumUserActionFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.UserAction[] | Prisma.ListEnumUserActionFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumUserActionNullableWithAggregatesFilter<$PrismaModel> | $Enums.UserAction | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumUserActionNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumUserActionNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumMatchingStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.MatchingStatus | Prisma.EnumMatchingStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.MatchingStatus[] | Prisma.ListEnumMatchingStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MatchingStatus[] | Prisma.ListEnumMatchingStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMatchingStatusWithAggregatesFilter<$PrismaModel> | $Enums.MatchingStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumMatchingStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumMatchingStatusFilter<$PrismaModel>
 }
 
 

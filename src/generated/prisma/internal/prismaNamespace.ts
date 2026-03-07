@@ -391,7 +391,8 @@ export const ModelName = {
   UserRole: 'UserRole',
   Post: 'Post',
   Like: 'Like',
-  Comment: 'Comment'
+  Comment: 'Comment',
+  Matching: 'Matching'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -407,7 +408,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "role" | "permissions" | "rolePermission" | "userRole" | "post" | "like" | "comment"
+    modelProps: "user" | "role" | "permissions" | "rolePermission" | "userRole" | "post" | "like" | "comment" | "matching"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1003,6 +1004,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Matching: {
+      payload: Prisma.$MatchingPayload<ExtArgs>
+      fields: Prisma.MatchingFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.MatchingFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MatchingPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.MatchingFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MatchingPayload>
+        }
+        findFirst: {
+          args: Prisma.MatchingFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MatchingPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.MatchingFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MatchingPayload>
+        }
+        findMany: {
+          args: Prisma.MatchingFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MatchingPayload>[]
+        }
+        create: {
+          args: Prisma.MatchingCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MatchingPayload>
+        }
+        createMany: {
+          args: Prisma.MatchingCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.MatchingCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MatchingPayload>[]
+        }
+        delete: {
+          args: Prisma.MatchingDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MatchingPayload>
+        }
+        update: {
+          args: Prisma.MatchingUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MatchingPayload>
+        }
+        deleteMany: {
+          args: Prisma.MatchingDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.MatchingUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.MatchingUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MatchingPayload>[]
+        }
+        upsert: {
+          args: Prisma.MatchingUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MatchingPayload>
+        }
+        aggregate: {
+          args: Prisma.MatchingAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMatching>
+        }
+        groupBy: {
+          args: Prisma.MatchingGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MatchingGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.MatchingCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MatchingCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1168,6 +1243,24 @@ export const CommentScalarFieldEnum = {
 export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
 
 
+export const MatchingScalarFieldEnum = {
+  id: 'id',
+  user_1_id: 'user_1_id',
+  user_2_id: 'user_2_id',
+  user_1_action: 'user_1_action',
+  user_2_action: 'user_2_action',
+  status: 'status',
+  matched_at: 'matched_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at',
+  updated_by: 'updated_by',
+  deleted_by: 'deleted_by'
+} as const
+
+export type MatchingScalarFieldEnum = (typeof MatchingScalarFieldEnum)[keyof typeof MatchingScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1275,6 +1368,34 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'DateTime[]'
  */
 export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
+ * Reference to a field of type 'UserAction'
+ */
+export type EnumUserActionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserAction'>
+    
+
+
+/**
+ * Reference to a field of type 'UserAction[]'
+ */
+export type ListEnumUserActionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserAction[]'>
+    
+
+
+/**
+ * Reference to a field of type 'MatchingStatus'
+ */
+export type EnumMatchingStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MatchingStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'MatchingStatus[]'
+ */
+export type ListEnumMatchingStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MatchingStatus[]'>
     
 
 
@@ -1394,6 +1515,7 @@ export type GlobalOmitConfig = {
   post?: Prisma.PostOmit
   like?: Prisma.LikeOmit
   comment?: Prisma.CommentOmit
+  matching?: Prisma.MatchingOmit
 }
 
 /* Types for Logging */

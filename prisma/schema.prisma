@@ -5,9 +5,10 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider     = "prisma-client"
-  output       = "../src/generated/prisma"
-  moduleFormat = "cjs"
+  provider        = "prisma-client"
+  output          = "../src/generated/prisma"
+  moduleFormat    = "cjs"
+  previewFeatures = ["partialIndexes"]
 }
 
 datasource db {
@@ -16,7 +17,7 @@ datasource db {
 
 model User {
   id                 Int        @id @default(autoincrement())
-  email              String?     @unique
+  email              String?    @unique
   phone_number       String?    @unique
   password           String?
   avatar             Json?
@@ -40,6 +41,8 @@ model User {
   likes              Like[]
   comments           Comment[]
   roles              UserRole[]
+
+  @@map("users")
 }
 
 model Role {
@@ -53,6 +56,8 @@ model Role {
 
   permissions RolePermission[]
   users       UserRole[]
+
+  @@map("roles")
 }
 
 model Permissions {
@@ -67,6 +72,8 @@ model Permissions {
   updated_at   DateTime @updatedAt
 
   roles RolePermission[]
+
+  @@map("permissions")
 }
 
 model RolePermission {
@@ -80,6 +87,8 @@ model RolePermission {
   permission Permissions @relation(fields: [permission_id], references: [id], onDelete: Cascade)
 
   @@unique([role_id, permission_id])
+
+  @@map("role_permissions")
 }
 
 model UserRole {
@@ -95,6 +104,8 @@ model UserRole {
   role Role @relation(fields: [role_id], references: [id], onDelete: Cascade)
 
   @@unique([user_id, role_id])
+
+  @@map("user_roles")
 }
 
 model Post {
@@ -113,6 +124,8 @@ model Post {
   deleted_by    Int?
   likes         Like[]
   comments      Comment[]
+
+  @@map("posts")
 }
 
 model Like {
@@ -126,6 +139,8 @@ model Like {
   deleted_at DateTime?
   updated_by Int?
   deleted_by Int?
+
+  @@map("likes")
 }
 
 model Comment {
@@ -140,4 +155,42 @@ model Comment {
   deleted_at DateTime?
   updated_by Int?
   deleted_by Int?
+
+  @@map("comments")
+}
+
+enum UserAction {
+  LIKE
+  DISLIKE
+  SUPERLIKE
+}
+
+enum MatchingStatus {
+  PENDING
+  ACCEPT
+  REJECT
+}
+
+model Matching {
+  id            Int            @id @default(autoincrement())
+  user_1_id     Int
+  user_2_id     Int
+  user_1_action UserAction?
+  user_2_action UserAction?
+  status        MatchingStatus @default(PENDING)
+  matched_at    DateTime?
+  created_at    DateTime       @default(now())
+  updated_at    DateTime       @updatedAt
+  deleted_at    DateTime?
+  updated_by    Int?
+  deleted_by    Int?
+
+  @@unique([user_1_id, user_2_id])
+  @@index([user_1_id], map: "matching_user1_idx")
+  @@index([user_2_id], map: "matching_user2_idx")
+  @@index([user_1_id, matched_at])
+  @@index([user_2_id, matched_at])
+  @@index([user_1_id], map: "matching_user1_pending_idx", where: { status: "PENDING" })
+  @@index([user_2_id], map: "matching_user2_pending_idx", where: { status: "PENDING" })
+  @@map("matching_actions")
 }

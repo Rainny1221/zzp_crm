@@ -79,3 +79,8 @@ export type Like = Prisma.LikeModel
  * 
  */
 export type Comment = Prisma.CommentModel
+/**
+ * Model Matching
+ * 
+ */
+export type Matching = Prisma.MatchingModel

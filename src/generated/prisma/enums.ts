@@ -9,7 +9,19 @@
 * 🟢 You can import this file directly.
 */
 
+export const UserAction = {
+  LIKE: 'LIKE',
+  DISLIKE: 'DISLIKE',
+  SUPERLIKE: 'SUPERLIKE'
+} as const
+
+export type UserAction = (typeof UserAction)[keyof typeof UserAction]
 
 
-// This file is empty because there are no enums in the schema.
-export {}
+export const MatchingStatus = {
+  PENDING: 'PENDING',
+  ACCEPT: 'ACCEPT',
+  REJECT: 'REJECT'
+} as const
+
+export type MatchingStatus = (typeof MatchingStatus)[keyof typeof MatchingStatus]

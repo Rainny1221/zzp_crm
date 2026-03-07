@@ -3,7 +3,6 @@ import { S3Service } from 'src/aws-s3/aws-s3.service';
 import { AvatarService } from './avatar.service';
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { PresignUploadDto } from 'src/aws-s3/presign/presign.dto';
-import { Public } from 'src/common/decorator/require-permissions.decorator';
 import { ConfirmUploadDto } from 'src/aws-s3/presign/confirm.dto';
 
 @Controller('avatar')
