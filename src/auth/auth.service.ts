@@ -1,11 +1,16 @@
-import { Injectable } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
+import { Inject, Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import 'dotenv/config';
-import { ErrorFactory } from 'src/common/error.factory';
+import { JwtService } from '@nestjs/jwt';
+import { randomUUID } from 'crypto';
+import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 import { ErrorCode } from 'src/common/enums/error-codes.enum';
-import { RedisService } from 'src/redis/redis.service';
+import { ErrorFactory } from 'src/common/error.factory';
+import { User } from 'src/generated/prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { RedisService } from 'src/redis/redis.service';
+import { OAuthUserDetails } from './interface/auth.interface';
+import { UserWithRoles } from './type/auth.type';
+import { TokenType } from './enum/auth.enum';
 
 @Injectable()
 export class AuthService {
@@ -14,11 +19,13 @@ export class AuthService {
     private jwtService: JwtService,
     private redisService: RedisService,
     private readonly configService: ConfigService,
+    @Inject(WINSTON_MODULE_NEST_PROVIDER)
+    private readonly logger: Logger,
   ) {}
 
-  async validateOAuthUser(details: any) {
+  async validateOAuthUser(details: OAuthUserDetails) {
     try {
-      const user = await this.prisma.user.upsert({
+      const user: User = await this.prisma.user.upsert({
         where: { email: details.email },
         update: {},
         create: {
@@ -28,7 +35,6 @@ export class AuthService {
           roles: {
             create: {
               assigned_by: 1,
-              assigned_at: new Date(),
               role: {
                 connectOrCreate: {
                   where: { name: 'USER' },
@@ -50,6 +56,7 @@ export class AuthService {
 
       return user;
     } catch (error) {
+      this.logger.error(`Lỗi upsert OAuth user: ${error.message}`, error.stack);
       throw ErrorFactory.create(
         ErrorCode.SYSTEM_ERROR_AUTH,
         'Lỗi hệ thống khi khởi tạo tài khoản',
@@ -57,31 +64,44 @@ export class AuthService {
     }
   }
 
-  async generateTokens(user: any) {
-    const userRoles = user.roles?.map((ur: any) => ur.role.name) || [];
+  async generateTokens(user: UserWithRoles, device: string) {
+    const userRoles = user.roles.map((ur) => ur.role.name);
 
-    const payload = { 
-      sub: user.id, 
-      email: user.email,
-      roles: userRoles, 
+    const refreshJti = randomUUID();
+    const refreshTokenPayload = {
+      sub: user.id,
+      jti: refreshJti,
+      type: TokenType.REFRESH, 
+    };
+
+    const accessTokenPayload = {
+      sub: user.id,
+      roles: userRoles,
+      type: TokenType.ACCESS,
     };
 
     const [accessToken, refreshToken] = await Promise.all([
-      this.jwtService.signAsync(payload, {
+      this.jwtService.signAsync(accessTokenPayload, {
         secret: this.configService.get<string>('JWT_ACCESS_SECRET'),
         expiresIn: '15m',
       }),
-      this.jwtService.signAsync(payload, {
+      this.jwtService.signAsync(refreshTokenPayload, {
         secret: this.configService.get<string>('JWT_REFRESH_SECRET'),
         expiresIn: '7d',
       }),
     ]);
 
     await this.redisService.set(
-      `refresh_token:${payload.sub}`,
-      refreshToken,
+      `refresh_token:${refreshJti}`,
+      JSON.stringify({
+        userId: user.id,
+        device: device,
+        token: refreshToken,
+      }),
       60 * 60 * 24 * 7,
     );
+
+    await this.redisService.sadd(`user_tokens:${user.id}`, refreshJti);
 
     return {
       accessToken,
@@ -89,23 +109,56 @@ export class AuthService {
     };
   }
 
-  async logout(userId: number) {
-    await this.redisService.del(`refresh_token:${userId}`);
+  async logout(jti: string, userId: number, accessToken?: string) {
+    await this.redisService.del(`refresh_token:${jti}`);
+    await this.redisService.srem(`user_tokens:${userId}`, jti);
+
+    if (accessToken) {
+      const decoded = this.jwtService.decode(accessToken);
+      const ttl = decoded.exp - Math.floor(Date.now() / 1000);
+      if (ttl > 0) {
+        await this.redisService.set(`blacklist:${jti}`, '1', ttl);
+      }
   }
 
-  async refreshToken(refreshToken: string) {
+  }
+
+  async logoutAllDevices(userId: number) {
+    const tokens = await this.redisService.smembers(`user_tokens:${userId}`);
+
+    if (!tokens.length) return;
+
+    const keys = tokens.map((jti) => `refresh_token:${jti}`);
+
+    await this.redisService.del(...keys);
+
+    await this.redisService.del(`user_tokens:${userId}`);
+  }
+
+  async refreshToken(refreshToken: string, device: string) {
     try {
       const payload = await this.jwtService.verifyAsync(refreshToken, {
         secret: this.configService.get<string>('JWT_REFRESH_SECRET'),
       });
 
-      const rfTokenCache = await this.redisService.get(`refresh_token:${payload.sub}`);
+      const cache = await this.redisService.get(`refresh_token:${payload.jti}`);
 
-      if (!rfTokenCache || rfTokenCache !== refreshToken) {
-        throw ErrorFactory.create(
-          ErrorCode.INVALID_TOKEN,
-          'Refresh token does not match or expired in cache',
-        );
+      if (!cache) {
+        throw ErrorFactory.create(ErrorCode.INVALID_TOKEN, 'Refresh token revoked');
+      }
+
+      const parsed = JSON.parse(cache);
+
+      if (parsed.token !== refreshToken) {
+        throw ErrorFactory.create(ErrorCode.INVALID_TOKEN, 'Token mismatch');
+      }
+
+      if (parsed.device !== device) {
+        throw ErrorFactory.create(ErrorCode.INVALID_TOKEN, 'Device mismatch');
+      }
+
+      if(parsed.type !== TokenType.REFRESH) {
+        throw ErrorFactory.create(ErrorCode.INVALID_TOKEN, 'Invalid token type');
       }
 
       const user = await this.prisma.user.findUnique({
@@ -117,14 +170,19 @@ export class AuthService {
         },
       });
 
-      if (!user) {
+      if (!user || !user.is_active) {
         throw ErrorFactory.create(
           ErrorCode.USER_NOT_FOUND,
           'User not found to refresh token',
         );
       }
 
-      const token = await this.generateTokens(user);
+      await Promise.all([
+        this.redisService.del(`refresh_token:${payload.jti}`),
+        this.redisService.srem(`user_tokens:${user.id}`, payload.jti)
+      ]);
+
+      const token = await this.generateTokens(user, device);
       
       return token;
 

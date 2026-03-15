@@ -1,9 +1,9 @@
-import { Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
+import { Controller, Get, Headers, Req, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { AuthService } from './auth.service';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import express from 'express';
-import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { Public } from 'src/common/decorator/require-permissions.decorator';
+import { AuthService } from './auth.service';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -26,9 +26,9 @@ export class AuthController {
     summary: 'Google Callback', 
     description: 'API này do Google tự động gọi về, không cần test thủ công.' 
   })
-  async googleAuthRedirect(@Req() req: express.Request) {
+  async googleAuthRedirect(@Req() req: express.Request,@Headers('x-device') device: string,) {
     const user = req.user as any;
     
-    return await this.authService.generateTokens(user);
+    return await this.authService.generateTokens(user, device);
   }
 }

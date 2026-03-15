@@ -51,15 +51,19 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  User: 'User',
-  Role: 'Role',
+  Matching: 'Matching',
   Permissions: 'Permissions',
   RolePermission: 'RolePermission',
-  UserRole: 'UserRole',
   Post: 'Post',
   Like: 'Like',
   Comment: 'Comment',
-  Matching: 'Matching'
+  Question: 'Question',
+  UserAnswer: 'UserAnswer',
+  Role: 'Role',
+  UserRole: 'UserRole',
+  User: 'User',
+  UserHobby: 'UserHobby',
+  Hobby: 'Hobby'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -78,44 +82,20 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const UserScalarFieldEnum = {
+export const MatchingScalarFieldEnum = {
   id: 'id',
-  email: 'email',
-  phone_number: 'phone_number',
-  password: 'password',
-  avatar: 'avatar',
-  name: 'name',
-  bio: 'bio',
-  address: 'address',
-  age: 'age',
-  gender: 'gender',
-  hobby: 'hobby',
-  major: 'major',
-  free_time_activity: 'free_time_activity',
-  is_verified: 'is_verified',
-  is_active: 'is_active',
-  is_block: 'is_block',
+  user_1_id: 'user_1_id',
+  user_2_id: 'user_2_id',
+  user_1_action: 'user_1_action',
+  user_2_action: 'user_2_action',
+  status: 'status',
+  matched_at: 'matched_at',
   created_at: 'created_at',
   updated_at: 'updated_at',
-  deleted_at: 'deleted_at',
-  updated_by: 'updated_by',
-  deleted_by: 'deleted_by'
+  deleted_at: 'deleted_at'
 } as const
 
-export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
-
-
-export const RoleScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  display_name: 'display_name',
-  description: 'description',
-  is_active: 'is_active',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof RoleScalarFieldEnum]
+export type MatchingScalarFieldEnum = (typeof MatchingScalarFieldEnum)[keyof typeof MatchingScalarFieldEnum]
 
 
 export const PermissionsScalarFieldEnum = {
@@ -126,8 +106,12 @@ export const PermissionsScalarFieldEnum = {
   resource: 'resource',
   action: 'action',
   is_active: 'is_active',
+  created_by: 'created_by',
+  updated_by: 'updated_by',
+  deleted_by: 'deleted_by',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type PermissionsScalarFieldEnum = (typeof PermissionsScalarFieldEnum)[keyof typeof PermissionsScalarFieldEnum]
@@ -137,30 +121,21 @@ export const RolePermissionScalarFieldEnum = {
   id: 'id',
   role_id: 'role_id',
   permission_id: 'permission_id',
+  created_by: 'created_by',
+  updated_by: 'updated_by',
+  deleted_by: 'deleted_by',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type RolePermissionScalarFieldEnum = (typeof RolePermissionScalarFieldEnum)[keyof typeof RolePermissionScalarFieldEnum]
 
 
-export const UserRoleScalarFieldEnum = {
-  id: 'id',
-  user_id: 'user_id',
-  role_id: 'role_id',
-  assigned_by: 'assigned_by',
-  assigned_at: 'assigned_at',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type UserRoleScalarFieldEnum = (typeof UserRoleScalarFieldEnum)[keyof typeof UserRoleScalarFieldEnum]
-
-
 export const PostScalarFieldEnum = {
   id: 'id',
-  title: 'title',
   content: 'content',
+  image_content: 'image_content',
   like_count: 'like_count',
   comment_count: 'comment_count',
   published: 'published',
@@ -204,14 +179,9 @@ export const CommentScalarFieldEnum = {
 export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
 
 
-export const MatchingScalarFieldEnum = {
+export const QuestionScalarFieldEnum = {
   id: 'id',
-  user_1_id: 'user_1_id',
-  user_2_id: 'user_2_id',
-  user_1_action: 'user_1_action',
-  user_2_action: 'user_2_action',
-  status: 'status',
-  matched_at: 'matched_at',
+  content: 'content',
   created_at: 'created_at',
   updated_at: 'updated_at',
   deleted_at: 'deleted_at',
@@ -219,7 +189,104 @@ export const MatchingScalarFieldEnum = {
   deleted_by: 'deleted_by'
 } as const
 
-export type MatchingScalarFieldEnum = (typeof MatchingScalarFieldEnum)[keyof typeof MatchingScalarFieldEnum]
+export type QuestionScalarFieldEnum = (typeof QuestionScalarFieldEnum)[keyof typeof QuestionScalarFieldEnum]
+
+
+export const UserAnswerScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  question_id: 'question_id',
+  answer: 'answer',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at',
+  updated_by: 'updated_by',
+  deleted_by: 'deleted_by'
+} as const
+
+export type UserAnswerScalarFieldEnum = (typeof UserAnswerScalarFieldEnum)[keyof typeof UserAnswerScalarFieldEnum]
+
+
+export const RoleScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  display_name: 'display_name',
+  description: 'description',
+  is_active: 'is_active',
+  created_by: 'created_by',
+  updated_by: 'updated_by',
+  deleted_by: 'deleted_by',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof RoleScalarFieldEnum]
+
+
+export const UserRoleScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  role_id: 'role_id',
+  assigned_by: 'assigned_by',
+  assigned_at: 'assigned_at',
+  created_by: 'created_by',
+  updated_by: 'updated_by',
+  deleted_by: 'deleted_by',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type UserRoleScalarFieldEnum = (typeof UserRoleScalarFieldEnum)[keyof typeof UserRoleScalarFieldEnum]
+
+
+export const UserScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  phone_number: 'phone_number',
+  password: 'password',
+  avatar: 'avatar',
+  name: 'name',
+  bio: 'bio',
+  address: 'address',
+  age: 'age',
+  gender: 'gender',
+  major: 'major',
+  free_time_activity: 'free_time_activity',
+  is_verified: 'is_verified',
+  is_active: 'is_active',
+  is_block: 'is_block',
+  created_by: 'created_by',
+  updated_by: 'updated_by',
+  deleted_by: 'deleted_by',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at',
+  last_login_at: 'last_login_at',
+  is_online: 'is_online'
+} as const
+
+export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const UserHobbyScalarFieldEnum = {
+  user_id: 'user_id',
+  hobby_id: 'hobby_id'
+} as const
+
+export type UserHobbyScalarFieldEnum = (typeof UserHobbyScalarFieldEnum)[keyof typeof UserHobbyScalarFieldEnum]
+
+
+export const HobbyScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type HobbyScalarFieldEnum = (typeof HobbyScalarFieldEnum)[keyof typeof HobbyScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -238,6 +305,14 @@ export const NullableJsonNullValueInput = {
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -253,12 +328,4 @@ export const JsonNullValueFilter = {
 } as const
 
 export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
-
-
-export const NullsOrder = {
-  first: 'first',
-  last: 'last'
-} as const
-
-export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

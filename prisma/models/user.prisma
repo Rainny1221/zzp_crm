@@ -1,0 +1,61 @@
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+model User {
+  id                 Int        @id @default(autoincrement())
+  email              String?    @unique
+  phone_number       String?    @unique @db.VarChar(20)
+  password           String?    @db.VarChar(60)
+  avatar             Json?      
+  name               String?    @db.VarChar(60)
+  bio                String?    @db.VarChar(255)
+  address            String?    @db.VarChar(255)
+  age                Int?       @db.SmallInt
+  gender             Gender?
+  major              String?    @db.VarChar(255)
+  free_time_activity String?    @db.VarChar(255)
+  is_verified        Boolean    @default(false)
+  is_active          Boolean    @default(false)
+  is_block           Boolean    @default(false)
+  created_by         Int? 
+  updated_by         Int?
+  deleted_by         Int?
+  created_at         DateTime   @default(now())
+  updated_at         DateTime   @updatedAt
+  deleted_at         DateTime?
+  last_login_at      DateTime?
+  is_online          Boolean    @default(false)
+  posts              Post[]
+  likes              Like[]
+  comments           Comment[]
+  roles              UserRole[]
+  user_answers       UserAnswer[]
+  user_hobbies       UserHobby[]
+
+  @@map("users")
+}
+
+model UserHobby {
+  user_id  Int
+  hobby_id Int
+
+  user  User  @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  hobby Hobby @relation(fields: [hobby_id], references: [id], onDelete: Cascade)
+
+  @@id([user_id, hobby_id])
+  @@map("user_hobbies")
+}
+
+model Hobby {
+  id            Int       @id @default(autoincrement())
+  name          String    @db.VarChar(50)
+  created_at    DateTime  @default(now())
+  updated_at    DateTime  @updatedAt
+  deleted_at    DateTime?
+
+  user_hobbies UserHobby[]
+  @@map("hobbies")
+}

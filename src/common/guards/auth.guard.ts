@@ -1,14 +1,16 @@
 import {
   CanActivate,
   ExecutionContext,
-  Injectable,
-  UnauthorizedException,
+  Injectable
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { JwtService } from '@nestjs/jwt';
-import { Request } from 'express';
 import { Reflector } from '@nestjs/core';
+import { JsonWebTokenError, JwtService } from '@nestjs/jwt';
+import { Request } from 'express';
+import { TokenType } from 'src/auth/enum/auth.enum';
 import { IS_PUBLIC_KEY } from '../decorator/require-permissions.decorator';
+import { ErrorCode } from '../enums/error-codes.enum';
+import { ErrorFactory } from '../error.factory';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -29,12 +31,11 @@ export class AuthGuard implements CanActivate {
   }
 
     const req = context.switchToHttp().getRequest<Request>();
-    // const authHeader = req.headers.authorization;
 
     const token = this.extractTokenFromHeader(req);
 
     if (!token) {
-      throw new UnauthorizedException('No token provided');
+      throw ErrorFactory.create(ErrorCode.INVALID_TOKEN, 'No token provided');
     }
 
     try {
@@ -42,9 +43,16 @@ export class AuthGuard implements CanActivate {
 
       const payload = await this.jwtService.verifyAsync(token, { secret });
 
+      if (payload.type !== TokenType.ACCESS) {
+        throw ErrorFactory.create(ErrorCode.INVALID_TOKEN, 'Invalid token type');
+      }
+
       req['user'] = payload;
-    } catch {
-      throw new UnauthorizedException('Invalid token');
+    } catch (error) {
+      if (error instanceof JsonWebTokenError) {
+        throw ErrorFactory.create(ErrorCode.INVALID_TOKEN, 'Invalid token');
+      }
+      throw error;
     }
 
     return true;
