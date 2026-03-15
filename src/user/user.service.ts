@@ -39,15 +39,32 @@ export class UserService {
                 );
             }
 
+            const {hobby_ids, ...rest} = data;
+
             return this.prisma.user.update({
-            where: { id: userId },
-            data: data,
-        });
+                where: { id: userId },
+                data: {
+                    ...rest,
+
+                    ...(hobby_ids && {
+                        user_hobbies: {
+                            deleteMany: {},
+                            create: hobby_ids.map((id) => ({
+                                hobby: {
+                                    connect: {
+                                        id: id,
+                                    },
+                                },
+                            })),
+                        },
+                    }),
+                },
+            });
         } catch (error) {
             this.logger.error(error);
             throw ErrorFactory.create(
-                ErrorCode.USER_NOT_FOUND,
-                'User not found to update profile',
+                ErrorCode.UPDATE_PROFILE_FAILED,
+                'Have error when update profile',
                 error,  
             );
         }

@@ -29,8 +29,8 @@ export * from "./enums.js"
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Users
- * const users = await prisma.user.findMany()
+ * // Fetch zero or more Matchings
+ * const matchings = await prisma.matching.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -40,15 +40,10 @@ export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts exten
 export { Prisma }
 
 /**
- * Model User
+ * Model Matching
  * 
  */
-export type User = Prisma.UserModel
-/**
- * Model Role
- * 
- */
-export type Role = Prisma.RoleModel
+export type Matching = Prisma.MatchingModel
 /**
  * Model Permissions
  * 
@@ -59,11 +54,6 @@ export type Permissions = Prisma.PermissionsModel
  * 
  */
 export type RolePermission = Prisma.RolePermissionModel
-/**
- * Model UserRole
- * 
- */
-export type UserRole = Prisma.UserRoleModel
 /**
  * Model Post
  * 
@@ -80,7 +70,37 @@ export type Like = Prisma.LikeModel
  */
 export type Comment = Prisma.CommentModel
 /**
- * Model Matching
+ * Model Question
  * 
  */
-export type Matching = Prisma.MatchingModel
+export type Question = Prisma.QuestionModel
+/**
+ * Model UserAnswer
+ * 
+ */
+export type UserAnswer = Prisma.UserAnswerModel
+/**
+ * Model Role
+ * 
+ */
+export type Role = Prisma.RoleModel
+/**
+ * Model UserRole
+ * 
+ */
+export type UserRole = Prisma.UserRoleModel
+/**
+ * Model User
+ * 
+ */
+export type User = Prisma.UserModel
+/**
+ * Model UserHobby
+ * 
+ */
+export type UserHobby = Prisma.UserHobbyModel
+/**
+ * Model Hobby
+ * 
+ */
+export type Hobby = Prisma.HobbyModel

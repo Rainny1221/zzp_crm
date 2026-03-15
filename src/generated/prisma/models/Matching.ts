@@ -30,16 +30,12 @@ export type MatchingAvgAggregateOutputType = {
   id: number | null
   user_1_id: number | null
   user_2_id: number | null
-  updated_by: number | null
-  deleted_by: number | null
 }
 
 export type MatchingSumAggregateOutputType = {
   id: number | null
   user_1_id: number | null
   user_2_id: number | null
-  updated_by: number | null
-  deleted_by: number | null
 }
 
 export type MatchingMinAggregateOutputType = {
@@ -53,8 +49,6 @@ export type MatchingMinAggregateOutputType = {
   created_at: Date | null
   updated_at: Date | null
   deleted_at: Date | null
-  updated_by: number | null
-  deleted_by: number | null
 }
 
 export type MatchingMaxAggregateOutputType = {
@@ -68,8 +62,6 @@ export type MatchingMaxAggregateOutputType = {
   created_at: Date | null
   updated_at: Date | null
   deleted_at: Date | null
-  updated_by: number | null
-  deleted_by: number | null
 }
 
 export type MatchingCountAggregateOutputType = {
@@ -83,8 +75,6 @@ export type MatchingCountAggregateOutputType = {
   created_at: number
   updated_at: number
   deleted_at: number
-  updated_by: number
-  deleted_by: number
   _all: number
 }
 
@@ -93,16 +83,12 @@ export type MatchingAvgAggregateInputType = {
   id?: true
   user_1_id?: true
   user_2_id?: true
-  updated_by?: true
-  deleted_by?: true
 }
 
 export type MatchingSumAggregateInputType = {
   id?: true
   user_1_id?: true
   user_2_id?: true
-  updated_by?: true
-  deleted_by?: true
 }
 
 export type MatchingMinAggregateInputType = {
@@ -116,8 +102,6 @@ export type MatchingMinAggregateInputType = {
   created_at?: true
   updated_at?: true
   deleted_at?: true
-  updated_by?: true
-  deleted_by?: true
 }
 
 export type MatchingMaxAggregateInputType = {
@@ -131,8 +115,6 @@ export type MatchingMaxAggregateInputType = {
   created_at?: true
   updated_at?: true
   deleted_at?: true
-  updated_by?: true
-  deleted_by?: true
 }
 
 export type MatchingCountAggregateInputType = {
@@ -146,8 +128,6 @@ export type MatchingCountAggregateInputType = {
   created_at?: true
   updated_at?: true
   deleted_at?: true
-  updated_by?: true
-  deleted_by?: true
   _all?: true
 }
 
@@ -248,8 +228,6 @@ export type MatchingGroupByOutputType = {
   created_at: Date
   updated_at: Date
   deleted_at: Date | null
-  updated_by: number | null
-  deleted_by: number | null
   _count: MatchingCountAggregateOutputType | null
   _avg: MatchingAvgAggregateOutputType | null
   _sum: MatchingSumAggregateOutputType | null
@@ -286,8 +264,6 @@ export type MatchingWhereInput = {
   created_at?: Prisma.DateTimeFilter<"Matching"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"Matching"> | Date | string
   deleted_at?: Prisma.DateTimeNullableFilter<"Matching"> | Date | string | null
-  updated_by?: Prisma.IntNullableFilter<"Matching"> | number | null
-  deleted_by?: Prisma.IntNullableFilter<"Matching"> | number | null
 }
 
 export type MatchingOrderByWithRelationInput = {
@@ -301,8 +277,6 @@ export type MatchingOrderByWithRelationInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  updated_by?: Prisma.SortOrderInput | Prisma.SortOrder
-  deleted_by?: Prisma.SortOrderInput | Prisma.SortOrder
 }
 
 export type MatchingWhereUniqueInput = Prisma.AtLeast<{
@@ -320,8 +294,6 @@ export type MatchingWhereUniqueInput = Prisma.AtLeast<{
   created_at?: Prisma.DateTimeFilter<"Matching"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"Matching"> | Date | string
   deleted_at?: Prisma.DateTimeNullableFilter<"Matching"> | Date | string | null
-  updated_by?: Prisma.IntNullableFilter<"Matching"> | number | null
-  deleted_by?: Prisma.IntNullableFilter<"Matching"> | number | null
 }, "id" | "user_1_id_user_2_id">
 
 export type MatchingOrderByWithAggregationInput = {
@@ -335,8 +307,6 @@ export type MatchingOrderByWithAggregationInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  updated_by?: Prisma.SortOrderInput | Prisma.SortOrder
-  deleted_by?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.MatchingCountOrderByAggregateInput
   _avg?: Prisma.MatchingAvgOrderByAggregateInput
   _max?: Prisma.MatchingMaxOrderByAggregateInput
@@ -358,8 +328,6 @@ export type MatchingScalarWhereWithAggregatesInput = {
   created_at?: Prisma.DateTimeWithAggregatesFilter<"Matching"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"Matching"> | Date | string
   deleted_at?: Prisma.DateTimeNullableWithAggregatesFilter<"Matching"> | Date | string | null
-  updated_by?: Prisma.IntNullableWithAggregatesFilter<"Matching"> | number | null
-  deleted_by?: Prisma.IntNullableWithAggregatesFilter<"Matching"> | number | null
 }
 
 export type MatchingCreateInput = {
@@ -372,8 +340,6 @@ export type MatchingCreateInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
-  updated_by?: number | null
-  deleted_by?: number | null
 }
 
 export type MatchingUncheckedCreateInput = {
@@ -387,8 +353,6 @@ export type MatchingUncheckedCreateInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
-  updated_by?: number | null
-  deleted_by?: number | null
 }
 
 export type MatchingUpdateInput = {
@@ -401,8 +365,6 @@ export type MatchingUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type MatchingUncheckedUpdateInput = {
@@ -416,8 +378,6 @@ export type MatchingUncheckedUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type MatchingCreateManyInput = {
@@ -431,8 +391,6 @@ export type MatchingCreateManyInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
-  updated_by?: number | null
-  deleted_by?: number | null
 }
 
 export type MatchingUpdateManyMutationInput = {
@@ -445,8 +403,6 @@ export type MatchingUpdateManyMutationInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type MatchingUncheckedUpdateManyInput = {
@@ -460,8 +416,6 @@ export type MatchingUncheckedUpdateManyInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type MatchingUser_1_idUser_2_idCompoundUniqueInput = {
@@ -480,16 +434,12 @@ export type MatchingCountOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrder
-  updated_by?: Prisma.SortOrder
-  deleted_by?: Prisma.SortOrder
 }
 
 export type MatchingAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   user_1_id?: Prisma.SortOrder
   user_2_id?: Prisma.SortOrder
-  updated_by?: Prisma.SortOrder
-  deleted_by?: Prisma.SortOrder
 }
 
 export type MatchingMaxOrderByAggregateInput = {
@@ -503,8 +453,6 @@ export type MatchingMaxOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrder
-  updated_by?: Prisma.SortOrder
-  deleted_by?: Prisma.SortOrder
 }
 
 export type MatchingMinOrderByAggregateInput = {
@@ -518,16 +466,20 @@ export type MatchingMinOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrder
-  updated_by?: Prisma.SortOrder
-  deleted_by?: Prisma.SortOrder
 }
 
 export type MatchingSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   user_1_id?: Prisma.SortOrder
   user_2_id?: Prisma.SortOrder
-  updated_by?: Prisma.SortOrder
-  deleted_by?: Prisma.SortOrder
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type NullableEnumUserActionFieldUpdateOperationsInput = {
@@ -536,6 +488,14 @@ export type NullableEnumUserActionFieldUpdateOperationsInput = {
 
 export type EnumMatchingStatusFieldUpdateOperationsInput = {
   set?: $Enums.MatchingStatus
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
 }
 
 
@@ -551,8 +511,6 @@ export type MatchingSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   created_at?: boolean
   updated_at?: boolean
   deleted_at?: boolean
-  updated_by?: boolean
-  deleted_by?: boolean
 }, ExtArgs["result"]["matching"]>
 
 export type MatchingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -566,8 +524,6 @@ export type MatchingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   created_at?: boolean
   updated_at?: boolean
   deleted_at?: boolean
-  updated_by?: boolean
-  deleted_by?: boolean
 }, ExtArgs["result"]["matching"]>
 
 export type MatchingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -581,8 +537,6 @@ export type MatchingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   created_at?: boolean
   updated_at?: boolean
   deleted_at?: boolean
-  updated_by?: boolean
-  deleted_by?: boolean
 }, ExtArgs["result"]["matching"]>
 
 export type MatchingSelectScalar = {
@@ -596,11 +550,9 @@ export type MatchingSelectScalar = {
   created_at?: boolean
   updated_at?: boolean
   deleted_at?: boolean
-  updated_by?: boolean
-  deleted_by?: boolean
 }
 
-export type MatchingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_1_id" | "user_2_id" | "user_1_action" | "user_2_action" | "status" | "matched_at" | "created_at" | "updated_at" | "deleted_at" | "updated_by" | "deleted_by", ExtArgs["result"]["matching"]>
+export type MatchingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_1_id" | "user_2_id" | "user_1_action" | "user_2_action" | "status" | "matched_at" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["matching"]>
 
 export type $MatchingPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Matching"
@@ -616,8 +568,6 @@ export type $MatchingPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     created_at: Date
     updated_at: Date
     deleted_at: Date | null
-    updated_by: number | null
-    deleted_by: number | null
   }, ExtArgs["result"]["matching"]>
   composites: {}
 }
@@ -1051,8 +1001,6 @@ export interface MatchingFieldRefs {
   readonly created_at: Prisma.FieldRef<"Matching", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"Matching", 'DateTime'>
   readonly deleted_at: Prisma.FieldRef<"Matching", 'DateTime'>
-  readonly updated_by: Prisma.FieldRef<"Matching", 'Int'>
-  readonly deleted_by: Prisma.FieldRef<"Matching", 'Int'>
 }
     
 

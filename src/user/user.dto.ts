@@ -11,6 +11,7 @@ export const UserSchema = z.object({
   hobby: z.string().optional(),
   major: z.string().optional(),
   avatar: z.record(z.string(), z.any()).optional(),
+  hobby_ids: z.array(z.number()).optional()
 });
 
 export class UserDto extends createZodDto(UserSchema) {}

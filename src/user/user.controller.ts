@@ -1,8 +1,9 @@
-import { Controller, Get, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Patch, Req, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from 'src/common/guards/auth.guard';
 import { RequirePermissions } from 'src/common/decorator/require-permissions.decorator';
+import { UserDto } from './user.dto';
 
 @ApiTags('User')
 @ApiBearerAuth('access-token')
@@ -15,5 +16,12 @@ export class UserController {
   @RequirePermissions('USER', 'READ')
   getMe(@Req() req: any) {
     return this.userService.getUserById(req.user.sub);
+  }
+
+  @Patch('me')
+  @UseGuards(AuthGuard)
+  @RequirePermissions('USER', 'UPDATE')
+  updateProfile(@Req() req: any, @Body() data: UserDto) {
+    return this.userService.updateProfile(req.user.sub, data);
   }
 }

@@ -29,6 +29,7 @@ export type AggregateUser = {
 export type UserAvgAggregateOutputType = {
   id: number | null
   age: number | null
+  created_by: number | null
   updated_by: number | null
   deleted_by: number | null
 }
@@ -36,6 +37,7 @@ export type UserAvgAggregateOutputType = {
 export type UserSumAggregateOutputType = {
   id: number | null
   age: number | null
+  created_by: number | null
   updated_by: number | null
   deleted_by: number | null
 }
@@ -49,18 +51,20 @@ export type UserMinAggregateOutputType = {
   bio: string | null
   address: string | null
   age: number | null
-  gender: string | null
-  hobby: string | null
+  gender: $Enums.Gender | null
   major: string | null
   free_time_activity: string | null
   is_verified: boolean | null
   is_active: boolean | null
   is_block: boolean | null
+  created_by: number | null
+  updated_by: number | null
+  deleted_by: number | null
   created_at: Date | null
   updated_at: Date | null
   deleted_at: Date | null
-  updated_by: number | null
-  deleted_by: number | null
+  last_login_at: Date | null
+  is_online: boolean | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -72,18 +76,20 @@ export type UserMaxAggregateOutputType = {
   bio: string | null
   address: string | null
   age: number | null
-  gender: string | null
-  hobby: string | null
+  gender: $Enums.Gender | null
   major: string | null
   free_time_activity: string | null
   is_verified: boolean | null
   is_active: boolean | null
   is_block: boolean | null
+  created_by: number | null
+  updated_by: number | null
+  deleted_by: number | null
   created_at: Date | null
   updated_at: Date | null
   deleted_at: Date | null
-  updated_by: number | null
-  deleted_by: number | null
+  last_login_at: Date | null
+  is_online: boolean | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -97,17 +103,19 @@ export type UserCountAggregateOutputType = {
   address: number
   age: number
   gender: number
-  hobby: number
   major: number
   free_time_activity: number
   is_verified: number
   is_active: number
   is_block: number
+  created_by: number
+  updated_by: number
+  deleted_by: number
   created_at: number
   updated_at: number
   deleted_at: number
-  updated_by: number
-  deleted_by: number
+  last_login_at: number
+  is_online: number
   _all: number
 }
 
@@ -115,6 +123,7 @@ export type UserCountAggregateOutputType = {
 export type UserAvgAggregateInputType = {
   id?: true
   age?: true
+  created_by?: true
   updated_by?: true
   deleted_by?: true
 }
@@ -122,6 +131,7 @@ export type UserAvgAggregateInputType = {
 export type UserSumAggregateInputType = {
   id?: true
   age?: true
+  created_by?: true
   updated_by?: true
   deleted_by?: true
 }
@@ -136,17 +146,19 @@ export type UserMinAggregateInputType = {
   address?: true
   age?: true
   gender?: true
-  hobby?: true
   major?: true
   free_time_activity?: true
   is_verified?: true
   is_active?: true
   is_block?: true
+  created_by?: true
+  updated_by?: true
+  deleted_by?: true
   created_at?: true
   updated_at?: true
   deleted_at?: true
-  updated_by?: true
-  deleted_by?: true
+  last_login_at?: true
+  is_online?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -159,17 +171,19 @@ export type UserMaxAggregateInputType = {
   address?: true
   age?: true
   gender?: true
-  hobby?: true
   major?: true
   free_time_activity?: true
   is_verified?: true
   is_active?: true
   is_block?: true
+  created_by?: true
+  updated_by?: true
+  deleted_by?: true
   created_at?: true
   updated_at?: true
   deleted_at?: true
-  updated_by?: true
-  deleted_by?: true
+  last_login_at?: true
+  is_online?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -183,17 +197,19 @@ export type UserCountAggregateInputType = {
   address?: true
   age?: true
   gender?: true
-  hobby?: true
   major?: true
   free_time_activity?: true
   is_verified?: true
   is_active?: true
   is_block?: true
+  created_by?: true
+  updated_by?: true
+  deleted_by?: true
   created_at?: true
   updated_at?: true
   deleted_at?: true
-  updated_by?: true
-  deleted_by?: true
+  last_login_at?: true
+  is_online?: true
   _all?: true
 }
 
@@ -293,18 +309,20 @@ export type UserGroupByOutputType = {
   bio: string | null
   address: string | null
   age: number | null
-  gender: string | null
-  hobby: string | null
+  gender: $Enums.Gender | null
   major: string | null
   free_time_activity: string | null
   is_verified: boolean
   is_active: boolean
   is_block: boolean
+  created_by: number | null
+  updated_by: number | null
+  deleted_by: number | null
   created_at: Date
   updated_at: Date
   deleted_at: Date | null
-  updated_by: number | null
-  deleted_by: number | null
+  last_login_at: Date | null
+  is_online: boolean
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -340,22 +358,26 @@ export type UserWhereInput = {
   bio?: Prisma.StringNullableFilter<"User"> | string | null
   address?: Prisma.StringNullableFilter<"User"> | string | null
   age?: Prisma.IntNullableFilter<"User"> | number | null
-  gender?: Prisma.StringNullableFilter<"User"> | string | null
-  hobby?: Prisma.StringNullableFilter<"User"> | string | null
+  gender?: Prisma.EnumGenderNullableFilter<"User"> | $Enums.Gender | null
   major?: Prisma.StringNullableFilter<"User"> | string | null
   free_time_activity?: Prisma.StringNullableFilter<"User"> | string | null
   is_verified?: Prisma.BoolFilter<"User"> | boolean
   is_active?: Prisma.BoolFilter<"User"> | boolean
   is_block?: Prisma.BoolFilter<"User"> | boolean
+  created_by?: Prisma.IntNullableFilter<"User"> | number | null
+  updated_by?: Prisma.IntNullableFilter<"User"> | number | null
+  deleted_by?: Prisma.IntNullableFilter<"User"> | number | null
   created_at?: Prisma.DateTimeFilter<"User"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"User"> | Date | string
   deleted_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
-  updated_by?: Prisma.IntNullableFilter<"User"> | number | null
-  deleted_by?: Prisma.IntNullableFilter<"User"> | number | null
+  last_login_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  is_online?: Prisma.BoolFilter<"User"> | boolean
   posts?: Prisma.PostListRelationFilter
   likes?: Prisma.LikeListRelationFilter
   comments?: Prisma.CommentListRelationFilter
   roles?: Prisma.UserRoleListRelationFilter
+  user_answers?: Prisma.UserAnswerListRelationFilter
+  user_hobbies?: Prisma.UserHobbyListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -369,21 +391,25 @@ export type UserOrderByWithRelationInput = {
   address?: Prisma.SortOrderInput | Prisma.SortOrder
   age?: Prisma.SortOrderInput | Prisma.SortOrder
   gender?: Prisma.SortOrderInput | Prisma.SortOrder
-  hobby?: Prisma.SortOrderInput | Prisma.SortOrder
   major?: Prisma.SortOrderInput | Prisma.SortOrder
   free_time_activity?: Prisma.SortOrderInput | Prisma.SortOrder
   is_verified?: Prisma.SortOrder
   is_active?: Prisma.SortOrder
   is_block?: Prisma.SortOrder
+  created_by?: Prisma.SortOrderInput | Prisma.SortOrder
+  updated_by?: Prisma.SortOrderInput | Prisma.SortOrder
+  deleted_by?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  updated_by?: Prisma.SortOrderInput | Prisma.SortOrder
-  deleted_by?: Prisma.SortOrderInput | Prisma.SortOrder
+  last_login_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_online?: Prisma.SortOrder
   posts?: Prisma.PostOrderByRelationAggregateInput
   likes?: Prisma.LikeOrderByRelationAggregateInput
   comments?: Prisma.CommentOrderByRelationAggregateInput
   roles?: Prisma.UserRoleOrderByRelationAggregateInput
+  user_answers?: Prisma.UserAnswerOrderByRelationAggregateInput
+  user_hobbies?: Prisma.UserHobbyOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -399,22 +425,26 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   bio?: Prisma.StringNullableFilter<"User"> | string | null
   address?: Prisma.StringNullableFilter<"User"> | string | null
   age?: Prisma.IntNullableFilter<"User"> | number | null
-  gender?: Prisma.StringNullableFilter<"User"> | string | null
-  hobby?: Prisma.StringNullableFilter<"User"> | string | null
+  gender?: Prisma.EnumGenderNullableFilter<"User"> | $Enums.Gender | null
   major?: Prisma.StringNullableFilter<"User"> | string | null
   free_time_activity?: Prisma.StringNullableFilter<"User"> | string | null
   is_verified?: Prisma.BoolFilter<"User"> | boolean
   is_active?: Prisma.BoolFilter<"User"> | boolean
   is_block?: Prisma.BoolFilter<"User"> | boolean
+  created_by?: Prisma.IntNullableFilter<"User"> | number | null
+  updated_by?: Prisma.IntNullableFilter<"User"> | number | null
+  deleted_by?: Prisma.IntNullableFilter<"User"> | number | null
   created_at?: Prisma.DateTimeFilter<"User"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"User"> | Date | string
   deleted_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
-  updated_by?: Prisma.IntNullableFilter<"User"> | number | null
-  deleted_by?: Prisma.IntNullableFilter<"User"> | number | null
+  last_login_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  is_online?: Prisma.BoolFilter<"User"> | boolean
   posts?: Prisma.PostListRelationFilter
   likes?: Prisma.LikeListRelationFilter
   comments?: Prisma.CommentListRelationFilter
   roles?: Prisma.UserRoleListRelationFilter
+  user_answers?: Prisma.UserAnswerListRelationFilter
+  user_hobbies?: Prisma.UserHobbyListRelationFilter
 }, "id" | "email" | "phone_number">
 
 export type UserOrderByWithAggregationInput = {
@@ -428,17 +458,19 @@ export type UserOrderByWithAggregationInput = {
   address?: Prisma.SortOrderInput | Prisma.SortOrder
   age?: Prisma.SortOrderInput | Prisma.SortOrder
   gender?: Prisma.SortOrderInput | Prisma.SortOrder
-  hobby?: Prisma.SortOrderInput | Prisma.SortOrder
   major?: Prisma.SortOrderInput | Prisma.SortOrder
   free_time_activity?: Prisma.SortOrderInput | Prisma.SortOrder
   is_verified?: Prisma.SortOrder
   is_active?: Prisma.SortOrder
   is_block?: Prisma.SortOrder
+  created_by?: Prisma.SortOrderInput | Prisma.SortOrder
+  updated_by?: Prisma.SortOrderInput | Prisma.SortOrder
+  deleted_by?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  updated_by?: Prisma.SortOrderInput | Prisma.SortOrder
-  deleted_by?: Prisma.SortOrderInput | Prisma.SortOrder
+  last_login_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_online?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -459,18 +491,20 @@ export type UserScalarWhereWithAggregatesInput = {
   bio?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   address?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   age?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
-  gender?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  hobby?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  gender?: Prisma.EnumGenderNullableWithAggregatesFilter<"User"> | $Enums.Gender | null
   major?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   free_time_activity?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   is_verified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   is_active?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   is_block?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  created_by?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  updated_by?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  deleted_by?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
   created_at?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   deleted_at?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
-  updated_by?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
-  deleted_by?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  last_login_at?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  is_online?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
 }
 
 export type UserCreateInput = {
@@ -482,22 +516,26 @@ export type UserCreateInput = {
   bio?: string | null
   address?: string | null
   age?: number | null
-  gender?: string | null
-  hobby?: string | null
+  gender?: $Enums.Gender | null
   major?: string | null
   free_time_activity?: string | null
   is_verified?: boolean
   is_active?: boolean
   is_block?: boolean
+  created_by?: number | null
+  updated_by?: number | null
+  deleted_by?: number | null
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
-  updated_by?: number | null
-  deleted_by?: number | null
+  last_login_at?: Date | string | null
+  is_online?: boolean
   posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
   likes?: Prisma.LikeCreateNestedManyWithoutUserInput
   comments?: Prisma.CommentCreateNestedManyWithoutUserInput
   roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  user_answers?: Prisma.UserAnswerCreateNestedManyWithoutUserInput
+  user_hobbies?: Prisma.UserHobbyCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -510,22 +548,26 @@ export type UserUncheckedCreateInput = {
   bio?: string | null
   address?: string | null
   age?: number | null
-  gender?: string | null
-  hobby?: string | null
+  gender?: $Enums.Gender | null
   major?: string | null
   free_time_activity?: string | null
   is_verified?: boolean
   is_active?: boolean
   is_block?: boolean
+  created_by?: number | null
+  updated_by?: number | null
+  deleted_by?: number | null
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
-  updated_by?: number | null
-  deleted_by?: number | null
+  last_login_at?: Date | string | null
+  is_online?: boolean
   posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
   likes?: Prisma.LikeUncheckedCreateNestedManyWithoutUserInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
   roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  user_answers?: Prisma.UserAnswerUncheckedCreateNestedManyWithoutUserInput
+  user_hobbies?: Prisma.UserHobbyUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -537,22 +579,26 @@ export type UserUpdateInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hobby?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
   posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
   likes?: Prisma.LikeUpdateManyWithoutUserNestedInput
   comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
   roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  user_answers?: Prisma.UserAnswerUpdateManyWithoutUserNestedInput
+  user_hobbies?: Prisma.UserHobbyUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -565,22 +611,26 @@ export type UserUncheckedUpdateInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hobby?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
   posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
   likes?: Prisma.LikeUncheckedUpdateManyWithoutUserNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
   roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  user_answers?: Prisma.UserAnswerUncheckedUpdateManyWithoutUserNestedInput
+  user_hobbies?: Prisma.UserHobbyUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -593,18 +643,20 @@ export type UserCreateManyInput = {
   bio?: string | null
   address?: string | null
   age?: number | null
-  gender?: string | null
-  hobby?: string | null
+  gender?: $Enums.Gender | null
   major?: string | null
   free_time_activity?: string | null
   is_verified?: boolean
   is_active?: boolean
   is_block?: boolean
+  created_by?: number | null
+  updated_by?: number | null
+  deleted_by?: number | null
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
-  updated_by?: number | null
-  deleted_by?: number | null
+  last_login_at?: Date | string | null
+  is_online?: boolean
 }
 
 export type UserUpdateManyMutationInput = {
@@ -616,18 +668,20 @@ export type UserUpdateManyMutationInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hobby?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -640,18 +694,30 @@ export type UserUncheckedUpdateManyInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hobby?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
+}
+
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.UserWhereInput | null
+  isNot?: Prisma.UserWhereInput | null
+}
+
+export type UserScalarRelationFilter = {
+  is?: Prisma.UserWhereInput
+  isNot?: Prisma.UserWhereInput
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -665,22 +731,25 @@ export type UserCountOrderByAggregateInput = {
   address?: Prisma.SortOrder
   age?: Prisma.SortOrder
   gender?: Prisma.SortOrder
-  hobby?: Prisma.SortOrder
   major?: Prisma.SortOrder
   free_time_activity?: Prisma.SortOrder
   is_verified?: Prisma.SortOrder
   is_active?: Prisma.SortOrder
   is_block?: Prisma.SortOrder
+  created_by?: Prisma.SortOrder
+  updated_by?: Prisma.SortOrder
+  deleted_by?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrder
-  updated_by?: Prisma.SortOrder
-  deleted_by?: Prisma.SortOrder
+  last_login_at?: Prisma.SortOrder
+  is_online?: Prisma.SortOrder
 }
 
 export type UserAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   age?: Prisma.SortOrder
+  created_by?: Prisma.SortOrder
   updated_by?: Prisma.SortOrder
   deleted_by?: Prisma.SortOrder
 }
@@ -695,17 +764,19 @@ export type UserMaxOrderByAggregateInput = {
   address?: Prisma.SortOrder
   age?: Prisma.SortOrder
   gender?: Prisma.SortOrder
-  hobby?: Prisma.SortOrder
   major?: Prisma.SortOrder
   free_time_activity?: Prisma.SortOrder
   is_verified?: Prisma.SortOrder
   is_active?: Prisma.SortOrder
   is_block?: Prisma.SortOrder
+  created_by?: Prisma.SortOrder
+  updated_by?: Prisma.SortOrder
+  deleted_by?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrder
-  updated_by?: Prisma.SortOrder
-  deleted_by?: Prisma.SortOrder
+  last_login_at?: Prisma.SortOrder
+  is_online?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -718,80 +789,27 @@ export type UserMinOrderByAggregateInput = {
   address?: Prisma.SortOrder
   age?: Prisma.SortOrder
   gender?: Prisma.SortOrder
-  hobby?: Prisma.SortOrder
   major?: Prisma.SortOrder
   free_time_activity?: Prisma.SortOrder
   is_verified?: Prisma.SortOrder
   is_active?: Prisma.SortOrder
   is_block?: Prisma.SortOrder
+  created_by?: Prisma.SortOrder
+  updated_by?: Prisma.SortOrder
+  deleted_by?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrder
-  updated_by?: Prisma.SortOrder
-  deleted_by?: Prisma.SortOrder
+  last_login_at?: Prisma.SortOrder
+  is_online?: Prisma.SortOrder
 }
 
 export type UserSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   age?: Prisma.SortOrder
+  created_by?: Prisma.SortOrder
   updated_by?: Prisma.SortOrder
   deleted_by?: Prisma.SortOrder
-}
-
-export type UserScalarRelationFilter = {
-  is?: Prisma.UserWhereInput
-  isNot?: Prisma.UserWhereInput
-}
-
-export type UserNullableScalarRelationFilter = {
-  is?: Prisma.UserWhereInput | null
-  isNot?: Prisma.UserWhereInput | null
-}
-
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
-}
-
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
-}
-
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
-export type UserCreateNestedOneWithoutRolesInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutRolesInput, Prisma.UserUncheckedCreateWithoutRolesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRolesInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutRolesNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutRolesInput, Prisma.UserUncheckedCreateWithoutRolesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRolesInput
-  upsert?: Prisma.UserUpsertWithoutRolesInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRolesInput, Prisma.UserUpdateWithoutRolesInput>, Prisma.UserUncheckedUpdateWithoutRolesInput>
 }
 
 export type UserCreateNestedOneWithoutPostsInput = {
@@ -842,126 +860,50 @@ export type UserUpdateOneWithoutCommentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCommentsInput, Prisma.UserUpdateWithoutCommentsInput>, Prisma.UserUncheckedUpdateWithoutCommentsInput>
 }
 
-export type UserCreateWithoutRolesInput = {
-  email?: string | null
-  phone_number?: string | null
-  password?: string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: string | null
-  bio?: string | null
-  address?: string | null
-  age?: number | null
-  gender?: string | null
-  hobby?: string | null
-  major?: string | null
-  free_time_activity?: string | null
-  is_verified?: boolean
-  is_active?: boolean
-  is_block?: boolean
-  created_at?: Date | string
-  updated_at?: Date | string
-  deleted_at?: Date | string | null
-  updated_by?: number | null
-  deleted_by?: number | null
-  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
-  likes?: Prisma.LikeCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
+export type UserCreateNestedOneWithoutUser_answersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUser_answersInput, Prisma.UserUncheckedCreateWithoutUser_answersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUser_answersInput
+  connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUncheckedCreateWithoutRolesInput = {
-  id?: number
-  email?: string | null
-  phone_number?: string | null
-  password?: string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: string | null
-  bio?: string | null
-  address?: string | null
-  age?: number | null
-  gender?: string | null
-  hobby?: string | null
-  major?: string | null
-  free_time_activity?: string | null
-  is_verified?: boolean
-  is_active?: boolean
-  is_block?: boolean
-  created_at?: Date | string
-  updated_at?: Date | string
-  deleted_at?: Date | string | null
-  updated_by?: number | null
-  deleted_by?: number | null
-  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
-  likes?: Prisma.LikeUncheckedCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+export type UserUpdateOneRequiredWithoutUser_answersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUser_answersInput, Prisma.UserUncheckedCreateWithoutUser_answersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUser_answersInput
+  upsert?: Prisma.UserUpsertWithoutUser_answersInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutUser_answersInput, Prisma.UserUpdateWithoutUser_answersInput>, Prisma.UserUncheckedUpdateWithoutUser_answersInput>
 }
 
-export type UserCreateOrConnectWithoutRolesInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutRolesInput, Prisma.UserUncheckedCreateWithoutRolesInput>
+export type UserCreateNestedOneWithoutRolesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRolesInput, Prisma.UserUncheckedCreateWithoutRolesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRolesInput
+  connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpsertWithoutRolesInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutRolesInput, Prisma.UserUncheckedUpdateWithoutRolesInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutRolesInput, Prisma.UserUncheckedCreateWithoutRolesInput>
-  where?: Prisma.UserWhereInput
+export type UserUpdateOneRequiredWithoutRolesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRolesInput, Prisma.UserUncheckedCreateWithoutRolesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRolesInput
+  upsert?: Prisma.UserUpsertWithoutRolesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRolesInput, Prisma.UserUpdateWithoutRolesInput>, Prisma.UserUncheckedUpdateWithoutRolesInput>
 }
 
-export type UserUpdateToOneWithWhereWithoutRolesInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutRolesInput, Prisma.UserUncheckedUpdateWithoutRolesInput>
+export type NullableEnumGenderFieldUpdateOperationsInput = {
+  set?: $Enums.Gender | null
 }
 
-export type UserUpdateWithoutRolesInput = {
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hobby?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
-  likes?: Prisma.LikeUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
+export type UserCreateNestedOneWithoutUser_hobbiesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUser_hobbiesInput, Prisma.UserUncheckedCreateWithoutUser_hobbiesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUser_hobbiesInput
+  connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUncheckedUpdateWithoutRolesInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hobby?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
-  likes?: Prisma.LikeUncheckedUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
+export type UserUpdateOneRequiredWithoutUser_hobbiesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUser_hobbiesInput, Prisma.UserUncheckedCreateWithoutUser_hobbiesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUser_hobbiesInput
+  upsert?: Prisma.UserUpsertWithoutUser_hobbiesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutUser_hobbiesInput, Prisma.UserUpdateWithoutUser_hobbiesInput>, Prisma.UserUncheckedUpdateWithoutUser_hobbiesInput>
 }
 
 export type UserCreateWithoutPostsInput = {
@@ -973,21 +915,25 @@ export type UserCreateWithoutPostsInput = {
   bio?: string | null
   address?: string | null
   age?: number | null
-  gender?: string | null
-  hobby?: string | null
+  gender?: $Enums.Gender | null
   major?: string | null
   free_time_activity?: string | null
   is_verified?: boolean
   is_active?: boolean
   is_block?: boolean
+  created_by?: number | null
+  updated_by?: number | null
+  deleted_by?: number | null
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
-  updated_by?: number | null
-  deleted_by?: number | null
+  last_login_at?: Date | string | null
+  is_online?: boolean
   likes?: Prisma.LikeCreateNestedManyWithoutUserInput
   comments?: Prisma.CommentCreateNestedManyWithoutUserInput
   roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  user_answers?: Prisma.UserAnswerCreateNestedManyWithoutUserInput
+  user_hobbies?: Prisma.UserHobbyCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPostsInput = {
@@ -1000,21 +946,25 @@ export type UserUncheckedCreateWithoutPostsInput = {
   bio?: string | null
   address?: string | null
   age?: number | null
-  gender?: string | null
-  hobby?: string | null
+  gender?: $Enums.Gender | null
   major?: string | null
   free_time_activity?: string | null
   is_verified?: boolean
   is_active?: boolean
   is_block?: boolean
+  created_by?: number | null
+  updated_by?: number | null
+  deleted_by?: number | null
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
-  updated_by?: number | null
-  deleted_by?: number | null
+  last_login_at?: Date | string | null
+  is_online?: boolean
   likes?: Prisma.LikeUncheckedCreateNestedManyWithoutUserInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
   roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  user_answers?: Prisma.UserAnswerUncheckedCreateNestedManyWithoutUserInput
+  user_hobbies?: Prisma.UserHobbyUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPostsInput = {
@@ -1042,21 +992,25 @@ export type UserUpdateWithoutPostsInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hobby?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
   likes?: Prisma.LikeUpdateManyWithoutUserNestedInput
   comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
   roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  user_answers?: Prisma.UserAnswerUpdateManyWithoutUserNestedInput
+  user_hobbies?: Prisma.UserHobbyUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPostsInput = {
@@ -1069,21 +1023,25 @@ export type UserUncheckedUpdateWithoutPostsInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hobby?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
   likes?: Prisma.LikeUncheckedUpdateManyWithoutUserNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
   roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  user_answers?: Prisma.UserAnswerUncheckedUpdateManyWithoutUserNestedInput
+  user_hobbies?: Prisma.UserHobbyUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutLikesInput = {
@@ -1095,21 +1053,25 @@ export type UserCreateWithoutLikesInput = {
   bio?: string | null
   address?: string | null
   age?: number | null
-  gender?: string | null
-  hobby?: string | null
+  gender?: $Enums.Gender | null
   major?: string | null
   free_time_activity?: string | null
   is_verified?: boolean
   is_active?: boolean
   is_block?: boolean
+  created_by?: number | null
+  updated_by?: number | null
+  deleted_by?: number | null
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
-  updated_by?: number | null
-  deleted_by?: number | null
+  last_login_at?: Date | string | null
+  is_online?: boolean
   posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
   comments?: Prisma.CommentCreateNestedManyWithoutUserInput
   roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  user_answers?: Prisma.UserAnswerCreateNestedManyWithoutUserInput
+  user_hobbies?: Prisma.UserHobbyCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutLikesInput = {
@@ -1122,21 +1084,25 @@ export type UserUncheckedCreateWithoutLikesInput = {
   bio?: string | null
   address?: string | null
   age?: number | null
-  gender?: string | null
-  hobby?: string | null
+  gender?: $Enums.Gender | null
   major?: string | null
   free_time_activity?: string | null
   is_verified?: boolean
   is_active?: boolean
   is_block?: boolean
+  created_by?: number | null
+  updated_by?: number | null
+  deleted_by?: number | null
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
-  updated_by?: number | null
-  deleted_by?: number | null
+  last_login_at?: Date | string | null
+  is_online?: boolean
   posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
   roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  user_answers?: Prisma.UserAnswerUncheckedCreateNestedManyWithoutUserInput
+  user_hobbies?: Prisma.UserHobbyUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutLikesInput = {
@@ -1164,21 +1130,25 @@ export type UserUpdateWithoutLikesInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hobby?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
   posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
   comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
   roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  user_answers?: Prisma.UserAnswerUpdateManyWithoutUserNestedInput
+  user_hobbies?: Prisma.UserHobbyUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutLikesInput = {
@@ -1191,21 +1161,25 @@ export type UserUncheckedUpdateWithoutLikesInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hobby?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
   posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
   roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  user_answers?: Prisma.UserAnswerUncheckedUpdateManyWithoutUserNestedInput
+  user_hobbies?: Prisma.UserHobbyUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCommentsInput = {
@@ -1217,21 +1191,25 @@ export type UserCreateWithoutCommentsInput = {
   bio?: string | null
   address?: string | null
   age?: number | null
-  gender?: string | null
-  hobby?: string | null
+  gender?: $Enums.Gender | null
   major?: string | null
   free_time_activity?: string | null
   is_verified?: boolean
   is_active?: boolean
   is_block?: boolean
+  created_by?: number | null
+  updated_by?: number | null
+  deleted_by?: number | null
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
-  updated_by?: number | null
-  deleted_by?: number | null
+  last_login_at?: Date | string | null
+  is_online?: boolean
   posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
   likes?: Prisma.LikeCreateNestedManyWithoutUserInput
   roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  user_answers?: Prisma.UserAnswerCreateNestedManyWithoutUserInput
+  user_hobbies?: Prisma.UserHobbyCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCommentsInput = {
@@ -1244,21 +1222,25 @@ export type UserUncheckedCreateWithoutCommentsInput = {
   bio?: string | null
   address?: string | null
   age?: number | null
-  gender?: string | null
-  hobby?: string | null
+  gender?: $Enums.Gender | null
   major?: string | null
   free_time_activity?: string | null
   is_verified?: boolean
   is_active?: boolean
   is_block?: boolean
+  created_by?: number | null
+  updated_by?: number | null
+  deleted_by?: number | null
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
-  updated_by?: number | null
-  deleted_by?: number | null
+  last_login_at?: Date | string | null
+  is_online?: boolean
   posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
   likes?: Prisma.LikeUncheckedCreateNestedManyWithoutUserInput
   roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  user_answers?: Prisma.UserAnswerUncheckedCreateNestedManyWithoutUserInput
+  user_hobbies?: Prisma.UserHobbyUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCommentsInput = {
@@ -1286,21 +1268,25 @@ export type UserUpdateWithoutCommentsInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hobby?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
   posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
   likes?: Prisma.LikeUpdateManyWithoutUserNestedInput
   roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  user_answers?: Prisma.UserAnswerUpdateManyWithoutUserNestedInput
+  user_hobbies?: Prisma.UserHobbyUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCommentsInput = {
@@ -1313,21 +1299,439 @@ export type UserUncheckedUpdateWithoutCommentsInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hobby?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
   posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
   likes?: Prisma.LikeUncheckedUpdateManyWithoutUserNestedInput
   roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  user_answers?: Prisma.UserAnswerUncheckedUpdateManyWithoutUserNestedInput
+  user_hobbies?: Prisma.UserHobbyUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutUser_answersInput = {
+  email?: string | null
+  phone_number?: string | null
+  password?: string | null
+  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  name?: string | null
+  bio?: string | null
+  address?: string | null
+  age?: number | null
+  gender?: $Enums.Gender | null
+  major?: string | null
+  free_time_activity?: string | null
+  is_verified?: boolean
+  is_active?: boolean
+  is_block?: boolean
+  created_by?: number | null
+  updated_by?: number | null
+  deleted_by?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  last_login_at?: Date | string | null
+  is_online?: boolean
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  likes?: Prisma.LikeCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
+  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  user_hobbies?: Prisma.UserHobbyCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutUser_answersInput = {
+  id?: number
+  email?: string | null
+  phone_number?: string | null
+  password?: string | null
+  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  name?: string | null
+  bio?: string | null
+  address?: string | null
+  age?: number | null
+  gender?: $Enums.Gender | null
+  major?: string | null
+  free_time_activity?: string | null
+  is_verified?: boolean
+  is_active?: boolean
+  is_block?: boolean
+  created_by?: number | null
+  updated_by?: number | null
+  deleted_by?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  last_login_at?: Date | string | null
+  is_online?: boolean
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  likes?: Prisma.LikeUncheckedCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  user_hobbies?: Prisma.UserHobbyUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutUser_answersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutUser_answersInput, Prisma.UserUncheckedCreateWithoutUser_answersInput>
+}
+
+export type UserUpsertWithoutUser_answersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutUser_answersInput, Prisma.UserUncheckedUpdateWithoutUser_answersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutUser_answersInput, Prisma.UserUncheckedCreateWithoutUser_answersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutUser_answersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutUser_answersInput, Prisma.UserUncheckedUpdateWithoutUser_answersInput>
+}
+
+export type UserUpdateWithoutUser_answersInput = {
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  likes?: Prisma.LikeUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
+  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  user_hobbies?: Prisma.UserHobbyUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutUser_answersInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  likes?: Prisma.LikeUncheckedUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
+  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  user_hobbies?: Prisma.UserHobbyUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutRolesInput = {
+  email?: string | null
+  phone_number?: string | null
+  password?: string | null
+  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  name?: string | null
+  bio?: string | null
+  address?: string | null
+  age?: number | null
+  gender?: $Enums.Gender | null
+  major?: string | null
+  free_time_activity?: string | null
+  is_verified?: boolean
+  is_active?: boolean
+  is_block?: boolean
+  created_by?: number | null
+  updated_by?: number | null
+  deleted_by?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  last_login_at?: Date | string | null
+  is_online?: boolean
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  likes?: Prisma.LikeCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
+  user_answers?: Prisma.UserAnswerCreateNestedManyWithoutUserInput
+  user_hobbies?: Prisma.UserHobbyCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutRolesInput = {
+  id?: number
+  email?: string | null
+  phone_number?: string | null
+  password?: string | null
+  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  name?: string | null
+  bio?: string | null
+  address?: string | null
+  age?: number | null
+  gender?: $Enums.Gender | null
+  major?: string | null
+  free_time_activity?: string | null
+  is_verified?: boolean
+  is_active?: boolean
+  is_block?: boolean
+  created_by?: number | null
+  updated_by?: number | null
+  deleted_by?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  last_login_at?: Date | string | null
+  is_online?: boolean
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  likes?: Prisma.LikeUncheckedCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+  user_answers?: Prisma.UserAnswerUncheckedCreateNestedManyWithoutUserInput
+  user_hobbies?: Prisma.UserHobbyUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutRolesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutRolesInput, Prisma.UserUncheckedCreateWithoutRolesInput>
+}
+
+export type UserUpsertWithoutRolesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutRolesInput, Prisma.UserUncheckedUpdateWithoutRolesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutRolesInput, Prisma.UserUncheckedCreateWithoutRolesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutRolesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutRolesInput, Prisma.UserUncheckedUpdateWithoutRolesInput>
+}
+
+export type UserUpdateWithoutRolesInput = {
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  likes?: Prisma.LikeUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
+  user_answers?: Prisma.UserAnswerUpdateManyWithoutUserNestedInput
+  user_hobbies?: Prisma.UserHobbyUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutRolesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  likes?: Prisma.LikeUncheckedUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
+  user_answers?: Prisma.UserAnswerUncheckedUpdateManyWithoutUserNestedInput
+  user_hobbies?: Prisma.UserHobbyUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutUser_hobbiesInput = {
+  email?: string | null
+  phone_number?: string | null
+  password?: string | null
+  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  name?: string | null
+  bio?: string | null
+  address?: string | null
+  age?: number | null
+  gender?: $Enums.Gender | null
+  major?: string | null
+  free_time_activity?: string | null
+  is_verified?: boolean
+  is_active?: boolean
+  is_block?: boolean
+  created_by?: number | null
+  updated_by?: number | null
+  deleted_by?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  last_login_at?: Date | string | null
+  is_online?: boolean
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  likes?: Prisma.LikeCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
+  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  user_answers?: Prisma.UserAnswerCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutUser_hobbiesInput = {
+  id?: number
+  email?: string | null
+  phone_number?: string | null
+  password?: string | null
+  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  name?: string | null
+  bio?: string | null
+  address?: string | null
+  age?: number | null
+  gender?: $Enums.Gender | null
+  major?: string | null
+  free_time_activity?: string | null
+  is_verified?: boolean
+  is_active?: boolean
+  is_block?: boolean
+  created_by?: number | null
+  updated_by?: number | null
+  deleted_by?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  last_login_at?: Date | string | null
+  is_online?: boolean
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  likes?: Prisma.LikeUncheckedCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  user_answers?: Prisma.UserAnswerUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutUser_hobbiesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutUser_hobbiesInput, Prisma.UserUncheckedCreateWithoutUser_hobbiesInput>
+}
+
+export type UserUpsertWithoutUser_hobbiesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutUser_hobbiesInput, Prisma.UserUncheckedUpdateWithoutUser_hobbiesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutUser_hobbiesInput, Prisma.UserUncheckedCreateWithoutUser_hobbiesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutUser_hobbiesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutUser_hobbiesInput, Prisma.UserUncheckedUpdateWithoutUser_hobbiesInput>
+}
+
+export type UserUpdateWithoutUser_hobbiesInput = {
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  likes?: Prisma.LikeUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
+  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  user_answers?: Prisma.UserAnswerUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutUser_hobbiesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  likes?: Prisma.LikeUncheckedUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
+  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  user_answers?: Prisma.UserAnswerUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -1340,6 +1744,8 @@ export type UserCountOutputType = {
   likes: number
   comments: number
   roles: number
+  user_answers: number
+  user_hobbies: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1347,6 +1753,8 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   likes?: boolean | UserCountOutputTypeCountLikesArgs
   comments?: boolean | UserCountOutputTypeCountCommentsArgs
   roles?: boolean | UserCountOutputTypeCountRolesArgs
+  user_answers?: boolean | UserCountOutputTypeCountUser_answersArgs
+  user_hobbies?: boolean | UserCountOutputTypeCountUser_hobbiesArgs
 }
 
 /**
@@ -1387,6 +1795,20 @@ export type UserCountOutputTypeCountRolesArgs<ExtArgs extends runtime.Types.Exte
   where?: Prisma.UserRoleWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountUser_answersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserAnswerWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountUser_hobbiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserHobbyWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1399,21 +1821,25 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   address?: boolean
   age?: boolean
   gender?: boolean
-  hobby?: boolean
   major?: boolean
   free_time_activity?: boolean
   is_verified?: boolean
   is_active?: boolean
   is_block?: boolean
+  created_by?: boolean
+  updated_by?: boolean
+  deleted_by?: boolean
   created_at?: boolean
   updated_at?: boolean
   deleted_at?: boolean
-  updated_by?: boolean
-  deleted_by?: boolean
+  last_login_at?: boolean
+  is_online?: boolean
   posts?: boolean | Prisma.User$postsArgs<ExtArgs>
   likes?: boolean | Prisma.User$likesArgs<ExtArgs>
   comments?: boolean | Prisma.User$commentsArgs<ExtArgs>
   roles?: boolean | Prisma.User$rolesArgs<ExtArgs>
+  user_answers?: boolean | Prisma.User$user_answersArgs<ExtArgs>
+  user_hobbies?: boolean | Prisma.User$user_hobbiesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1428,17 +1854,19 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   address?: boolean
   age?: boolean
   gender?: boolean
-  hobby?: boolean
   major?: boolean
   free_time_activity?: boolean
   is_verified?: boolean
   is_active?: boolean
   is_block?: boolean
+  created_by?: boolean
+  updated_by?: boolean
+  deleted_by?: boolean
   created_at?: boolean
   updated_at?: boolean
   deleted_at?: boolean
-  updated_by?: boolean
-  deleted_by?: boolean
+  last_login_at?: boolean
+  is_online?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1452,17 +1880,19 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   address?: boolean
   age?: boolean
   gender?: boolean
-  hobby?: boolean
   major?: boolean
   free_time_activity?: boolean
   is_verified?: boolean
   is_active?: boolean
   is_block?: boolean
+  created_by?: boolean
+  updated_by?: boolean
+  deleted_by?: boolean
   created_at?: boolean
   updated_at?: boolean
   deleted_at?: boolean
-  updated_by?: boolean
-  deleted_by?: boolean
+  last_login_at?: boolean
+  is_online?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -1476,25 +1906,29 @@ export type UserSelectScalar = {
   address?: boolean
   age?: boolean
   gender?: boolean
-  hobby?: boolean
   major?: boolean
   free_time_activity?: boolean
   is_verified?: boolean
   is_active?: boolean
   is_block?: boolean
+  created_by?: boolean
+  updated_by?: boolean
+  deleted_by?: boolean
   created_at?: boolean
   updated_at?: boolean
   deleted_at?: boolean
-  updated_by?: boolean
-  deleted_by?: boolean
+  last_login_at?: boolean
+  is_online?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "phone_number" | "password" | "avatar" | "name" | "bio" | "address" | "age" | "gender" | "hobby" | "major" | "free_time_activity" | "is_verified" | "is_active" | "is_block" | "created_at" | "updated_at" | "deleted_at" | "updated_by" | "deleted_by", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "phone_number" | "password" | "avatar" | "name" | "bio" | "address" | "age" | "gender" | "major" | "free_time_activity" | "is_verified" | "is_active" | "is_block" | "created_by" | "updated_by" | "deleted_by" | "created_at" | "updated_at" | "deleted_at" | "last_login_at" | "is_online", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   posts?: boolean | Prisma.User$postsArgs<ExtArgs>
   likes?: boolean | Prisma.User$likesArgs<ExtArgs>
   comments?: boolean | Prisma.User$commentsArgs<ExtArgs>
   roles?: boolean | Prisma.User$rolesArgs<ExtArgs>
+  user_answers?: boolean | Prisma.User$user_answersArgs<ExtArgs>
+  user_hobbies?: boolean | Prisma.User$user_hobbiesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1507,6 +1941,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     likes: Prisma.$LikePayload<ExtArgs>[]
     comments: Prisma.$CommentPayload<ExtArgs>[]
     roles: Prisma.$UserRolePayload<ExtArgs>[]
+    user_answers: Prisma.$UserAnswerPayload<ExtArgs>[]
+    user_hobbies: Prisma.$UserHobbyPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1518,18 +1954,20 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     bio: string | null
     address: string | null
     age: number | null
-    gender: string | null
-    hobby: string | null
+    gender: $Enums.Gender | null
     major: string | null
     free_time_activity: string | null
     is_verified: boolean
     is_active: boolean
     is_block: boolean
+    created_by: number | null
+    updated_by: number | null
+    deleted_by: number | null
     created_at: Date
     updated_at: Date
     deleted_at: Date | null
-    updated_by: number | null
-    deleted_by: number | null
+    last_login_at: Date | null
+    is_online: boolean
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -1928,6 +2366,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   likes<T extends Prisma.User$likesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$likesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   comments<T extends Prisma.User$commentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   roles<T extends Prisma.User$rolesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$rolesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserRolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  user_answers<T extends Prisma.User$user_answersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$user_answersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserAnswerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  user_hobbies<T extends Prisma.User$user_hobbiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$user_hobbiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserHobbyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1966,18 +2406,20 @@ export interface UserFieldRefs {
   readonly bio: Prisma.FieldRef<"User", 'String'>
   readonly address: Prisma.FieldRef<"User", 'String'>
   readonly age: Prisma.FieldRef<"User", 'Int'>
-  readonly gender: Prisma.FieldRef<"User", 'String'>
-  readonly hobby: Prisma.FieldRef<"User", 'String'>
+  readonly gender: Prisma.FieldRef<"User", 'Gender'>
   readonly major: Prisma.FieldRef<"User", 'String'>
   readonly free_time_activity: Prisma.FieldRef<"User", 'String'>
   readonly is_verified: Prisma.FieldRef<"User", 'Boolean'>
   readonly is_active: Prisma.FieldRef<"User", 'Boolean'>
   readonly is_block: Prisma.FieldRef<"User", 'Boolean'>
+  readonly created_by: Prisma.FieldRef<"User", 'Int'>
+  readonly updated_by: Prisma.FieldRef<"User", 'Int'>
+  readonly deleted_by: Prisma.FieldRef<"User", 'Int'>
   readonly created_at: Prisma.FieldRef<"User", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"User", 'DateTime'>
   readonly deleted_at: Prisma.FieldRef<"User", 'DateTime'>
-  readonly updated_by: Prisma.FieldRef<"User", 'Int'>
-  readonly deleted_by: Prisma.FieldRef<"User", 'Int'>
+  readonly last_login_at: Prisma.FieldRef<"User", 'DateTime'>
+  readonly is_online: Prisma.FieldRef<"User", 'Boolean'>
 }
     
 
@@ -2459,6 +2901,54 @@ export type User$rolesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
   take?: number
   skip?: number
   distinct?: Prisma.UserRoleScalarFieldEnum | Prisma.UserRoleScalarFieldEnum[]
+}
+
+/**
+ * User.user_answers
+ */
+export type User$user_answersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserAnswer
+   */
+  select?: Prisma.UserAnswerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserAnswer
+   */
+  omit?: Prisma.UserAnswerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserAnswerInclude<ExtArgs> | null
+  where?: Prisma.UserAnswerWhereInput
+  orderBy?: Prisma.UserAnswerOrderByWithRelationInput | Prisma.UserAnswerOrderByWithRelationInput[]
+  cursor?: Prisma.UserAnswerWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserAnswerScalarFieldEnum | Prisma.UserAnswerScalarFieldEnum[]
+}
+
+/**
+ * User.user_hobbies
+ */
+export type User$user_hobbiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserHobby
+   */
+  select?: Prisma.UserHobbySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserHobby
+   */
+  omit?: Prisma.UserHobbyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserHobbyInclude<ExtArgs> | null
+  where?: Prisma.UserHobbyWhereInput
+  orderBy?: Prisma.UserHobbyOrderByWithRelationInput | Prisma.UserHobbyOrderByWithRelationInput[]
+  cursor?: Prisma.UserHobbyWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserHobbyScalarFieldEnum | Prisma.UserHobbyScalarFieldEnum[]
 }
 
 /**
