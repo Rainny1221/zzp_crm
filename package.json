@@ -21,7 +21,8 @@
     "prisma:generate": "pnpm prisma generate",
     "prisma:migrate:dev": "pnpm prisma migrate dev --name",
     "prisma:migrate:deploy": "pnpm prisma migrate deploy",
-    "postinstall": "pnpm prisma generate"
+    "postinstall": "pnpm prisma generate",
+    "generate:module": "npx ts-node scripts/generate-ddd-module.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.1000.0",
@@ -36,6 +37,7 @@
     "@nestjs/common": "^11.0.1",
     "@nestjs/config": "^4.0.3",
     "@nestjs/core": "^11.0.1",
+    "@nestjs/cqrs": "^11.0.3",
     "@nestjs/event-emitter": "^3.0.1",
     "@nestjs/jwt": "^11.0.2",
     "@nestjs/mapped-types": "*",

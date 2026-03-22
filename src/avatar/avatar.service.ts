@@ -3,14 +3,12 @@ import { InjectQueue } from '@nestjs/bullmq';
 import { Queue } from 'bullmq';
 import { S3Service } from 'src/aws-s3/aws-s3.service';
 import { ImageService } from '../image/image.service';
-import { UserService } from '../user/user.service';
 
 @Injectable()
 export class AvatarService {
   constructor(
     private readonly s3Service: S3Service,
     private readonly imageService: ImageService,
-    private readonly userService: UserService,
     @InjectQueue('file_queue') private readonly fileQueue: Queue,
   ) {}
 

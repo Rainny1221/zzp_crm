@@ -4,7 +4,7 @@ import { BullModule } from '@nestjs/bullmq';
 
 import { FileProcessor } from './file.processor';
 import { FileQueueService } from './file.serviec';
-import { UserModule } from 'src/user/user.module';
+import { CqrsModule } from '@nestjs/cqrs';
 import { FileQueueListener } from './file.listener';
 import { BullBoardModule } from '@bull-board/nestjs';
 import { BullMQAdapter } from '@bull-board/api/bullMQAdapter';
@@ -21,7 +21,7 @@ import { ImageModule } from 'src/image/image.module';
       adapter: BullMQAdapter,
     }),
     AwsS3Module,
-    UserModule,
+    CqrsModule,
     ImageModule
   ],
   providers: [FileQueueService, FileProcessor, FileQueueListener],

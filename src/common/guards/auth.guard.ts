@@ -7,7 +7,7 @@ import { ConfigService } from '@nestjs/config';
 import { Reflector } from '@nestjs/core';
 import { JsonWebTokenError, JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
-import { TokenType } from 'src/auth/enum/auth.enum';
+import { TokenType } from 'src/modules/auth/domain/value-objects/token-type.vo';
 import { IS_PUBLIC_KEY } from '../decorator/require-permissions.decorator';
 import { ErrorCode } from '../enums/error-codes.enum';
 import { ErrorFactory } from '../error.factory';

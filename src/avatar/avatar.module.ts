@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { AvatarService } from './avatar.service';
 import { AwsS3Module } from 'src/aws-s3/aws-s3.module';
 import { ImageModule } from 'src/image/image.module';
-import { UserModule } from 'src/user/user.module';
 import { BullModule } from '@nestjs/bullmq';
 import { BullBoardModule } from '@bull-board/nestjs';
 import { BullMQAdapter } from '@bull-board/api/bullMQAdapter';
@@ -18,8 +17,7 @@ import { AvatarController } from './avatar.controller';
               adapter: BullMQAdapter,
             }),
         AwsS3Module,
-        ImageModule,
-        UserModule
+        ImageModule
     ],
   providers: [AvatarService],
   exports: [AvatarService],
