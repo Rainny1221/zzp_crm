@@ -49,6 +49,14 @@ export class ErrorFactory {
           detail,
         );
 
+      case ErrorCode.INVALID_TOKEN:
+        return new BaseException(
+          code,
+          customMessage || 'Invalid token',
+          HttpStatus.UNAUTHORIZED,
+          detail,
+        );
+
       default:
         return new BaseException(
           ErrorCode.INTERNAL_ERROR,
