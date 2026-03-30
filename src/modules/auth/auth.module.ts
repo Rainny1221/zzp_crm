@@ -6,7 +6,6 @@ import { AuthDomainModule } from './domain/auth.domain.module';
 import { AuthInfrastructureModule } from './infrastructure/auth.infrastructure.module';
 import { AuthApplicationModule } from './application/auth.application.module';
 import { AuthController } from './presentation/auth.controller';
-import { GoogleStrategy } from './presentation/strategy/google.strategy';
 
 @Module({
   imports: [
@@ -18,7 +17,7 @@ import { GoogleStrategy } from './presentation/strategy/google.strategy';
     AuthApplicationModule,
   ],
   controllers: [AuthController],
-  providers: [GoogleStrategy],
+  providers: [],
   exports: [AuthApplicationModule, AuthInfrastructureModule],
 })
 export class AuthModule {}

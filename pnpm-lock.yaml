@@ -107,9 +107,6 @@ importers:
       passport-facebook:
         specifier: ^3.0.0
         version: 3.0.0
-      passport-google-oauth20:
-        specifier: ^2.0.0
-        version: 2.0.0
       pg:
         specifier: ^8.18.0
         version: 8.19.0
@@ -162,9 +159,6 @@ importers:
       '@types/passport-facebook':
         specifier: ^3.0.4
         version: 3.0.4
-      '@types/passport-google-oauth20':
-        specifier: ^2.0.17
-        version: 2.0.17
       '@types/pg':
         specifier: ^8.16.0
         version: 8.18.0
@@ -1823,9 +1817,6 @@ packages:
 
   '@types/passport-facebook@3.0.4':
     resolution: {integrity: sha512-dZ7/758O0b7s2EyRUZJ24X93k8Nncm5UXLQPYg9bBJNE5ZwvD314QfDFYl0i4DlIPLcYGWkJ5Et0DXt6DAk71A==}
-
-  '@types/passport-google-oauth20@2.0.17':
-    resolution: {integrity: sha512-MHNOd2l7gOTCn3iS+wInPQMiukliAUvMpODO3VlXxOiwNEMSyzV7UNvAdqxSN872o8OXx1SqPDVT6tLW74AtqQ==}
 
   '@types/passport-oauth2@1.8.0':
     resolution: {integrity: sha512-6//z+4orIOy/g3zx17HyQ71GSRK4bs7Sb+zFasRoc2xzlv7ZCJ+vkDBYFci8U6HY+or6Zy7ajf4mz4rK7nsWJQ==}
@@ -4046,10 +4037,6 @@ packages:
 
   passport-facebook@3.0.0:
     resolution: {integrity: sha512-K/qNzuFsFISYAyC1Nma4qgY/12V3RSLFdFVsPKXiKZt434wOvthFW1p7zKa1iQihQMRhaWorVE1o3Vi1o+ZgeQ==}
-    engines: {node: '>= 0.4.0'}
-
-  passport-google-oauth20@2.0.0:
-    resolution: {integrity: sha512-KSk6IJ15RoxuGq7D1UKK/8qKhNfzbLeLrG3gkLZ7p4A6DBCcv7xpyQwuXtWdpyR0+E0mwkpjY1VfPOhxQrKzdQ==}
     engines: {node: '>= 0.4.0'}
 
   passport-oauth2@1.8.0:
@@ -7143,12 +7130,6 @@ snapshots:
       '@types/passport': 1.0.17
       '@types/passport-oauth2': 1.8.0
 
-  '@types/passport-google-oauth20@2.0.17':
-    dependencies:
-      '@types/express': 5.0.6
-      '@types/passport': 1.0.17
-      '@types/passport-oauth2': 1.8.0
-
   '@types/passport-oauth2@1.8.0':
     dependencies:
       '@types/express': 5.0.6
@@ -9717,10 +9698,6 @@ snapshots:
   parseurl@1.3.3: {}
 
   passport-facebook@3.0.0:
-    dependencies:
-      passport-oauth2: 1.8.0
-
-  passport-google-oauth20@2.0.0:
     dependencies:
       passport-oauth2: 1.8.0
 

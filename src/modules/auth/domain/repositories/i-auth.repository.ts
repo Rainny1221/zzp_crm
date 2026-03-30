@@ -9,6 +9,5 @@ export interface AuthUserData {
 export const I_AUTH_REPOSITORY = Symbol('I_AUTH_REPOSITORY');
 
 export interface IAuthRepository {
-  upsertOAuthUser(email: string): Promise<AuthUserData>;
   findUserWithRolesById(id: number): Promise<AuthUserData | null>;
 }

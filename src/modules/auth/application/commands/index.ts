@@ -1,5 +1,3 @@
-export { ValidateOAuthUserCommand } from './validate-oauth-user.command';
-export { ValidateOAuthUserHandler } from './validate-oauth-user.handler';
 export { GenerateTokensCommand } from './generate-tokens.command';
 export { GenerateTokensHandler } from './generate-tokens.handler';
 export { RefreshTokenCommand } from './refresh-token.command';
