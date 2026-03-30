@@ -1,8 +1,6 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { WinstonModule } from 'nest-winston';
-import { winstonConfig } from './logger/winston.config';
 import { MetricsModule } from './metrics/prometheus.module';
 import { HttpMetricsMiddleware } from './metrics/http-metrics.middleware';
 import { HealthModule } from './health/health.module';
@@ -30,6 +28,8 @@ import { FileModule } from './file/file.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { AvatarModule } from './avatar/avatar.module';
 import { ImageModule } from './image/image.module';
+import { LoggerModule } from './logger/logger.module';
+import { RequestContextModule } from './common/context/infrastructure/request-context.module';
 
 @Module({
   imports: [
@@ -72,8 +72,8 @@ import { ImageModule } from './image/image.module';
         };
       },
     }),
-    
-    WinstonModule.forRoot(winstonConfig), 
+    RequestContextModule,
+    LoggerModule,  
     MetricsModule,
     HealthModule,
     RedisModule,
@@ -106,8 +106,4 @@ import { ImageModule } from './image/image.module';
     },
   ],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(HttpMetricsMiddleware).forRoutes('*');
-  }
-}
+export class AppModule {}

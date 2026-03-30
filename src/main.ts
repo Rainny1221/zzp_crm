@@ -1,10 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { WINSTON_MODULE_NEST_PROVIDER, WinstonModule } from 'nest-winston';
-import { winstonConfig } from './logger/winston.config';
+import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 import { createMorganMiddleware } from './logger/morgan.middleware';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ZodValidationPipe } from 'nestjs-zod';
+import { AppLoggerService } from './logger/app-logger.service';
+import { RequestContextService } from './common/context/infrastructure/request-context.service';
+import { createRequestContextMiddleware } from './common/context/infrastructure/request-context.middleware';
+import { RequestContextInterceptor } from './common/context/infrastructure/request-context.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -13,7 +16,11 @@ async function bootstrap() {
 
   app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
 
-  app.use(createMorganMiddleware(app.get(WINSTON_MODULE_NEST_PROVIDER)));
+  app.use(createRequestContextMiddleware(app.get(RequestContextService)));
+
+  app.use(createMorganMiddleware(app.get(AppLoggerService)));
+  app.useGlobalInterceptors(app.get(RequestContextInterceptor));
+  
   app.useGlobalPipes(new ZodValidationPipe());
 
   const config = new DocumentBuilder()
