@@ -4,7 +4,7 @@ export const I_CRM_SYNC_REPOSITORY = Symbol('I_CRM_SYNC_REPOSITORY');
 
 export interface ICrmSyncRepository {
   findById(id: number): Promise<CrmSyncEntity | null>;
-  markProcessing(id: number): Promise<void>;
+  tryStartProcessing(id: number): Promise<CrmSyncEntity | null>;
   markSuccess(id: number): Promise<void>;
   markFailed(id: number, error: string): Promise<void>;
 }

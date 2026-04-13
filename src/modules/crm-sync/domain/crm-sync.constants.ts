@@ -1,0 +1,25 @@
+export const CRM_SYNC_DEFAULTS = {
+  SOURCE_CODE: 'website',
+  TIER_CODE: 'trial',
+  PIPELINE_STAGE: 'NEW_LEAD',
+  PRODUCT_PACKAGE: 'starter',
+  DEAL_STATUS: 'new',
+  PROBABILITY: 0,
+} as const;
+
+export const CRM_SYNC_LOG = {
+  MODULE: 'crm-sync',
+  ENTITIES: {
+    JOB: 'CRM_SYNC_JOB',
+    USER: 'USER',
+    PIPELINE_STAGE: 'CRM_PIPELINE_STAGE',
+  },
+  ACTIONS: {
+    FIND_JOB: 'CRM_SYNC_FIND_JOB',
+    CLAIM_JOB: 'CRM_SYNC_CLAIM_JOB',
+    MARK_SUCCESS: 'CRM_SYNC_MARK_SUCCESS',
+    MARK_FAILED: 'CRM_SYNC_MARK_FAILED',
+    PROCESS_JOB: 'CRM_SYNC_PROCESS_JOB',
+    SYNC_FROM_USER: 'CRM_SYNC_FROM_USER',
+  },
+} as const;

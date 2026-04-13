@@ -3,6 +3,19 @@
   "rootDir": ".",
   "testEnvironment": "node",
   "testRegex": ".e2e-spec.ts$",
+  "moduleNameMapper": {
+    "^src/(.*)$": "<rootDir>/../src/$1",
+    "^\\./enums\\.js$": "<rootDir>/../src/generated/prisma/enums.ts",
+    "^\\.\\./enums\\.js$": "<rootDir>/../src/generated/prisma/enums.ts",
+    "^\\./models\\.js$": "<rootDir>/../src/generated/prisma/models.ts",
+    "^\\.\\./models\\.js$": "<rootDir>/../src/generated/prisma/models.ts",
+    "^\\./internal/class\\.js$": "<rootDir>/../src/generated/prisma/internal/class.ts",
+    "^\\./internal/prismaNamespace\\.js$": "<rootDir>/../src/generated/prisma/internal/prismaNamespace.ts",
+    "^\\./class\\.js$": "<rootDir>/../src/generated/prisma/internal/class.ts",
+    "^\\./prismaNamespace\\.js$": "<rootDir>/../src/generated/prisma/internal/prismaNamespace.ts",
+    "^\\./models/(.*)\\.js$": "<rootDir>/../src/generated/prisma/models/$1.ts",
+    "^\\.\\./models/(.*)\\.js$": "<rootDir>/../src/generated/prisma/models/$1.ts"
+  },
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
   }

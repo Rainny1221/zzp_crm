@@ -1,71 +1,198 @@
-// src/modules/crm-sync/infrastructure/persistence/crm-sync-writer.prisma-repository.ts
 import { Injectable } from '@nestjs/common';
+import { BaseException } from 'src/common/base.exception';
+import { ErrorCode } from 'src/common/enums/error-codes.enum';
+import { ErrorFactory } from 'src/common/error.factory';
+import { toErrorMeta } from 'src/common/logging/application/error-meta.helper';
+import type { LogEntry } from 'src/common/logging/application/log-entry';
+import { AppLoggerService } from 'src/logger/app-logger.service';
 import { PrismaService } from 'src/prisma/prisma.service';
+import type { Prisma } from 'src/generated/prisma/client';
 import type { ICrmSyncWriterRepository } from '../../domain/repositories/i-crm-sync-writer.repository';
+import {
+  CRM_SYNC_DEFAULTS,
+  CRM_SYNC_LOG,
+} from '../../domain/crm-sync.constants';
+
+type SyncFromUserResult = Awaited<
+  ReturnType<ICrmSyncWriterRepository['syncFromUser']>
+>;
 
 @Injectable()
 export class CrmSyncWriterPrismaRepository implements ICrmSyncWriterRepository {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly logger: AppLoggerService,
+  ) {}
 
-  async syncFromUser(userId: number) {
-    return this.prisma.$transaction(async (tx) => {
-      const user = await tx.user.findUnique({
-        where: { id: userId },
-      });
-
-      if (!user) {
-        throw new Error(`User ${userId} not found`);
-      }
-
-      const profile = await tx.crmCustomerProfiles.upsert({
-        where: { user_id: user.id },
-        update: {},
-        create: {
-          user_id: user.id,
-          source_code: 'website',
-          tier_code: 'trial',
-          owner_id: null,
-        },
-      });
-
-      const deal = await tx.crmDeals.upsert({
-        where: { customer_id: profile.id },
-        update: {},
-        create: {
-          customer_id: profile.id,
-          pipeline_stage_code: 'NEW_LEAD',
-          owner_id: null,
-          product_package: 'starter',
-          deal_value: 0,
-          probability: 0,
-          status: 'new',
-        },
-      });
-
-      const existingHistory = await tx.crmPipelineRecords.findFirst({
-        where: { deal_id: deal.id },
-        orderBy: { created_at: 'asc' },
-      });
-
-      let pipelineRecordId: number | null = existingHistory?.id ?? null;
-
-      if (!existingHistory) {
-        const history = await tx.crmPipelineRecords.create({
-          data: {
-            deal_id: deal.id,
-            stage_code: 'NEW_LEAD',
-            owner_id: null,
-          },
-        });
-
-        pipelineRecordId = history.id;
-      }
-
-      return {
-        customerProfileId: profile.id,
-        dealId: deal.id,
-        pipelineRecordId,
-      };
+  async syncFromUser(userId: number): Promise<SyncFromUserResult> {
+    this.logger.info({
+      message: 'CRM sync from user started',
+      context: CrmSyncWriterPrismaRepository.name,
+      module: CRM_SYNC_LOG.MODULE,
+      action: CRM_SYNC_LOG.ACTIONS.SYNC_FROM_USER,
+      entityType: CRM_SYNC_LOG.ENTITIES.USER,
+      entityId: userId,
+      meta: {
+        userId,
+      },
     });
+
+    try {
+      const result = await this.prisma.$transaction<SyncFromUserResult>(
+        async (tx: Prisma.TransactionClient): Promise<SyncFromUserResult> => {
+          const user = await tx.user.findUnique({
+            where: { id: userId },
+          });
+
+          if (!user) {
+            this.logger.warn({
+              message: 'CRM sync user not found',
+              context: CrmSyncWriterPrismaRepository.name,
+              module: CRM_SYNC_LOG.MODULE,
+              action: CRM_SYNC_LOG.ACTIONS.SYNC_FROM_USER,
+              entityType: CRM_SYNC_LOG.ENTITIES.USER,
+              entityId: userId,
+              meta: {
+                userId,
+              },
+            });
+
+            throw ErrorFactory.create(
+              ErrorCode.USER_NOT_FOUND,
+              `User ${userId} not found`,
+              {
+                userId,
+              },
+            );
+          }
+
+          const stage = await tx.crmPipelineStages.findUnique({
+            where: { code: CRM_SYNC_DEFAULTS.PIPELINE_STAGE },
+          });
+
+          if (!stage) {
+            this.logger.error({
+              message: 'CRM sync pipeline stage not found',
+              context: CrmSyncWriterPrismaRepository.name,
+              module: CRM_SYNC_LOG.MODULE,
+              action: CRM_SYNC_LOG.ACTIONS.SYNC_FROM_USER,
+              entityType: CRM_SYNC_LOG.ENTITIES.PIPELINE_STAGE,
+              entityId: CRM_SYNC_DEFAULTS.PIPELINE_STAGE,
+              meta: {
+                userId,
+                stageCode: CRM_SYNC_DEFAULTS.PIPELINE_STAGE,
+              },
+            });
+
+            throw ErrorFactory.create(
+              ErrorCode.CRM_SYNC_CONFIGURATION_ERROR,
+              `Pipeline stage ${CRM_SYNC_DEFAULTS.PIPELINE_STAGE} not found`,
+              {
+                userId,
+                stageCode: CRM_SYNC_DEFAULTS.PIPELINE_STAGE,
+              },
+            );
+          }
+
+          const profile = await tx.crmCustomerProfiles.upsert({
+            where: { user_id: user.id },
+            update: {},
+            create: {
+              user_id: user.id,
+              source_code: CRM_SYNC_DEFAULTS.SOURCE_CODE,
+              tier_code: CRM_SYNC_DEFAULTS.TIER_CODE,
+              owner_id: null,
+            },
+          });
+
+          const deal = await tx.crmDeals.upsert({
+            where: { customer_id: profile.id },
+            update: {},
+            create: {
+              customer_id: profile.id,
+              pipeline_stage_code: CRM_SYNC_DEFAULTS.PIPELINE_STAGE,
+              owner_id: null,
+              product_package: CRM_SYNC_DEFAULTS.PRODUCT_PACKAGE,
+              deal_value: 0,
+              probability: CRM_SYNC_DEFAULTS.PROBABILITY,
+              status: CRM_SYNC_DEFAULTS.DEAL_STATUS,
+            },
+          });
+
+          const existingHistory = await tx.crmPipelineRecords.findFirst({
+            where: { deal_id: deal.id },
+            orderBy: { created_at: 'asc' },
+          });
+
+          let pipelineRecordId: number | null = existingHistory?.id ?? null;
+
+          if (!existingHistory) {
+            const history = await tx.crmPipelineRecords.create({
+              data: {
+                deal_id: deal.id,
+                stage_code: CRM_SYNC_DEFAULTS.PIPELINE_STAGE,
+                owner_id: null,
+              },
+            });
+
+            pipelineRecordId = history.id;
+          }
+
+          return {
+            customerProfileId: profile.id,
+            dealId: deal.id,
+            pipelineRecordId,
+          };
+        },
+      );
+
+      this.logger.info({
+        message: 'CRM sync from user completed',
+        context: CrmSyncWriterPrismaRepository.name,
+        module: CRM_SYNC_LOG.MODULE,
+        action: CRM_SYNC_LOG.ACTIONS.SYNC_FROM_USER,
+        entityType: CRM_SYNC_LOG.ENTITIES.USER,
+        entityId: userId,
+        meta: {
+          userId,
+          result,
+        },
+      });
+
+      return result;
+    } catch (error: unknown) {
+      const logEntry: LogEntry = {
+        message: 'CRM sync from user failed',
+        context: CrmSyncWriterPrismaRepository.name,
+        module: CRM_SYNC_LOG.MODULE,
+        action: CRM_SYNC_LOG.ACTIONS.SYNC_FROM_USER,
+        entityType: CRM_SYNC_LOG.ENTITIES.USER,
+        entityId: userId,
+        meta: {
+          userId,
+          error: toErrorMeta(error),
+        },
+      };
+
+      if (error instanceof BaseException && error.getStatus() < 500) {
+        this.logger.warn(logEntry);
+        throw error;
+      }
+
+      this.logger.error(logEntry);
+
+      if (error instanceof BaseException) {
+        throw error;
+      }
+
+      throw ErrorFactory.create(
+        ErrorCode.CRM_SYNC_PROCESSING_FAILED,
+        'Failed to sync CRM data from user',
+        {
+          userId,
+          error: toErrorMeta(error),
+        },
+      );
+    }
   }
 }

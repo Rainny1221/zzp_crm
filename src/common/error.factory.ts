@@ -17,6 +17,14 @@ export class ErrorFactory {
           detail,
         );
 
+      case ErrorCode.CRM_SYNC_JOB_NOT_FOUND:
+        return new BaseException(
+          code,
+          customMessage || 'CRM sync job not found',
+          HttpStatus.NOT_FOUND,
+          detail,
+        );
+
       case ErrorCode.INVALID_CREDENTIALS:
         return new BaseException(
           code,
@@ -54,6 +62,16 @@ export class ErrorFactory {
           code,
           customMessage || 'Invalid token',
           HttpStatus.UNAUTHORIZED,
+          detail,
+        );
+
+      case ErrorCode.CRM_SYNC_CONFIGURATION_ERROR:
+      case ErrorCode.CRM_SYNC_PROCESSING_FAILED:
+      case ErrorCode.CRM_SYNC_REPOSITORY_ERROR:
+        return new BaseException(
+          code,
+          customMessage || 'CRM sync failed',
+          HttpStatus.INTERNAL_SERVER_ERROR,
           detail,
         );
 
