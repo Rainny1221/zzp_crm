@@ -2,7 +2,10 @@ import { z } from 'zod';
 import { createZodDto } from 'nestjs-zod';
 
 export const PresignUploadSchema = z.object({
-  contentType: z.string().describe('Loại nội dung của file (content type)').default('image/jpeg'),
+  contentType: z
+    .string()
+    .describe('Loại nội dung của file (content type)')
+    .default('image/jpeg'),
   size: z
     .number()
     .int()
@@ -21,4 +24,6 @@ export const PresignUploadResponseSchema = z.object({
   publicUrl: z.string(),
 });
 
-export class PresignUploadResponseDto extends createZodDto(PresignUploadResponseSchema) {}
+export class PresignUploadResponseDto extends createZodDto(
+  PresignUploadResponseSchema,
+) {}

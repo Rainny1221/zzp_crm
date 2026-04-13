@@ -28,188 +28,384 @@ export type AggregateUser = {
 
 export type UserAvgAggregateOutputType = {
   id: number | null
-  age: number | null
   created_by: number | null
   updated_by: number | null
   deleted_by: number | null
+  role_id: number | null
+  total_spent: runtime.Decimal | null
+  rating: runtime.Decimal | null
+  platform_id: number | null
+  profile_id: number | null
+  contract_id: number | null
+  tiktok_id: number | null
+  youtube_id: number | null
+  parent_id: number | null
+  current_parent_user_id: number | null
 }
 
 export type UserSumAggregateOutputType = {
   id: number | null
-  age: number | null
   created_by: number | null
   updated_by: number | null
   deleted_by: number | null
+  role_id: number | null
+  total_spent: runtime.Decimal | null
+  rating: runtime.Decimal | null
+  platform_id: number | null
+  profile_id: number | null
+  contract_id: number | null
+  tiktok_id: number | null
+  youtube_id: number | null
+  parent_id: number | null
+  current_parent_user_id: number | null
 }
 
 export type UserMinAggregateOutputType = {
   id: number | null
   email: string | null
-  phone_number: string | null
+  username: string | null
+  first_name: string | null
+  last_name: string | null
+  is_verify_email: boolean | null
   password: string | null
-  name: string | null
-  bio: string | null
-  address: string | null
-  age: number | null
-  gender: $Enums.Gender | null
-  major: string | null
-  free_time_activity: string | null
-  is_verified: boolean | null
-  is_active: boolean | null
-  is_block: boolean | null
-  created_by: number | null
-  updated_by: number | null
-  deleted_by: number | null
+  avatar_name: string | null
+  background_name: string | null
   created_at: Date | null
+  created_by: number | null
   updated_at: Date | null
+  updated_by: number | null
   deleted_at: Date | null
-  last_login_at: Date | null
-  is_online: boolean | null
+  deleted_by: number | null
+  role_id: number | null
+  bio: string | null
+  total_spent: runtime.Decimal | null
+  rating: runtime.Decimal | null
+  age: string | null
+  platform_id: number | null
+  profile_id: number | null
+  contract_id: number | null
+  tiktok_id: number | null
+  notification_token: string | null
+  gender: string | null
+  is_block: boolean | null
+  apple_id: string | null
+  youtube_id: number | null
+  phone_number: string | null
+  is_new_user: boolean | null
+  is_auth_creator_tap: boolean | null
+  is_restricted: boolean | null
+  have_showcase: boolean | null
+  categories_tap: string | null
+  last_active_at: Date | null
+  is_koc_core: boolean | null
+  is_pinned: boolean | null
+  is_created_external: boolean | null
+  is_active_ai: boolean | null
+  is_high_gmv: boolean | null
+  brand_name: string | null
+  parent_id: number | null
+  is_phone_verified: boolean | null
+  is_show_page_identity: boolean | null
+  is_active: boolean | null
+  current_parent_user_id: number | null
+  blocked_at: Date | null
 }
 
 export type UserMaxAggregateOutputType = {
   id: number | null
   email: string | null
-  phone_number: string | null
+  username: string | null
+  first_name: string | null
+  last_name: string | null
+  is_verify_email: boolean | null
   password: string | null
-  name: string | null
-  bio: string | null
-  address: string | null
-  age: number | null
-  gender: $Enums.Gender | null
-  major: string | null
-  free_time_activity: string | null
-  is_verified: boolean | null
-  is_active: boolean | null
-  is_block: boolean | null
-  created_by: number | null
-  updated_by: number | null
-  deleted_by: number | null
+  avatar_name: string | null
+  background_name: string | null
   created_at: Date | null
+  created_by: number | null
   updated_at: Date | null
+  updated_by: number | null
   deleted_at: Date | null
-  last_login_at: Date | null
-  is_online: boolean | null
+  deleted_by: number | null
+  role_id: number | null
+  bio: string | null
+  total_spent: runtime.Decimal | null
+  rating: runtime.Decimal | null
+  age: string | null
+  platform_id: number | null
+  profile_id: number | null
+  contract_id: number | null
+  tiktok_id: number | null
+  notification_token: string | null
+  gender: string | null
+  is_block: boolean | null
+  apple_id: string | null
+  youtube_id: number | null
+  phone_number: string | null
+  is_new_user: boolean | null
+  is_auth_creator_tap: boolean | null
+  is_restricted: boolean | null
+  have_showcase: boolean | null
+  categories_tap: string | null
+  last_active_at: Date | null
+  is_koc_core: boolean | null
+  is_pinned: boolean | null
+  is_created_external: boolean | null
+  is_active_ai: boolean | null
+  is_high_gmv: boolean | null
+  brand_name: string | null
+  parent_id: number | null
+  is_phone_verified: boolean | null
+  is_show_page_identity: boolean | null
+  is_active: boolean | null
+  current_parent_user_id: number | null
+  blocked_at: Date | null
 }
 
 export type UserCountAggregateOutputType = {
   id: number
   email: number
-  phone_number: number
+  username: number
+  first_name: number
+  last_name: number
+  is_verify_email: number
   password: number
-  avatar: number
-  name: number
-  bio: number
-  address: number
-  age: number
-  gender: number
-  major: number
-  free_time_activity: number
-  is_verified: number
-  is_active: number
-  is_block: number
-  created_by: number
-  updated_by: number
-  deleted_by: number
+  avatar_name: number
+  background_name: number
   created_at: number
+  created_by: number
   updated_at: number
+  updated_by: number
   deleted_at: number
-  last_login_at: number
-  is_online: number
+  deleted_by: number
+  role_id: number
+  bio: number
+  total_spent: number
+  rating: number
+  age: number
+  platform_id: number
+  profile_id: number
+  contract_id: number
+  tiktok_id: number
+  notification_token: number
+  gender: number
+  is_block: number
+  apple_id: number
+  youtube_id: number
+  phone_number: number
+  is_new_user: number
+  is_auth_creator_tap: number
+  is_restricted: number
+  have_showcase: number
+  categories_tap: number
+  last_active_at: number
+  channel_orientation: number
+  is_koc_core: number
+  is_pinned: number
+  is_created_external: number
+  metadata: number
+  is_active_ai: number
+  is_high_gmv: number
+  brand_name: number
+  parent_id: number
+  is_phone_verified: number
+  is_show_page_identity: number
+  shop_codes: number
+  is_active: number
+  current_parent_user_id: number
+  blocked_at: number
   _all: number
 }
 
 
 export type UserAvgAggregateInputType = {
   id?: true
-  age?: true
   created_by?: true
   updated_by?: true
   deleted_by?: true
+  role_id?: true
+  total_spent?: true
+  rating?: true
+  platform_id?: true
+  profile_id?: true
+  contract_id?: true
+  tiktok_id?: true
+  youtube_id?: true
+  parent_id?: true
+  current_parent_user_id?: true
 }
 
 export type UserSumAggregateInputType = {
   id?: true
-  age?: true
   created_by?: true
   updated_by?: true
   deleted_by?: true
+  role_id?: true
+  total_spent?: true
+  rating?: true
+  platform_id?: true
+  profile_id?: true
+  contract_id?: true
+  tiktok_id?: true
+  youtube_id?: true
+  parent_id?: true
+  current_parent_user_id?: true
 }
 
 export type UserMinAggregateInputType = {
   id?: true
   email?: true
-  phone_number?: true
+  username?: true
+  first_name?: true
+  last_name?: true
+  is_verify_email?: true
   password?: true
-  name?: true
-  bio?: true
-  address?: true
-  age?: true
-  gender?: true
-  major?: true
-  free_time_activity?: true
-  is_verified?: true
-  is_active?: true
-  is_block?: true
-  created_by?: true
-  updated_by?: true
-  deleted_by?: true
+  avatar_name?: true
+  background_name?: true
   created_at?: true
+  created_by?: true
   updated_at?: true
+  updated_by?: true
   deleted_at?: true
-  last_login_at?: true
-  is_online?: true
+  deleted_by?: true
+  role_id?: true
+  bio?: true
+  total_spent?: true
+  rating?: true
+  age?: true
+  platform_id?: true
+  profile_id?: true
+  contract_id?: true
+  tiktok_id?: true
+  notification_token?: true
+  gender?: true
+  is_block?: true
+  apple_id?: true
+  youtube_id?: true
+  phone_number?: true
+  is_new_user?: true
+  is_auth_creator_tap?: true
+  is_restricted?: true
+  have_showcase?: true
+  categories_tap?: true
+  last_active_at?: true
+  is_koc_core?: true
+  is_pinned?: true
+  is_created_external?: true
+  is_active_ai?: true
+  is_high_gmv?: true
+  brand_name?: true
+  parent_id?: true
+  is_phone_verified?: true
+  is_show_page_identity?: true
+  is_active?: true
+  current_parent_user_id?: true
+  blocked_at?: true
 }
 
 export type UserMaxAggregateInputType = {
   id?: true
   email?: true
-  phone_number?: true
+  username?: true
+  first_name?: true
+  last_name?: true
+  is_verify_email?: true
   password?: true
-  name?: true
-  bio?: true
-  address?: true
-  age?: true
-  gender?: true
-  major?: true
-  free_time_activity?: true
-  is_verified?: true
-  is_active?: true
-  is_block?: true
-  created_by?: true
-  updated_by?: true
-  deleted_by?: true
+  avatar_name?: true
+  background_name?: true
   created_at?: true
+  created_by?: true
   updated_at?: true
+  updated_by?: true
   deleted_at?: true
-  last_login_at?: true
-  is_online?: true
+  deleted_by?: true
+  role_id?: true
+  bio?: true
+  total_spent?: true
+  rating?: true
+  age?: true
+  platform_id?: true
+  profile_id?: true
+  contract_id?: true
+  tiktok_id?: true
+  notification_token?: true
+  gender?: true
+  is_block?: true
+  apple_id?: true
+  youtube_id?: true
+  phone_number?: true
+  is_new_user?: true
+  is_auth_creator_tap?: true
+  is_restricted?: true
+  have_showcase?: true
+  categories_tap?: true
+  last_active_at?: true
+  is_koc_core?: true
+  is_pinned?: true
+  is_created_external?: true
+  is_active_ai?: true
+  is_high_gmv?: true
+  brand_name?: true
+  parent_id?: true
+  is_phone_verified?: true
+  is_show_page_identity?: true
+  is_active?: true
+  current_parent_user_id?: true
+  blocked_at?: true
 }
 
 export type UserCountAggregateInputType = {
   id?: true
   email?: true
-  phone_number?: true
+  username?: true
+  first_name?: true
+  last_name?: true
+  is_verify_email?: true
   password?: true
-  avatar?: true
-  name?: true
-  bio?: true
-  address?: true
-  age?: true
-  gender?: true
-  major?: true
-  free_time_activity?: true
-  is_verified?: true
-  is_active?: true
-  is_block?: true
-  created_by?: true
-  updated_by?: true
-  deleted_by?: true
+  avatar_name?: true
+  background_name?: true
   created_at?: true
+  created_by?: true
   updated_at?: true
+  updated_by?: true
   deleted_at?: true
-  last_login_at?: true
-  is_online?: true
+  deleted_by?: true
+  role_id?: true
+  bio?: true
+  total_spent?: true
+  rating?: true
+  age?: true
+  platform_id?: true
+  profile_id?: true
+  contract_id?: true
+  tiktok_id?: true
+  notification_token?: true
+  gender?: true
+  is_block?: true
+  apple_id?: true
+  youtube_id?: true
+  phone_number?: true
+  is_new_user?: true
+  is_auth_creator_tap?: true
+  is_restricted?: true
+  have_showcase?: true
+  categories_tap?: true
+  last_active_at?: true
+  channel_orientation?: true
+  is_koc_core?: true
+  is_pinned?: true
+  is_created_external?: true
+  metadata?: true
+  is_active_ai?: true
+  is_high_gmv?: true
+  brand_name?: true
+  parent_id?: true
+  is_phone_verified?: true
+  is_show_page_identity?: true
+  shop_codes?: true
+  is_active?: true
+  current_parent_user_id?: true
+  blocked_at?: true
   _all?: true
 }
 
@@ -302,27 +498,55 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type UserGroupByOutputType = {
   id: number
   email: string | null
-  phone_number: string | null
+  username: string | null
+  first_name: string | null
+  last_name: string | null
+  is_verify_email: boolean | null
   password: string | null
-  avatar: runtime.JsonValue | null
-  name: string | null
-  bio: string | null
-  address: string | null
-  age: number | null
-  gender: $Enums.Gender | null
-  major: string | null
-  free_time_activity: string | null
-  is_verified: boolean
-  is_active: boolean
-  is_block: boolean
-  created_by: number | null
-  updated_by: number | null
-  deleted_by: number | null
+  avatar_name: string | null
+  background_name: string | null
   created_at: Date
-  updated_at: Date
+  created_by: number | null
+  updated_at: Date | null
+  updated_by: number | null
   deleted_at: Date | null
-  last_login_at: Date | null
-  is_online: boolean
+  deleted_by: number | null
+  role_id: number | null
+  bio: string | null
+  total_spent: runtime.Decimal | null
+  rating: runtime.Decimal | null
+  age: string | null
+  platform_id: number | null
+  profile_id: number | null
+  contract_id: number | null
+  tiktok_id: number | null
+  notification_token: string | null
+  gender: string | null
+  is_block: boolean | null
+  apple_id: string | null
+  youtube_id: number | null
+  phone_number: string | null
+  is_new_user: boolean | null
+  is_auth_creator_tap: boolean | null
+  is_restricted: boolean | null
+  have_showcase: boolean | null
+  categories_tap: string | null
+  last_active_at: Date | null
+  channel_orientation: string[]
+  is_koc_core: boolean | null
+  is_pinned: boolean | null
+  is_created_external: boolean | null
+  metadata: runtime.JsonValue | null
+  is_active_ai: boolean | null
+  is_high_gmv: boolean | null
+  brand_name: string | null
+  parent_id: number | null
+  is_phone_verified: boolean | null
+  is_show_page_identity: boolean | null
+  shop_codes: string[]
+  is_active: boolean | null
+  current_parent_user_id: number | null
+  blocked_at: Date | null
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -351,126 +575,256 @@ export type UserWhereInput = {
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   id?: Prisma.IntFilter<"User"> | number
   email?: Prisma.StringNullableFilter<"User"> | string | null
-  phone_number?: Prisma.StringNullableFilter<"User"> | string | null
+  username?: Prisma.StringNullableFilter<"User"> | string | null
+  first_name?: Prisma.StringNullableFilter<"User"> | string | null
+  last_name?: Prisma.StringNullableFilter<"User"> | string | null
+  is_verify_email?: Prisma.BoolNullableFilter<"User"> | boolean | null
   password?: Prisma.StringNullableFilter<"User"> | string | null
-  avatar?: Prisma.JsonNullableFilter<"User">
-  name?: Prisma.StringNullableFilter<"User"> | string | null
-  bio?: Prisma.StringNullableFilter<"User"> | string | null
-  address?: Prisma.StringNullableFilter<"User"> | string | null
-  age?: Prisma.IntNullableFilter<"User"> | number | null
-  gender?: Prisma.EnumGenderNullableFilter<"User"> | $Enums.Gender | null
-  major?: Prisma.StringNullableFilter<"User"> | string | null
-  free_time_activity?: Prisma.StringNullableFilter<"User"> | string | null
-  is_verified?: Prisma.BoolFilter<"User"> | boolean
-  is_active?: Prisma.BoolFilter<"User"> | boolean
-  is_block?: Prisma.BoolFilter<"User"> | boolean
-  created_by?: Prisma.IntNullableFilter<"User"> | number | null
-  updated_by?: Prisma.IntNullableFilter<"User"> | number | null
-  deleted_by?: Prisma.IntNullableFilter<"User"> | number | null
+  avatar_name?: Prisma.StringNullableFilter<"User"> | string | null
+  background_name?: Prisma.StringNullableFilter<"User"> | string | null
   created_at?: Prisma.DateTimeFilter<"User"> | Date | string
-  updated_at?: Prisma.DateTimeFilter<"User"> | Date | string
+  created_by?: Prisma.IntNullableFilter<"User"> | number | null
+  updated_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  updated_by?: Prisma.IntNullableFilter<"User"> | number | null
   deleted_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
-  last_login_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
-  is_online?: Prisma.BoolFilter<"User"> | boolean
-  posts?: Prisma.PostListRelationFilter
-  likes?: Prisma.LikeListRelationFilter
-  comments?: Prisma.CommentListRelationFilter
-  roles?: Prisma.UserRoleListRelationFilter
-  user_answers?: Prisma.UserAnswerListRelationFilter
-  user_hobbies?: Prisma.UserHobbyListRelationFilter
+  deleted_by?: Prisma.IntNullableFilter<"User"> | number | null
+  role_id?: Prisma.IntNullableFilter<"User"> | number | null
+  bio?: Prisma.StringNullableFilter<"User"> | string | null
+  total_spent?: Prisma.DecimalNullableFilter<"User"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.DecimalNullableFilter<"User"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.StringNullableFilter<"User"> | string | null
+  platform_id?: Prisma.IntNullableFilter<"User"> | number | null
+  profile_id?: Prisma.IntNullableFilter<"User"> | number | null
+  contract_id?: Prisma.IntNullableFilter<"User"> | number | null
+  tiktok_id?: Prisma.IntNullableFilter<"User"> | number | null
+  notification_token?: Prisma.StringNullableFilter<"User"> | string | null
+  gender?: Prisma.StringNullableFilter<"User"> | string | null
+  is_block?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  apple_id?: Prisma.StringNullableFilter<"User"> | string | null
+  youtube_id?: Prisma.IntNullableFilter<"User"> | number | null
+  phone_number?: Prisma.StringNullableFilter<"User"> | string | null
+  is_new_user?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  is_auth_creator_tap?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  is_restricted?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  have_showcase?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  categories_tap?: Prisma.StringNullableFilter<"User"> | string | null
+  last_active_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  channel_orientation?: Prisma.StringNullableListFilter<"User">
+  is_koc_core?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  is_pinned?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  is_created_external?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  metadata?: Prisma.JsonNullableFilter<"User">
+  is_active_ai?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  is_high_gmv?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  brand_name?: Prisma.StringNullableFilter<"User"> | string | null
+  parent_id?: Prisma.IntNullableFilter<"User"> | number | null
+  is_phone_verified?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  is_show_page_identity?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  shop_codes?: Prisma.StringNullableListFilter<"User">
+  is_active?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  current_parent_user_id?: Prisma.IntNullableFilter<"User"> | number | null
+  blocked_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  brands_infos?: Prisma.Brands_infoListRelationFilter
+  file_imports?: Prisma.File_importsListRelationFilter
+  nodes?: Prisma.NodesListRelationFilter
+  platform?: Prisma.XOR<Prisma.PlatformsNullableScalarRelationFilter, Prisma.platformsWhereInput> | null
+  role?: Prisma.XOR<Prisma.RoleNullableScalarRelationFilter, Prisma.RoleWhereInput> | null
+  user_interacts?: Prisma.User_interactsListRelationFilter
+  user_otp_sessions?: Prisma.User_otp_sessionsListRelationFilter
+  crmCustomerProfile?: Prisma.XOR<Prisma.CrmCustomerProfilesNullableScalarRelationFilter, Prisma.CrmCustomerProfilesWhereInput> | null
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesListRelationFilter
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsListRelationFilter
+  ownedCrmDeals?: Prisma.CrmDealsListRelationFilter
+  crmSyncJobs?: Prisma.CrmSyncJobsListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
-  phone_number?: Prisma.SortOrderInput | Prisma.SortOrder
+  username?: Prisma.SortOrderInput | Prisma.SortOrder
+  first_name?: Prisma.SortOrderInput | Prisma.SortOrder
+  last_name?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_verify_email?: Prisma.SortOrderInput | Prisma.SortOrder
   password?: Prisma.SortOrderInput | Prisma.SortOrder
-  avatar?: Prisma.SortOrderInput | Prisma.SortOrder
-  name?: Prisma.SortOrderInput | Prisma.SortOrder
-  bio?: Prisma.SortOrderInput | Prisma.SortOrder
-  address?: Prisma.SortOrderInput | Prisma.SortOrder
-  age?: Prisma.SortOrderInput | Prisma.SortOrder
-  gender?: Prisma.SortOrderInput | Prisma.SortOrder
-  major?: Prisma.SortOrderInput | Prisma.SortOrder
-  free_time_activity?: Prisma.SortOrderInput | Prisma.SortOrder
-  is_verified?: Prisma.SortOrder
-  is_active?: Prisma.SortOrder
-  is_block?: Prisma.SortOrder
-  created_by?: Prisma.SortOrderInput | Prisma.SortOrder
-  updated_by?: Prisma.SortOrderInput | Prisma.SortOrder
-  deleted_by?: Prisma.SortOrderInput | Prisma.SortOrder
+  avatar_name?: Prisma.SortOrderInput | Prisma.SortOrder
+  background_name?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
-  updated_at?: Prisma.SortOrder
+  created_by?: Prisma.SortOrderInput | Prisma.SortOrder
+  updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  updated_by?: Prisma.SortOrderInput | Prisma.SortOrder
   deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  last_login_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  is_online?: Prisma.SortOrder
-  posts?: Prisma.PostOrderByRelationAggregateInput
-  likes?: Prisma.LikeOrderByRelationAggregateInput
-  comments?: Prisma.CommentOrderByRelationAggregateInput
-  roles?: Prisma.UserRoleOrderByRelationAggregateInput
-  user_answers?: Prisma.UserAnswerOrderByRelationAggregateInput
-  user_hobbies?: Prisma.UserHobbyOrderByRelationAggregateInput
+  deleted_by?: Prisma.SortOrderInput | Prisma.SortOrder
+  role_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  bio?: Prisma.SortOrderInput | Prisma.SortOrder
+  total_spent?: Prisma.SortOrderInput | Prisma.SortOrder
+  rating?: Prisma.SortOrderInput | Prisma.SortOrder
+  age?: Prisma.SortOrderInput | Prisma.SortOrder
+  platform_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  profile_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  contract_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  tiktok_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  notification_token?: Prisma.SortOrderInput | Prisma.SortOrder
+  gender?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_block?: Prisma.SortOrderInput | Prisma.SortOrder
+  apple_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  youtube_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone_number?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_new_user?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_auth_creator_tap?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_restricted?: Prisma.SortOrderInput | Prisma.SortOrder
+  have_showcase?: Prisma.SortOrderInput | Prisma.SortOrder
+  categories_tap?: Prisma.SortOrderInput | Prisma.SortOrder
+  last_active_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  channel_orientation?: Prisma.SortOrder
+  is_koc_core?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_pinned?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_created_external?: Prisma.SortOrderInput | Prisma.SortOrder
+  metadata?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_active_ai?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_high_gmv?: Prisma.SortOrderInput | Prisma.SortOrder
+  brand_name?: Prisma.SortOrderInput | Prisma.SortOrder
+  parent_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_phone_verified?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_show_page_identity?: Prisma.SortOrderInput | Prisma.SortOrder
+  shop_codes?: Prisma.SortOrder
+  is_active?: Prisma.SortOrderInput | Prisma.SortOrder
+  current_parent_user_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  blocked_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  brands_infos?: Prisma.brands_infoOrderByRelationAggregateInput
+  file_imports?: Prisma.file_importsOrderByRelationAggregateInput
+  nodes?: Prisma.nodesOrderByRelationAggregateInput
+  platform?: Prisma.platformsOrderByWithRelationInput
+  role?: Prisma.RoleOrderByWithRelationInput
+  user_interacts?: Prisma.user_interactsOrderByRelationAggregateInput
+  user_otp_sessions?: Prisma.user_otp_sessionsOrderByRelationAggregateInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesOrderByWithRelationInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesOrderByRelationAggregateInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsOrderByRelationAggregateInput
+  ownedCrmDeals?: Prisma.CrmDealsOrderByRelationAggregateInput
+  crmSyncJobs?: Prisma.CrmSyncJobsOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
   id?: number
-  email?: string
-  phone_number?: string
   AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
+  email?: Prisma.StringNullableFilter<"User"> | string | null
+  username?: Prisma.StringNullableFilter<"User"> | string | null
+  first_name?: Prisma.StringNullableFilter<"User"> | string | null
+  last_name?: Prisma.StringNullableFilter<"User"> | string | null
+  is_verify_email?: Prisma.BoolNullableFilter<"User"> | boolean | null
   password?: Prisma.StringNullableFilter<"User"> | string | null
-  avatar?: Prisma.JsonNullableFilter<"User">
-  name?: Prisma.StringNullableFilter<"User"> | string | null
-  bio?: Prisma.StringNullableFilter<"User"> | string | null
-  address?: Prisma.StringNullableFilter<"User"> | string | null
-  age?: Prisma.IntNullableFilter<"User"> | number | null
-  gender?: Prisma.EnumGenderNullableFilter<"User"> | $Enums.Gender | null
-  major?: Prisma.StringNullableFilter<"User"> | string | null
-  free_time_activity?: Prisma.StringNullableFilter<"User"> | string | null
-  is_verified?: Prisma.BoolFilter<"User"> | boolean
-  is_active?: Prisma.BoolFilter<"User"> | boolean
-  is_block?: Prisma.BoolFilter<"User"> | boolean
-  created_by?: Prisma.IntNullableFilter<"User"> | number | null
-  updated_by?: Prisma.IntNullableFilter<"User"> | number | null
-  deleted_by?: Prisma.IntNullableFilter<"User"> | number | null
+  avatar_name?: Prisma.StringNullableFilter<"User"> | string | null
+  background_name?: Prisma.StringNullableFilter<"User"> | string | null
   created_at?: Prisma.DateTimeFilter<"User"> | Date | string
-  updated_at?: Prisma.DateTimeFilter<"User"> | Date | string
+  created_by?: Prisma.IntNullableFilter<"User"> | number | null
+  updated_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  updated_by?: Prisma.IntNullableFilter<"User"> | number | null
   deleted_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
-  last_login_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
-  is_online?: Prisma.BoolFilter<"User"> | boolean
-  posts?: Prisma.PostListRelationFilter
-  likes?: Prisma.LikeListRelationFilter
-  comments?: Prisma.CommentListRelationFilter
-  roles?: Prisma.UserRoleListRelationFilter
-  user_answers?: Prisma.UserAnswerListRelationFilter
-  user_hobbies?: Prisma.UserHobbyListRelationFilter
-}, "id" | "email" | "phone_number">
+  deleted_by?: Prisma.IntNullableFilter<"User"> | number | null
+  role_id?: Prisma.IntNullableFilter<"User"> | number | null
+  bio?: Prisma.StringNullableFilter<"User"> | string | null
+  total_spent?: Prisma.DecimalNullableFilter<"User"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.DecimalNullableFilter<"User"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.StringNullableFilter<"User"> | string | null
+  platform_id?: Prisma.IntNullableFilter<"User"> | number | null
+  profile_id?: Prisma.IntNullableFilter<"User"> | number | null
+  contract_id?: Prisma.IntNullableFilter<"User"> | number | null
+  tiktok_id?: Prisma.IntNullableFilter<"User"> | number | null
+  notification_token?: Prisma.StringNullableFilter<"User"> | string | null
+  gender?: Prisma.StringNullableFilter<"User"> | string | null
+  is_block?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  apple_id?: Prisma.StringNullableFilter<"User"> | string | null
+  youtube_id?: Prisma.IntNullableFilter<"User"> | number | null
+  phone_number?: Prisma.StringNullableFilter<"User"> | string | null
+  is_new_user?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  is_auth_creator_tap?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  is_restricted?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  have_showcase?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  categories_tap?: Prisma.StringNullableFilter<"User"> | string | null
+  last_active_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  channel_orientation?: Prisma.StringNullableListFilter<"User">
+  is_koc_core?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  is_pinned?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  is_created_external?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  metadata?: Prisma.JsonNullableFilter<"User">
+  is_active_ai?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  is_high_gmv?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  brand_name?: Prisma.StringNullableFilter<"User"> | string | null
+  parent_id?: Prisma.IntNullableFilter<"User"> | number | null
+  is_phone_verified?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  is_show_page_identity?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  shop_codes?: Prisma.StringNullableListFilter<"User">
+  is_active?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  current_parent_user_id?: Prisma.IntNullableFilter<"User"> | number | null
+  blocked_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  brands_infos?: Prisma.Brands_infoListRelationFilter
+  file_imports?: Prisma.File_importsListRelationFilter
+  nodes?: Prisma.NodesListRelationFilter
+  platform?: Prisma.XOR<Prisma.PlatformsNullableScalarRelationFilter, Prisma.platformsWhereInput> | null
+  role?: Prisma.XOR<Prisma.RoleNullableScalarRelationFilter, Prisma.RoleWhereInput> | null
+  user_interacts?: Prisma.User_interactsListRelationFilter
+  user_otp_sessions?: Prisma.User_otp_sessionsListRelationFilter
+  crmCustomerProfile?: Prisma.XOR<Prisma.CrmCustomerProfilesNullableScalarRelationFilter, Prisma.CrmCustomerProfilesWhereInput> | null
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesListRelationFilter
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsListRelationFilter
+  ownedCrmDeals?: Prisma.CrmDealsListRelationFilter
+  crmSyncJobs?: Prisma.CrmSyncJobsListRelationFilter
+}, "id">
 
 export type UserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
-  phone_number?: Prisma.SortOrderInput | Prisma.SortOrder
+  username?: Prisma.SortOrderInput | Prisma.SortOrder
+  first_name?: Prisma.SortOrderInput | Prisma.SortOrder
+  last_name?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_verify_email?: Prisma.SortOrderInput | Prisma.SortOrder
   password?: Prisma.SortOrderInput | Prisma.SortOrder
-  avatar?: Prisma.SortOrderInput | Prisma.SortOrder
-  name?: Prisma.SortOrderInput | Prisma.SortOrder
-  bio?: Prisma.SortOrderInput | Prisma.SortOrder
-  address?: Prisma.SortOrderInput | Prisma.SortOrder
-  age?: Prisma.SortOrderInput | Prisma.SortOrder
-  gender?: Prisma.SortOrderInput | Prisma.SortOrder
-  major?: Prisma.SortOrderInput | Prisma.SortOrder
-  free_time_activity?: Prisma.SortOrderInput | Prisma.SortOrder
-  is_verified?: Prisma.SortOrder
-  is_active?: Prisma.SortOrder
-  is_block?: Prisma.SortOrder
-  created_by?: Prisma.SortOrderInput | Prisma.SortOrder
-  updated_by?: Prisma.SortOrderInput | Prisma.SortOrder
-  deleted_by?: Prisma.SortOrderInput | Prisma.SortOrder
+  avatar_name?: Prisma.SortOrderInput | Prisma.SortOrder
+  background_name?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
-  updated_at?: Prisma.SortOrder
+  created_by?: Prisma.SortOrderInput | Prisma.SortOrder
+  updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  updated_by?: Prisma.SortOrderInput | Prisma.SortOrder
   deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  last_login_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  is_online?: Prisma.SortOrder
+  deleted_by?: Prisma.SortOrderInput | Prisma.SortOrder
+  role_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  bio?: Prisma.SortOrderInput | Prisma.SortOrder
+  total_spent?: Prisma.SortOrderInput | Prisma.SortOrder
+  rating?: Prisma.SortOrderInput | Prisma.SortOrder
+  age?: Prisma.SortOrderInput | Prisma.SortOrder
+  platform_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  profile_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  contract_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  tiktok_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  notification_token?: Prisma.SortOrderInput | Prisma.SortOrder
+  gender?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_block?: Prisma.SortOrderInput | Prisma.SortOrder
+  apple_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  youtube_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone_number?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_new_user?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_auth_creator_tap?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_restricted?: Prisma.SortOrderInput | Prisma.SortOrder
+  have_showcase?: Prisma.SortOrderInput | Prisma.SortOrder
+  categories_tap?: Prisma.SortOrderInput | Prisma.SortOrder
+  last_active_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  channel_orientation?: Prisma.SortOrder
+  is_koc_core?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_pinned?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_created_external?: Prisma.SortOrderInput | Prisma.SortOrder
+  metadata?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_active_ai?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_high_gmv?: Prisma.SortOrderInput | Prisma.SortOrder
+  brand_name?: Prisma.SortOrderInput | Prisma.SortOrder
+  parent_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_phone_verified?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_show_page_identity?: Prisma.SortOrderInput | Prisma.SortOrder
+  shop_codes?: Prisma.SortOrder
+  is_active?: Prisma.SortOrderInput | Prisma.SortOrder
+  current_parent_user_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  blocked_at?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -484,235 +838,468 @@ export type UserScalarWhereWithAggregatesInput = {
   NOT?: Prisma.UserScalarWhereWithAggregatesInput | Prisma.UserScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"User"> | number
   email?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  phone_number?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  username?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  first_name?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  last_name?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  is_verify_email?: Prisma.BoolNullableWithAggregatesFilter<"User"> | boolean | null
   password?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  avatar?: Prisma.JsonNullableWithAggregatesFilter<"User">
-  name?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  bio?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  address?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  age?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
-  gender?: Prisma.EnumGenderNullableWithAggregatesFilter<"User"> | $Enums.Gender | null
-  major?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  free_time_activity?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  is_verified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
-  is_active?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
-  is_block?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
-  created_by?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
-  updated_by?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
-  deleted_by?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  avatar_name?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  background_name?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   created_at?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
-  updated_at?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
+  created_by?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  updated_at?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  updated_by?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
   deleted_at?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
-  last_login_at?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
-  is_online?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  deleted_by?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  role_id?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  bio?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  total_spent?: Prisma.DecimalNullableWithAggregatesFilter<"User"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.DecimalNullableWithAggregatesFilter<"User"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  platform_id?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  profile_id?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  contract_id?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  tiktok_id?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  notification_token?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  gender?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  is_block?: Prisma.BoolNullableWithAggregatesFilter<"User"> | boolean | null
+  apple_id?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  youtube_id?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  phone_number?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  is_new_user?: Prisma.BoolNullableWithAggregatesFilter<"User"> | boolean | null
+  is_auth_creator_tap?: Prisma.BoolNullableWithAggregatesFilter<"User"> | boolean | null
+  is_restricted?: Prisma.BoolNullableWithAggregatesFilter<"User"> | boolean | null
+  have_showcase?: Prisma.BoolNullableWithAggregatesFilter<"User"> | boolean | null
+  categories_tap?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  last_active_at?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  channel_orientation?: Prisma.StringNullableListFilter<"User">
+  is_koc_core?: Prisma.BoolNullableWithAggregatesFilter<"User"> | boolean | null
+  is_pinned?: Prisma.BoolNullableWithAggregatesFilter<"User"> | boolean | null
+  is_created_external?: Prisma.BoolNullableWithAggregatesFilter<"User"> | boolean | null
+  metadata?: Prisma.JsonNullableWithAggregatesFilter<"User">
+  is_active_ai?: Prisma.BoolNullableWithAggregatesFilter<"User"> | boolean | null
+  is_high_gmv?: Prisma.BoolNullableWithAggregatesFilter<"User"> | boolean | null
+  brand_name?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  parent_id?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  is_phone_verified?: Prisma.BoolNullableWithAggregatesFilter<"User"> | boolean | null
+  is_show_page_identity?: Prisma.BoolNullableWithAggregatesFilter<"User"> | boolean | null
+  shop_codes?: Prisma.StringNullableListFilter<"User">
+  is_active?: Prisma.BoolNullableWithAggregatesFilter<"User"> | boolean | null
+  current_parent_user_id?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  blocked_at?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
 }
 
 export type UserCreateInput = {
   email?: string | null
-  phone_number?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
   password?: string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: string | null
-  bio?: string | null
-  address?: string | null
-  age?: number | null
-  gender?: $Enums.Gender | null
-  major?: string | null
-  free_time_activity?: string | null
-  is_verified?: boolean
-  is_active?: boolean
-  is_block?: boolean
-  created_by?: number | null
-  updated_by?: number | null
-  deleted_by?: number | null
+  avatar_name?: string | null
+  background_name?: string | null
   created_at?: Date | string
-  updated_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
   deleted_at?: Date | string | null
-  last_login_at?: Date | string | null
-  is_online?: boolean
-  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
-  likes?: Prisma.LikeCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  user_answers?: Prisma.UserAnswerCreateNestedManyWithoutUserInput
-  user_hobbies?: Prisma.UserHobbyCreateNestedManyWithoutUserInput
+  deleted_by?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoCreateNestedManyWithoutUsersInput
+  file_imports?: Prisma.file_importsCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesCreateNestedManyWithoutUsersInput
+  platform?: Prisma.platformsCreateNestedOneWithoutUsersInput
+  role?: Prisma.RoleCreateNestedOneWithoutUsersInput
+  user_interacts?: Prisma.user_interactsCreateNestedManyWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesCreateNestedOneWithoutUserInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesCreateNestedManyWithoutOwnerInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsCreateNestedManyWithoutOwnerInput
+  crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
   id?: number
   email?: string | null
-  phone_number?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
   password?: string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: string | null
-  bio?: string | null
-  address?: string | null
-  age?: number | null
-  gender?: $Enums.Gender | null
-  major?: string | null
-  free_time_activity?: string | null
-  is_verified?: boolean
-  is_active?: boolean
-  is_block?: boolean
-  created_by?: number | null
-  updated_by?: number | null
-  deleted_by?: number | null
+  avatar_name?: string | null
+  background_name?: string | null
   created_at?: Date | string
-  updated_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
   deleted_at?: Date | string | null
-  last_login_at?: Date | string | null
-  is_online?: boolean
-  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
-  likes?: Prisma.LikeUncheckedCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  user_answers?: Prisma.UserAnswerUncheckedCreateNestedManyWithoutUserInput
-  user_hobbies?: Prisma.UserHobbyUncheckedCreateNestedManyWithoutUserInput
+  deleted_by?: number | null
+  role_id?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  platform_id?: number | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedCreateNestedManyWithoutUsersInput
+  file_imports?: Prisma.file_importsUncheckedCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesUncheckedCreateNestedManyWithoutUsersInput
+  user_interacts?: Prisma.user_interactsUncheckedCreateNestedManyWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedCreateNestedOneWithoutUserInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedCreateNestedManyWithoutOwnerInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedCreateNestedManyWithoutOwnerInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
-  major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
-  likes?: Prisma.LikeUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  user_answers?: Prisma.UserAnswerUpdateManyWithoutUserNestedInput
-  user_hobbies?: Prisma.UserHobbyUpdateManyWithoutUserNestedInput
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUpdateManyWithoutUsersNestedInput
+  file_imports?: Prisma.file_importsUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUpdateManyWithoutUsersNestedInput
+  platform?: Prisma.platformsUpdateOneWithoutUsersNestedInput
+  role?: Prisma.RoleUpdateOneWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUpdateManyWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUpdateOneWithoutUserNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUpdateManyWithoutOwnerNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUpdateManyWithoutOwnerNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
-  major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
-  likes?: Prisma.LikeUncheckedUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  user_answers?: Prisma.UserAnswerUncheckedUpdateManyWithoutUserNestedInput
-  user_hobbies?: Prisma.UserHobbyUncheckedUpdateManyWithoutUserNestedInput
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  role_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platform_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedUpdateManyWithoutUsersNestedInput
+  file_imports?: Prisma.file_importsUncheckedUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUncheckedUpdateManyWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUncheckedUpdateManyWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedUpdateOneWithoutUserNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedUpdateManyWithoutOwnerNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedUpdateManyWithoutOwnerNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
   id?: number
   email?: string | null
-  phone_number?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
   password?: string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: string | null
-  bio?: string | null
-  address?: string | null
-  age?: number | null
-  gender?: $Enums.Gender | null
-  major?: string | null
-  free_time_activity?: string | null
-  is_verified?: boolean
-  is_active?: boolean
-  is_block?: boolean
-  created_by?: number | null
-  updated_by?: number | null
-  deleted_by?: number | null
+  avatar_name?: string | null
+  background_name?: string | null
   created_at?: Date | string
-  updated_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
   deleted_at?: Date | string | null
-  last_login_at?: Date | string | null
-  is_online?: boolean
+  deleted_by?: number | null
+  role_id?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  platform_id?: number | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
 }
 
 export type UserUpdateManyMutationInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
-  major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type UserUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
-  major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
-}
-
-export type UserNullableScalarRelationFilter = {
-  is?: Prisma.UserWhereInput | null
-  isNot?: Prisma.UserWhereInput | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  role_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platform_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type UserScalarRelationFilter = {
@@ -720,1018 +1307,3942 @@ export type UserScalarRelationFilter = {
   isNot?: Prisma.UserWhereInput
 }
 
+export type UserListRelationFilter = {
+  every?: Prisma.UserWhereInput
+  some?: Prisma.UserWhereInput
+  none?: Prisma.UserWhereInput
+}
+
+export type UserOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.UserWhereInput | null
+  isNot?: Prisma.UserWhereInput | null
+}
+
 export type UserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  phone_number?: Prisma.SortOrder
+  username?: Prisma.SortOrder
+  first_name?: Prisma.SortOrder
+  last_name?: Prisma.SortOrder
+  is_verify_email?: Prisma.SortOrder
   password?: Prisma.SortOrder
-  avatar?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  bio?: Prisma.SortOrder
-  address?: Prisma.SortOrder
-  age?: Prisma.SortOrder
-  gender?: Prisma.SortOrder
-  major?: Prisma.SortOrder
-  free_time_activity?: Prisma.SortOrder
-  is_verified?: Prisma.SortOrder
-  is_active?: Prisma.SortOrder
-  is_block?: Prisma.SortOrder
-  created_by?: Prisma.SortOrder
-  updated_by?: Prisma.SortOrder
-  deleted_by?: Prisma.SortOrder
+  avatar_name?: Prisma.SortOrder
+  background_name?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
+  created_by?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  updated_by?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrder
-  last_login_at?: Prisma.SortOrder
-  is_online?: Prisma.SortOrder
+  deleted_by?: Prisma.SortOrder
+  role_id?: Prisma.SortOrder
+  bio?: Prisma.SortOrder
+  total_spent?: Prisma.SortOrder
+  rating?: Prisma.SortOrder
+  age?: Prisma.SortOrder
+  platform_id?: Prisma.SortOrder
+  profile_id?: Prisma.SortOrder
+  contract_id?: Prisma.SortOrder
+  tiktok_id?: Prisma.SortOrder
+  notification_token?: Prisma.SortOrder
+  gender?: Prisma.SortOrder
+  is_block?: Prisma.SortOrder
+  apple_id?: Prisma.SortOrder
+  youtube_id?: Prisma.SortOrder
+  phone_number?: Prisma.SortOrder
+  is_new_user?: Prisma.SortOrder
+  is_auth_creator_tap?: Prisma.SortOrder
+  is_restricted?: Prisma.SortOrder
+  have_showcase?: Prisma.SortOrder
+  categories_tap?: Prisma.SortOrder
+  last_active_at?: Prisma.SortOrder
+  channel_orientation?: Prisma.SortOrder
+  is_koc_core?: Prisma.SortOrder
+  is_pinned?: Prisma.SortOrder
+  is_created_external?: Prisma.SortOrder
+  metadata?: Prisma.SortOrder
+  is_active_ai?: Prisma.SortOrder
+  is_high_gmv?: Prisma.SortOrder
+  brand_name?: Prisma.SortOrder
+  parent_id?: Prisma.SortOrder
+  is_phone_verified?: Prisma.SortOrder
+  is_show_page_identity?: Prisma.SortOrder
+  shop_codes?: Prisma.SortOrder
+  is_active?: Prisma.SortOrder
+  current_parent_user_id?: Prisma.SortOrder
+  blocked_at?: Prisma.SortOrder
 }
 
 export type UserAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  age?: Prisma.SortOrder
   created_by?: Prisma.SortOrder
   updated_by?: Prisma.SortOrder
   deleted_by?: Prisma.SortOrder
+  role_id?: Prisma.SortOrder
+  total_spent?: Prisma.SortOrder
+  rating?: Prisma.SortOrder
+  platform_id?: Prisma.SortOrder
+  profile_id?: Prisma.SortOrder
+  contract_id?: Prisma.SortOrder
+  tiktok_id?: Prisma.SortOrder
+  youtube_id?: Prisma.SortOrder
+  parent_id?: Prisma.SortOrder
+  current_parent_user_id?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  phone_number?: Prisma.SortOrder
+  username?: Prisma.SortOrder
+  first_name?: Prisma.SortOrder
+  last_name?: Prisma.SortOrder
+  is_verify_email?: Prisma.SortOrder
   password?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  bio?: Prisma.SortOrder
-  address?: Prisma.SortOrder
-  age?: Prisma.SortOrder
-  gender?: Prisma.SortOrder
-  major?: Prisma.SortOrder
-  free_time_activity?: Prisma.SortOrder
-  is_verified?: Prisma.SortOrder
-  is_active?: Prisma.SortOrder
-  is_block?: Prisma.SortOrder
-  created_by?: Prisma.SortOrder
-  updated_by?: Prisma.SortOrder
-  deleted_by?: Prisma.SortOrder
+  avatar_name?: Prisma.SortOrder
+  background_name?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
+  created_by?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  updated_by?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrder
-  last_login_at?: Prisma.SortOrder
-  is_online?: Prisma.SortOrder
+  deleted_by?: Prisma.SortOrder
+  role_id?: Prisma.SortOrder
+  bio?: Prisma.SortOrder
+  total_spent?: Prisma.SortOrder
+  rating?: Prisma.SortOrder
+  age?: Prisma.SortOrder
+  platform_id?: Prisma.SortOrder
+  profile_id?: Prisma.SortOrder
+  contract_id?: Prisma.SortOrder
+  tiktok_id?: Prisma.SortOrder
+  notification_token?: Prisma.SortOrder
+  gender?: Prisma.SortOrder
+  is_block?: Prisma.SortOrder
+  apple_id?: Prisma.SortOrder
+  youtube_id?: Prisma.SortOrder
+  phone_number?: Prisma.SortOrder
+  is_new_user?: Prisma.SortOrder
+  is_auth_creator_tap?: Prisma.SortOrder
+  is_restricted?: Prisma.SortOrder
+  have_showcase?: Prisma.SortOrder
+  categories_tap?: Prisma.SortOrder
+  last_active_at?: Prisma.SortOrder
+  is_koc_core?: Prisma.SortOrder
+  is_pinned?: Prisma.SortOrder
+  is_created_external?: Prisma.SortOrder
+  is_active_ai?: Prisma.SortOrder
+  is_high_gmv?: Prisma.SortOrder
+  brand_name?: Prisma.SortOrder
+  parent_id?: Prisma.SortOrder
+  is_phone_verified?: Prisma.SortOrder
+  is_show_page_identity?: Prisma.SortOrder
+  is_active?: Prisma.SortOrder
+  current_parent_user_id?: Prisma.SortOrder
+  blocked_at?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  phone_number?: Prisma.SortOrder
+  username?: Prisma.SortOrder
+  first_name?: Prisma.SortOrder
+  last_name?: Prisma.SortOrder
+  is_verify_email?: Prisma.SortOrder
   password?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  bio?: Prisma.SortOrder
-  address?: Prisma.SortOrder
-  age?: Prisma.SortOrder
-  gender?: Prisma.SortOrder
-  major?: Prisma.SortOrder
-  free_time_activity?: Prisma.SortOrder
-  is_verified?: Prisma.SortOrder
-  is_active?: Prisma.SortOrder
-  is_block?: Prisma.SortOrder
-  created_by?: Prisma.SortOrder
-  updated_by?: Prisma.SortOrder
-  deleted_by?: Prisma.SortOrder
+  avatar_name?: Prisma.SortOrder
+  background_name?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
+  created_by?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  updated_by?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrder
-  last_login_at?: Prisma.SortOrder
-  is_online?: Prisma.SortOrder
+  deleted_by?: Prisma.SortOrder
+  role_id?: Prisma.SortOrder
+  bio?: Prisma.SortOrder
+  total_spent?: Prisma.SortOrder
+  rating?: Prisma.SortOrder
+  age?: Prisma.SortOrder
+  platform_id?: Prisma.SortOrder
+  profile_id?: Prisma.SortOrder
+  contract_id?: Prisma.SortOrder
+  tiktok_id?: Prisma.SortOrder
+  notification_token?: Prisma.SortOrder
+  gender?: Prisma.SortOrder
+  is_block?: Prisma.SortOrder
+  apple_id?: Prisma.SortOrder
+  youtube_id?: Prisma.SortOrder
+  phone_number?: Prisma.SortOrder
+  is_new_user?: Prisma.SortOrder
+  is_auth_creator_tap?: Prisma.SortOrder
+  is_restricted?: Prisma.SortOrder
+  have_showcase?: Prisma.SortOrder
+  categories_tap?: Prisma.SortOrder
+  last_active_at?: Prisma.SortOrder
+  is_koc_core?: Prisma.SortOrder
+  is_pinned?: Prisma.SortOrder
+  is_created_external?: Prisma.SortOrder
+  is_active_ai?: Prisma.SortOrder
+  is_high_gmv?: Prisma.SortOrder
+  brand_name?: Prisma.SortOrder
+  parent_id?: Prisma.SortOrder
+  is_phone_verified?: Prisma.SortOrder
+  is_show_page_identity?: Prisma.SortOrder
+  is_active?: Prisma.SortOrder
+  current_parent_user_id?: Prisma.SortOrder
+  blocked_at?: Prisma.SortOrder
 }
 
 export type UserSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  age?: Prisma.SortOrder
   created_by?: Prisma.SortOrder
   updated_by?: Prisma.SortOrder
   deleted_by?: Prisma.SortOrder
+  role_id?: Prisma.SortOrder
+  total_spent?: Prisma.SortOrder
+  rating?: Prisma.SortOrder
+  platform_id?: Prisma.SortOrder
+  profile_id?: Prisma.SortOrder
+  contract_id?: Prisma.SortOrder
+  tiktok_id?: Prisma.SortOrder
+  youtube_id?: Prisma.SortOrder
+  parent_id?: Prisma.SortOrder
+  current_parent_user_id?: Prisma.SortOrder
 }
 
-export type UserCreateNestedOneWithoutPostsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutPostsInput, Prisma.UserUncheckedCreateWithoutPostsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPostsInput
+export type UserCreateNestedOneWithoutBrands_infosInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBrands_infosInput, Prisma.UserUncheckedCreateWithoutBrands_infosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBrands_infosInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneWithoutPostsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutPostsInput, Prisma.UserUncheckedCreateWithoutPostsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPostsInput
-  upsert?: Prisma.UserUpsertWithoutPostsInput
+export type UserUpdateOneRequiredWithoutBrands_infosNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBrands_infosInput, Prisma.UserUncheckedCreateWithoutBrands_infosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBrands_infosInput
+  upsert?: Prisma.UserUpsertWithoutBrands_infosInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutBrands_infosInput, Prisma.UserUpdateWithoutBrands_infosInput>, Prisma.UserUncheckedUpdateWithoutBrands_infosInput>
+}
+
+export type UserCreateNestedOneWithoutFile_importsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFile_importsInput, Prisma.UserUncheckedCreateWithoutFile_importsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFile_importsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutFile_importsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFile_importsInput, Prisma.UserUncheckedCreateWithoutFile_importsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFile_importsInput
+  upsert?: Prisma.UserUpsertWithoutFile_importsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutFile_importsInput, Prisma.UserUpdateWithoutFile_importsInput>, Prisma.UserUncheckedUpdateWithoutFile_importsInput>
+}
+
+export type UserCreateNestedOneWithoutNodesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNodesInput, Prisma.UserUncheckedCreateWithoutNodesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNodesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutNodesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNodesInput, Prisma.UserUncheckedCreateWithoutNodesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNodesInput
+  upsert?: Prisma.UserUpsertWithoutNodesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutNodesInput, Prisma.UserUpdateWithoutNodesInput>, Prisma.UserUncheckedUpdateWithoutNodesInput>
+}
+
+export type UserCreateNestedManyWithoutPlatformInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPlatformInput, Prisma.UserUncheckedCreateWithoutPlatformInput> | Prisma.UserCreateWithoutPlatformInput[] | Prisma.UserUncheckedCreateWithoutPlatformInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPlatformInput | Prisma.UserCreateOrConnectWithoutPlatformInput[]
+  createMany?: Prisma.UserCreateManyPlatformInputEnvelope
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+}
+
+export type UserUncheckedCreateNestedManyWithoutPlatformInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPlatformInput, Prisma.UserUncheckedCreateWithoutPlatformInput> | Prisma.UserCreateWithoutPlatformInput[] | Prisma.UserUncheckedCreateWithoutPlatformInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPlatformInput | Prisma.UserCreateOrConnectWithoutPlatformInput[]
+  createMany?: Prisma.UserCreateManyPlatformInputEnvelope
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+}
+
+export type UserUpdateManyWithoutPlatformNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPlatformInput, Prisma.UserUncheckedCreateWithoutPlatformInput> | Prisma.UserCreateWithoutPlatformInput[] | Prisma.UserUncheckedCreateWithoutPlatformInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPlatformInput | Prisma.UserCreateOrConnectWithoutPlatformInput[]
+  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutPlatformInput | Prisma.UserUpsertWithWhereUniqueWithoutPlatformInput[]
+  createMany?: Prisma.UserCreateManyPlatformInputEnvelope
+  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  update?: Prisma.UserUpdateWithWhereUniqueWithoutPlatformInput | Prisma.UserUpdateWithWhereUniqueWithoutPlatformInput[]
+  updateMany?: Prisma.UserUpdateManyWithWhereWithoutPlatformInput | Prisma.UserUpdateManyWithWhereWithoutPlatformInput[]
+  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+}
+
+export type UserUncheckedUpdateManyWithoutPlatformNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPlatformInput, Prisma.UserUncheckedCreateWithoutPlatformInput> | Prisma.UserCreateWithoutPlatformInput[] | Prisma.UserUncheckedCreateWithoutPlatformInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPlatformInput | Prisma.UserCreateOrConnectWithoutPlatformInput[]
+  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutPlatformInput | Prisma.UserUpsertWithWhereUniqueWithoutPlatformInput[]
+  createMany?: Prisma.UserCreateManyPlatformInputEnvelope
+  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  update?: Prisma.UserUpdateWithWhereUniqueWithoutPlatformInput | Prisma.UserUpdateWithWhereUniqueWithoutPlatformInput[]
+  updateMany?: Prisma.UserUpdateManyWithWhereWithoutPlatformInput | Prisma.UserUpdateManyWithWhereWithoutPlatformInput[]
+  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+}
+
+export type UserCreateNestedOneWithoutUser_interactsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUser_interactsInput, Prisma.UserUncheckedCreateWithoutUser_interactsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUser_interactsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutUser_interactsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUser_interactsInput, Prisma.UserUncheckedCreateWithoutUser_interactsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUser_interactsInput
+  upsert?: Prisma.UserUpsertWithoutUser_interactsInput
   disconnect?: Prisma.UserWhereInput | boolean
   delete?: Prisma.UserWhereInput | boolean
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPostsInput, Prisma.UserUpdateWithoutPostsInput>, Prisma.UserUncheckedUpdateWithoutPostsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutUser_interactsInput, Prisma.UserUpdateWithoutUser_interactsInput>, Prisma.UserUncheckedUpdateWithoutUser_interactsInput>
 }
 
-export type UserCreateNestedOneWithoutLikesInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutLikesInput, Prisma.UserUncheckedCreateWithoutLikesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLikesInput
+export type UserCreateNestedOneWithoutUser_otp_sessionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUser_otp_sessionsInput, Prisma.UserUncheckedCreateWithoutUser_otp_sessionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUser_otp_sessionsInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneWithoutLikesNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutLikesInput, Prisma.UserUncheckedCreateWithoutLikesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLikesInput
-  upsert?: Prisma.UserUpsertWithoutLikesInput
+export type UserUpdateOneWithoutUser_otp_sessionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUser_otp_sessionsInput, Prisma.UserUncheckedCreateWithoutUser_otp_sessionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUser_otp_sessionsInput
+  upsert?: Prisma.UserUpsertWithoutUser_otp_sessionsInput
   disconnect?: Prisma.UserWhereInput | boolean
   delete?: Prisma.UserWhereInput | boolean
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutLikesInput, Prisma.UserUpdateWithoutLikesInput>, Prisma.UserUncheckedUpdateWithoutLikesInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutUser_otp_sessionsInput, Prisma.UserUpdateWithoutUser_otp_sessionsInput>, Prisma.UserUncheckedUpdateWithoutUser_otp_sessionsInput>
 }
 
-export type UserCreateNestedOneWithoutCommentsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCommentsInput, Prisma.UserUncheckedCreateWithoutCommentsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCommentsInput
+export type UserCreateNestedOneWithoutCrmCustomerProfileInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCrmCustomerProfileInput, Prisma.UserUncheckedCreateWithoutCrmCustomerProfileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCrmCustomerProfileInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneWithoutCommentsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCommentsInput, Prisma.UserUncheckedCreateWithoutCommentsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCommentsInput
-  upsert?: Prisma.UserUpsertWithoutCommentsInput
+export type UserCreateNestedOneWithoutOwnedCrmCustomerProfilesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOwnedCrmCustomerProfilesInput, Prisma.UserUncheckedCreateWithoutOwnedCrmCustomerProfilesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOwnedCrmCustomerProfilesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutCrmCustomerProfileNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCrmCustomerProfileInput, Prisma.UserUncheckedCreateWithoutCrmCustomerProfileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCrmCustomerProfileInput
+  upsert?: Prisma.UserUpsertWithoutCrmCustomerProfileInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCrmCustomerProfileInput, Prisma.UserUpdateWithoutCrmCustomerProfileInput>, Prisma.UserUncheckedUpdateWithoutCrmCustomerProfileInput>
+}
+
+export type UserUpdateOneWithoutOwnedCrmCustomerProfilesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOwnedCrmCustomerProfilesInput, Prisma.UserUncheckedCreateWithoutOwnedCrmCustomerProfilesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOwnedCrmCustomerProfilesInput
+  upsert?: Prisma.UserUpsertWithoutOwnedCrmCustomerProfilesInput
   disconnect?: Prisma.UserWhereInput | boolean
   delete?: Prisma.UserWhereInput | boolean
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCommentsInput, Prisma.UserUpdateWithoutCommentsInput>, Prisma.UserUncheckedUpdateWithoutCommentsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOwnedCrmCustomerProfilesInput, Prisma.UserUpdateWithoutOwnedCrmCustomerProfilesInput>, Prisma.UserUncheckedUpdateWithoutOwnedCrmCustomerProfilesInput>
 }
 
-export type UserCreateNestedOneWithoutUser_answersInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutUser_answersInput, Prisma.UserUncheckedCreateWithoutUser_answersInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUser_answersInput
+export type UserCreateNestedOneWithoutOwnedCrmDealsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOwnedCrmDealsInput, Prisma.UserUncheckedCreateWithoutOwnedCrmDealsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOwnedCrmDealsInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutUser_answersNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutUser_answersInput, Prisma.UserUncheckedCreateWithoutUser_answersInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUser_answersInput
-  upsert?: Prisma.UserUpsertWithoutUser_answersInput
+export type UserUpdateOneWithoutOwnedCrmDealsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOwnedCrmDealsInput, Prisma.UserUncheckedCreateWithoutOwnedCrmDealsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOwnedCrmDealsInput
+  upsert?: Prisma.UserUpsertWithoutOwnedCrmDealsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutUser_answersInput, Prisma.UserUpdateWithoutUser_answersInput>, Prisma.UserUncheckedUpdateWithoutUser_answersInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOwnedCrmDealsInput, Prisma.UserUpdateWithoutOwnedCrmDealsInput>, Prisma.UserUncheckedUpdateWithoutOwnedCrmDealsInput>
 }
 
-export type UserCreateNestedOneWithoutRolesInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutRolesInput, Prisma.UserUncheckedCreateWithoutRolesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRolesInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutRolesNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutRolesInput, Prisma.UserUncheckedCreateWithoutRolesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRolesInput
-  upsert?: Prisma.UserUpsertWithoutRolesInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRolesInput, Prisma.UserUpdateWithoutRolesInput>, Prisma.UserUncheckedUpdateWithoutRolesInput>
-}
-
-export type NullableEnumGenderFieldUpdateOperationsInput = {
-  set?: $Enums.Gender | null
-}
-
-export type UserCreateNestedOneWithoutUser_hobbiesInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutUser_hobbiesInput, Prisma.UserUncheckedCreateWithoutUser_hobbiesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUser_hobbiesInput
+export type UserCreateNestedOneWithoutOwnedPipelineRecordsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOwnedPipelineRecordsInput, Prisma.UserUncheckedCreateWithoutOwnedPipelineRecordsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOwnedPipelineRecordsInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutUser_hobbiesNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutUser_hobbiesInput, Prisma.UserUncheckedCreateWithoutUser_hobbiesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUser_hobbiesInput
-  upsert?: Prisma.UserUpsertWithoutUser_hobbiesInput
+export type UserUpdateOneWithoutOwnedPipelineRecordsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOwnedPipelineRecordsInput, Prisma.UserUncheckedCreateWithoutOwnedPipelineRecordsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOwnedPipelineRecordsInput
+  upsert?: Prisma.UserUpsertWithoutOwnedPipelineRecordsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutUser_hobbiesInput, Prisma.UserUpdateWithoutUser_hobbiesInput>, Prisma.UserUncheckedUpdateWithoutUser_hobbiesInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOwnedPipelineRecordsInput, Prisma.UserUpdateWithoutOwnedPipelineRecordsInput>, Prisma.UserUncheckedUpdateWithoutOwnedPipelineRecordsInput>
 }
 
-export type UserCreateWithoutPostsInput = {
+export type UserCreateNestedOneWithoutCrmSyncJobsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCrmSyncJobsInput, Prisma.UserUncheckedCreateWithoutCrmSyncJobsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCrmSyncJobsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutCrmSyncJobsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCrmSyncJobsInput, Prisma.UserUncheckedCreateWithoutCrmSyncJobsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCrmSyncJobsInput
+  upsert?: Prisma.UserUpsertWithoutCrmSyncJobsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCrmSyncJobsInput, Prisma.UserUpdateWithoutCrmSyncJobsInput>, Prisma.UserUncheckedUpdateWithoutCrmSyncJobsInput>
+}
+
+export type UserCreatechannel_orientationInput = {
+  set: string[]
+}
+
+export type UserCreateshop_codesInput = {
+  set: string[]
+}
+
+export type UserUpdatechannel_orientationInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
+export type UserUpdateshop_codesInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
+export type UserCreateNestedManyWithoutRoleInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRoleInput, Prisma.UserUncheckedCreateWithoutRoleInput> | Prisma.UserCreateWithoutRoleInput[] | Prisma.UserUncheckedCreateWithoutRoleInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoleInput | Prisma.UserCreateOrConnectWithoutRoleInput[]
+  createMany?: Prisma.UserCreateManyRoleInputEnvelope
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+}
+
+export type UserUncheckedCreateNestedManyWithoutRoleInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRoleInput, Prisma.UserUncheckedCreateWithoutRoleInput> | Prisma.UserCreateWithoutRoleInput[] | Prisma.UserUncheckedCreateWithoutRoleInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoleInput | Prisma.UserCreateOrConnectWithoutRoleInput[]
+  createMany?: Prisma.UserCreateManyRoleInputEnvelope
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+}
+
+export type UserUpdateManyWithoutRoleNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRoleInput, Prisma.UserUncheckedCreateWithoutRoleInput> | Prisma.UserCreateWithoutRoleInput[] | Prisma.UserUncheckedCreateWithoutRoleInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoleInput | Prisma.UserCreateOrConnectWithoutRoleInput[]
+  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutRoleInput | Prisma.UserUpsertWithWhereUniqueWithoutRoleInput[]
+  createMany?: Prisma.UserCreateManyRoleInputEnvelope
+  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  update?: Prisma.UserUpdateWithWhereUniqueWithoutRoleInput | Prisma.UserUpdateWithWhereUniqueWithoutRoleInput[]
+  updateMany?: Prisma.UserUpdateManyWithWhereWithoutRoleInput | Prisma.UserUpdateManyWithWhereWithoutRoleInput[]
+  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+}
+
+export type UserUncheckedUpdateManyWithoutRoleNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRoleInput, Prisma.UserUncheckedCreateWithoutRoleInput> | Prisma.UserCreateWithoutRoleInput[] | Prisma.UserUncheckedCreateWithoutRoleInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoleInput | Prisma.UserCreateOrConnectWithoutRoleInput[]
+  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutRoleInput | Prisma.UserUpsertWithWhereUniqueWithoutRoleInput[]
+  createMany?: Prisma.UserCreateManyRoleInputEnvelope
+  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  update?: Prisma.UserUpdateWithWhereUniqueWithoutRoleInput | Prisma.UserUpdateWithWhereUniqueWithoutRoleInput[]
+  updateMany?: Prisma.UserUpdateManyWithWhereWithoutRoleInput | Prisma.UserUpdateManyWithWhereWithoutRoleInput[]
+  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+}
+
+export type UserCreateWithoutBrands_infosInput = {
   email?: string | null
-  phone_number?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
   password?: string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: string | null
-  bio?: string | null
-  address?: string | null
-  age?: number | null
-  gender?: $Enums.Gender | null
-  major?: string | null
-  free_time_activity?: string | null
-  is_verified?: boolean
-  is_active?: boolean
-  is_block?: boolean
-  created_by?: number | null
-  updated_by?: number | null
-  deleted_by?: number | null
+  avatar_name?: string | null
+  background_name?: string | null
   created_at?: Date | string
-  updated_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
   deleted_at?: Date | string | null
-  last_login_at?: Date | string | null
-  is_online?: boolean
-  likes?: Prisma.LikeCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  user_answers?: Prisma.UserAnswerCreateNestedManyWithoutUserInput
-  user_hobbies?: Prisma.UserHobbyCreateNestedManyWithoutUserInput
+  deleted_by?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  file_imports?: Prisma.file_importsCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesCreateNestedManyWithoutUsersInput
+  platform?: Prisma.platformsCreateNestedOneWithoutUsersInput
+  role?: Prisma.RoleCreateNestedOneWithoutUsersInput
+  user_interacts?: Prisma.user_interactsCreateNestedManyWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesCreateNestedOneWithoutUserInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesCreateNestedManyWithoutOwnerInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsCreateNestedManyWithoutOwnerInput
+  crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutPostsInput = {
+export type UserUncheckedCreateWithoutBrands_infosInput = {
   id?: number
   email?: string | null
-  phone_number?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
   password?: string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: string | null
-  bio?: string | null
-  address?: string | null
-  age?: number | null
-  gender?: $Enums.Gender | null
-  major?: string | null
-  free_time_activity?: string | null
-  is_verified?: boolean
-  is_active?: boolean
-  is_block?: boolean
-  created_by?: number | null
-  updated_by?: number | null
-  deleted_by?: number | null
+  avatar_name?: string | null
+  background_name?: string | null
   created_at?: Date | string
-  updated_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
   deleted_at?: Date | string | null
-  last_login_at?: Date | string | null
-  is_online?: boolean
-  likes?: Prisma.LikeUncheckedCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  user_answers?: Prisma.UserAnswerUncheckedCreateNestedManyWithoutUserInput
-  user_hobbies?: Prisma.UserHobbyUncheckedCreateNestedManyWithoutUserInput
+  deleted_by?: number | null
+  role_id?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  platform_id?: number | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  file_imports?: Prisma.file_importsUncheckedCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesUncheckedCreateNestedManyWithoutUsersInput
+  user_interacts?: Prisma.user_interactsUncheckedCreateNestedManyWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedCreateNestedOneWithoutUserInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedCreateNestedManyWithoutOwnerInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedCreateNestedManyWithoutOwnerInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutPostsInput = {
+export type UserCreateOrConnectWithoutBrands_infosInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutPostsInput, Prisma.UserUncheckedCreateWithoutPostsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutBrands_infosInput, Prisma.UserUncheckedCreateWithoutBrands_infosInput>
 }
 
-export type UserUpsertWithoutPostsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutPostsInput, Prisma.UserUncheckedUpdateWithoutPostsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutPostsInput, Prisma.UserUncheckedCreateWithoutPostsInput>
+export type UserUpsertWithoutBrands_infosInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutBrands_infosInput, Prisma.UserUncheckedUpdateWithoutBrands_infosInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutBrands_infosInput, Prisma.UserUncheckedCreateWithoutBrands_infosInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutPostsInput = {
+export type UserUpdateToOneWithWhereWithoutBrands_infosInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutPostsInput, Prisma.UserUncheckedUpdateWithoutPostsInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutBrands_infosInput, Prisma.UserUncheckedUpdateWithoutBrands_infosInput>
 }
 
-export type UserUpdateWithoutPostsInput = {
+export type UserUpdateWithoutBrands_infosInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
-  major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  likes?: Prisma.LikeUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  user_answers?: Prisma.UserAnswerUpdateManyWithoutUserNestedInput
-  user_hobbies?: Prisma.UserHobbyUpdateManyWithoutUserNestedInput
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  file_imports?: Prisma.file_importsUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUpdateManyWithoutUsersNestedInput
+  platform?: Prisma.platformsUpdateOneWithoutUsersNestedInput
+  role?: Prisma.RoleUpdateOneWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUpdateManyWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUpdateOneWithoutUserNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUpdateManyWithoutOwnerNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUpdateManyWithoutOwnerNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutPostsInput = {
+export type UserUncheckedUpdateWithoutBrands_infosInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
-  major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  likes?: Prisma.LikeUncheckedUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  user_answers?: Prisma.UserAnswerUncheckedUpdateManyWithoutUserNestedInput
-  user_hobbies?: Prisma.UserHobbyUncheckedUpdateManyWithoutUserNestedInput
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  role_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platform_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  file_imports?: Prisma.file_importsUncheckedUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUncheckedUpdateManyWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUncheckedUpdateManyWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedUpdateOneWithoutUserNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedUpdateManyWithoutOwnerNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedUpdateManyWithoutOwnerNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
 }
 
-export type UserCreateWithoutLikesInput = {
+export type UserCreateWithoutFile_importsInput = {
   email?: string | null
-  phone_number?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
   password?: string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: string | null
-  bio?: string | null
-  address?: string | null
-  age?: number | null
-  gender?: $Enums.Gender | null
-  major?: string | null
-  free_time_activity?: string | null
-  is_verified?: boolean
-  is_active?: boolean
-  is_block?: boolean
-  created_by?: number | null
-  updated_by?: number | null
-  deleted_by?: number | null
+  avatar_name?: string | null
+  background_name?: string | null
   created_at?: Date | string
-  updated_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
   deleted_at?: Date | string | null
-  last_login_at?: Date | string | null
-  is_online?: boolean
-  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
-  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  user_answers?: Prisma.UserAnswerCreateNestedManyWithoutUserInput
-  user_hobbies?: Prisma.UserHobbyCreateNestedManyWithoutUserInput
+  deleted_by?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesCreateNestedManyWithoutUsersInput
+  platform?: Prisma.platformsCreateNestedOneWithoutUsersInput
+  role?: Prisma.RoleCreateNestedOneWithoutUsersInput
+  user_interacts?: Prisma.user_interactsCreateNestedManyWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesCreateNestedOneWithoutUserInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesCreateNestedManyWithoutOwnerInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsCreateNestedManyWithoutOwnerInput
+  crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutLikesInput = {
+export type UserUncheckedCreateWithoutFile_importsInput = {
   id?: number
   email?: string | null
-  phone_number?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
   password?: string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: string | null
-  bio?: string | null
-  address?: string | null
-  age?: number | null
-  gender?: $Enums.Gender | null
-  major?: string | null
-  free_time_activity?: string | null
-  is_verified?: boolean
-  is_active?: boolean
-  is_block?: boolean
-  created_by?: number | null
-  updated_by?: number | null
-  deleted_by?: number | null
+  avatar_name?: string | null
+  background_name?: string | null
   created_at?: Date | string
-  updated_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
   deleted_at?: Date | string | null
-  last_login_at?: Date | string | null
-  is_online?: boolean
-  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
-  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  user_answers?: Prisma.UserAnswerUncheckedCreateNestedManyWithoutUserInput
-  user_hobbies?: Prisma.UserHobbyUncheckedCreateNestedManyWithoutUserInput
+  deleted_by?: number | null
+  role_id?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  platform_id?: number | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesUncheckedCreateNestedManyWithoutUsersInput
+  user_interacts?: Prisma.user_interactsUncheckedCreateNestedManyWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedCreateNestedOneWithoutUserInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedCreateNestedManyWithoutOwnerInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedCreateNestedManyWithoutOwnerInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutLikesInput = {
+export type UserCreateOrConnectWithoutFile_importsInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutLikesInput, Prisma.UserUncheckedCreateWithoutLikesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutFile_importsInput, Prisma.UserUncheckedCreateWithoutFile_importsInput>
 }
 
-export type UserUpsertWithoutLikesInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutLikesInput, Prisma.UserUncheckedUpdateWithoutLikesInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutLikesInput, Prisma.UserUncheckedCreateWithoutLikesInput>
+export type UserUpsertWithoutFile_importsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutFile_importsInput, Prisma.UserUncheckedUpdateWithoutFile_importsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutFile_importsInput, Prisma.UserUncheckedCreateWithoutFile_importsInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutLikesInput = {
+export type UserUpdateToOneWithWhereWithoutFile_importsInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutLikesInput, Prisma.UserUncheckedUpdateWithoutLikesInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutFile_importsInput, Prisma.UserUncheckedUpdateWithoutFile_importsInput>
 }
 
-export type UserUpdateWithoutLikesInput = {
+export type UserUpdateWithoutFile_importsInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
-  major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
-  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  user_answers?: Prisma.UserAnswerUpdateManyWithoutUserNestedInput
-  user_hobbies?: Prisma.UserHobbyUpdateManyWithoutUserNestedInput
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUpdateManyWithoutUsersNestedInput
+  platform?: Prisma.platformsUpdateOneWithoutUsersNestedInput
+  role?: Prisma.RoleUpdateOneWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUpdateManyWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUpdateOneWithoutUserNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUpdateManyWithoutOwnerNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUpdateManyWithoutOwnerNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutLikesInput = {
+export type UserUncheckedUpdateWithoutFile_importsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
-  major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
-  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  user_answers?: Prisma.UserAnswerUncheckedUpdateManyWithoutUserNestedInput
-  user_hobbies?: Prisma.UserHobbyUncheckedUpdateManyWithoutUserNestedInput
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  role_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platform_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUncheckedUpdateManyWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUncheckedUpdateManyWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedUpdateOneWithoutUserNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedUpdateManyWithoutOwnerNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedUpdateManyWithoutOwnerNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
 }
 
-export type UserCreateWithoutCommentsInput = {
+export type UserCreateWithoutNodesInput = {
   email?: string | null
-  phone_number?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
   password?: string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: string | null
-  bio?: string | null
-  address?: string | null
-  age?: number | null
-  gender?: $Enums.Gender | null
-  major?: string | null
-  free_time_activity?: string | null
-  is_verified?: boolean
-  is_active?: boolean
-  is_block?: boolean
-  created_by?: number | null
-  updated_by?: number | null
-  deleted_by?: number | null
+  avatar_name?: string | null
+  background_name?: string | null
   created_at?: Date | string
-  updated_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
   deleted_at?: Date | string | null
-  last_login_at?: Date | string | null
-  is_online?: boolean
-  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
-  likes?: Prisma.LikeCreateNestedManyWithoutUserInput
-  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  user_answers?: Prisma.UserAnswerCreateNestedManyWithoutUserInput
-  user_hobbies?: Prisma.UserHobbyCreateNestedManyWithoutUserInput
+  deleted_by?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoCreateNestedManyWithoutUsersInput
+  file_imports?: Prisma.file_importsCreateNestedManyWithoutUsersInput
+  platform?: Prisma.platformsCreateNestedOneWithoutUsersInput
+  role?: Prisma.RoleCreateNestedOneWithoutUsersInput
+  user_interacts?: Prisma.user_interactsCreateNestedManyWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesCreateNestedOneWithoutUserInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesCreateNestedManyWithoutOwnerInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsCreateNestedManyWithoutOwnerInput
+  crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutCommentsInput = {
+export type UserUncheckedCreateWithoutNodesInput = {
   id?: number
   email?: string | null
-  phone_number?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
   password?: string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: string | null
-  bio?: string | null
-  address?: string | null
-  age?: number | null
-  gender?: $Enums.Gender | null
-  major?: string | null
-  free_time_activity?: string | null
-  is_verified?: boolean
-  is_active?: boolean
-  is_block?: boolean
-  created_by?: number | null
-  updated_by?: number | null
-  deleted_by?: number | null
+  avatar_name?: string | null
+  background_name?: string | null
   created_at?: Date | string
-  updated_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
   deleted_at?: Date | string | null
-  last_login_at?: Date | string | null
-  is_online?: boolean
-  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
-  likes?: Prisma.LikeUncheckedCreateNestedManyWithoutUserInput
-  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  user_answers?: Prisma.UserAnswerUncheckedCreateNestedManyWithoutUserInput
-  user_hobbies?: Prisma.UserHobbyUncheckedCreateNestedManyWithoutUserInput
+  deleted_by?: number | null
+  role_id?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  platform_id?: number | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedCreateNestedManyWithoutUsersInput
+  file_imports?: Prisma.file_importsUncheckedCreateNestedManyWithoutUsersInput
+  user_interacts?: Prisma.user_interactsUncheckedCreateNestedManyWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedCreateNestedOneWithoutUserInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedCreateNestedManyWithoutOwnerInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedCreateNestedManyWithoutOwnerInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutCommentsInput = {
+export type UserCreateOrConnectWithoutNodesInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutCommentsInput, Prisma.UserUncheckedCreateWithoutCommentsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutNodesInput, Prisma.UserUncheckedCreateWithoutNodesInput>
 }
 
-export type UserUpsertWithoutCommentsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutCommentsInput, Prisma.UserUncheckedUpdateWithoutCommentsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutCommentsInput, Prisma.UserUncheckedCreateWithoutCommentsInput>
+export type UserUpsertWithoutNodesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutNodesInput, Prisma.UserUncheckedUpdateWithoutNodesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutNodesInput, Prisma.UserUncheckedCreateWithoutNodesInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutCommentsInput = {
+export type UserUpdateToOneWithWhereWithoutNodesInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutCommentsInput, Prisma.UserUncheckedUpdateWithoutCommentsInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutNodesInput, Prisma.UserUncheckedUpdateWithoutNodesInput>
 }
 
-export type UserUpdateWithoutCommentsInput = {
+export type UserUpdateWithoutNodesInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
-  major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
-  likes?: Prisma.LikeUpdateManyWithoutUserNestedInput
-  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  user_answers?: Prisma.UserAnswerUpdateManyWithoutUserNestedInput
-  user_hobbies?: Prisma.UserHobbyUpdateManyWithoutUserNestedInput
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUpdateManyWithoutUsersNestedInput
+  file_imports?: Prisma.file_importsUpdateManyWithoutUsersNestedInput
+  platform?: Prisma.platformsUpdateOneWithoutUsersNestedInput
+  role?: Prisma.RoleUpdateOneWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUpdateManyWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUpdateOneWithoutUserNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUpdateManyWithoutOwnerNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUpdateManyWithoutOwnerNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutCommentsInput = {
+export type UserUncheckedUpdateWithoutNodesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
-  major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
-  likes?: Prisma.LikeUncheckedUpdateManyWithoutUserNestedInput
-  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  user_answers?: Prisma.UserAnswerUncheckedUpdateManyWithoutUserNestedInput
-  user_hobbies?: Prisma.UserHobbyUncheckedUpdateManyWithoutUserNestedInput
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  role_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platform_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedUpdateManyWithoutUsersNestedInput
+  file_imports?: Prisma.file_importsUncheckedUpdateManyWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUncheckedUpdateManyWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedUpdateOneWithoutUserNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedUpdateManyWithoutOwnerNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedUpdateManyWithoutOwnerNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
 }
 
-export type UserCreateWithoutUser_answersInput = {
+export type UserCreateWithoutPlatformInput = {
   email?: string | null
-  phone_number?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
   password?: string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: string | null
-  bio?: string | null
-  address?: string | null
-  age?: number | null
-  gender?: $Enums.Gender | null
-  major?: string | null
-  free_time_activity?: string | null
-  is_verified?: boolean
-  is_active?: boolean
-  is_block?: boolean
-  created_by?: number | null
-  updated_by?: number | null
-  deleted_by?: number | null
+  avatar_name?: string | null
+  background_name?: string | null
   created_at?: Date | string
-  updated_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
   deleted_at?: Date | string | null
-  last_login_at?: Date | string | null
-  is_online?: boolean
-  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
-  likes?: Prisma.LikeCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  user_hobbies?: Prisma.UserHobbyCreateNestedManyWithoutUserInput
+  deleted_by?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoCreateNestedManyWithoutUsersInput
+  file_imports?: Prisma.file_importsCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesCreateNestedManyWithoutUsersInput
+  role?: Prisma.RoleCreateNestedOneWithoutUsersInput
+  user_interacts?: Prisma.user_interactsCreateNestedManyWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesCreateNestedOneWithoutUserInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesCreateNestedManyWithoutOwnerInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsCreateNestedManyWithoutOwnerInput
+  crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutUser_answersInput = {
+export type UserUncheckedCreateWithoutPlatformInput = {
   id?: number
   email?: string | null
-  phone_number?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
   password?: string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: string | null
-  bio?: string | null
-  address?: string | null
-  age?: number | null
-  gender?: $Enums.Gender | null
-  major?: string | null
-  free_time_activity?: string | null
-  is_verified?: boolean
-  is_active?: boolean
-  is_block?: boolean
-  created_by?: number | null
-  updated_by?: number | null
-  deleted_by?: number | null
+  avatar_name?: string | null
+  background_name?: string | null
   created_at?: Date | string
-  updated_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
   deleted_at?: Date | string | null
-  last_login_at?: Date | string | null
-  is_online?: boolean
-  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
-  likes?: Prisma.LikeUncheckedCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  user_hobbies?: Prisma.UserHobbyUncheckedCreateNestedManyWithoutUserInput
+  deleted_by?: number | null
+  role_id?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedCreateNestedManyWithoutUsersInput
+  file_imports?: Prisma.file_importsUncheckedCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesUncheckedCreateNestedManyWithoutUsersInput
+  user_interacts?: Prisma.user_interactsUncheckedCreateNestedManyWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedCreateNestedOneWithoutUserInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedCreateNestedManyWithoutOwnerInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedCreateNestedManyWithoutOwnerInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutUser_answersInput = {
+export type UserCreateOrConnectWithoutPlatformInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutUser_answersInput, Prisma.UserUncheckedCreateWithoutUser_answersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPlatformInput, Prisma.UserUncheckedCreateWithoutPlatformInput>
 }
 
-export type UserUpsertWithoutUser_answersInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutUser_answersInput, Prisma.UserUncheckedUpdateWithoutUser_answersInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutUser_answersInput, Prisma.UserUncheckedCreateWithoutUser_answersInput>
-  where?: Prisma.UserWhereInput
+export type UserCreateManyPlatformInputEnvelope = {
+  data: Prisma.UserCreateManyPlatformInput | Prisma.UserCreateManyPlatformInput[]
+  skipDuplicates?: boolean
 }
 
-export type UserUpdateToOneWithWhereWithoutUser_answersInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutUser_answersInput, Prisma.UserUncheckedUpdateWithoutUser_answersInput>
+export type UserUpsertWithWhereUniqueWithoutPlatformInput = {
+  where: Prisma.UserWhereUniqueInput
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPlatformInput, Prisma.UserUncheckedUpdateWithoutPlatformInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPlatformInput, Prisma.UserUncheckedCreateWithoutPlatformInput>
 }
 
-export type UserUpdateWithoutUser_answersInput = {
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
-  major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
-  likes?: Prisma.LikeUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  user_hobbies?: Prisma.UserHobbyUpdateManyWithoutUserNestedInput
+export type UserUpdateWithWhereUniqueWithoutPlatformInput = {
+  where: Prisma.UserWhereUniqueInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPlatformInput, Prisma.UserUncheckedUpdateWithoutPlatformInput>
 }
 
-export type UserUncheckedUpdateWithoutUser_answersInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
-  major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
-  likes?: Prisma.LikeUncheckedUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  user_hobbies?: Prisma.UserHobbyUncheckedUpdateManyWithoutUserNestedInput
+export type UserUpdateManyWithWhereWithoutPlatformInput = {
+  where: Prisma.UserScalarWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateManyMutationInput, Prisma.UserUncheckedUpdateManyWithoutPlatformInput>
 }
 
-export type UserCreateWithoutRolesInput = {
+export type UserScalarWhereInput = {
+  AND?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+  OR?: Prisma.UserScalarWhereInput[]
+  NOT?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+  id?: Prisma.IntFilter<"User"> | number
+  email?: Prisma.StringNullableFilter<"User"> | string | null
+  username?: Prisma.StringNullableFilter<"User"> | string | null
+  first_name?: Prisma.StringNullableFilter<"User"> | string | null
+  last_name?: Prisma.StringNullableFilter<"User"> | string | null
+  is_verify_email?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  password?: Prisma.StringNullableFilter<"User"> | string | null
+  avatar_name?: Prisma.StringNullableFilter<"User"> | string | null
+  background_name?: Prisma.StringNullableFilter<"User"> | string | null
+  created_at?: Prisma.DateTimeFilter<"User"> | Date | string
+  created_by?: Prisma.IntNullableFilter<"User"> | number | null
+  updated_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  updated_by?: Prisma.IntNullableFilter<"User"> | number | null
+  deleted_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  deleted_by?: Prisma.IntNullableFilter<"User"> | number | null
+  role_id?: Prisma.IntNullableFilter<"User"> | number | null
+  bio?: Prisma.StringNullableFilter<"User"> | string | null
+  total_spent?: Prisma.DecimalNullableFilter<"User"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.DecimalNullableFilter<"User"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.StringNullableFilter<"User"> | string | null
+  platform_id?: Prisma.IntNullableFilter<"User"> | number | null
+  profile_id?: Prisma.IntNullableFilter<"User"> | number | null
+  contract_id?: Prisma.IntNullableFilter<"User"> | number | null
+  tiktok_id?: Prisma.IntNullableFilter<"User"> | number | null
+  notification_token?: Prisma.StringNullableFilter<"User"> | string | null
+  gender?: Prisma.StringNullableFilter<"User"> | string | null
+  is_block?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  apple_id?: Prisma.StringNullableFilter<"User"> | string | null
+  youtube_id?: Prisma.IntNullableFilter<"User"> | number | null
+  phone_number?: Prisma.StringNullableFilter<"User"> | string | null
+  is_new_user?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  is_auth_creator_tap?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  is_restricted?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  have_showcase?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  categories_tap?: Prisma.StringNullableFilter<"User"> | string | null
+  last_active_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  channel_orientation?: Prisma.StringNullableListFilter<"User">
+  is_koc_core?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  is_pinned?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  is_created_external?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  metadata?: Prisma.JsonNullableFilter<"User">
+  is_active_ai?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  is_high_gmv?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  brand_name?: Prisma.StringNullableFilter<"User"> | string | null
+  parent_id?: Prisma.IntNullableFilter<"User"> | number | null
+  is_phone_verified?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  is_show_page_identity?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  shop_codes?: Prisma.StringNullableListFilter<"User">
+  is_active?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  current_parent_user_id?: Prisma.IntNullableFilter<"User"> | number | null
+  blocked_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+}
+
+export type UserCreateWithoutUser_interactsInput = {
   email?: string | null
-  phone_number?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
   password?: string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: string | null
-  bio?: string | null
-  address?: string | null
-  age?: number | null
-  gender?: $Enums.Gender | null
-  major?: string | null
-  free_time_activity?: string | null
-  is_verified?: boolean
-  is_active?: boolean
-  is_block?: boolean
-  created_by?: number | null
-  updated_by?: number | null
-  deleted_by?: number | null
+  avatar_name?: string | null
+  background_name?: string | null
   created_at?: Date | string
-  updated_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
   deleted_at?: Date | string | null
-  last_login_at?: Date | string | null
-  is_online?: boolean
-  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
-  likes?: Prisma.LikeCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  user_answers?: Prisma.UserAnswerCreateNestedManyWithoutUserInput
-  user_hobbies?: Prisma.UserHobbyCreateNestedManyWithoutUserInput
+  deleted_by?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoCreateNestedManyWithoutUsersInput
+  file_imports?: Prisma.file_importsCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesCreateNestedManyWithoutUsersInput
+  platform?: Prisma.platformsCreateNestedOneWithoutUsersInput
+  role?: Prisma.RoleCreateNestedOneWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesCreateNestedOneWithoutUserInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesCreateNestedManyWithoutOwnerInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsCreateNestedManyWithoutOwnerInput
+  crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutRolesInput = {
+export type UserUncheckedCreateWithoutUser_interactsInput = {
   id?: number
   email?: string | null
-  phone_number?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
   password?: string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: string | null
-  bio?: string | null
-  address?: string | null
-  age?: number | null
-  gender?: $Enums.Gender | null
-  major?: string | null
-  free_time_activity?: string | null
-  is_verified?: boolean
-  is_active?: boolean
-  is_block?: boolean
-  created_by?: number | null
-  updated_by?: number | null
-  deleted_by?: number | null
+  avatar_name?: string | null
+  background_name?: string | null
   created_at?: Date | string
-  updated_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
   deleted_at?: Date | string | null
-  last_login_at?: Date | string | null
-  is_online?: boolean
-  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
-  likes?: Prisma.LikeUncheckedCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  user_answers?: Prisma.UserAnswerUncheckedCreateNestedManyWithoutUserInput
-  user_hobbies?: Prisma.UserHobbyUncheckedCreateNestedManyWithoutUserInput
+  deleted_by?: number | null
+  role_id?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  platform_id?: number | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedCreateNestedManyWithoutUsersInput
+  file_imports?: Prisma.file_importsUncheckedCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesUncheckedCreateNestedManyWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedCreateNestedOneWithoutUserInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedCreateNestedManyWithoutOwnerInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedCreateNestedManyWithoutOwnerInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutRolesInput = {
+export type UserCreateOrConnectWithoutUser_interactsInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutRolesInput, Prisma.UserUncheckedCreateWithoutRolesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutUser_interactsInput, Prisma.UserUncheckedCreateWithoutUser_interactsInput>
 }
 
-export type UserUpsertWithoutRolesInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutRolesInput, Prisma.UserUncheckedUpdateWithoutRolesInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutRolesInput, Prisma.UserUncheckedCreateWithoutRolesInput>
+export type UserUpsertWithoutUser_interactsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutUser_interactsInput, Prisma.UserUncheckedUpdateWithoutUser_interactsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutUser_interactsInput, Prisma.UserUncheckedCreateWithoutUser_interactsInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutRolesInput = {
+export type UserUpdateToOneWithWhereWithoutUser_interactsInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutRolesInput, Prisma.UserUncheckedUpdateWithoutRolesInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutUser_interactsInput, Prisma.UserUncheckedUpdateWithoutUser_interactsInput>
 }
 
-export type UserUpdateWithoutRolesInput = {
+export type UserUpdateWithoutUser_interactsInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
-  major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
-  likes?: Prisma.LikeUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  user_answers?: Prisma.UserAnswerUpdateManyWithoutUserNestedInput
-  user_hobbies?: Prisma.UserHobbyUpdateManyWithoutUserNestedInput
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUpdateManyWithoutUsersNestedInput
+  file_imports?: Prisma.file_importsUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUpdateManyWithoutUsersNestedInput
+  platform?: Prisma.platformsUpdateOneWithoutUsersNestedInput
+  role?: Prisma.RoleUpdateOneWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUpdateOneWithoutUserNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUpdateManyWithoutOwnerNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUpdateManyWithoutOwnerNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutRolesInput = {
+export type UserUncheckedUpdateWithoutUser_interactsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
-  major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
-  likes?: Prisma.LikeUncheckedUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  user_answers?: Prisma.UserAnswerUncheckedUpdateManyWithoutUserNestedInput
-  user_hobbies?: Prisma.UserHobbyUncheckedUpdateManyWithoutUserNestedInput
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  role_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platform_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedUpdateManyWithoutUsersNestedInput
+  file_imports?: Prisma.file_importsUncheckedUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUncheckedUpdateManyWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedUpdateOneWithoutUserNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedUpdateManyWithoutOwnerNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedUpdateManyWithoutOwnerNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
 }
 
-export type UserCreateWithoutUser_hobbiesInput = {
+export type UserCreateWithoutUser_otp_sessionsInput = {
   email?: string | null
-  phone_number?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
   password?: string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: string | null
-  bio?: string | null
-  address?: string | null
-  age?: number | null
-  gender?: $Enums.Gender | null
-  major?: string | null
-  free_time_activity?: string | null
-  is_verified?: boolean
-  is_active?: boolean
-  is_block?: boolean
-  created_by?: number | null
-  updated_by?: number | null
-  deleted_by?: number | null
+  avatar_name?: string | null
+  background_name?: string | null
   created_at?: Date | string
-  updated_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
   deleted_at?: Date | string | null
-  last_login_at?: Date | string | null
-  is_online?: boolean
-  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
-  likes?: Prisma.LikeCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  user_answers?: Prisma.UserAnswerCreateNestedManyWithoutUserInput
+  deleted_by?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoCreateNestedManyWithoutUsersInput
+  file_imports?: Prisma.file_importsCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesCreateNestedManyWithoutUsersInput
+  platform?: Prisma.platformsCreateNestedOneWithoutUsersInput
+  role?: Prisma.RoleCreateNestedOneWithoutUsersInput
+  user_interacts?: Prisma.user_interactsCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesCreateNestedOneWithoutUserInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesCreateNestedManyWithoutOwnerInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsCreateNestedManyWithoutOwnerInput
+  crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutUser_hobbiesInput = {
+export type UserUncheckedCreateWithoutUser_otp_sessionsInput = {
   id?: number
   email?: string | null
-  phone_number?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
   password?: string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: string | null
-  bio?: string | null
-  address?: string | null
-  age?: number | null
-  gender?: $Enums.Gender | null
-  major?: string | null
-  free_time_activity?: string | null
-  is_verified?: boolean
-  is_active?: boolean
-  is_block?: boolean
-  created_by?: number | null
-  updated_by?: number | null
-  deleted_by?: number | null
+  avatar_name?: string | null
+  background_name?: string | null
   created_at?: Date | string
-  updated_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
   deleted_at?: Date | string | null
-  last_login_at?: Date | string | null
-  is_online?: boolean
-  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
-  likes?: Prisma.LikeUncheckedCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  user_answers?: Prisma.UserAnswerUncheckedCreateNestedManyWithoutUserInput
+  deleted_by?: number | null
+  role_id?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  platform_id?: number | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedCreateNestedManyWithoutUsersInput
+  file_imports?: Prisma.file_importsUncheckedCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesUncheckedCreateNestedManyWithoutUsersInput
+  user_interacts?: Prisma.user_interactsUncheckedCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedCreateNestedOneWithoutUserInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedCreateNestedManyWithoutOwnerInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedCreateNestedManyWithoutOwnerInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutUser_hobbiesInput = {
+export type UserCreateOrConnectWithoutUser_otp_sessionsInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutUser_hobbiesInput, Prisma.UserUncheckedCreateWithoutUser_hobbiesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutUser_otp_sessionsInput, Prisma.UserUncheckedCreateWithoutUser_otp_sessionsInput>
 }
 
-export type UserUpsertWithoutUser_hobbiesInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutUser_hobbiesInput, Prisma.UserUncheckedUpdateWithoutUser_hobbiesInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutUser_hobbiesInput, Prisma.UserUncheckedCreateWithoutUser_hobbiesInput>
+export type UserUpsertWithoutUser_otp_sessionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutUser_otp_sessionsInput, Prisma.UserUncheckedUpdateWithoutUser_otp_sessionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutUser_otp_sessionsInput, Prisma.UserUncheckedCreateWithoutUser_otp_sessionsInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutUser_hobbiesInput = {
+export type UserUpdateToOneWithWhereWithoutUser_otp_sessionsInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutUser_hobbiesInput, Prisma.UserUncheckedUpdateWithoutUser_hobbiesInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutUser_otp_sessionsInput, Prisma.UserUncheckedUpdateWithoutUser_otp_sessionsInput>
 }
 
-export type UserUpdateWithoutUser_hobbiesInput = {
+export type UserUpdateWithoutUser_otp_sessionsInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
-  major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
-  likes?: Prisma.LikeUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  user_answers?: Prisma.UserAnswerUpdateManyWithoutUserNestedInput
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUpdateManyWithoutUsersNestedInput
+  file_imports?: Prisma.file_importsUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUpdateManyWithoutUsersNestedInput
+  platform?: Prisma.platformsUpdateOneWithoutUsersNestedInput
+  role?: Prisma.RoleUpdateOneWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUpdateOneWithoutUserNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUpdateManyWithoutOwnerNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUpdateManyWithoutOwnerNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutUser_hobbiesInput = {
+export type UserUncheckedUpdateWithoutUser_otp_sessionsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
-  major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  free_time_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_block?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_online?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
-  likes?: Prisma.LikeUncheckedUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  user_answers?: Prisma.UserAnswerUncheckedUpdateManyWithoutUserNestedInput
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  role_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platform_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedUpdateManyWithoutUsersNestedInput
+  file_imports?: Prisma.file_importsUncheckedUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUncheckedUpdateManyWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUncheckedUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedUpdateOneWithoutUserNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedUpdateManyWithoutOwnerNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedUpdateManyWithoutOwnerNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutCrmCustomerProfileInput = {
+  email?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
+  password?: string | null
+  avatar_name?: string | null
+  background_name?: string | null
+  created_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
+  deleted_at?: Date | string | null
+  deleted_by?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoCreateNestedManyWithoutUsersInput
+  file_imports?: Prisma.file_importsCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesCreateNestedManyWithoutUsersInput
+  platform?: Prisma.platformsCreateNestedOneWithoutUsersInput
+  role?: Prisma.RoleCreateNestedOneWithoutUsersInput
+  user_interacts?: Prisma.user_interactsCreateNestedManyWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsCreateNestedManyWithoutUsersInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesCreateNestedManyWithoutOwnerInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsCreateNestedManyWithoutOwnerInput
+  crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutCrmCustomerProfileInput = {
+  id?: number
+  email?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
+  password?: string | null
+  avatar_name?: string | null
+  background_name?: string | null
+  created_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
+  deleted_at?: Date | string | null
+  deleted_by?: number | null
+  role_id?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  platform_id?: number | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedCreateNestedManyWithoutUsersInput
+  file_imports?: Prisma.file_importsUncheckedCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesUncheckedCreateNestedManyWithoutUsersInput
+  user_interacts?: Prisma.user_interactsUncheckedCreateNestedManyWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedCreateNestedManyWithoutUsersInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedCreateNestedManyWithoutOwnerInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedCreateNestedManyWithoutOwnerInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutCrmCustomerProfileInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCrmCustomerProfileInput, Prisma.UserUncheckedCreateWithoutCrmCustomerProfileInput>
+}
+
+export type UserCreateWithoutOwnedCrmCustomerProfilesInput = {
+  email?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
+  password?: string | null
+  avatar_name?: string | null
+  background_name?: string | null
+  created_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
+  deleted_at?: Date | string | null
+  deleted_by?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoCreateNestedManyWithoutUsersInput
+  file_imports?: Prisma.file_importsCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesCreateNestedManyWithoutUsersInput
+  platform?: Prisma.platformsCreateNestedOneWithoutUsersInput
+  role?: Prisma.RoleCreateNestedOneWithoutUsersInput
+  user_interacts?: Prisma.user_interactsCreateNestedManyWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesCreateNestedOneWithoutUserInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsCreateNestedManyWithoutOwnerInput
+  crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutOwnedCrmCustomerProfilesInput = {
+  id?: number
+  email?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
+  password?: string | null
+  avatar_name?: string | null
+  background_name?: string | null
+  created_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
+  deleted_at?: Date | string | null
+  deleted_by?: number | null
+  role_id?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  platform_id?: number | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedCreateNestedManyWithoutUsersInput
+  file_imports?: Prisma.file_importsUncheckedCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesUncheckedCreateNestedManyWithoutUsersInput
+  user_interacts?: Prisma.user_interactsUncheckedCreateNestedManyWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedCreateNestedOneWithoutUserInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedCreateNestedManyWithoutOwnerInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutOwnedCrmCustomerProfilesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutOwnedCrmCustomerProfilesInput, Prisma.UserUncheckedCreateWithoutOwnedCrmCustomerProfilesInput>
+}
+
+export type UserUpsertWithoutCrmCustomerProfileInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCrmCustomerProfileInput, Prisma.UserUncheckedUpdateWithoutCrmCustomerProfileInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCrmCustomerProfileInput, Prisma.UserUncheckedCreateWithoutCrmCustomerProfileInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCrmCustomerProfileInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCrmCustomerProfileInput, Prisma.UserUncheckedUpdateWithoutCrmCustomerProfileInput>
+}
+
+export type UserUpdateWithoutCrmCustomerProfileInput = {
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUpdateManyWithoutUsersNestedInput
+  file_imports?: Prisma.file_importsUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUpdateManyWithoutUsersNestedInput
+  platform?: Prisma.platformsUpdateOneWithoutUsersNestedInput
+  role?: Prisma.RoleUpdateOneWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUpdateManyWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUpdateManyWithoutUsersNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUpdateManyWithoutOwnerNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUpdateManyWithoutOwnerNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCrmCustomerProfileInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  role_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platform_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedUpdateManyWithoutUsersNestedInput
+  file_imports?: Prisma.file_importsUncheckedUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUncheckedUpdateManyWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUncheckedUpdateManyWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedUpdateManyWithoutUsersNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedUpdateManyWithoutOwnerNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedUpdateManyWithoutOwnerNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserUpsertWithoutOwnedCrmCustomerProfilesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutOwnedCrmCustomerProfilesInput, Prisma.UserUncheckedUpdateWithoutOwnedCrmCustomerProfilesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutOwnedCrmCustomerProfilesInput, Prisma.UserUncheckedCreateWithoutOwnedCrmCustomerProfilesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutOwnedCrmCustomerProfilesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutOwnedCrmCustomerProfilesInput, Prisma.UserUncheckedUpdateWithoutOwnedCrmCustomerProfilesInput>
+}
+
+export type UserUpdateWithoutOwnedCrmCustomerProfilesInput = {
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUpdateManyWithoutUsersNestedInput
+  file_imports?: Prisma.file_importsUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUpdateManyWithoutUsersNestedInput
+  platform?: Prisma.platformsUpdateOneWithoutUsersNestedInput
+  role?: Prisma.RoleUpdateOneWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUpdateManyWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUpdateOneWithoutUserNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUpdateManyWithoutOwnerNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutOwnedCrmCustomerProfilesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  role_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platform_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedUpdateManyWithoutUsersNestedInput
+  file_imports?: Prisma.file_importsUncheckedUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUncheckedUpdateManyWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUncheckedUpdateManyWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedUpdateOneWithoutUserNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedUpdateManyWithoutOwnerNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutOwnedCrmDealsInput = {
+  email?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
+  password?: string | null
+  avatar_name?: string | null
+  background_name?: string | null
+  created_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
+  deleted_at?: Date | string | null
+  deleted_by?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoCreateNestedManyWithoutUsersInput
+  file_imports?: Prisma.file_importsCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesCreateNestedManyWithoutUsersInput
+  platform?: Prisma.platformsCreateNestedOneWithoutUsersInput
+  role?: Prisma.RoleCreateNestedOneWithoutUsersInput
+  user_interacts?: Prisma.user_interactsCreateNestedManyWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesCreateNestedOneWithoutUserInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesCreateNestedManyWithoutOwnerInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsCreateNestedManyWithoutOwnerInput
+  crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutOwnedCrmDealsInput = {
+  id?: number
+  email?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
+  password?: string | null
+  avatar_name?: string | null
+  background_name?: string | null
+  created_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
+  deleted_at?: Date | string | null
+  deleted_by?: number | null
+  role_id?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  platform_id?: number | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedCreateNestedManyWithoutUsersInput
+  file_imports?: Prisma.file_importsUncheckedCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesUncheckedCreateNestedManyWithoutUsersInput
+  user_interacts?: Prisma.user_interactsUncheckedCreateNestedManyWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedCreateNestedOneWithoutUserInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedCreateNestedManyWithoutOwnerInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedCreateNestedManyWithoutOwnerInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutOwnedCrmDealsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutOwnedCrmDealsInput, Prisma.UserUncheckedCreateWithoutOwnedCrmDealsInput>
+}
+
+export type UserUpsertWithoutOwnedCrmDealsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutOwnedCrmDealsInput, Prisma.UserUncheckedUpdateWithoutOwnedCrmDealsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutOwnedCrmDealsInput, Prisma.UserUncheckedCreateWithoutOwnedCrmDealsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutOwnedCrmDealsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutOwnedCrmDealsInput, Prisma.UserUncheckedUpdateWithoutOwnedCrmDealsInput>
+}
+
+export type UserUpdateWithoutOwnedCrmDealsInput = {
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUpdateManyWithoutUsersNestedInput
+  file_imports?: Prisma.file_importsUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUpdateManyWithoutUsersNestedInput
+  platform?: Prisma.platformsUpdateOneWithoutUsersNestedInput
+  role?: Prisma.RoleUpdateOneWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUpdateManyWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUpdateOneWithoutUserNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUpdateManyWithoutOwnerNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUpdateManyWithoutOwnerNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutOwnedCrmDealsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  role_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platform_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedUpdateManyWithoutUsersNestedInput
+  file_imports?: Prisma.file_importsUncheckedUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUncheckedUpdateManyWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUncheckedUpdateManyWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedUpdateOneWithoutUserNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedUpdateManyWithoutOwnerNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedUpdateManyWithoutOwnerNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutOwnedPipelineRecordsInput = {
+  email?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
+  password?: string | null
+  avatar_name?: string | null
+  background_name?: string | null
+  created_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
+  deleted_at?: Date | string | null
+  deleted_by?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoCreateNestedManyWithoutUsersInput
+  file_imports?: Prisma.file_importsCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesCreateNestedManyWithoutUsersInput
+  platform?: Prisma.platformsCreateNestedOneWithoutUsersInput
+  role?: Prisma.RoleCreateNestedOneWithoutUsersInput
+  user_interacts?: Prisma.user_interactsCreateNestedManyWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesCreateNestedOneWithoutUserInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsCreateNestedManyWithoutOwnerInput
+  crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutOwnedPipelineRecordsInput = {
+  id?: number
+  email?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
+  password?: string | null
+  avatar_name?: string | null
+  background_name?: string | null
+  created_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
+  deleted_at?: Date | string | null
+  deleted_by?: number | null
+  role_id?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  platform_id?: number | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedCreateNestedManyWithoutUsersInput
+  file_imports?: Prisma.file_importsUncheckedCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesUncheckedCreateNestedManyWithoutUsersInput
+  user_interacts?: Prisma.user_interactsUncheckedCreateNestedManyWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedCreateNestedOneWithoutUserInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedCreateNestedManyWithoutOwnerInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutOwnedPipelineRecordsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutOwnedPipelineRecordsInput, Prisma.UserUncheckedCreateWithoutOwnedPipelineRecordsInput>
+}
+
+export type UserUpsertWithoutOwnedPipelineRecordsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutOwnedPipelineRecordsInput, Prisma.UserUncheckedUpdateWithoutOwnedPipelineRecordsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutOwnedPipelineRecordsInput, Prisma.UserUncheckedCreateWithoutOwnedPipelineRecordsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutOwnedPipelineRecordsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutOwnedPipelineRecordsInput, Prisma.UserUncheckedUpdateWithoutOwnedPipelineRecordsInput>
+}
+
+export type UserUpdateWithoutOwnedPipelineRecordsInput = {
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUpdateManyWithoutUsersNestedInput
+  file_imports?: Prisma.file_importsUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUpdateManyWithoutUsersNestedInput
+  platform?: Prisma.platformsUpdateOneWithoutUsersNestedInput
+  role?: Prisma.RoleUpdateOneWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUpdateManyWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUpdateOneWithoutUserNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUpdateManyWithoutOwnerNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutOwnedPipelineRecordsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  role_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platform_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedUpdateManyWithoutUsersNestedInput
+  file_imports?: Prisma.file_importsUncheckedUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUncheckedUpdateManyWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUncheckedUpdateManyWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedUpdateOneWithoutUserNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedUpdateManyWithoutOwnerNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutCrmSyncJobsInput = {
+  email?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
+  password?: string | null
+  avatar_name?: string | null
+  background_name?: string | null
+  created_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
+  deleted_at?: Date | string | null
+  deleted_by?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoCreateNestedManyWithoutUsersInput
+  file_imports?: Prisma.file_importsCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesCreateNestedManyWithoutUsersInput
+  platform?: Prisma.platformsCreateNestedOneWithoutUsersInput
+  role?: Prisma.RoleCreateNestedOneWithoutUsersInput
+  user_interacts?: Prisma.user_interactsCreateNestedManyWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesCreateNestedOneWithoutUserInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesCreateNestedManyWithoutOwnerInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsCreateNestedManyWithoutOwnerInput
+}
+
+export type UserUncheckedCreateWithoutCrmSyncJobsInput = {
+  id?: number
+  email?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
+  password?: string | null
+  avatar_name?: string | null
+  background_name?: string | null
+  created_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
+  deleted_at?: Date | string | null
+  deleted_by?: number | null
+  role_id?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  platform_id?: number | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedCreateNestedManyWithoutUsersInput
+  file_imports?: Prisma.file_importsUncheckedCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesUncheckedCreateNestedManyWithoutUsersInput
+  user_interacts?: Prisma.user_interactsUncheckedCreateNestedManyWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedCreateNestedOneWithoutUserInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedCreateNestedManyWithoutOwnerInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedCreateNestedManyWithoutOwnerInput
+}
+
+export type UserCreateOrConnectWithoutCrmSyncJobsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCrmSyncJobsInput, Prisma.UserUncheckedCreateWithoutCrmSyncJobsInput>
+}
+
+export type UserUpsertWithoutCrmSyncJobsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCrmSyncJobsInput, Prisma.UserUncheckedUpdateWithoutCrmSyncJobsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCrmSyncJobsInput, Prisma.UserUncheckedCreateWithoutCrmSyncJobsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCrmSyncJobsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCrmSyncJobsInput, Prisma.UserUncheckedUpdateWithoutCrmSyncJobsInput>
+}
+
+export type UserUpdateWithoutCrmSyncJobsInput = {
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUpdateManyWithoutUsersNestedInput
+  file_imports?: Prisma.file_importsUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUpdateManyWithoutUsersNestedInput
+  platform?: Prisma.platformsUpdateOneWithoutUsersNestedInput
+  role?: Prisma.RoleUpdateOneWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUpdateManyWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUpdateOneWithoutUserNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUpdateManyWithoutOwnerNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUpdateManyWithoutOwnerNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCrmSyncJobsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  role_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platform_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedUpdateManyWithoutUsersNestedInput
+  file_imports?: Prisma.file_importsUncheckedUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUncheckedUpdateManyWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUncheckedUpdateManyWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedUpdateOneWithoutUserNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedUpdateManyWithoutOwnerNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedUpdateManyWithoutOwnerNestedInput
+}
+
+export type UserCreateWithoutRoleInput = {
+  email?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
+  password?: string | null
+  avatar_name?: string | null
+  background_name?: string | null
+  created_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
+  deleted_at?: Date | string | null
+  deleted_by?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoCreateNestedManyWithoutUsersInput
+  file_imports?: Prisma.file_importsCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesCreateNestedManyWithoutUsersInput
+  platform?: Prisma.platformsCreateNestedOneWithoutUsersInput
+  user_interacts?: Prisma.user_interactsCreateNestedManyWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesCreateNestedOneWithoutUserInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesCreateNestedManyWithoutOwnerInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsCreateNestedManyWithoutOwnerInput
+  crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutRoleInput = {
+  id?: number
+  email?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
+  password?: string | null
+  avatar_name?: string | null
+  background_name?: string | null
+  created_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
+  deleted_at?: Date | string | null
+  deleted_by?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  platform_id?: number | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedCreateNestedManyWithoutUsersInput
+  file_imports?: Prisma.file_importsUncheckedCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesUncheckedCreateNestedManyWithoutUsersInput
+  user_interacts?: Prisma.user_interactsUncheckedCreateNestedManyWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedCreateNestedOneWithoutUserInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedCreateNestedManyWithoutOwnerInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedCreateNestedManyWithoutOwnerInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutRoleInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutRoleInput, Prisma.UserUncheckedCreateWithoutRoleInput>
+}
+
+export type UserCreateManyRoleInputEnvelope = {
+  data: Prisma.UserCreateManyRoleInput | Prisma.UserCreateManyRoleInput[]
+  skipDuplicates?: boolean
+}
+
+export type UserUpsertWithWhereUniqueWithoutRoleInput = {
+  where: Prisma.UserWhereUniqueInput
+  update: Prisma.XOR<Prisma.UserUpdateWithoutRoleInput, Prisma.UserUncheckedUpdateWithoutRoleInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutRoleInput, Prisma.UserUncheckedCreateWithoutRoleInput>
+}
+
+export type UserUpdateWithWhereUniqueWithoutRoleInput = {
+  where: Prisma.UserWhereUniqueInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutRoleInput, Prisma.UserUncheckedUpdateWithoutRoleInput>
+}
+
+export type UserUpdateManyWithWhereWithoutRoleInput = {
+  where: Prisma.UserScalarWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateManyMutationInput, Prisma.UserUncheckedUpdateManyWithoutRoleInput>
+}
+
+export type UserCreateManyPlatformInput = {
+  id?: number
+  email?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
+  password?: string | null
+  avatar_name?: string | null
+  background_name?: string | null
+  created_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
+  deleted_at?: Date | string | null
+  deleted_by?: number | null
+  role_id?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+}
+
+export type UserUpdateWithoutPlatformInput = {
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUpdateManyWithoutUsersNestedInput
+  file_imports?: Prisma.file_importsUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUpdateManyWithoutUsersNestedInput
+  role?: Prisma.RoleUpdateOneWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUpdateManyWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUpdateOneWithoutUserNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUpdateManyWithoutOwnerNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUpdateManyWithoutOwnerNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPlatformInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  role_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedUpdateManyWithoutUsersNestedInput
+  file_imports?: Prisma.file_importsUncheckedUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUncheckedUpdateManyWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUncheckedUpdateManyWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedUpdateOneWithoutUserNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedUpdateManyWithoutOwnerNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedUpdateManyWithoutOwnerNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateManyWithoutPlatformInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  role_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type UserCreateManyRoleInput = {
+  id?: number
+  email?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
+  password?: string | null
+  avatar_name?: string | null
+  background_name?: string | null
+  created_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
+  deleted_at?: Date | string | null
+  deleted_by?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  platform_id?: number | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+}
+
+export type UserUpdateWithoutRoleInput = {
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUpdateManyWithoutUsersNestedInput
+  file_imports?: Prisma.file_importsUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUpdateManyWithoutUsersNestedInput
+  platform?: Prisma.platformsUpdateOneWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUpdateManyWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUpdateOneWithoutUserNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUpdateManyWithoutOwnerNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUpdateManyWithoutOwnerNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutRoleInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platform_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedUpdateManyWithoutUsersNestedInput
+  file_imports?: Prisma.file_importsUncheckedUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUncheckedUpdateManyWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUncheckedUpdateManyWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedUpdateOneWithoutUserNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedUpdateManyWithoutOwnerNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedUpdateManyWithoutOwnerNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateManyWithoutRoleInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platform_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -1740,21 +5251,27 @@ export type UserUncheckedUpdateWithoutUser_hobbiesInput = {
  */
 
 export type UserCountOutputType = {
-  posts: number
-  likes: number
-  comments: number
-  roles: number
-  user_answers: number
-  user_hobbies: number
+  brands_infos: number
+  file_imports: number
+  nodes: number
+  user_interacts: number
+  user_otp_sessions: number
+  ownedCrmCustomerProfiles: number
+  ownedPipelineRecords: number
+  ownedCrmDeals: number
+  crmSyncJobs: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  posts?: boolean | UserCountOutputTypeCountPostsArgs
-  likes?: boolean | UserCountOutputTypeCountLikesArgs
-  comments?: boolean | UserCountOutputTypeCountCommentsArgs
-  roles?: boolean | UserCountOutputTypeCountRolesArgs
-  user_answers?: boolean | UserCountOutputTypeCountUser_answersArgs
-  user_hobbies?: boolean | UserCountOutputTypeCountUser_hobbiesArgs
+  brands_infos?: boolean | UserCountOutputTypeCountBrands_infosArgs
+  file_imports?: boolean | UserCountOutputTypeCountFile_importsArgs
+  nodes?: boolean | UserCountOutputTypeCountNodesArgs
+  user_interacts?: boolean | UserCountOutputTypeCountUser_interactsArgs
+  user_otp_sessions?: boolean | UserCountOutputTypeCountUser_otp_sessionsArgs
+  ownedCrmCustomerProfiles?: boolean | UserCountOutputTypeCountOwnedCrmCustomerProfilesArgs
+  ownedPipelineRecords?: boolean | UserCountOutputTypeCountOwnedPipelineRecordsArgs
+  ownedCrmDeals?: boolean | UserCountOutputTypeCountOwnedCrmDealsArgs
+  crmSyncJobs?: boolean | UserCountOutputTypeCountCrmSyncJobsArgs
 }
 
 /**
@@ -1770,204 +5287,393 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountPostsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PostWhereInput
+export type UserCountOutputTypeCountBrands_infosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.brands_infoWhereInput
 }
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountLikesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.LikeWhereInput
+export type UserCountOutputTypeCountFile_importsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.file_importsWhereInput
 }
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountCommentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CommentWhereInput
+export type UserCountOutputTypeCountNodesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.nodesWhereInput
 }
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountRolesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserRoleWhereInput
+export type UserCountOutputTypeCountUser_interactsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.user_interactsWhereInput
 }
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountUser_answersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserAnswerWhereInput
+export type UserCountOutputTypeCountUser_otp_sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.user_otp_sessionsWhereInput
 }
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountUser_hobbiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserHobbyWhereInput
+export type UserCountOutputTypeCountOwnedCrmCustomerProfilesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CrmCustomerProfilesWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountOwnedPipelineRecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CrmPipelineRecordsWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountOwnedCrmDealsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CrmDealsWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCrmSyncJobsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CrmSyncJobsWhereInput
 }
 
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   email?: boolean
-  phone_number?: boolean
+  username?: boolean
+  first_name?: boolean
+  last_name?: boolean
+  is_verify_email?: boolean
   password?: boolean
-  avatar?: boolean
-  name?: boolean
-  bio?: boolean
-  address?: boolean
-  age?: boolean
-  gender?: boolean
-  major?: boolean
-  free_time_activity?: boolean
-  is_verified?: boolean
-  is_active?: boolean
-  is_block?: boolean
-  created_by?: boolean
-  updated_by?: boolean
-  deleted_by?: boolean
+  avatar_name?: boolean
+  background_name?: boolean
   created_at?: boolean
+  created_by?: boolean
   updated_at?: boolean
+  updated_by?: boolean
   deleted_at?: boolean
-  last_login_at?: boolean
-  is_online?: boolean
-  posts?: boolean | Prisma.User$postsArgs<ExtArgs>
-  likes?: boolean | Prisma.User$likesArgs<ExtArgs>
-  comments?: boolean | Prisma.User$commentsArgs<ExtArgs>
-  roles?: boolean | Prisma.User$rolesArgs<ExtArgs>
-  user_answers?: boolean | Prisma.User$user_answersArgs<ExtArgs>
-  user_hobbies?: boolean | Prisma.User$user_hobbiesArgs<ExtArgs>
+  deleted_by?: boolean
+  role_id?: boolean
+  bio?: boolean
+  total_spent?: boolean
+  rating?: boolean
+  age?: boolean
+  platform_id?: boolean
+  profile_id?: boolean
+  contract_id?: boolean
+  tiktok_id?: boolean
+  notification_token?: boolean
+  gender?: boolean
+  is_block?: boolean
+  apple_id?: boolean
+  youtube_id?: boolean
+  phone_number?: boolean
+  is_new_user?: boolean
+  is_auth_creator_tap?: boolean
+  is_restricted?: boolean
+  have_showcase?: boolean
+  categories_tap?: boolean
+  last_active_at?: boolean
+  channel_orientation?: boolean
+  is_koc_core?: boolean
+  is_pinned?: boolean
+  is_created_external?: boolean
+  metadata?: boolean
+  is_active_ai?: boolean
+  is_high_gmv?: boolean
+  brand_name?: boolean
+  parent_id?: boolean
+  is_phone_verified?: boolean
+  is_show_page_identity?: boolean
+  shop_codes?: boolean
+  is_active?: boolean
+  current_parent_user_id?: boolean
+  blocked_at?: boolean
+  brands_infos?: boolean | Prisma.User$brands_infosArgs<ExtArgs>
+  file_imports?: boolean | Prisma.User$file_importsArgs<ExtArgs>
+  nodes?: boolean | Prisma.User$nodesArgs<ExtArgs>
+  platform?: boolean | Prisma.User$platformArgs<ExtArgs>
+  role?: boolean | Prisma.User$roleArgs<ExtArgs>
+  user_interacts?: boolean | Prisma.User$user_interactsArgs<ExtArgs>
+  user_otp_sessions?: boolean | Prisma.User$user_otp_sessionsArgs<ExtArgs>
+  crmCustomerProfile?: boolean | Prisma.User$crmCustomerProfileArgs<ExtArgs>
+  ownedCrmCustomerProfiles?: boolean | Prisma.User$ownedCrmCustomerProfilesArgs<ExtArgs>
+  ownedPipelineRecords?: boolean | Prisma.User$ownedPipelineRecordsArgs<ExtArgs>
+  ownedCrmDeals?: boolean | Prisma.User$ownedCrmDealsArgs<ExtArgs>
+  crmSyncJobs?: boolean | Prisma.User$crmSyncJobsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   email?: boolean
-  phone_number?: boolean
+  username?: boolean
+  first_name?: boolean
+  last_name?: boolean
+  is_verify_email?: boolean
   password?: boolean
-  avatar?: boolean
-  name?: boolean
-  bio?: boolean
-  address?: boolean
-  age?: boolean
-  gender?: boolean
-  major?: boolean
-  free_time_activity?: boolean
-  is_verified?: boolean
-  is_active?: boolean
-  is_block?: boolean
-  created_by?: boolean
-  updated_by?: boolean
-  deleted_by?: boolean
+  avatar_name?: boolean
+  background_name?: boolean
   created_at?: boolean
+  created_by?: boolean
   updated_at?: boolean
+  updated_by?: boolean
   deleted_at?: boolean
-  last_login_at?: boolean
-  is_online?: boolean
+  deleted_by?: boolean
+  role_id?: boolean
+  bio?: boolean
+  total_spent?: boolean
+  rating?: boolean
+  age?: boolean
+  platform_id?: boolean
+  profile_id?: boolean
+  contract_id?: boolean
+  tiktok_id?: boolean
+  notification_token?: boolean
+  gender?: boolean
+  is_block?: boolean
+  apple_id?: boolean
+  youtube_id?: boolean
+  phone_number?: boolean
+  is_new_user?: boolean
+  is_auth_creator_tap?: boolean
+  is_restricted?: boolean
+  have_showcase?: boolean
+  categories_tap?: boolean
+  last_active_at?: boolean
+  channel_orientation?: boolean
+  is_koc_core?: boolean
+  is_pinned?: boolean
+  is_created_external?: boolean
+  metadata?: boolean
+  is_active_ai?: boolean
+  is_high_gmv?: boolean
+  brand_name?: boolean
+  parent_id?: boolean
+  is_phone_verified?: boolean
+  is_show_page_identity?: boolean
+  shop_codes?: boolean
+  is_active?: boolean
+  current_parent_user_id?: boolean
+  blocked_at?: boolean
+  platform?: boolean | Prisma.User$platformArgs<ExtArgs>
+  role?: boolean | Prisma.User$roleArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   email?: boolean
-  phone_number?: boolean
+  username?: boolean
+  first_name?: boolean
+  last_name?: boolean
+  is_verify_email?: boolean
   password?: boolean
-  avatar?: boolean
-  name?: boolean
-  bio?: boolean
-  address?: boolean
-  age?: boolean
-  gender?: boolean
-  major?: boolean
-  free_time_activity?: boolean
-  is_verified?: boolean
-  is_active?: boolean
-  is_block?: boolean
-  created_by?: boolean
-  updated_by?: boolean
-  deleted_by?: boolean
+  avatar_name?: boolean
+  background_name?: boolean
   created_at?: boolean
+  created_by?: boolean
   updated_at?: boolean
+  updated_by?: boolean
   deleted_at?: boolean
-  last_login_at?: boolean
-  is_online?: boolean
+  deleted_by?: boolean
+  role_id?: boolean
+  bio?: boolean
+  total_spent?: boolean
+  rating?: boolean
+  age?: boolean
+  platform_id?: boolean
+  profile_id?: boolean
+  contract_id?: boolean
+  tiktok_id?: boolean
+  notification_token?: boolean
+  gender?: boolean
+  is_block?: boolean
+  apple_id?: boolean
+  youtube_id?: boolean
+  phone_number?: boolean
+  is_new_user?: boolean
+  is_auth_creator_tap?: boolean
+  is_restricted?: boolean
+  have_showcase?: boolean
+  categories_tap?: boolean
+  last_active_at?: boolean
+  channel_orientation?: boolean
+  is_koc_core?: boolean
+  is_pinned?: boolean
+  is_created_external?: boolean
+  metadata?: boolean
+  is_active_ai?: boolean
+  is_high_gmv?: boolean
+  brand_name?: boolean
+  parent_id?: boolean
+  is_phone_verified?: boolean
+  is_show_page_identity?: boolean
+  shop_codes?: boolean
+  is_active?: boolean
+  current_parent_user_id?: boolean
+  blocked_at?: boolean
+  platform?: boolean | Prisma.User$platformArgs<ExtArgs>
+  role?: boolean | Prisma.User$roleArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
   id?: boolean
   email?: boolean
-  phone_number?: boolean
+  username?: boolean
+  first_name?: boolean
+  last_name?: boolean
+  is_verify_email?: boolean
   password?: boolean
-  avatar?: boolean
-  name?: boolean
-  bio?: boolean
-  address?: boolean
-  age?: boolean
-  gender?: boolean
-  major?: boolean
-  free_time_activity?: boolean
-  is_verified?: boolean
-  is_active?: boolean
-  is_block?: boolean
-  created_by?: boolean
-  updated_by?: boolean
-  deleted_by?: boolean
+  avatar_name?: boolean
+  background_name?: boolean
   created_at?: boolean
+  created_by?: boolean
   updated_at?: boolean
+  updated_by?: boolean
   deleted_at?: boolean
-  last_login_at?: boolean
-  is_online?: boolean
+  deleted_by?: boolean
+  role_id?: boolean
+  bio?: boolean
+  total_spent?: boolean
+  rating?: boolean
+  age?: boolean
+  platform_id?: boolean
+  profile_id?: boolean
+  contract_id?: boolean
+  tiktok_id?: boolean
+  notification_token?: boolean
+  gender?: boolean
+  is_block?: boolean
+  apple_id?: boolean
+  youtube_id?: boolean
+  phone_number?: boolean
+  is_new_user?: boolean
+  is_auth_creator_tap?: boolean
+  is_restricted?: boolean
+  have_showcase?: boolean
+  categories_tap?: boolean
+  last_active_at?: boolean
+  channel_orientation?: boolean
+  is_koc_core?: boolean
+  is_pinned?: boolean
+  is_created_external?: boolean
+  metadata?: boolean
+  is_active_ai?: boolean
+  is_high_gmv?: boolean
+  brand_name?: boolean
+  parent_id?: boolean
+  is_phone_verified?: boolean
+  is_show_page_identity?: boolean
+  shop_codes?: boolean
+  is_active?: boolean
+  current_parent_user_id?: boolean
+  blocked_at?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "phone_number" | "password" | "avatar" | "name" | "bio" | "address" | "age" | "gender" | "major" | "free_time_activity" | "is_verified" | "is_active" | "is_block" | "created_by" | "updated_by" | "deleted_by" | "created_at" | "updated_at" | "deleted_at" | "last_login_at" | "is_online", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "username" | "first_name" | "last_name" | "is_verify_email" | "password" | "avatar_name" | "background_name" | "created_at" | "created_by" | "updated_at" | "updated_by" | "deleted_at" | "deleted_by" | "role_id" | "bio" | "total_spent" | "rating" | "age" | "platform_id" | "profile_id" | "contract_id" | "tiktok_id" | "notification_token" | "gender" | "is_block" | "apple_id" | "youtube_id" | "phone_number" | "is_new_user" | "is_auth_creator_tap" | "is_restricted" | "have_showcase" | "categories_tap" | "last_active_at" | "channel_orientation" | "is_koc_core" | "is_pinned" | "is_created_external" | "metadata" | "is_active_ai" | "is_high_gmv" | "brand_name" | "parent_id" | "is_phone_verified" | "is_show_page_identity" | "shop_codes" | "is_active" | "current_parent_user_id" | "blocked_at", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  posts?: boolean | Prisma.User$postsArgs<ExtArgs>
-  likes?: boolean | Prisma.User$likesArgs<ExtArgs>
-  comments?: boolean | Prisma.User$commentsArgs<ExtArgs>
-  roles?: boolean | Prisma.User$rolesArgs<ExtArgs>
-  user_answers?: boolean | Prisma.User$user_answersArgs<ExtArgs>
-  user_hobbies?: boolean | Prisma.User$user_hobbiesArgs<ExtArgs>
+  brands_infos?: boolean | Prisma.User$brands_infosArgs<ExtArgs>
+  file_imports?: boolean | Prisma.User$file_importsArgs<ExtArgs>
+  nodes?: boolean | Prisma.User$nodesArgs<ExtArgs>
+  platform?: boolean | Prisma.User$platformArgs<ExtArgs>
+  role?: boolean | Prisma.User$roleArgs<ExtArgs>
+  user_interacts?: boolean | Prisma.User$user_interactsArgs<ExtArgs>
+  user_otp_sessions?: boolean | Prisma.User$user_otp_sessionsArgs<ExtArgs>
+  crmCustomerProfile?: boolean | Prisma.User$crmCustomerProfileArgs<ExtArgs>
+  ownedCrmCustomerProfiles?: boolean | Prisma.User$ownedCrmCustomerProfilesArgs<ExtArgs>
+  ownedPipelineRecords?: boolean | Prisma.User$ownedPipelineRecordsArgs<ExtArgs>
+  ownedCrmDeals?: boolean | Prisma.User$ownedCrmDealsArgs<ExtArgs>
+  crmSyncJobs?: boolean | Prisma.User$crmSyncJobsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  platform?: boolean | Prisma.User$platformArgs<ExtArgs>
+  role?: boolean | Prisma.User$roleArgs<ExtArgs>
+}
+export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  platform?: boolean | Prisma.User$platformArgs<ExtArgs>
+  role?: boolean | Prisma.User$roleArgs<ExtArgs>
+}
 
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    posts: Prisma.$PostPayload<ExtArgs>[]
-    likes: Prisma.$LikePayload<ExtArgs>[]
-    comments: Prisma.$CommentPayload<ExtArgs>[]
-    roles: Prisma.$UserRolePayload<ExtArgs>[]
-    user_answers: Prisma.$UserAnswerPayload<ExtArgs>[]
-    user_hobbies: Prisma.$UserHobbyPayload<ExtArgs>[]
+    brands_infos: Prisma.$brands_infoPayload<ExtArgs>[]
+    file_imports: Prisma.$file_importsPayload<ExtArgs>[]
+    nodes: Prisma.$nodesPayload<ExtArgs>[]
+    platform: Prisma.$platformsPayload<ExtArgs> | null
+    role: Prisma.$RolePayload<ExtArgs> | null
+    user_interacts: Prisma.$user_interactsPayload<ExtArgs>[]
+    user_otp_sessions: Prisma.$user_otp_sessionsPayload<ExtArgs>[]
+    crmCustomerProfile: Prisma.$CrmCustomerProfilesPayload<ExtArgs> | null
+    ownedCrmCustomerProfiles: Prisma.$CrmCustomerProfilesPayload<ExtArgs>[]
+    ownedPipelineRecords: Prisma.$CrmPipelineRecordsPayload<ExtArgs>[]
+    ownedCrmDeals: Prisma.$CrmDealsPayload<ExtArgs>[]
+    crmSyncJobs: Prisma.$CrmSyncJobsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     email: string | null
-    phone_number: string | null
+    username: string | null
+    first_name: string | null
+    last_name: string | null
+    is_verify_email: boolean | null
     password: string | null
-    avatar: runtime.JsonValue | null
-    name: string | null
-    bio: string | null
-    address: string | null
-    age: number | null
-    gender: $Enums.Gender | null
-    major: string | null
-    free_time_activity: string | null
-    is_verified: boolean
-    is_active: boolean
-    is_block: boolean
-    created_by: number | null
-    updated_by: number | null
-    deleted_by: number | null
+    avatar_name: string | null
+    background_name: string | null
     created_at: Date
-    updated_at: Date
+    created_by: number | null
+    updated_at: Date | null
+    updated_by: number | null
     deleted_at: Date | null
-    last_login_at: Date | null
-    is_online: boolean
+    deleted_by: number | null
+    role_id: number | null
+    bio: string | null
+    total_spent: runtime.Decimal | null
+    rating: runtime.Decimal | null
+    age: string | null
+    platform_id: number | null
+    profile_id: number | null
+    contract_id: number | null
+    tiktok_id: number | null
+    notification_token: string | null
+    gender: string | null
+    is_block: boolean | null
+    apple_id: string | null
+    youtube_id: number | null
+    phone_number: string | null
+    is_new_user: boolean | null
+    is_auth_creator_tap: boolean | null
+    is_restricted: boolean | null
+    have_showcase: boolean | null
+    categories_tap: string | null
+    last_active_at: Date | null
+    channel_orientation: string[]
+    is_koc_core: boolean | null
+    is_pinned: boolean | null
+    is_created_external: boolean | null
+    metadata: runtime.JsonValue | null
+    is_active_ai: boolean | null
+    is_high_gmv: boolean | null
+    brand_name: string | null
+    parent_id: number | null
+    is_phone_verified: boolean | null
+    is_show_page_identity: boolean | null
+    shop_codes: string[]
+    is_active: boolean | null
+    current_parent_user_id: number | null
+    blocked_at: Date | null
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -2362,12 +6068,18 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  posts<T extends Prisma.User$postsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$postsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  likes<T extends Prisma.User$likesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$likesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  comments<T extends Prisma.User$commentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  roles<T extends Prisma.User$rolesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$rolesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserRolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  user_answers<T extends Prisma.User$user_answersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$user_answersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserAnswerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  user_hobbies<T extends Prisma.User$user_hobbiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$user_hobbiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserHobbyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  brands_infos<T extends Prisma.User$brands_infosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$brands_infosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$brands_infoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  file_imports<T extends Prisma.User$file_importsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$file_importsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$file_importsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  nodes<T extends Prisma.User$nodesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$nodesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$nodesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  platform<T extends Prisma.User$platformArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$platformArgs<ExtArgs>>): Prisma.Prisma__platformsClient<runtime.Types.Result.GetResult<Prisma.$platformsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  role<T extends Prisma.User$roleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$roleArgs<ExtArgs>>): Prisma.Prisma__RoleClient<runtime.Types.Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  user_interacts<T extends Prisma.User$user_interactsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$user_interactsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$user_interactsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  user_otp_sessions<T extends Prisma.User$user_otp_sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$user_otp_sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$user_otp_sessionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  crmCustomerProfile<T extends Prisma.User$crmCustomerProfileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$crmCustomerProfileArgs<ExtArgs>>): Prisma.Prisma__CrmCustomerProfilesClient<runtime.Types.Result.GetResult<Prisma.$CrmCustomerProfilesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  ownedCrmCustomerProfiles<T extends Prisma.User$ownedCrmCustomerProfilesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ownedCrmCustomerProfilesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CrmCustomerProfilesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ownedPipelineRecords<T extends Prisma.User$ownedPipelineRecordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ownedPipelineRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CrmPipelineRecordsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ownedCrmDeals<T extends Prisma.User$ownedCrmDealsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ownedCrmDealsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CrmDealsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  crmSyncJobs<T extends Prisma.User$crmSyncJobsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$crmSyncJobsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CrmSyncJobsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2399,27 +6111,55 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
 export interface UserFieldRefs {
   readonly id: Prisma.FieldRef<"User", 'Int'>
   readonly email: Prisma.FieldRef<"User", 'String'>
-  readonly phone_number: Prisma.FieldRef<"User", 'String'>
+  readonly username: Prisma.FieldRef<"User", 'String'>
+  readonly first_name: Prisma.FieldRef<"User", 'String'>
+  readonly last_name: Prisma.FieldRef<"User", 'String'>
+  readonly is_verify_email: Prisma.FieldRef<"User", 'Boolean'>
   readonly password: Prisma.FieldRef<"User", 'String'>
-  readonly avatar: Prisma.FieldRef<"User", 'Json'>
-  readonly name: Prisma.FieldRef<"User", 'String'>
-  readonly bio: Prisma.FieldRef<"User", 'String'>
-  readonly address: Prisma.FieldRef<"User", 'String'>
-  readonly age: Prisma.FieldRef<"User", 'Int'>
-  readonly gender: Prisma.FieldRef<"User", 'Gender'>
-  readonly major: Prisma.FieldRef<"User", 'String'>
-  readonly free_time_activity: Prisma.FieldRef<"User", 'String'>
-  readonly is_verified: Prisma.FieldRef<"User", 'Boolean'>
-  readonly is_active: Prisma.FieldRef<"User", 'Boolean'>
-  readonly is_block: Prisma.FieldRef<"User", 'Boolean'>
-  readonly created_by: Prisma.FieldRef<"User", 'Int'>
-  readonly updated_by: Prisma.FieldRef<"User", 'Int'>
-  readonly deleted_by: Prisma.FieldRef<"User", 'Int'>
+  readonly avatar_name: Prisma.FieldRef<"User", 'String'>
+  readonly background_name: Prisma.FieldRef<"User", 'String'>
   readonly created_at: Prisma.FieldRef<"User", 'DateTime'>
+  readonly created_by: Prisma.FieldRef<"User", 'Int'>
   readonly updated_at: Prisma.FieldRef<"User", 'DateTime'>
+  readonly updated_by: Prisma.FieldRef<"User", 'Int'>
   readonly deleted_at: Prisma.FieldRef<"User", 'DateTime'>
-  readonly last_login_at: Prisma.FieldRef<"User", 'DateTime'>
-  readonly is_online: Prisma.FieldRef<"User", 'Boolean'>
+  readonly deleted_by: Prisma.FieldRef<"User", 'Int'>
+  readonly role_id: Prisma.FieldRef<"User", 'Int'>
+  readonly bio: Prisma.FieldRef<"User", 'String'>
+  readonly total_spent: Prisma.FieldRef<"User", 'Decimal'>
+  readonly rating: Prisma.FieldRef<"User", 'Decimal'>
+  readonly age: Prisma.FieldRef<"User", 'String'>
+  readonly platform_id: Prisma.FieldRef<"User", 'Int'>
+  readonly profile_id: Prisma.FieldRef<"User", 'Int'>
+  readonly contract_id: Prisma.FieldRef<"User", 'Int'>
+  readonly tiktok_id: Prisma.FieldRef<"User", 'Int'>
+  readonly notification_token: Prisma.FieldRef<"User", 'String'>
+  readonly gender: Prisma.FieldRef<"User", 'String'>
+  readonly is_block: Prisma.FieldRef<"User", 'Boolean'>
+  readonly apple_id: Prisma.FieldRef<"User", 'String'>
+  readonly youtube_id: Prisma.FieldRef<"User", 'Int'>
+  readonly phone_number: Prisma.FieldRef<"User", 'String'>
+  readonly is_new_user: Prisma.FieldRef<"User", 'Boolean'>
+  readonly is_auth_creator_tap: Prisma.FieldRef<"User", 'Boolean'>
+  readonly is_restricted: Prisma.FieldRef<"User", 'Boolean'>
+  readonly have_showcase: Prisma.FieldRef<"User", 'Boolean'>
+  readonly categories_tap: Prisma.FieldRef<"User", 'String'>
+  readonly last_active_at: Prisma.FieldRef<"User", 'DateTime'>
+  readonly channel_orientation: Prisma.FieldRef<"User", 'String[]'>
+  readonly is_koc_core: Prisma.FieldRef<"User", 'Boolean'>
+  readonly is_pinned: Prisma.FieldRef<"User", 'Boolean'>
+  readonly is_created_external: Prisma.FieldRef<"User", 'Boolean'>
+  readonly metadata: Prisma.FieldRef<"User", 'Json'>
+  readonly is_active_ai: Prisma.FieldRef<"User", 'Boolean'>
+  readonly is_high_gmv: Prisma.FieldRef<"User", 'Boolean'>
+  readonly brand_name: Prisma.FieldRef<"User", 'String'>
+  readonly parent_id: Prisma.FieldRef<"User", 'Int'>
+  readonly is_phone_verified: Prisma.FieldRef<"User", 'Boolean'>
+  readonly is_show_page_identity: Prisma.FieldRef<"User", 'Boolean'>
+  readonly shop_codes: Prisma.FieldRef<"User", 'String[]'>
+  readonly is_active: Prisma.FieldRef<"User", 'Boolean'>
+  readonly current_parent_user_id: Prisma.FieldRef<"User", 'Int'>
+  readonly blocked_at: Prisma.FieldRef<"User", 'DateTime'>
 }
     
 
@@ -2638,7 +6378,7 @@ export type UserCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
   /**
    * The data needed to create a User.
    */
-  data: Prisma.XOR<Prisma.UserCreateInput, Prisma.UserUncheckedCreateInput>
+  data?: Prisma.XOR<Prisma.UserCreateInput, Prisma.UserUncheckedCreateInput>
 }
 
 /**
@@ -2669,6 +6409,10 @@ export type UserCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
    */
   data: Prisma.UserCreateManyInput | Prisma.UserCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -2739,6 +6483,10 @@ export type UserUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
    * Limit how many Users to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -2808,147 +6556,276 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.posts
+ * User.brands_infos
  */
-export type User$postsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$brands_infosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Post
+   * Select specific fields to fetch from the brands_info
    */
-  select?: Prisma.PostSelect<ExtArgs> | null
+  select?: Prisma.brands_infoSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Post
+   * Omit specific fields from the brands_info
    */
-  omit?: Prisma.PostOmit<ExtArgs> | null
+  omit?: Prisma.brands_infoOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PostInclude<ExtArgs> | null
-  where?: Prisma.PostWhereInput
-  orderBy?: Prisma.PostOrderByWithRelationInput | Prisma.PostOrderByWithRelationInput[]
-  cursor?: Prisma.PostWhereUniqueInput
+  include?: Prisma.brands_infoInclude<ExtArgs> | null
+  where?: Prisma.brands_infoWhereInput
+  orderBy?: Prisma.brands_infoOrderByWithRelationInput | Prisma.brands_infoOrderByWithRelationInput[]
+  cursor?: Prisma.brands_infoWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.PostScalarFieldEnum | Prisma.PostScalarFieldEnum[]
+  distinct?: Prisma.Brands_infoScalarFieldEnum | Prisma.Brands_infoScalarFieldEnum[]
 }
 
 /**
- * User.likes
+ * User.file_imports
  */
-export type User$likesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$file_importsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Like
+   * Select specific fields to fetch from the file_imports
    */
-  select?: Prisma.LikeSelect<ExtArgs> | null
+  select?: Prisma.file_importsSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Like
+   * Omit specific fields from the file_imports
    */
-  omit?: Prisma.LikeOmit<ExtArgs> | null
+  omit?: Prisma.file_importsOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.LikeInclude<ExtArgs> | null
-  where?: Prisma.LikeWhereInput
-  orderBy?: Prisma.LikeOrderByWithRelationInput | Prisma.LikeOrderByWithRelationInput[]
-  cursor?: Prisma.LikeWhereUniqueInput
+  include?: Prisma.file_importsInclude<ExtArgs> | null
+  where?: Prisma.file_importsWhereInput
+  orderBy?: Prisma.file_importsOrderByWithRelationInput | Prisma.file_importsOrderByWithRelationInput[]
+  cursor?: Prisma.file_importsWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.LikeScalarFieldEnum | Prisma.LikeScalarFieldEnum[]
+  distinct?: Prisma.File_importsScalarFieldEnum | Prisma.File_importsScalarFieldEnum[]
 }
 
 /**
- * User.comments
+ * User.nodes
  */
-export type User$commentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$nodesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Comment
+   * Select specific fields to fetch from the nodes
    */
-  select?: Prisma.CommentSelect<ExtArgs> | null
+  select?: Prisma.nodesSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Comment
+   * Omit specific fields from the nodes
    */
-  omit?: Prisma.CommentOmit<ExtArgs> | null
+  omit?: Prisma.nodesOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.CommentInclude<ExtArgs> | null
-  where?: Prisma.CommentWhereInput
-  orderBy?: Prisma.CommentOrderByWithRelationInput | Prisma.CommentOrderByWithRelationInput[]
-  cursor?: Prisma.CommentWhereUniqueInput
+  include?: Prisma.nodesInclude<ExtArgs> | null
+  where?: Prisma.nodesWhereInput
+  orderBy?: Prisma.nodesOrderByWithRelationInput | Prisma.nodesOrderByWithRelationInput[]
+  cursor?: Prisma.nodesWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.CommentScalarFieldEnum | Prisma.CommentScalarFieldEnum[]
+  distinct?: Prisma.NodesScalarFieldEnum | Prisma.NodesScalarFieldEnum[]
 }
 
 /**
- * User.roles
+ * User.platform
  */
-export type User$rolesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$platformArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the UserRole
+   * Select specific fields to fetch from the platforms
    */
-  select?: Prisma.UserRoleSelect<ExtArgs> | null
+  select?: Prisma.platformsSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the UserRole
+   * Omit specific fields from the platforms
    */
-  omit?: Prisma.UserRoleOmit<ExtArgs> | null
+  omit?: Prisma.platformsOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserRoleInclude<ExtArgs> | null
-  where?: Prisma.UserRoleWhereInput
-  orderBy?: Prisma.UserRoleOrderByWithRelationInput | Prisma.UserRoleOrderByWithRelationInput[]
-  cursor?: Prisma.UserRoleWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.UserRoleScalarFieldEnum | Prisma.UserRoleScalarFieldEnum[]
+  include?: Prisma.platformsInclude<ExtArgs> | null
+  where?: Prisma.platformsWhereInput
 }
 
 /**
- * User.user_answers
+ * User.role
  */
-export type User$user_answersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$roleArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the UserAnswer
+   * Select specific fields to fetch from the Role
    */
-  select?: Prisma.UserAnswerSelect<ExtArgs> | null
+  select?: Prisma.RoleSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the UserAnswer
+   * Omit specific fields from the Role
    */
-  omit?: Prisma.UserAnswerOmit<ExtArgs> | null
+  omit?: Prisma.RoleOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserAnswerInclude<ExtArgs> | null
-  where?: Prisma.UserAnswerWhereInput
-  orderBy?: Prisma.UserAnswerOrderByWithRelationInput | Prisma.UserAnswerOrderByWithRelationInput[]
-  cursor?: Prisma.UserAnswerWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.UserAnswerScalarFieldEnum | Prisma.UserAnswerScalarFieldEnum[]
+  include?: Prisma.RoleInclude<ExtArgs> | null
+  where?: Prisma.RoleWhereInput
 }
 
 /**
- * User.user_hobbies
+ * User.user_interacts
  */
-export type User$user_hobbiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$user_interactsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the UserHobby
+   * Select specific fields to fetch from the user_interacts
    */
-  select?: Prisma.UserHobbySelect<ExtArgs> | null
+  select?: Prisma.user_interactsSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the UserHobby
+   * Omit specific fields from the user_interacts
    */
-  omit?: Prisma.UserHobbyOmit<ExtArgs> | null
+  omit?: Prisma.user_interactsOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserHobbyInclude<ExtArgs> | null
-  where?: Prisma.UserHobbyWhereInput
-  orderBy?: Prisma.UserHobbyOrderByWithRelationInput | Prisma.UserHobbyOrderByWithRelationInput[]
-  cursor?: Prisma.UserHobbyWhereUniqueInput
+  include?: Prisma.user_interactsInclude<ExtArgs> | null
+  where?: Prisma.user_interactsWhereInput
+  orderBy?: Prisma.user_interactsOrderByWithRelationInput | Prisma.user_interactsOrderByWithRelationInput[]
+  cursor?: Prisma.user_interactsWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.UserHobbyScalarFieldEnum | Prisma.UserHobbyScalarFieldEnum[]
+  distinct?: Prisma.User_interactsScalarFieldEnum | Prisma.User_interactsScalarFieldEnum[]
+}
+
+/**
+ * User.user_otp_sessions
+ */
+export type User$user_otp_sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the user_otp_sessions
+   */
+  select?: Prisma.user_otp_sessionsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the user_otp_sessions
+   */
+  omit?: Prisma.user_otp_sessionsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.user_otp_sessionsInclude<ExtArgs> | null
+  where?: Prisma.user_otp_sessionsWhereInput
+  orderBy?: Prisma.user_otp_sessionsOrderByWithRelationInput | Prisma.user_otp_sessionsOrderByWithRelationInput[]
+  cursor?: Prisma.user_otp_sessionsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.User_otp_sessionsScalarFieldEnum | Prisma.User_otp_sessionsScalarFieldEnum[]
+}
+
+/**
+ * User.crmCustomerProfile
+ */
+export type User$crmCustomerProfileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CrmCustomerProfiles
+   */
+  select?: Prisma.CrmCustomerProfilesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CrmCustomerProfiles
+   */
+  omit?: Prisma.CrmCustomerProfilesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmCustomerProfilesInclude<ExtArgs> | null
+  where?: Prisma.CrmCustomerProfilesWhereInput
+}
+
+/**
+ * User.ownedCrmCustomerProfiles
+ */
+export type User$ownedCrmCustomerProfilesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CrmCustomerProfiles
+   */
+  select?: Prisma.CrmCustomerProfilesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CrmCustomerProfiles
+   */
+  omit?: Prisma.CrmCustomerProfilesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmCustomerProfilesInclude<ExtArgs> | null
+  where?: Prisma.CrmCustomerProfilesWhereInput
+  orderBy?: Prisma.CrmCustomerProfilesOrderByWithRelationInput | Prisma.CrmCustomerProfilesOrderByWithRelationInput[]
+  cursor?: Prisma.CrmCustomerProfilesWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CrmCustomerProfilesScalarFieldEnum | Prisma.CrmCustomerProfilesScalarFieldEnum[]
+}
+
+/**
+ * User.ownedPipelineRecords
+ */
+export type User$ownedPipelineRecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CrmPipelineRecords
+   */
+  select?: Prisma.CrmPipelineRecordsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CrmPipelineRecords
+   */
+  omit?: Prisma.CrmPipelineRecordsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmPipelineRecordsInclude<ExtArgs> | null
+  where?: Prisma.CrmPipelineRecordsWhereInput
+  orderBy?: Prisma.CrmPipelineRecordsOrderByWithRelationInput | Prisma.CrmPipelineRecordsOrderByWithRelationInput[]
+  cursor?: Prisma.CrmPipelineRecordsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CrmPipelineRecordsScalarFieldEnum | Prisma.CrmPipelineRecordsScalarFieldEnum[]
+}
+
+/**
+ * User.ownedCrmDeals
+ */
+export type User$ownedCrmDealsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CrmDeals
+   */
+  select?: Prisma.CrmDealsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CrmDeals
+   */
+  omit?: Prisma.CrmDealsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmDealsInclude<ExtArgs> | null
+  where?: Prisma.CrmDealsWhereInput
+  orderBy?: Prisma.CrmDealsOrderByWithRelationInput | Prisma.CrmDealsOrderByWithRelationInput[]
+  cursor?: Prisma.CrmDealsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CrmDealsScalarFieldEnum | Prisma.CrmDealsScalarFieldEnum[]
+}
+
+/**
+ * User.crmSyncJobs
+ */
+export type User$crmSyncJobsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CrmSyncJobs
+   */
+  select?: Prisma.CrmSyncJobsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CrmSyncJobs
+   */
+  omit?: Prisma.CrmSyncJobsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmSyncJobsInclude<ExtArgs> | null
+  where?: Prisma.CrmSyncJobsWhereInput
+  orderBy?: Prisma.CrmSyncJobsOrderByWithRelationInput | Prisma.CrmSyncJobsOrderByWithRelationInput[]
+  cursor?: Prisma.CrmSyncJobsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CrmSyncJobsScalarFieldEnum | Prisma.CrmSyncJobsScalarFieldEnum[]
 }
 
 /**

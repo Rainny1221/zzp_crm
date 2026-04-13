@@ -12,7 +12,7 @@ export class UpdateProfileCommand {
       gender?: Gender;
       hobby?: string;
       major?: string;
-      avatar?: Record<string, any>;
+      avatar?: Record<string, unknown>;
       hobby_ids?: number[];
     },
   ) {}

@@ -51,19 +51,115 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Matching: 'Matching',
-  Permissions: 'Permissions',
-  RolePermission: 'RolePermission',
-  Post: 'Post',
-  Like: 'Like',
-  Comment: 'Comment',
-  Question: 'Question',
-  UserAnswer: 'UserAnswer',
-  Role: 'Role',
-  UserRole: 'UserRole',
+  address: 'address',
+  admin_notification_inbox: 'admin_notification_inbox',
+  aff_campaigns: 'aff_campaigns',
+  ai_chats: 'ai_chats',
+  apps: 'apps',
+  blogs: 'blogs',
+  brand_subscriptions: 'brand_subscriptions',
+  brand_taps: 'brand_taps',
+  brands: 'brands',
+  brands_info: 'brands_info',
+  campaign_inspiration: 'campaign_inspiration',
+  campaign_tasks: 'campaign_tasks',
+  campaigns: 'campaigns',
+  categories: 'categories',
+  chat_messages: 'chat_messages',
+  cheating_login: 'cheating_login',
+  comment_galleries: 'comment_galleries',
+  comments: 'comments',
+  contacts: 'contacts',
+  content_performance_daily: 'content_performance_daily',
+  conversation_members: 'conversation_members',
+  conversations: 'conversations',
+  cost_per_view_campaigns: 'cost_per_view_campaigns',
+  creator_content: 'creator_content',
+  creator_profile_snapshot: 'creator_profile_snapshot',
+  districts: 'districts',
+  draft_galleries: 'draft_galleries',
+  drafts: 'drafts',
+  features: 'features',
+  file_imports: 'file_imports',
+  hide_skus: 'hide_skus',
+  interacts: 'interacts',
+  invite_receive_sample_reminders: 'invite_receive_sample_reminders',
+  kol_brand_taps: 'kol_brand_taps',
+  kol_pricing: 'kol_pricing',
+  kol_submissions: 'kol_submissions',
+  node_paths: 'node_paths',
+  nodes: 'nodes',
+  notification_campaigns: 'notification_campaigns',
+  notification_customs: 'notification_customs',
+  notifications: 'notifications',
+  order_creator_content: 'order_creator_content',
+  order_logistics: 'order_logistics',
+  order_packages: 'order_packages',
+  order_payments: 'order_payments',
+  order_recipients: 'order_recipients',
+  order_skus: 'order_skus',
+  order_transactions: 'order_transactions',
+  orders: 'orders',
+  orders_tap: 'orders_tap',
+  otp_types: 'otp_types',
+  permission_users: 'permission_users',
+  plan_features: 'plan_features',
+  plans: 'plans',
+  platforms: 'platforms',
+  platforms_campaigns: 'platforms_campaigns',
+  potentials: 'potentials',
+  product_counts: 'product_counts',
+  product_creator_content: 'product_creator_content',
+  product_detail_reviews: 'product_detail_reviews',
+  product_statistics: 'product_statistics',
+  products: 'products',
+  products_campaigns: 'products_campaigns',
+  profiles: 'profiles',
+  protest_overdues: 'protest_overdues',
+  provinces: 'provinces',
+  questions_and_answers: 'questions_and_answers',
+  referral_commissions: 'referral_commissions',
+  request_product_samples: 'request_product_samples',
+  review_items: 'review_items',
+  sample_applications: 'sample_applications',
+  sellers: 'sellers',
+  shop_gmv_breakdown_daily: 'shop_gmv_breakdown_daily',
+  shop_performance_daily: 'shop_performance_daily',
+  shopplus_tokens: 'shopplus_tokens',
+  sku_transactions: 'sku_transactions',
+  skus: 'skus',
+  subscriptions: 'subscriptions',
+  tasks: 'tasks',
+  tiktok: 'tiktok',
+  tiktok_external: 'tiktok_external',
+  tiktok_shop_authorizations: 'tiktok_shop_authorizations',
+  tracking_views: 'tracking_views',
+  user_activities: 'user_activities',
+  user_categories: 'user_categories',
+  user_categories_tap: 'user_categories_tap',
+  user_galleries: 'user_galleries',
+  user_interacts: 'user_interacts',
+  user_notification_watermarks: 'user_notification_watermarks',
+  user_otp_sessions: 'user_otp_sessions',
+  user_platforms: 'user_platforms',
+  user_referrals: 'user_referrals',
+  user_relationships: 'user_relationships',
+  user_reports: 'user_reports',
+  user_sessions: 'user_sessions',
+  wards: 'wards',
+  youtube: 'youtube',
+  CrmPipelineStages: 'CrmPipelineStages',
+  CrmSources: 'CrmSources',
+  CrmTiers: 'CrmTiers',
+  CrmCustomerProfiles: 'CrmCustomerProfiles',
+  CrmDeals: 'CrmDeals',
+  CrmPipelineRecords: 'CrmPipelineRecords',
+  CrmPipelineEvents: 'CrmPipelineEvents',
+  CrmSyncJobs: 'CrmSyncJobs',
   User: 'User',
-  UserHobby: 'UserHobby',
-  Hobby: 'Hobby'
+  Role: 'Role',
+  Permission: 'Permission',
+  PermissionRole: 'PermissionRole'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -82,211 +178,2149 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const MatchingScalarFieldEnum = {
+export const AddressScalarFieldEnum = {
   id: 'id',
-  user_1_id: 'user_1_id',
-  user_2_id: 'user_2_id',
-  user_1_action: 'user_1_action',
-  user_2_action: 'user_2_action',
+  address: 'address',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  is_default: 'is_default',
+  type: 'type'
+} as const
+
+export type AddressScalarFieldEnum = (typeof AddressScalarFieldEnum)[keyof typeof AddressScalarFieldEnum]
+
+
+export const Admin_notification_inboxScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  content: 'content',
+  related_user_id: 'related_user_id',
+  source_type: 'source_type',
+  sender_name: 'sender_name',
+  is_read: 'is_read',
+  created_at: 'created_at',
+  notification_id: 'notification_id',
+  notification_custom_id: 'notification_custom_id'
+} as const
+
+export type Admin_notification_inboxScalarFieldEnum = (typeof Admin_notification_inboxScalarFieldEnum)[keyof typeof Admin_notification_inboxScalarFieldEnum]
+
+
+export const Aff_campaignsScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  thumbnail_name: 'thumbnail_name',
   status: 'status',
-  matched_at: 'matched_at',
+  additional_data: 'additional_data',
+  sell_area: 'sell_area',
+  product_remaining: 'product_remaining',
+  product_id: 'product_id',
   created_at: 'created_at',
-  updated_at: 'updated_at',
-  deleted_at: 'deleted_at'
-} as const
-
-export type MatchingScalarFieldEnum = (typeof MatchingScalarFieldEnum)[keyof typeof MatchingScalarFieldEnum]
-
-
-export const PermissionsScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  display_name: 'display_name',
-  description: 'description',
-  resource: 'resource',
-  action: 'action',
-  is_active: 'is_active',
   created_by: 'created_by',
-  updated_by: 'updated_by',
-  deleted_by: 'deleted_by',
-  created_at: 'created_at',
   updated_at: 'updated_at',
-  deleted_at: 'deleted_at'
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  province_code: 'province_code',
+  district_code: 'district_code',
+  ward_code: 'ward_code',
+  total_kol_submission: 'total_kol_submission',
+  scheduled_start_time: 'scheduled_start_time',
+  referral_id: 'referral_id',
+  published_at: 'published_at',
+  brand_name: 'brand_name',
+  is_self_face_required: 'is_self_face_required',
+  brand_tap_id: 'brand_tap_id',
+  shop_name: 'shop_name',
+  is_need_gmv: 'is_need_gmv',
+  aff_campaign_type: 'aff_campaign_type',
+  type: 'type',
+  clip_simple_url: 'clip_simple_url',
+  cash_amount: 'cash_amount',
+  is_private: 'is_private',
+  limit: 'limit',
+  categories_tap: 'categories_tap',
+  need_draft_approval: 'need_draft_approval',
+  deadline: 'deadline',
+  hashtag: 'hashtag',
+  ads_commission_rate: 'ads_commission_rate',
+  total_koc: 'total_koc',
+  re_published_at: 're_published_at'
 } as const
 
-export type PermissionsScalarFieldEnum = (typeof PermissionsScalarFieldEnum)[keyof typeof PermissionsScalarFieldEnum]
+export type Aff_campaignsScalarFieldEnum = (typeof Aff_campaignsScalarFieldEnum)[keyof typeof Aff_campaignsScalarFieldEnum]
 
 
-export const RolePermissionScalarFieldEnum = {
+export const Ai_chatsScalarFieldEnum = {
   id: 'id',
-  role_id: 'role_id',
-  permission_id: 'permission_id',
-  created_by: 'created_by',
-  updated_by: 'updated_by',
-  deleted_by: 'deleted_by',
+  role: 'role',
+  content: 'content',
+  room_id: 'room_id',
   created_at: 'created_at',
+  created_by: 'created_by',
   updated_at: 'updated_at',
-  deleted_at: 'deleted_at'
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by'
 } as const
 
-export type RolePermissionScalarFieldEnum = (typeof RolePermissionScalarFieldEnum)[keyof typeof RolePermissionScalarFieldEnum]
+export type Ai_chatsScalarFieldEnum = (typeof Ai_chatsScalarFieldEnum)[keyof typeof Ai_chatsScalarFieldEnum]
 
 
-export const PostScalarFieldEnum = {
+export const AppsScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  version: 'version'
+} as const
+
+export type AppsScalarFieldEnum = (typeof AppsScalarFieldEnum)[keyof typeof AppsScalarFieldEnum]
+
+
+export const BlogsScalarFieldEnum = {
   id: 'id',
   content: 'content',
-  image_content: 'image_content',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  title: 'title',
+  thumbnail: 'thumbnail',
+  status: 'status',
+  type: 'type',
+  content_en: 'content_en',
+  content_zh: 'content_zh',
+  title_en: 'title_en',
+  title_zh: 'title_zh',
+  mode: 'mode'
+} as const
+
+export type BlogsScalarFieldEnum = (typeof BlogsScalarFieldEnum)[keyof typeof BlogsScalarFieldEnum]
+
+
+export const Brand_subscriptionsScalarFieldEnum = {
+  id: 'id',
+  price_at_time: 'price_at_time',
+  payment_method: 'payment_method',
+  started_at: 'started_at',
+  expired_at: 'expired_at',
+  status: 'status',
+  plan_pricing_id: 'plan_pricing_id',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by'
+} as const
+
+export type Brand_subscriptionsScalarFieldEnum = (typeof Brand_subscriptionsScalarFieldEnum)[keyof typeof Brand_subscriptionsScalarFieldEnum]
+
+
+export const Brand_tapsScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  tag_name: 'tag_name',
+  brand_approved_count: 'brand_approved_count',
+  brand_rejected_count: 'brand_rejected_count',
+  bd_approved_count: 'bd_approved_count',
+  bd_rejected_count: 'bd_rejected_count',
+  metadata: 'metadata',
+  is_send_brand: 'is_send_brand',
+  total_show: 'total_show',
+  last_active_at: 'last_active_at',
+  is_auto_order: 'is_auto_order'
+} as const
+
+export type Brand_tapsScalarFieldEnum = (typeof Brand_tapsScalarFieldEnum)[keyof typeof Brand_tapsScalarFieldEnum]
+
+
+export const BrandsScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  user_id: 'user_id',
+  company_name: 'company_name',
+  tax_code: 'tax_code',
+  company_address: 'company_address',
+  representative_name: 'representative_name',
+  representative_position: 'representative_position',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  brand_core_id: 'brand_core_id'
+} as const
+
+export type BrandsScalarFieldEnum = (typeof BrandsScalarFieldEnum)[keyof typeof BrandsScalarFieldEnum]
+
+
+export const Brands_infoScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  user_id: 'user_id',
+  company_name: 'company_name',
+  tax_code: 'tax_code',
+  company_address: 'company_address',
+  representative_name: 'representative_name',
+  representative_position: 'representative_position',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by'
+} as const
+
+export type Brands_infoScalarFieldEnum = (typeof Brands_infoScalarFieldEnum)[keyof typeof Brands_infoScalarFieldEnum]
+
+
+export const Campaign_inspirationScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  campaign_id: 'campaign_id',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  type: 'type',
+  cost_per_view_campaign_id: 'cost_per_view_campaign_id',
+  aff_campaign_id: 'aff_campaign_id'
+} as const
+
+export type Campaign_inspirationScalarFieldEnum = (typeof Campaign_inspirationScalarFieldEnum)[keyof typeof Campaign_inspirationScalarFieldEnum]
+
+
+export const Campaign_tasksScalarFieldEnum = {
+  id: 'id',
+  start_time: 'start_time',
+  end_time: 'end_time',
+  campaign_id: 'campaign_id',
+  task_id: 'task_id',
+  campaign_type: 'campaign_type',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  worked_by: 'worked_by',
+  status: 'status'
+} as const
+
+export type Campaign_tasksScalarFieldEnum = (typeof Campaign_tasksScalarFieldEnum)[keyof typeof Campaign_tasksScalarFieldEnum]
+
+
+export const CampaignsScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  draft_due_dates: 'draft_due_dates',
+  description: 'description',
+  publish_at: 'publish_at',
+  start_at: 'start_at',
+  end_at: 'end_at',
+  is_user_generated: 'is_user_generated',
+  is_ship: 'is_ship',
+  thumbnail_name: 'thumbnail_name',
+  kol_gender: 'kol_gender',
+  price_per_kol: 'price_per_kol',
+  kol_limit: 'kol_limit',
+  is_public: 'is_public',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  user_id: 'user_id',
+  status: 'status',
+  additional_data: 'additional_data',
+  kol_age_from: 'kol_age_from',
+  kol_age_to: 'kol_age_to',
+  kol_follower_from: 'kol_follower_from',
+  kol_follower_to: 'kol_follower_to',
+  province_code: 'province_code',
+  district_code: 'district_code',
+  ward_code: 'ward_code',
+  sell_area: 'sell_area',
+  total_kol_submission: 'total_kol_submission'
+} as const
+
+export type CampaignsScalarFieldEnum = (typeof CampaignsScalarFieldEnum)[keyof typeof CampaignsScalarFieldEnum]
+
+
+export const CategoriesScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+} as const
+
+export type CategoriesScalarFieldEnum = (typeof CategoriesScalarFieldEnum)[keyof typeof CategoriesScalarFieldEnum]
+
+
+export const Chat_messagesScalarFieldEnum = {
+  id: 'id',
+  conversation_id: 'conversation_id',
+  sender_id: 'sender_id',
+  content: 'content',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  seen_by: 'seen_by',
+  attachment_url: 'attachment_url',
+  type: 'type'
+} as const
+
+export type Chat_messagesScalarFieldEnum = (typeof Chat_messagesScalarFieldEnum)[keyof typeof Chat_messagesScalarFieldEnum]
+
+
+export const Cheating_loginScalarFieldEnum = {
+  id: 'id',
+  link_tiktok: 'link_tiktok',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by'
+} as const
+
+export type Cheating_loginScalarFieldEnum = (typeof Cheating_loginScalarFieldEnum)[keyof typeof Cheating_loginScalarFieldEnum]
+
+
+export const Comment_galleriesScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  comment_id: 'comment_id',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  type: 'type'
+} as const
+
+export type Comment_galleriesScalarFieldEnum = (typeof Comment_galleriesScalarFieldEnum)[keyof typeof Comment_galleriesScalarFieldEnum]
+
+
+export const CommentsScalarFieldEnum = {
+  id: 'id',
+  content: 'content',
+  parent_id: 'parent_id',
+  total_comment: 'total_comment',
+  draft_id: 'draft_id',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  type: 'type'
+} as const
+
+export type CommentsScalarFieldEnum = (typeof CommentsScalarFieldEnum)[keyof typeof CommentsScalarFieldEnum]
+
+
+export const ContactsScalarFieldEnum = {
+  id: 'id',
+  address: 'address',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  is_default: 'is_default',
+  type: 'type',
+  full_name: 'full_name',
+  phone_number: 'phone_number',
+  province_code: 'province_code',
+  district_code: 'district_code',
+  ward_code: 'ward_code',
+  next_updated_at: 'next_updated_at',
+  is_default_verify: 'is_default_verify'
+} as const
+
+export type ContactsScalarFieldEnum = (typeof ContactsScalarFieldEnum)[keyof typeof ContactsScalarFieldEnum]
+
+
+export const Content_performance_dailyScalarFieldEnum = {
+  id: 'id',
+  creator_content_id: 'creator_content_id',
+  content_id: 'content_id',
+  view_count: 'view_count',
   like_count: 'like_count',
-  comment_count: 'comment_count',
-  published: 'published',
-  authorId: 'authorId',
+  share_count: 'share_count',
+  comment_num: 'comment_num',
+  save_count: 'save_count',
+  paid_order_num: 'paid_order_num',
+  paid_amount: 'paid_amount',
   created_at: 'created_at',
+  created_by: 'created_by',
   updated_at: 'updated_at',
-  deleted_at: 'deleted_at',
   updated_by: 'updated_by',
-  deleted_by: 'deleted_by'
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  cl_pay_sub_order_cnt: 'cl_pay_sub_order_cnt',
+  sponsor_est_comm_amt: 'sponsor_est_comm_amt',
+  sponsor_paid_comm_amt: 'sponsor_paid_comm_amt',
+  metric_date: 'metric_date'
 } as const
 
-export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
+export type Content_performance_dailyScalarFieldEnum = (typeof Content_performance_dailyScalarFieldEnum)[keyof typeof Content_performance_dailyScalarFieldEnum]
 
 
-export const LikeScalarFieldEnum = {
+export const Conversation_membersScalarFieldEnum = {
   id: 'id',
-  postId: 'postId',
-  userId: 'userId',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  deleted_at: 'deleted_at',
-  updated_by: 'updated_by',
-  deleted_by: 'deleted_by'
+  conversation_id: 'conversation_id',
+  user_id: 'user_id'
 } as const
 
-export type LikeScalarFieldEnum = (typeof LikeScalarFieldEnum)[keyof typeof LikeScalarFieldEnum]
+export type Conversation_membersScalarFieldEnum = (typeof Conversation_membersScalarFieldEnum)[keyof typeof Conversation_membersScalarFieldEnum]
 
 
-export const CommentScalarFieldEnum = {
+export const ConversationsScalarFieldEnum = {
   id: 'id',
-  postId: 'postId',
-  userId: 'userId',
-  content: 'content',
+  code: 'code',
   created_at: 'created_at',
+  created_by: 'created_by',
   updated_at: 'updated_at',
-  deleted_at: 'deleted_at',
   updated_by: 'updated_by',
-  deleted_by: 'deleted_by'
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  status: 'status',
+  aff_campaign_id: 'aff_campaign_id',
+  kol_submission_id: 'kol_submission_id'
 } as const
 
-export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
+export type ConversationsScalarFieldEnum = (typeof ConversationsScalarFieldEnum)[keyof typeof ConversationsScalarFieldEnum]
 
 
-export const QuestionScalarFieldEnum = {
+export const Cost_per_view_campaignsScalarFieldEnum = {
   id: 'id',
-  content: 'content',
+  title: 'title',
+  description: 'description',
+  publish_at: 'publish_at',
+  end_at: 'end_at',
+  thumbnail_name: 'thumbnail_name',
+  kol_gender: 'kol_gender',
   created_at: 'created_at',
+  created_by: 'created_by',
   updated_at: 'updated_at',
-  deleted_at: 'deleted_at',
   updated_by: 'updated_by',
-  deleted_by: 'deleted_by'
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  status: 'status',
+  additional_data: 'additional_data',
+  kol_age_from: 'kol_age_from',
+  kol_age_to: 'kol_age_to',
+  kol_follower_from: 'kol_follower_from',
+  kol_follower_to: 'kol_follower_to',
+  maximum_budget: 'maximum_budget',
+  maximum_views: 'maximum_views',
+  province_code: 'province_code',
+  district_code: 'district_code',
+  ward_code: 'ward_code',
+  sell_area: 'sell_area',
+  total_kol_submission: 'total_kol_submission',
+  published_at: 'published_at'
 } as const
 
-export type QuestionScalarFieldEnum = (typeof QuestionScalarFieldEnum)[keyof typeof QuestionScalarFieldEnum]
+export type Cost_per_view_campaignsScalarFieldEnum = (typeof Cost_per_view_campaignsScalarFieldEnum)[keyof typeof Cost_per_view_campaignsScalarFieldEnum]
 
 
-export const UserAnswerScalarFieldEnum = {
+export const Creator_contentScalarFieldEnum = {
   id: 'id',
-  user_id: 'user_id',
-  question_id: 'question_id',
-  answer: 'answer',
+  creator_username: 'creator_username',
+  content_id: 'content_id',
+  content_type: 'content_type',
+  thumbnail_video_url: 'thumbnail_video_url',
+  linked_tiktok_video: 'linked_tiktok_video',
+  source_url: 'source_url',
+  published_date: 'published_date',
+  published_at: 'published_at',
   created_at: 'created_at',
+  created_by: 'created_by',
   updated_at: 'updated_at',
-  deleted_at: 'deleted_at',
   updated_by: 'updated_by',
-  deleted_by: 'deleted_by'
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  code_ads: 'code_ads',
+  is_active: 'is_active',
+  creator_id: 'creator_id',
+  video_title: 'video_title',
+  video_duration: 'video_duration',
+  is_own_tap: 'is_own_tap',
+  has_paid_order: 'has_paid_order',
+  draft_id: 'draft_id',
+  total_paid_amount: 'total_paid_amount',
+  order_id: 'order_id',
+  hash_tags: 'hash_tags',
+  click_through_rate: 'click_through_rate',
+  product_id: 'product_id',
+  seller_id: 'seller_id',
+  is_received_sample: 'is_received_sample',
+  is_crawl_received_sample: 'is_crawl_received_sample',
+  campaign_id: 'campaign_id',
+  is_live: 'is_live',
+  metric_date: 'metric_date',
+  views: 'views',
+  likes: 'likes',
+  shares: 'shares',
+  comments: 'comments',
+  new_followers: 'new_followers'
 } as const
 
-export type UserAnswerScalarFieldEnum = (typeof UserAnswerScalarFieldEnum)[keyof typeof UserAnswerScalarFieldEnum]
+export type Creator_contentScalarFieldEnum = (typeof Creator_contentScalarFieldEnum)[keyof typeof Creator_contentScalarFieldEnum]
 
 
-export const RoleScalarFieldEnum = {
+export const Creator_profile_snapshotScalarFieldEnum = {
+  id: 'id',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  creator_username: 'creator_username',
+  creator_oecu_id: 'creator_oecu_id',
+  creator_id: 'creator_id',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  creator_avatar_url: 'creator_avatar_url',
+  follower_count: 'follower_count',
+  total_gmv: 'total_gmv',
+  nickname: 'nickname'
+} as const
+
+export type Creator_profile_snapshotScalarFieldEnum = (typeof Creator_profile_snapshotScalarFieldEnum)[keyof typeof Creator_profile_snapshotScalarFieldEnum]
+
+
+export const DistrictsScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  display_name: 'display_name',
-  description: 'description',
-  is_active: 'is_active',
-  created_by: 'created_by',
-  updated_by: 'updated_by',
-  deleted_by: 'deleted_by',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  deleted_at: 'deleted_at'
+  code: 'code',
+  full_name: 'full_name',
+  province_code: 'province_code'
 } as const
 
-export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof RoleScalarFieldEnum]
+export type DistrictsScalarFieldEnum = (typeof DistrictsScalarFieldEnum)[keyof typeof DistrictsScalarFieldEnum]
 
 
-export const UserRoleScalarFieldEnum = {
+export const Draft_galleriesScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  draft_id: 'draft_id',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  type: 'type',
+  is_remove_on_aws: 'is_remove_on_aws'
+} as const
+
+export type Draft_galleriesScalarFieldEnum = (typeof Draft_galleriesScalarFieldEnum)[keyof typeof Draft_galleriesScalarFieldEnum]
+
+
+export const DraftsScalarFieldEnum = {
+  id: 'id',
+  content: 'content',
+  status: 'status',
+  potential_id: 'potential_id',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  version: 'version',
+  submit_url: 'submit_url',
+  reason: 'reason',
+  reject_description: 'reject_description',
+  submit_at: 'submit_at',
+  code_ads: 'code_ads',
+  kol_submission_id: 'kol_submission_id',
+  view: 'view',
+  like: 'like',
+  comment: 'comment',
+  share: 'share',
+  request_product_sample_id: 'request_product_sample_id',
+  video_id: 'video_id',
+  shop_name: 'shop_name',
+  is_attach_shop_cart: 'is_attach_shop_cart',
+  is_koc_deleted: 'is_koc_deleted',
+  is_koc_hidden: 'is_koc_hidden',
+  thumbnail_video_url: 'thumbnail_video_url',
+  reject_acceptance_at: 'reject_acceptance_at',
+  accept_acceptance_at: 'accept_acceptance_at',
+  creator_content_id: 'creator_content_id'
+} as const
+
+export type DraftsScalarFieldEnum = (typeof DraftsScalarFieldEnum)[keyof typeof DraftsScalarFieldEnum]
+
+
+export const FeaturesScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  code: 'code',
+  description: 'description',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by'
+} as const
+
+export type FeaturesScalarFieldEnum = (typeof FeaturesScalarFieldEnum)[keyof typeof FeaturesScalarFieldEnum]
+
+
+export const File_importsScalarFieldEnum = {
+  id: 'id',
+  file_id: 'file_id',
+  user_id: 'user_id',
+  total_rows: 'total_rows',
+  imported_rows: 'imported_rows',
+  error_log: 'error_log',
+  created_at: 'created_at',
+  completed_at: 'completed_at'
+} as const
+
+export type File_importsScalarFieldEnum = (typeof File_importsScalarFieldEnum)[keyof typeof File_importsScalarFieldEnum]
+
+
+export const Hide_skusScalarFieldEnum = {
+  id: 'id',
+  sku_id: 'sku_id',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by'
+} as const
+
+export type Hide_skusScalarFieldEnum = (typeof Hide_skusScalarFieldEnum)[keyof typeof Hide_skusScalarFieldEnum]
+
+
+export const InteractsScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  is_active: 'is_active'
+} as const
+
+export type InteractsScalarFieldEnum = (typeof InteractsScalarFieldEnum)[keyof typeof InteractsScalarFieldEnum]
+
+
+export const Invite_receive_sample_remindersScalarFieldEnum = {
+  id: 'id',
+  kol_submission_id: 'kol_submission_id',
+  attempt_no: 'attempt_no',
+  scheduled_at: 'scheduled_at',
+  status: 'status',
+  sent_at: 'sent_at',
+  canceled_at: 'canceled_at',
+  notification_custom_id: 'notification_custom_id',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by'
+} as const
+
+export type Invite_receive_sample_remindersScalarFieldEnum = (typeof Invite_receive_sample_remindersScalarFieldEnum)[keyof typeof Invite_receive_sample_remindersScalarFieldEnum]
+
+
+export const Kol_brand_tapsScalarFieldEnum = {
+  id: 'id',
+  brand_tap_id: 'brand_tap_id',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  brand_action: 'brand_action'
+} as const
+
+export type Kol_brand_tapsScalarFieldEnum = (typeof Kol_brand_tapsScalarFieldEnum)[keyof typeof Kol_brand_tapsScalarFieldEnum]
+
+
+export const Kol_pricingScalarFieldEnum = {
+  id: 'id',
+  price: 'price',
+  description: 'description',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  content_type: 'content_type',
+  platform_id: 'platform_id',
+  content: 'content',
+  content_duration_type: 'content_duration_type'
+} as const
+
+export type Kol_pricingScalarFieldEnum = (typeof Kol_pricingScalarFieldEnum)[keyof typeof Kol_pricingScalarFieldEnum]
+
+
+export const Kol_submissionsScalarFieldEnum = {
+  id: 'id',
+  confirmed_by: 'confirmed_by',
+  status: 'status',
+  campaign_id: 'campaign_id',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  cover_letter: 'cover_letter',
+  reason: 'reason',
+  description: 'description',
+  cost_per_view_campaign_id: 'cost_per_view_campaign_id',
+  aff_campaign_id: 'aff_campaign_id',
+  is_brand_confirm: 'is_brand_confirm',
+  next_status: 'next_status',
+  working_at: 'working_at',
+  total_clip: 'total_clip',
+  content_type: 'content_type',
+  brand_approved_at: 'brand_approved_at',
+  finished_at: 'finished_at',
+  tiktok_username: 'tiktok_username',
+  product_id: 'product_id',
+  has_been_overdue: 'has_been_overdue',
+  reason_reject_acceptance: 'reason_reject_acceptance',
+  sample_order_settings_id: 'sample_order_settings_id',
+  seller_id: 'seller_id'
+} as const
+
+export type Kol_submissionsScalarFieldEnum = (typeof Kol_submissionsScalarFieldEnum)[keyof typeof Kol_submissionsScalarFieldEnum]
+
+
+export const Node_pathsScalarFieldEnum = {
+  ancestor_id: 'ancestor_id',
+  descendant_id: 'descendant_id',
+  depth: 'depth'
+} as const
+
+export type Node_pathsScalarFieldEnum = (typeof Node_pathsScalarFieldEnum)[keyof typeof Node_pathsScalarFieldEnum]
+
+
+export const NodesScalarFieldEnum = {
   id: 'id',
   user_id: 'user_id',
-  role_id: 'role_id',
-  assigned_by: 'assigned_by',
-  assigned_at: 'assigned_at',
-  created_by: 'created_by',
-  updated_by: 'updated_by',
-  deleted_by: 'deleted_by',
+  parent_id: 'parent_id',
+  type: 'type',
+  name: 'name',
+  storage_key: 'storage_key',
+  size_bytes: 'size_bytes',
+  mime_type: 'mime_type',
+  status: 'status',
   created_at: 'created_at',
-  updated_at: 'updated_at',
   deleted_at: 'deleted_at'
 } as const
 
-export type UserRoleScalarFieldEnum = (typeof UserRoleScalarFieldEnum)[keyof typeof UserRoleScalarFieldEnum]
+export type NodesScalarFieldEnum = (typeof NodesScalarFieldEnum)[keyof typeof NodesScalarFieldEnum]
+
+
+export const Notification_campaignsScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  body: 'body',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  is_read: 'is_read',
+  additional_data: 'additional_data'
+} as const
+
+export type Notification_campaignsScalarFieldEnum = (typeof Notification_campaignsScalarFieldEnum)[keyof typeof Notification_campaignsScalarFieldEnum]
+
+
+export const Notification_customsScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  body: 'body',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  is_read: 'is_read',
+  receiver_id: 'receiver_id',
+  additional_data: 'additional_data',
+  is_sent: 'is_sent',
+  is_priority: 'is_priority'
+} as const
+
+export type Notification_customsScalarFieldEnum = (typeof Notification_customsScalarFieldEnum)[keyof typeof Notification_customsScalarFieldEnum]
+
+
+export const NotificationsScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  body: 'body',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  is_read: 'is_read',
+  receiver_id: 'receiver_id',
+  additional_data: 'additional_data'
+} as const
+
+export type NotificationsScalarFieldEnum = (typeof NotificationsScalarFieldEnum)[keyof typeof NotificationsScalarFieldEnum]
+
+
+export const Order_creator_contentScalarFieldEnum = {
+  id: 'id',
+  order_id: 'order_id',
+  creator_content_id: 'creator_content_id',
+  order_line_item_id: 'order_line_item_id'
+} as const
+
+export type Order_creator_contentScalarFieldEnum = (typeof Order_creator_contentScalarFieldEnum)[keyof typeof Order_creator_contentScalarFieldEnum]
+
+
+export const Order_logisticsScalarFieldEnum = {
+  id: 'id',
+  order_id: 'order_id',
+  title: 'title',
+  description: 'description',
+  event_time: 'event_time',
+  created_at: 'created_at'
+} as const
+
+export type Order_logisticsScalarFieldEnum = (typeof Order_logisticsScalarFieldEnum)[keyof typeof Order_logisticsScalarFieldEnum]
+
+
+export const Order_packagesScalarFieldEnum = {
+  id: 'id',
+  package_id: 'package_id',
+  order_id: 'order_id'
+} as const
+
+export type Order_packagesScalarFieldEnum = (typeof Order_packagesScalarFieldEnum)[keyof typeof Order_packagesScalarFieldEnum]
+
+
+export const Order_paymentsScalarFieldEnum = {
+  id: 'id',
+  order_id: 'order_id',
+  currency: 'currency',
+  sub_total: 'sub_total',
+  tax: 'tax',
+  shipping_fee: 'shipping_fee',
+  original_total_product_price: 'original_total_product_price',
+  original_shipping_fee: 'original_shipping_fee',
+  platform_discount: 'platform_discount',
+  seller_discount: 'seller_discount',
+  shipping_fee_platform_discount: 'shipping_fee_platform_discount',
+  shipping_fee_seller_discount: 'shipping_fee_seller_discount',
+  shipping_fee_cofunded_discount: 'shipping_fee_cofunded_discount',
+  total_amount: 'total_amount',
+  payment_method_name: 'payment_method_name',
+  seller_id: 'seller_id',
+  is_sample_order: 'is_sample_order',
+  partner_id: 'partner_id',
+  creator_id: 'creator_id',
+  net_price_amount: 'net_price_amount',
+  payment: 'payment',
+  shipping_fee_deduction_seller: 'shipping_fee_deduction_seller',
+  shipping_fee_deduction_platform: 'shipping_fee_deduction_platform',
+  shipping_fee_deduction_platform_voucher: 'shipping_fee_deduction_platform_voucher',
+  shipping_list_price: 'shipping_list_price',
+  shipping_sale_price: 'shipping_sale_price',
+  sku_gift_original_price: 'sku_gift_original_price',
+  sku_list_price: 'sku_list_price',
+  sku_sale_price: 'sku_sale_price',
+  subtotal_tax_amount: 'subtotal_tax_amount',
+  subtotal_deduction_platform: 'subtotal_deduction_platform',
+  subtotal_deduction_seller: 'subtotal_deduction_seller',
+  tax_amount: 'tax_amount',
+  total: 'total',
+  voucher_deduction_platform: 'voucher_deduction_platform',
+  voucher_deduction_seller: 'voucher_deduction_seller',
+  creator_username: 'creator_username',
+  order_created_at: 'order_created_at',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by'
+} as const
+
+export type Order_paymentsScalarFieldEnum = (typeof Order_paymentsScalarFieldEnum)[keyof typeof Order_paymentsScalarFieldEnum]
+
+
+export const Order_recipientsScalarFieldEnum = {
+  id: 'id',
+  order_id: 'order_id',
+  name: 'name',
+  phone_number: 'phone_number',
+  region_code: 'region_code',
+  postal_code: 'postal_code',
+  full_address: 'full_address',
+  address_detail: 'address_detail',
+  district_info: 'district_info',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Order_recipientsScalarFieldEnum = (typeof Order_recipientsScalarFieldEnum)[keyof typeof Order_recipientsScalarFieldEnum]
+
+
+export const Order_skusScalarFieldEnum = {
+  id: 'id',
+  order_id: 'order_id',
+  product_id: 'product_id',
+  quantity: 'quantity',
+  refunded_quantity: 'refunded_quantity',
+  returned_quantity: 'returned_quantity',
+  price: 'price',
+  commission_model: 'commission_model',
+  commission_rate: 'commission_rate',
+  commission_tier_setting: 'commission_tier_setting',
+  estimated_commission_base: 'estimated_commission_base',
+  estimated_paid_commission: 'estimated_paid_commission',
+  estimated_cofunded_creator_bonus_amount: 'estimated_cofunded_creator_bonus_amount',
+  estimated_paid_shop_ads_commission: 'estimated_paid_shop_ads_commission',
+  actual_commission_base: 'actual_commission_base',
+  actual_paid_commission: 'actual_paid_commission',
+  actual_cofunded_creator_bonus_amount: 'actual_cofunded_creator_bonus_amount',
+  actual_paid_shop_ads_commission: 'actual_paid_shop_ads_commission',
+  creator_username: 'creator_username',
+  content_id: 'content_id',
+  content_type: 'content_type',
+  campaign_id: 'campaign_id',
+  open_collaboration_id: 'open_collaboration_id',
+  target_collaboration_id: 'target_collaboration_id',
+  creator_commission_rate: 'creator_commission_rate',
+  tap_commission_rate: 'tap_commission_rate',
+  creator_commission_reward_rate: 'creator_commission_reward_rate',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  partner_id: 'partner_id',
+  partner_name: 'partner_name',
+  campaign_name: 'campaign_name',
+  shop_ads_commission_rate: 'shop_ads_commission_rate',
+  settlement_status: 'settlement_status',
+  fully_return: 'fully_return',
+  estimated_paid_partner_commission: 'estimated_paid_partner_commission',
+  actual_paid_partner_commission: 'actual_paid_partner_commission',
+  sku_id: 'sku_id',
+  partner_commission_rate: 'partner_commission_rate'
+} as const
+
+export type Order_skusScalarFieldEnum = (typeof Order_skusScalarFieldEnum)[keyof typeof Order_skusScalarFieldEnum]
+
+
+export const Order_transactionsScalarFieldEnum = {
+  id: 'id',
+  order_id: 'order_id',
+  currency: 'currency',
+  order_created_at: 'order_created_at',
+  revenue_amount: 'revenue_amount',
+  settlement_amount: 'settlement_amount',
+  shipping_cost_amount: 'shipping_cost_amount',
+  fee_and_tax_amount: 'fee_and_tax_amount',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  total_count: 'total_count'
+} as const
+
+export type Order_transactionsScalarFieldEnum = (typeof Order_transactionsScalarFieldEnum)[keyof typeof Order_transactionsScalarFieldEnum]
+
+
+export const OrdersScalarFieldEnum = {
+  id: 'id',
+  order_id: 'order_id',
+  quantity: 'quantity',
+  tracking_number: 'tracking_number',
+  delivery_service: 'delivery_service',
+  status: 'status',
+  sku_id: 'sku_id',
+  kol_submission_id: 'kol_submission_id',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  buyer_user_id: 'buyer_user_id',
+  buyer_email: 'buyer_email',
+  buyer_message: 'buyer_message',
+  delivery_option_id: 'delivery_option_id',
+  delivery_option_name: 'delivery_option_name',
+  delivery_time: 'delivery_time',
+  delivery_type: 'delivery_type',
+  collection_due_time: 'collection_due_time',
+  collection_time: 'collection_time',
+  fulfillment_priority_level: 'fulfillment_priority_level',
+  fulfillment_type: 'fulfillment_type',
+  recommended_shipping_time: 'recommended_shipping_time',
+  shipping_due_time: 'shipping_due_time',
+  shipping_provider: 'shipping_provider',
+  shipping_provider_id: 'shipping_provider_id',
+  shipping_type: 'shipping_type',
+  cancel_order_sla_time: 'cancel_order_sla_time',
+  create_time: 'create_time',
+  has_updated_recipient_address: 'has_updated_recipient_address',
+  is_cod: 'is_cod',
+  is_on_hold_order: 'is_on_hold_order',
+  is_replacement_order: 'is_replacement_order',
+  paid_time: 'paid_time',
+  payment_method_name: 'payment_method_name',
+  is_sample_order: 'is_sample_order',
+  rts_sla_time: 'rts_sla_time',
+  rts_time: 'rts_time',
+  tts_sla_time: 'tts_sla_time',
+  order_type: 'order_type',
+  split_or_combine_tag: 'split_or_combine_tag',
+  update_time: 'update_time',
+  commerce_platform: 'commerce_platform',
+  warehouse_id: 'warehouse_id',
+  campaign_id: 'campaign_id',
+  creator_username: 'creator_username',
+  partner_id: 'partner_id',
+  seller_id: 'seller_id',
+  source: 'source',
+  creator_id: 'creator_id',
+  cancel_time: 'cancel_time',
+  cancel_reason: 'cancel_reason',
+  partner_name: 'partner_name',
+  sample_order_id: 'sample_order_id'
+} as const
+
+export type OrdersScalarFieldEnum = (typeof OrdersScalarFieldEnum)[keyof typeof OrdersScalarFieldEnum]
+
+
+export const Orders_tapScalarFieldEnum = {
+  id: 'id',
+  order_id: 'order_id',
+  quantity: 'quantity',
+  tracking_number: 'tracking_number',
+  delivery_service: 'delivery_service',
+  status: 'status',
+  product_id: 'product_id',
+  sku_id: 'sku_id',
+  kol_submission_id: 'kol_submission_id',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by'
+} as const
+
+export type Orders_tapScalarFieldEnum = (typeof Orders_tapScalarFieldEnum)[keyof typeof Orders_tapScalarFieldEnum]
+
+
+export const Otp_typesScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description'
+} as const
+
+export type Otp_typesScalarFieldEnum = (typeof Otp_typesScalarFieldEnum)[keyof typeof Otp_typesScalarFieldEnum]
+
+
+export const Permission_usersScalarFieldEnum = {
+  id: 'id',
+  permission_id: 'permission_id',
+  user_relationship_id: 'user_relationship_id'
+} as const
+
+export type Permission_usersScalarFieldEnum = (typeof Permission_usersScalarFieldEnum)[keyof typeof Permission_usersScalarFieldEnum]
+
+
+export const Plan_featuresScalarFieldEnum = {
+  id: 'id',
+  plan_id: 'plan_id',
+  feature_id: 'feature_id',
+  is_enabled: 'is_enabled',
+  limit_value: 'limit_value',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by'
+} as const
+
+export type Plan_featuresScalarFieldEnum = (typeof Plan_featuresScalarFieldEnum)[keyof typeof Plan_featuresScalarFieldEnum]
+
+
+export const PlansScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  price_monthly: 'price_monthly',
+  currency: 'currency',
+  description: 'description',
+  is_active: 'is_active',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  price_yearly: 'price_yearly'
+} as const
+
+export type PlansScalarFieldEnum = (typeof PlansScalarFieldEnum)[keyof typeof PlansScalarFieldEnum]
+
+
+export const PlatformsScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  is_active: 'is_active'
+} as const
+
+export type PlatformsScalarFieldEnum = (typeof PlatformsScalarFieldEnum)[keyof typeof PlatformsScalarFieldEnum]
+
+
+export const Platforms_campaignsScalarFieldEnum = {
+  id: 'id',
+  campaign_id: 'campaign_id',
+  platform_id: 'platform_id',
+  potential_id: 'potential_id',
+  cost_per_view_campaign_id: 'cost_per_view_campaign_id',
+  aff_campaign_id: 'aff_campaign_id'
+} as const
+
+export type Platforms_campaignsScalarFieldEnum = (typeof Platforms_campaignsScalarFieldEnum)[keyof typeof Platforms_campaignsScalarFieldEnum]
+
+
+export const PotentialsScalarFieldEnum = {
+  id: 'id',
+  media_type: 'media_type',
+  description: 'description',
+  duration_type: 'duration_type',
+  campaign_id: 'campaign_id',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  duration: 'duration',
+  platform_id: 'platform_id',
+  cost_per_view_campaign_id: 'cost_per_view_campaign_id',
+  aff_campaign_id: 'aff_campaign_id',
+  title: 'title'
+} as const
+
+export type PotentialsScalarFieldEnum = (typeof PotentialsScalarFieldEnum)[keyof typeof PotentialsScalarFieldEnum]
+
+
+export const Product_countsScalarFieldEnum = {
+  id: 'id',
+  product_id: 'product_id',
+  user_id: 'user_id',
+  created_at: 'created_at',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  type: 'type'
+} as const
+
+export type Product_countsScalarFieldEnum = (typeof Product_countsScalarFieldEnum)[keyof typeof Product_countsScalarFieldEnum]
+
+
+export const Product_creator_contentScalarFieldEnum = {
+  id: 'id',
+  product_id: 'product_id',
+  creator_content_id: 'creator_content_id',
+  product_name: 'product_name'
+} as const
+
+export type Product_creator_contentScalarFieldEnum = (typeof Product_creator_contentScalarFieldEnum)[keyof typeof Product_creator_contentScalarFieldEnum]
+
+
+export const Product_detail_reviewsScalarFieldEnum = {
+  id: 'id',
+  product_id: 'product_id',
+  product_rating: 'product_rating',
+  review_count: 'review_count',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by'
+} as const
+
+export type Product_detail_reviewsScalarFieldEnum = (typeof Product_detail_reviewsScalarFieldEnum)[keyof typeof Product_detail_reviewsScalarFieldEnum]
+
+
+export const Product_statisticsScalarFieldEnum = {
+  id: 'id',
+  top_categories: 'top_categories',
+  gmv_range: 'gmv_range',
+  top_ages: 'top_ages',
+  top_female_ratio: 'top_female_ratio',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  product_id: 'product_id'
+} as const
+
+export type Product_statisticsScalarFieldEnum = (typeof Product_statisticsScalarFieldEnum)[keyof typeof Product_statisticsScalarFieldEnum]
+
+
+export const ProductsScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  campaign_id: 'campaign_id',
+  product_id: 'product_id',
+  shop_name: 'shop_name',
+  effective_start_time: 'effective_start_time',
+  effective_end_time: 'effective_end_time',
+  creator_commission_rate: 'creator_commission_rate',
+  partner_commission_rate: 'partner_commission_rate',
+  link: 'link',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  referral_link: 'referral_link',
+  status: 'status',
+  sold_count: 'sold_count',
+  price: 'price',
+  seller_id: 'seller_id',
+  desc_detail: 'desc_detail',
+  desc_video: 'desc_video',
+  images: 'images',
+  sale_props: 'sale_props',
+  logistic: 'logistic',
+  specifications: 'specifications',
+  category_id: 'category_id',
+  sample_quota: 'sample_quota',
+  category: 'category',
+  root_category_id: 'root_category_id',
+  is_crawl: 'is_crawl',
+  rating: 'rating',
+  review_count: 'review_count',
+  revenue: 'revenue',
+  creator_count: 'creator_count',
+  video_count: 'video_count',
+  live_count: 'live_count',
+  is_crawling: 'is_crawling',
+  old_link: 'old_link',
+  category_info: 'category_info',
+  arr_link: 'arr_link',
+  user_ids: 'user_ids',
+  shop_code: 'shop_code'
+} as const
+
+export type ProductsScalarFieldEnum = (typeof ProductsScalarFieldEnum)[keyof typeof ProductsScalarFieldEnum]
+
+
+export const Products_campaignsScalarFieldEnum = {
+  id: 'id',
+  aff_campaign_id: 'aff_campaign_id',
+  product_id: 'product_id'
+} as const
+
+export type Products_campaignsScalarFieldEnum = (typeof Products_campaignsScalarFieldEnum)[keyof typeof Products_campaignsScalarFieldEnum]
+
+
+export const ProfilesScalarFieldEnum = {
+  id: 'id',
+  dob: 'dob',
+  province_code: 'province_code',
+  district_code: 'district_code',
+  ward_code: 'ward_code',
+  user_id: 'user_id',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  address: 'address',
+  identify_number: 'identify_number',
+  date_grant_identify: 'date_grant_identify',
+  place_grant_identify: 'place_grant_identify',
+  full_name: 'full_name',
+  gender: 'gender',
+  date_expired_identify: 'date_expired_identify',
+  email_contract: 'email_contract',
+  identify_number_front_image: 'identify_number_front_image',
+  identify_number_back_image: 'identify_number_back_image',
+  place_of_origin: 'place_of_origin',
+  place_of_residence: 'place_of_residence',
+  identity_card_full_name: 'identity_card_full_name',
+  next_updated_at: 'next_updated_at',
+  addresses: 'addresses',
+  tax_code: 'tax_code'
+} as const
+
+export type ProfilesScalarFieldEnum = (typeof ProfilesScalarFieldEnum)[keyof typeof ProfilesScalarFieldEnum]
+
+
+export const Protest_overduesScalarFieldEnum = {
+  id: 'id',
+  kol_submission_id: 'kol_submission_id',
+  status: 'status',
+  reason: 'reason',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  description: 'description',
+  aff_campaign_id: 'aff_campaign_id'
+} as const
+
+export type Protest_overduesScalarFieldEnum = (typeof Protest_overduesScalarFieldEnum)[keyof typeof Protest_overduesScalarFieldEnum]
+
+
+export const ProvincesScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  code: 'code'
+} as const
+
+export type ProvincesScalarFieldEnum = (typeof ProvincesScalarFieldEnum)[keyof typeof ProvincesScalarFieldEnum]
+
+
+export const Questions_and_answersScalarFieldEnum = {
+  id: 'id',
+  question: 'question',
+  answer: 'answer',
+  notes: 'notes',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  created_from: 'created_from'
+} as const
+
+export type Questions_and_answersScalarFieldEnum = (typeof Questions_and_answersScalarFieldEnum)[keyof typeof Questions_and_answersScalarFieldEnum]
+
+
+export const Referral_commissionsScalarFieldEnum = {
+  id: 'id',
+  referral_code: 'referral_code',
+  subordinates: 'subordinates',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  is_active: 'is_active',
+  referral_type: 'referral_type'
+} as const
+
+export type Referral_commissionsScalarFieldEnum = (typeof Referral_commissionsScalarFieldEnum)[keyof typeof Referral_commissionsScalarFieldEnum]
+
+
+export const Request_product_samplesScalarFieldEnum = {
+  id: 'id',
+  full_name: 'full_name',
+  address: 'address',
+  phone_number: 'phone_number',
+  product_id: 'product_id',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  status: 'status',
+  sku_id: 'sku_id',
+  kol_submission_id: 'kol_submission_id',
+  kol_brand_tap_id: 'kol_brand_tap_id',
+  draft_id: 'draft_id',
+  reason: 'reason',
+  next_status: 'next_status',
+  is_bd_confirm: 'is_bd_confirm',
+  tracking_number: 'tracking_number',
+  is_updated_sku: 'is_updated_sku',
+  is_bd_remind: 'is_bd_remind',
+  metadata: 'metadata',
+  note: 'note',
+  delivery_service: 'delivery_service',
+  reviewed_at: 'reviewed_at',
+  tap_status: 'tap_status',
+  reminded_at: 'reminded_at',
+  sku_sale_property_value_names: 'sku_sale_property_value_names',
+  sku_id_tiktok: 'sku_id_tiktok'
+} as const
+
+export type Request_product_samplesScalarFieldEnum = (typeof Request_product_samplesScalarFieldEnum)[keyof typeof Request_product_samplesScalarFieldEnum]
+
+
+export const Review_itemsScalarFieldEnum = {
+  id: 'id',
+  review: 'review',
+  sku_id: 'sku_id',
+  sku_specification: 'sku_specification',
+  review_user: 'review_user',
+  is_owner: 'is_owner',
+  is_anonymous: 'is_anonymous',
+  product_detail_review_id: 'product_detail_review_id',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by'
+} as const
+
+export type Review_itemsScalarFieldEnum = (typeof Review_itemsScalarFieldEnum)[keyof typeof Review_itemsScalarFieldEnum]
+
+
+export const Sample_applicationsScalarFieldEnum = {
+  id: 'id',
+  created_at: 'created_at',
+  sample_application_id: 'sample_application_id',
+  approve_expiration_at: 'approve_expiration_at',
+  available_quantity: 'available_quantity',
+  commission_rate: 'commission_rate',
+  creator: 'creator',
+  creator_username: 'creator_username',
+  creator_id: 'creator_id',
+  product: 'product',
+  is_approvable: 'is_approvable',
+  order_id: 'order_id',
+  partner_name: 'partner_name',
+  status: 'status',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  kol_submission_id: 'kol_submission_id',
+  requested_at: 'requested_at',
+  seller_id: 'seller_id'
+} as const
+
+export type Sample_applicationsScalarFieldEnum = (typeof Sample_applicationsScalarFieldEnum)[keyof typeof Sample_applicationsScalarFieldEnum]
+
+
+export const SellersScalarFieldEnum = {
+  id: 'id',
+  seller_id: 'seller_id',
+  name: 'name',
+  avatar_url: 'avatar_url',
+  product_count: 'product_count',
+  seller_location: 'seller_location',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  email_seller: 'email_seller',
+  shop_code: 'shop_code'
+} as const
+
+export type SellersScalarFieldEnum = (typeof SellersScalarFieldEnum)[keyof typeof SellersScalarFieldEnum]
+
+
+export const Shop_gmv_breakdown_dailyScalarFieldEnum = {
+  id: 'id',
+  seller_id: 'seller_id',
+  metric_date: 'metric_date',
+  type: 'type',
+  gmv_amount: 'gmv_amount',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by'
+} as const
+
+export type Shop_gmv_breakdown_dailyScalarFieldEnum = (typeof Shop_gmv_breakdown_dailyScalarFieldEnum)[keyof typeof Shop_gmv_breakdown_dailyScalarFieldEnum]
+
+
+export const Shop_performance_dailyScalarFieldEnum = {
+  id: 'id',
+  seller_id: 'seller_id',
+  metric_date: 'metric_date',
+  avg_customers_count: 'avg_customers_count',
+  items_sold: 'items_sold',
+  orders_count: 'orders_count',
+  sku_orders_count: 'sku_orders_count',
+  gmv_overall: 'gmv_overall',
+  gross_revenue: 'gross_revenue',
+  refunds_amount: 'refunds_amount',
+  avg_conversation_rate: 'avg_conversation_rate',
+  avg_page_views: 'avg_page_views',
+  avg_visitors: 'avg_visitors',
+  currency: 'currency',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by'
+} as const
+
+export type Shop_performance_dailyScalarFieldEnum = (typeof Shop_performance_dailyScalarFieldEnum)[keyof typeof Shop_performance_dailyScalarFieldEnum]
+
+
+export const Shopplus_tokensScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  token: 'token',
+  expires_at: 'expires_at',
+  brand_core_id: 'brand_core_id',
+  user_id: 'user_id',
+  brand_id: 'brand_id',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by'
+} as const
+
+export type Shopplus_tokensScalarFieldEnum = (typeof Shopplus_tokensScalarFieldEnum)[keyof typeof Shopplus_tokensScalarFieldEnum]
+
+
+export const Sku_transactionsScalarFieldEnum = {
+  id: 'id',
+  order_id: 'order_id',
+  statement_id: 'statement_id',
+  sku_id: 'sku_id',
+  sku_name: 'sku_name',
+  product_name: 'product_name',
+  quantity: 'quantity',
+  revenue_amount: 'revenue_amount',
+  settlement_amount: 'settlement_amount',
+  shipping_cost_amount: 'shipping_cost_amount',
+  fee_tax_amount: 'fee_tax_amount',
+  fee_tax_breakdown: 'fee_tax_breakdown',
+  revenue_breakdown: 'revenue_breakdown',
+  shipping_cost_breakdown: 'shipping_cost_breakdown',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by'
+} as const
+
+export type Sku_transactionsScalarFieldEnum = (typeof Sku_transactionsScalarFieldEnum)[keyof typeof Sku_transactionsScalarFieldEnum]
+
+
+export const SkusScalarFieldEnum = {
+  id: 'id',
+  sku_id: 'sku_id',
+  sku_sale_props: 'sku_sale_props',
+  stock: 'stock',
+  purchase_limit: 'purchase_limit',
+  price: 'price',
+  promotion_view: 'promotion_view',
+  product_id: 'product_id',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  is_hidden: 'is_hidden',
+  campaign_id: 'campaign_id'
+} as const
+
+export type SkusScalarFieldEnum = (typeof SkusScalarFieldEnum)[keyof typeof SkusScalarFieldEnum]
+
+
+export const SubscriptionsScalarFieldEnum = {
+  id: 'id',
+  plan_id: 'plan_id',
+  status: 'status',
+  billing_cycle: 'billing_cycle',
+  current_period_start: 'current_period_start',
+  current_period_end: 'current_period_end',
+  cancel_at_period_end: 'cancel_at_period_end',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by'
+} as const
+
+export type SubscriptionsScalarFieldEnum = (typeof SubscriptionsScalarFieldEnum)[keyof typeof SubscriptionsScalarFieldEnum]
+
+
+export const TasksScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  duration: 'duration'
+} as const
+
+export type TasksScalarFieldEnum = (typeof TasksScalarFieldEnum)[keyof typeof TasksScalarFieldEnum]
+
+
+export const TiktokScalarFieldEnum = {
+  id: 'id',
+  tiktok_id: 'tiktok_id',
+  refresh_token: 'refresh_token',
+  user_id: 'user_id',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  average_view_count: 'average_view_count',
+  average_like_count: 'average_like_count',
+  average_share_count: 'average_share_count',
+  average_engagement_rate: 'average_engagement_rate',
+  video_count: 'video_count',
+  likes_count: 'likes_count',
+  follower_count: 'follower_count',
+  following_count: 'following_count',
+  link: 'link',
+  refresh_token_creator_tap: 'refresh_token_creator_tap',
+  video_gmv: 'video_gmv',
+  live_gmv: 'live_gmv',
+  female_ratio: 'female_ratio',
+  open_id: 'open_id',
+  total_gmv: 'total_gmv',
+  avg_ec_live_uv: 'avg_ec_live_uv',
+  avg_ec_video_view_count: 'avg_ec_video_view_count',
+  gmv_range: 'gmv_range',
+  top_follower_demographics: 'top_follower_demographics',
+  category_ids: 'category_ids',
+  products_cart_gmv: 'products_cart_gmv',
+  follower_state_location: 'follower_state_location',
+  follower_ages: 'follower_ages',
+  is_authorized: 'is_authorized',
+  creator_oecu_id: 'creator_oecu_id',
+  is_fast_growing: 'is_fast_growing',
+  creator_id: 'creator_id',
+  follower_genders: 'follower_genders',
+  posting_rate: 'posting_rate',
+  is_unauthorized_showcase: 'is_unauthorized_showcase',
+  nearest_link: 'nearest_link',
+  koc_cast: 'koc_cast'
+} as const
+
+export type TiktokScalarFieldEnum = (typeof TiktokScalarFieldEnum)[keyof typeof TiktokScalarFieldEnum]
+
+
+export const Tiktok_externalScalarFieldEnum = {
+  id: 'id',
+  link: 'link',
+  follower_count: 'follower_count',
+  video_gmv: 'video_gmv',
+  live_gmv: 'live_gmv',
+  female_ratio: 'female_ratio',
+  total_gmv: 'total_gmv',
+  avg_ec_live_uv: 'avg_ec_live_uv',
+  avg_ec_video_view_count: 'avg_ec_video_view_count',
+  gmv_range: 'gmv_range',
+  top_follower_demographics: 'top_follower_demographics',
+  category_ids: 'category_ids',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  product_ids: 'product_ids',
+  referral_code: 'referral_code',
+  categories_tap: 'categories_tap'
+} as const
+
+export type Tiktok_externalScalarFieldEnum = (typeof Tiktok_externalScalarFieldEnum)[keyof typeof Tiktok_externalScalarFieldEnum]
+
+
+export const Tiktok_shop_authorizationsScalarFieldEnum = {
+  id: 'id',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  open_id: 'open_id',
+  seller_name: 'seller_name',
+  seller_base_region: 'seller_base_region',
+  user_type: 'user_type',
+  access_token: 'access_token',
+  access_token_expire_at: 'access_token_expire_at',
+  refresh_token: 'refresh_token',
+  refresh_token_expire_at: 'refresh_token_expire_at',
+  granted_scopes: 'granted_scopes',
+  is_authorized: 'is_authorized',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  seller_id: 'seller_id'
+} as const
+
+export type Tiktok_shop_authorizationsScalarFieldEnum = (typeof Tiktok_shop_authorizationsScalarFieldEnum)[keyof typeof Tiktok_shop_authorizationsScalarFieldEnum]
+
+
+export const Tracking_viewsScalarFieldEnum = {
+  id: 'id',
+  draft_id: 'draft_id',
+  video_id: 'video_id',
+  view_count: 'view_count',
+  created_at: 'created_at',
+  ended_at: 'ended_at'
+} as const
+
+export type Tracking_viewsScalarFieldEnum = (typeof Tracking_viewsScalarFieldEnum)[keyof typeof Tracking_viewsScalarFieldEnum]
+
+
+export const User_activitiesScalarFieldEnum = {
+  id: 'id',
+  created_at: 'created_at',
+  created_by: 'created_by'
+} as const
+
+export type User_activitiesScalarFieldEnum = (typeof User_activitiesScalarFieldEnum)[keyof typeof User_activitiesScalarFieldEnum]
+
+
+export const User_categoriesScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  category_id: 'category_id'
+} as const
+
+export type User_categoriesScalarFieldEnum = (typeof User_categoriesScalarFieldEnum)[keyof typeof User_categoriesScalarFieldEnum]
+
+
+export const User_categories_tapScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  category_id: 'category_id'
+} as const
+
+export type User_categories_tapScalarFieldEnum = (typeof User_categories_tapScalarFieldEnum)[keyof typeof User_categories_tapScalarFieldEnum]
+
+
+export const User_galleriesScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  user_id: 'user_id',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  type: 'type'
+} as const
+
+export type User_galleriesScalarFieldEnum = (typeof User_galleriesScalarFieldEnum)[keyof typeof User_galleriesScalarFieldEnum]
+
+
+export const User_interactsScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  entity_id: 'entity_id',
+  entity_name: 'entity_name',
+  interact_id: 'interact_id',
+  description: 'description',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  status: 'status',
+  reason: 'reason'
+} as const
+
+export type User_interactsScalarFieldEnum = (typeof User_interactsScalarFieldEnum)[keyof typeof User_interactsScalarFieldEnum]
+
+
+export const User_notification_watermarksScalarFieldEnum = {
+  id: 'id',
+  last_read_notification_id: 'last_read_notification_id',
+  entity_name: 'entity_name',
+  type: 'type',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by'
+} as const
+
+export type User_notification_watermarksScalarFieldEnum = (typeof User_notification_watermarksScalarFieldEnum)[keyof typeof User_notification_watermarksScalarFieldEnum]
+
+
+export const User_otp_sessionsScalarFieldEnum = {
+  id: 'id',
+  otp_type_id: 'otp_type_id',
+  user_id: 'user_id',
+  code: 'code',
+  expired_at: 'expired_at',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  email: 'email',
+  phone_number: 'phone_number'
+} as const
+
+export type User_otp_sessionsScalarFieldEnum = (typeof User_otp_sessionsScalarFieldEnum)[keyof typeof User_otp_sessionsScalarFieldEnum]
+
+
+export const User_platformsScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  platform_id: 'platform_id',
+  link: 'link'
+} as const
+
+export type User_platformsScalarFieldEnum = (typeof User_platformsScalarFieldEnum)[keyof typeof User_platformsScalarFieldEnum]
+
+
+export const User_referralsScalarFieldEnum = {
+  id: 'id',
+  child_user_id: 'child_user_id',
+  parent_user_id: 'parent_user_id',
+  level_child: 'level_child',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by'
+} as const
+
+export type User_referralsScalarFieldEnum = (typeof User_referralsScalarFieldEnum)[keyof typeof User_referralsScalarFieldEnum]
+
+
+export const User_relationshipsScalarFieldEnum = {
+  id: 'id',
+  children_user_id: 'children_user_id',
+  parent_user_id: 'parent_user_id',
+  scope: 'scope'
+} as const
+
+export type User_relationshipsScalarFieldEnum = (typeof User_relationshipsScalarFieldEnum)[keyof typeof User_relationshipsScalarFieldEnum]
+
+
+export const User_reportsScalarFieldEnum = {
+  id: 'id',
+  entity_id: 'entity_id',
+  entity_name: 'entity_name',
+  reason: 'reason',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  status: 'status',
+  description: 'description'
+} as const
+
+export type User_reportsScalarFieldEnum = (typeof User_reportsScalarFieldEnum)[keyof typeof User_reportsScalarFieldEnum]
+
+
+export const User_sessionsScalarFieldEnum = {
+  id: 'id',
+  refresh_token: 'refresh_token',
+  user_agent: 'user_agent',
+  ip_address: 'ip_address',
+  expired_at: 'expired_at',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by'
+} as const
+
+export type User_sessionsScalarFieldEnum = (typeof User_sessionsScalarFieldEnum)[keyof typeof User_sessionsScalarFieldEnum]
+
+
+export const WardsScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  code: 'code',
+  full_name: 'full_name',
+  district_code: 'district_code'
+} as const
+
+export type WardsScalarFieldEnum = (typeof WardsScalarFieldEnum)[keyof typeof WardsScalarFieldEnum]
+
+
+export const YoutubeScalarFieldEnum = {
+  id: 'id',
+  channel_id: 'channel_id',
+  refresh_token: 'refresh_token',
+  user_id: 'user_id',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  view_count: 'view_count',
+  follower_count: 'follower_count',
+  video_count: 'video_count',
+  link: 'link',
+  data_analyst: 'data_analyst'
+} as const
+
+export type YoutubeScalarFieldEnum = (typeof YoutubeScalarFieldEnum)[keyof typeof YoutubeScalarFieldEnum]
+
+
+export const CrmPipelineStagesScalarFieldEnum = {
+  code: 'code',
+  label: 'label',
+  stage_order: 'stage_order',
+  mapped_status_code: 'mapped_status_code',
+  is_terminal: 'is_terminal',
+  is_active: 'is_active'
+} as const
+
+export type CrmPipelineStagesScalarFieldEnum = (typeof CrmPipelineStagesScalarFieldEnum)[keyof typeof CrmPipelineStagesScalarFieldEnum]
+
+
+export const CrmSourcesScalarFieldEnum = {
+  code: 'code',
+  label: 'label',
+  is_active: 'is_active'
+} as const
+
+export type CrmSourcesScalarFieldEnum = (typeof CrmSourcesScalarFieldEnum)[keyof typeof CrmSourcesScalarFieldEnum]
+
+
+export const CrmTiersScalarFieldEnum = {
+  code: 'code',
+  label: 'label',
+  is_active: 'is_active'
+} as const
+
+export type CrmTiersScalarFieldEnum = (typeof CrmTiersScalarFieldEnum)[keyof typeof CrmTiersScalarFieldEnum]
+
+
+export const CrmCustomerProfilesScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  source_code: 'source_code',
+  tier_code: 'tier_code',
+  owner_id: 'owner_id',
+  created_at: 'created_at'
+} as const
+
+export type CrmCustomerProfilesScalarFieldEnum = (typeof CrmCustomerProfilesScalarFieldEnum)[keyof typeof CrmCustomerProfilesScalarFieldEnum]
+
+
+export const CrmDealsScalarFieldEnum = {
+  id: 'id',
+  customer_id: 'customer_id',
+  pipeline_stage_code: 'pipeline_stage_code',
+  owner_id: 'owner_id',
+  product_package: 'product_package',
+  deal_value: 'deal_value',
+  probability: 'probability',
+  status: 'status',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type CrmDealsScalarFieldEnum = (typeof CrmDealsScalarFieldEnum)[keyof typeof CrmDealsScalarFieldEnum]
+
+
+export const CrmPipelineRecordsScalarFieldEnum = {
+  id: 'id',
+  deal_id: 'deal_id',
+  stage_code: 'stage_code',
+  owner_id: 'owner_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type CrmPipelineRecordsScalarFieldEnum = (typeof CrmPipelineRecordsScalarFieldEnum)[keyof typeof CrmPipelineRecordsScalarFieldEnum]
+
+
+export const CrmPipelineEventsScalarFieldEnum = {
+  id: 'id',
+  event_type: 'event_type',
+  entity_type: 'entity_type',
+  entity_id: 'entity_id',
+  payload: 'payload',
+  status: 'status',
+  error_message: 'error_message',
+  created_at: 'created_at'
+} as const
+
+export type CrmPipelineEventsScalarFieldEnum = (typeof CrmPipelineEventsScalarFieldEnum)[keyof typeof CrmPipelineEventsScalarFieldEnum]
+
+
+export const CrmSyncJobsScalarFieldEnum = {
+  id: 'id',
+  event_key: 'event_key',
+  event_type: 'event_type',
+  user_id: 'user_id',
+  payload: 'payload',
+  status: 'status',
+  retry_count: 'retry_count',
+  last_error: 'last_error',
+  locked_at: 'locked_at',
+  processed_at: 'processed_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type CrmSyncJobsScalarFieldEnum = (typeof CrmSyncJobsScalarFieldEnum)[keyof typeof CrmSyncJobsScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
-  phone_number: 'phone_number',
+  username: 'username',
+  first_name: 'first_name',
+  last_name: 'last_name',
+  is_verify_email: 'is_verify_email',
   password: 'password',
-  avatar: 'avatar',
-  name: 'name',
-  bio: 'bio',
-  address: 'address',
-  age: 'age',
-  gender: 'gender',
-  major: 'major',
-  free_time_activity: 'free_time_activity',
-  is_verified: 'is_verified',
-  is_active: 'is_active',
-  is_block: 'is_block',
-  created_by: 'created_by',
-  updated_by: 'updated_by',
-  deleted_by: 'deleted_by',
+  avatar_name: 'avatar_name',
+  background_name: 'background_name',
   created_at: 'created_at',
+  created_by: 'created_by',
   updated_at: 'updated_at',
+  updated_by: 'updated_by',
   deleted_at: 'deleted_at',
-  last_login_at: 'last_login_at',
-  is_online: 'is_online'
+  deleted_by: 'deleted_by',
+  role_id: 'role_id',
+  bio: 'bio',
+  total_spent: 'total_spent',
+  rating: 'rating',
+  age: 'age',
+  platform_id: 'platform_id',
+  profile_id: 'profile_id',
+  contract_id: 'contract_id',
+  tiktok_id: 'tiktok_id',
+  notification_token: 'notification_token',
+  gender: 'gender',
+  is_block: 'is_block',
+  apple_id: 'apple_id',
+  youtube_id: 'youtube_id',
+  phone_number: 'phone_number',
+  is_new_user: 'is_new_user',
+  is_auth_creator_tap: 'is_auth_creator_tap',
+  is_restricted: 'is_restricted',
+  have_showcase: 'have_showcase',
+  categories_tap: 'categories_tap',
+  last_active_at: 'last_active_at',
+  channel_orientation: 'channel_orientation',
+  is_koc_core: 'is_koc_core',
+  is_pinned: 'is_pinned',
+  is_created_external: 'is_created_external',
+  metadata: 'metadata',
+  is_active_ai: 'is_active_ai',
+  is_high_gmv: 'is_high_gmv',
+  brand_name: 'brand_name',
+  parent_id: 'parent_id',
+  is_phone_verified: 'is_phone_verified',
+  is_show_page_identity: 'is_show_page_identity',
+  shop_codes: 'shop_codes',
+  is_active: 'is_active',
+  current_parent_user_id: 'current_parent_user_id',
+  blocked_at: 'blocked_at'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-export const UserHobbyScalarFieldEnum = {
-  user_id: 'user_id',
-  hobby_id: 'hobby_id'
-} as const
-
-export type UserHobbyScalarFieldEnum = (typeof UserHobbyScalarFieldEnum)[keyof typeof UserHobbyScalarFieldEnum]
-
-
-export const HobbyScalarFieldEnum = {
+export const RoleScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  description: 'description',
+  type: 'type',
   created_at: 'created_at',
+  created_by: 'created_by',
   updated_at: 'updated_at',
-  deleted_at: 'deleted_at'
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by'
 } as const
 
-export type HobbyScalarFieldEnum = (typeof HobbyScalarFieldEnum)[keyof typeof HobbyScalarFieldEnum]
+export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof RoleScalarFieldEnum]
+
+
+export const PermissionScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  type: 'type',
+  is_active: 'is_active',
+  created_at: 'created_at',
+  created_by: 'created_by',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  deleted_at: 'deleted_at',
+  deleted_by: 'deleted_by',
+  scope: 'scope'
+} as const
+
+export type PermissionScalarFieldEnum = (typeof PermissionScalarFieldEnum)[keyof typeof PermissionScalarFieldEnum]
+
+
+export const PermissionRoleScalarFieldEnum = {
+  id: 'id',
+  permission_id: 'permission_id',
+  role_id: 'role_id'
+} as const
+
+export type PermissionRoleScalarFieldEnum = (typeof PermissionRoleScalarFieldEnum)[keyof typeof PermissionRoleScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -305,12 +2339,11 @@ export const NullableJsonNullValueInput = {
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
-export const NullsOrder = {
-  first: 'first',
-  last: 'last'
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
 } as const
 
-export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -319,6 +2352,14 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
 export const JsonNullValueFilter = {

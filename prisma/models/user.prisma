@@ -1,61 +1,117 @@
-enum Gender {
-  MALE
-  FEMALE
-  OTHER
-}
-
 model User {
-  id                 Int        @id @default(autoincrement())
-  email              String?    @unique
-  phone_number       String?    @unique @db.VarChar(20)
-  password           String?    @db.VarChar(60)
-  avatar             Json?      
-  name               String?    @db.VarChar(60)
-  bio                String?    @db.VarChar(255)
-  address            String?    @db.VarChar(255)
-  age                Int?       @db.SmallInt
-  gender             Gender?
-  major              String?    @db.VarChar(255)
-  free_time_activity String?    @db.VarChar(255)
-  is_verified        Boolean    @default(false)
-  is_active          Boolean    @default(false)
-  is_block           Boolean    @default(false)
-  created_by         Int? 
-  updated_by         Int?
-  deleted_by         Int?
-  created_at         DateTime   @default(now())
-  updated_at         DateTime   @updatedAt
-  deleted_at         DateTime?
-  last_login_at      DateTime?
-  is_online          Boolean    @default(false)
-  posts              Post[]
-  likes              Like[]
-  comments           Comment[]
-  roles              UserRole[]
-  user_answers       UserAnswer[]
-  user_hobbies       UserHobby[]
+  id                     Int       @id @default(autoincrement())
+  email                  String?   @db.VarChar(255)
+  username               String?   @db.VarChar(255)
+  first_name             String?   @db.VarChar(255)
+  last_name              String?   @db.VarChar(255)
+  is_verify_email        Boolean?
+  password               String?
+  avatar_name            String?
+  background_name        String?
+  created_at             DateTime  @default(now()) @db.Timestamptz(6)
+  created_by             Int?
+  updated_at             DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by             Int?
+  deleted_at             DateTime? @db.Timestamptz(6)
+  deleted_by             Int?
+  role_id                Int?
+  bio                    String?
+  total_spent            Decimal?  @db.Decimal(10, 2)
+  rating                 Decimal?  @db.Decimal(10, 2)
+  age                    String?   @db.VarChar(255)
+  platform_id            Int?
+  profile_id             Int?
+  contract_id            Int?
+  tiktok_id              Int?
+  notification_token     String?   @db.VarChar
+  gender                 String?   @db.VarChar(255)
+  is_block               Boolean?  @default(false)
+  apple_id               String?   @db.VarChar(255)
+  youtube_id             Int?
+  phone_number           String?   @db.VarChar(255)
+  is_new_user            Boolean?  @default(true)
+  is_auth_creator_tap    Boolean?  @default(false)
+  is_restricted          Boolean?  @default(false)
+  have_showcase          Boolean?  @default(false)
+  categories_tap         String?
+  last_active_at         DateTime? @default(now()) @db.Timestamptz(6)
+  channel_orientation    String[]  @default([]) @db.VarChar
+  is_koc_core            Boolean?  @default(false)
+  is_pinned              Boolean?  @default(false)
+  is_created_external    Boolean?  @default(false)
+  metadata               Json?
+  is_active_ai           Boolean?
+  is_high_gmv            Boolean?  @default(false)
+  brand_name             String?   @db.VarChar(255)
+  parent_id              Int?
+  is_phone_verified      Boolean?
+  is_show_page_identity  Boolean?  @default(false)
+  shop_codes             String[]  @default([]) @db.VarChar
+  is_active              Boolean?  @default(true)
+  current_parent_user_id Int?      @db.SmallInt
+  blocked_at             DateTime? @db.Timestamptz(6)
+
+  brands_infos      brands_info[]
+  file_imports      file_imports[]
+  nodes             nodes[]
+  platform          platforms?          @relation(fields: [platform_id], references: [id])
+  role              Role?               @relation(fields: [role_id], references: [id])
+  user_interacts    user_interacts[]
+  user_otp_sessions user_otp_sessions[]
+
+  crmCustomerProfile       CrmCustomerProfiles?
+  ownedCrmCustomerProfiles CrmCustomerProfiles[] @relation("crm_owner")
+  ownedPipelineRecords     CrmPipelineRecords[]  @relation("pipeline_owner")
+  ownedCrmDeals            CrmDeals[]            @relation("deal_owner")
+  crmSyncJobs              CrmSyncJobs[]
 
   @@map("users")
 }
 
-model UserHobby {
-  user_id  Int
-  hobby_id Int
+model Role {
+  id          Int       @id @default(autoincrement())
+  name        String    @db.VarChar(255)
+  description String?   @db.VarChar(512)
+  type        String?   @db.VarChar(255)
+  created_at  DateTime  @default(now()) @db.Timestamptz(6)
+  created_by  Int?
+  updated_at  DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by  Int?
+  deleted_at  DateTime? @db.Timestamptz(6)
+  deleted_by  Int?
 
-  user  User  @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  hobby Hobby @relation(fields: [hobby_id], references: [id], onDelete: Cascade)
+  users           User[]
+  permissionRoles PermissionRole[]
 
-  @@id([user_id, hobby_id])
-  @@map("user_hobbies")
+  @@map("roles")
 }
 
-model Hobby {
-  id            Int       @id @default(autoincrement())
-  name          String    @db.VarChar(50)
-  created_at    DateTime  @default(now())
-  updated_at    DateTime  @updatedAt
-  deleted_at    DateTime?
+model Permission {
+  id         Int       @id @default(autoincrement())
+  name       String?   @db.VarChar(255)
+  type       String?   @db.VarChar(255)
+  is_active  Boolean?  @default(true)
+  created_at DateTime  @default(now()) @db.Timestamptz(6)
+  created_by Int?
+  updated_at DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by Int?
+  deleted_at DateTime? @db.Timestamptz(6)
+  deleted_by Int?
+  scope      String?   @db.VarChar(255)
 
-  user_hobbies UserHobby[]
-  @@map("hobbies")
+  permissionRoles PermissionRole[]
+
+  @@map("permissions")
+}
+
+model PermissionRole {
+  id            Int @id @default(autoincrement())
+  permission_id Int
+  role_id       Int
+
+  permission Permission @relation(fields: [permission_id], references: [id], onDelete: Cascade)
+  role       Role       @relation(fields: [role_id], references: [id], onDelete: Cascade)
+
+  @@unique([permission_id, role_id], map: "permission_roles_un")
+  @@map("permission_roles")
 }

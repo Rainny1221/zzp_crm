@@ -22,7 +22,11 @@ export class FileProcessor extends WorkerHost {
       const optimizedBuffer = await this.imageService.optimizeAvatar(rawBuffer);
 
       const optimizedKey = `avatars/${userId}-${Date.now()}.webp`;
-      const avatarUrl = await this.s3Service.uploadBuffer(optimizedBuffer, optimizedKey, 'image/webp');
+      const avatarUrl = await this.s3Service.uploadBuffer(
+        optimizedBuffer,
+        optimizedKey,
+        'image/webp',
+      );
 
       await this.commandBus.execute(new UpdateAvatarCommand(userId, avatarUrl));
     }

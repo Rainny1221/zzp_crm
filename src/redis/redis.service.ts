@@ -26,7 +26,11 @@ export class RedisService implements OnModuleDestroy {
     return this.redis.get(key);
   }
 
-  async set(key: string, value: string | number, ttl?: number): Promise<'OK' | null> {
+  async set(
+    key: string,
+    value: string | number,
+    ttl?: number,
+  ): Promise<'OK' | null> {
     if (ttl) {
       return this.redis.set(key, value, 'EX', ttl);
     }
@@ -61,7 +65,11 @@ export class RedisService implements OnModuleDestroy {
     return this.redis.ttl(key);
   }
 
-  async hset(key: string, field: string, value: string | number): Promise<number> {
+  async hset(
+    key: string,
+    field: string,
+    value: string | number,
+  ): Promise<number> {
     return this.redis.hset(key, field, value);
   }
 

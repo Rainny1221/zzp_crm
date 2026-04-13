@@ -22,7 +22,7 @@ import { ImageModule } from 'src/image/image.module';
     }),
     AwsS3Module,
     CqrsModule,
-    ImageModule
+    ImageModule,
   ],
   providers: [FileQueueService, FileProcessor, FileQueueListener],
   exports: [FileQueueService, FileProcessor],

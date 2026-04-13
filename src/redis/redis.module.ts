@@ -10,7 +10,7 @@ import { REDIS_CLIENT } from './redis.constants';
       provide: REDIS_CLIENT,
       useFactory: () => {
         const logger = new Logger('RedisModule');
-        
+
         const redis = new Redis({
           host: process.env.REDIS_HOST,
           port: Number(process.env.REDIS_PORT),

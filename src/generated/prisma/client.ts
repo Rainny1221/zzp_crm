@@ -29,8 +29,8 @@ export * from "./enums.js"
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Matchings
- * const matchings = await prisma.matching.findMany()
+ * // Fetch zero or more Addresses
+ * const addresses = await prisma.address.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -40,67 +40,548 @@ export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts exten
 export { Prisma }
 
 /**
- * Model Matching
+ * Model address
  * 
  */
-export type Matching = Prisma.MatchingModel
+export type address = Prisma.addressModel
 /**
- * Model Permissions
+ * Model admin_notification_inbox
  * 
  */
-export type Permissions = Prisma.PermissionsModel
+export type admin_notification_inbox = Prisma.admin_notification_inboxModel
 /**
- * Model RolePermission
+ * Model aff_campaigns
  * 
  */
-export type RolePermission = Prisma.RolePermissionModel
+export type aff_campaigns = Prisma.aff_campaignsModel
 /**
- * Model Post
+ * Model ai_chats
  * 
  */
-export type Post = Prisma.PostModel
+export type ai_chats = Prisma.ai_chatsModel
 /**
- * Model Like
+ * Model apps
  * 
  */
-export type Like = Prisma.LikeModel
+export type apps = Prisma.appsModel
 /**
- * Model Comment
+ * Model blogs
  * 
  */
-export type Comment = Prisma.CommentModel
+export type blogs = Prisma.blogsModel
 /**
- * Model Question
+ * Model brand_subscriptions
  * 
  */
-export type Question = Prisma.QuestionModel
+export type brand_subscriptions = Prisma.brand_subscriptionsModel
 /**
- * Model UserAnswer
+ * Model brand_taps
  * 
  */
-export type UserAnswer = Prisma.UserAnswerModel
+export type brand_taps = Prisma.brand_tapsModel
 /**
- * Model Role
+ * Model brands
  * 
  */
-export type Role = Prisma.RoleModel
+export type brands = Prisma.brandsModel
 /**
- * Model UserRole
+ * Model brands_info
  * 
  */
-export type UserRole = Prisma.UserRoleModel
+export type brands_info = Prisma.brands_infoModel
+/**
+ * Model campaign_inspiration
+ * 
+ */
+export type campaign_inspiration = Prisma.campaign_inspirationModel
+/**
+ * Model campaign_tasks
+ * 
+ */
+export type campaign_tasks = Prisma.campaign_tasksModel
+/**
+ * Model campaigns
+ * 
+ */
+export type campaigns = Prisma.campaignsModel
+/**
+ * Model categories
+ * 
+ */
+export type categories = Prisma.categoriesModel
+/**
+ * Model chat_messages
+ * 
+ */
+export type chat_messages = Prisma.chat_messagesModel
+/**
+ * Model cheating_login
+ * 
+ */
+export type cheating_login = Prisma.cheating_loginModel
+/**
+ * Model comment_galleries
+ * 
+ */
+export type comment_galleries = Prisma.comment_galleriesModel
+/**
+ * Model comments
+ * 
+ */
+export type comments = Prisma.commentsModel
+/**
+ * Model contacts
+ * 
+ */
+export type contacts = Prisma.contactsModel
+/**
+ * Model content_performance_daily
+ * 
+ */
+export type content_performance_daily = Prisma.content_performance_dailyModel
+/**
+ * Model conversation_members
+ * 
+ */
+export type conversation_members = Prisma.conversation_membersModel
+/**
+ * Model conversations
+ * 
+ */
+export type conversations = Prisma.conversationsModel
+/**
+ * Model cost_per_view_campaigns
+ * 
+ */
+export type cost_per_view_campaigns = Prisma.cost_per_view_campaignsModel
+/**
+ * Model creator_content
+ * 
+ */
+export type creator_content = Prisma.creator_contentModel
+/**
+ * Model creator_profile_snapshot
+ * 
+ */
+export type creator_profile_snapshot = Prisma.creator_profile_snapshotModel
+/**
+ * Model districts
+ * 
+ */
+export type districts = Prisma.districtsModel
+/**
+ * Model draft_galleries
+ * 
+ */
+export type draft_galleries = Prisma.draft_galleriesModel
+/**
+ * Model drafts
+ * 
+ */
+export type drafts = Prisma.draftsModel
+/**
+ * Model features
+ * 
+ */
+export type features = Prisma.featuresModel
+/**
+ * Model file_imports
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type file_imports = Prisma.file_importsModel
+/**
+ * Model hide_skus
+ * 
+ */
+export type hide_skus = Prisma.hide_skusModel
+/**
+ * Model interacts
+ * 
+ */
+export type interacts = Prisma.interactsModel
+/**
+ * Model invite_receive_sample_reminders
+ * 
+ */
+export type invite_receive_sample_reminders = Prisma.invite_receive_sample_remindersModel
+/**
+ * Model kol_brand_taps
+ * 
+ */
+export type kol_brand_taps = Prisma.kol_brand_tapsModel
+/**
+ * Model kol_pricing
+ * 
+ */
+export type kol_pricing = Prisma.kol_pricingModel
+/**
+ * Model kol_submissions
+ * 
+ */
+export type kol_submissions = Prisma.kol_submissionsModel
+/**
+ * Model node_paths
+ * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type node_paths = Prisma.node_pathsModel
+/**
+ * Model nodes
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type nodes = Prisma.nodesModel
+/**
+ * Model notification_campaigns
+ * 
+ */
+export type notification_campaigns = Prisma.notification_campaignsModel
+/**
+ * Model notification_customs
+ * 
+ */
+export type notification_customs = Prisma.notification_customsModel
+/**
+ * Model notifications
+ * 
+ */
+export type notifications = Prisma.notificationsModel
+/**
+ * Model order_creator_content
+ * 
+ */
+export type order_creator_content = Prisma.order_creator_contentModel
+/**
+ * Model order_logistics
+ * 
+ */
+export type order_logistics = Prisma.order_logisticsModel
+/**
+ * Model order_packages
+ * 
+ */
+export type order_packages = Prisma.order_packagesModel
+/**
+ * Model order_payments
+ * 
+ */
+export type order_payments = Prisma.order_paymentsModel
+/**
+ * Model order_recipients
+ * 
+ */
+export type order_recipients = Prisma.order_recipientsModel
+/**
+ * Model order_skus
+ * 
+ */
+export type order_skus = Prisma.order_skusModel
+/**
+ * Model order_transactions
+ * 
+ */
+export type order_transactions = Prisma.order_transactionsModel
+/**
+ * Model orders
+ * 
+ */
+export type orders = Prisma.ordersModel
+/**
+ * Model orders_tap
+ * 
+ */
+export type orders_tap = Prisma.orders_tapModel
+/**
+ * Model otp_types
+ * 
+ */
+export type otp_types = Prisma.otp_typesModel
+/**
+ * Model permission_users
+ * 
+ */
+export type permission_users = Prisma.permission_usersModel
+/**
+ * Model plan_features
+ * 
+ */
+export type plan_features = Prisma.plan_featuresModel
+/**
+ * Model plans
+ * 
+ */
+export type plans = Prisma.plansModel
+/**
+ * Model platforms
+ * 
+ */
+export type platforms = Prisma.platformsModel
+/**
+ * Model platforms_campaigns
+ * 
+ */
+export type platforms_campaigns = Prisma.platforms_campaignsModel
+/**
+ * Model potentials
+ * 
+ */
+export type potentials = Prisma.potentialsModel
+/**
+ * Model product_counts
+ * 
+ */
+export type product_counts = Prisma.product_countsModel
+/**
+ * Model product_creator_content
+ * 
+ */
+export type product_creator_content = Prisma.product_creator_contentModel
+/**
+ * Model product_detail_reviews
+ * 
+ */
+export type product_detail_reviews = Prisma.product_detail_reviewsModel
+/**
+ * Model product_statistics
+ * 
+ */
+export type product_statistics = Prisma.product_statisticsModel
+/**
+ * Model products
+ * 
+ */
+export type products = Prisma.productsModel
+/**
+ * Model products_campaigns
+ * 
+ */
+export type products_campaigns = Prisma.products_campaignsModel
+/**
+ * Model profiles
+ * 
+ */
+export type profiles = Prisma.profilesModel
+/**
+ * Model protest_overdues
+ * 
+ */
+export type protest_overdues = Prisma.protest_overduesModel
+/**
+ * Model provinces
+ * 
+ */
+export type provinces = Prisma.provincesModel
+/**
+ * Model questions_and_answers
+ * 
+ */
+export type questions_and_answers = Prisma.questions_and_answersModel
+/**
+ * Model referral_commissions
+ * 
+ */
+export type referral_commissions = Prisma.referral_commissionsModel
+/**
+ * Model request_product_samples
+ * 
+ */
+export type request_product_samples = Prisma.request_product_samplesModel
+/**
+ * Model review_items
+ * 
+ */
+export type review_items = Prisma.review_itemsModel
+/**
+ * Model sample_applications
+ * 
+ */
+export type sample_applications = Prisma.sample_applicationsModel
+/**
+ * Model sellers
+ * 
+ */
+export type sellers = Prisma.sellersModel
+/**
+ * Model shop_gmv_breakdown_daily
+ * 
+ */
+export type shop_gmv_breakdown_daily = Prisma.shop_gmv_breakdown_dailyModel
+/**
+ * Model shop_performance_daily
+ * 
+ */
+export type shop_performance_daily = Prisma.shop_performance_dailyModel
+/**
+ * Model shopplus_tokens
+ * 
+ */
+export type shopplus_tokens = Prisma.shopplus_tokensModel
+/**
+ * Model sku_transactions
+ * 
+ */
+export type sku_transactions = Prisma.sku_transactionsModel
+/**
+ * Model skus
+ * 
+ */
+export type skus = Prisma.skusModel
+/**
+ * Model subscriptions
+ * 
+ */
+export type subscriptions = Prisma.subscriptionsModel
+/**
+ * Model tasks
+ * 
+ */
+export type tasks = Prisma.tasksModel
+/**
+ * Model tiktok
+ * 
+ */
+export type tiktok = Prisma.tiktokModel
+/**
+ * Model tiktok_external
+ * 
+ */
+export type tiktok_external = Prisma.tiktok_externalModel
+/**
+ * Model tiktok_shop_authorizations
+ * 
+ */
+export type tiktok_shop_authorizations = Prisma.tiktok_shop_authorizationsModel
+/**
+ * Model tracking_views
+ * 
+ */
+export type tracking_views = Prisma.tracking_viewsModel
+/**
+ * Model user_activities
+ * 
+ */
+export type user_activities = Prisma.user_activitiesModel
+/**
+ * Model user_categories
+ * 
+ */
+export type user_categories = Prisma.user_categoriesModel
+/**
+ * Model user_categories_tap
+ * 
+ */
+export type user_categories_tap = Prisma.user_categories_tapModel
+/**
+ * Model user_galleries
+ * 
+ */
+export type user_galleries = Prisma.user_galleriesModel
+/**
+ * Model user_interacts
+ * 
+ */
+export type user_interacts = Prisma.user_interactsModel
+/**
+ * Model user_notification_watermarks
+ * 
+ */
+export type user_notification_watermarks = Prisma.user_notification_watermarksModel
+/**
+ * Model user_otp_sessions
+ * 
+ */
+export type user_otp_sessions = Prisma.user_otp_sessionsModel
+/**
+ * Model user_platforms
+ * 
+ */
+export type user_platforms = Prisma.user_platformsModel
+/**
+ * Model user_referrals
+ * 
+ */
+export type user_referrals = Prisma.user_referralsModel
+/**
+ * Model user_relationships
+ * 
+ */
+export type user_relationships = Prisma.user_relationshipsModel
+/**
+ * Model user_reports
+ * 
+ */
+export type user_reports = Prisma.user_reportsModel
+/**
+ * Model user_sessions
+ * 
+ */
+export type user_sessions = Prisma.user_sessionsModel
+/**
+ * Model wards
+ * 
+ */
+export type wards = Prisma.wardsModel
+/**
+ * Model youtube
+ * 
+ */
+export type youtube = Prisma.youtubeModel
+/**
+ * Model CrmPipelineStages
+ * 
+ */
+export type CrmPipelineStages = Prisma.CrmPipelineStagesModel
+/**
+ * Model CrmSources
+ * 
+ */
+export type CrmSources = Prisma.CrmSourcesModel
+/**
+ * Model CrmTiers
+ * 
+ */
+export type CrmTiers = Prisma.CrmTiersModel
+/**
+ * Model CrmCustomerProfiles
+ * 
+ */
+export type CrmCustomerProfiles = Prisma.CrmCustomerProfilesModel
+/**
+ * Model CrmDeals
+ * 
+ */
+export type CrmDeals = Prisma.CrmDealsModel
+/**
+ * Model CrmPipelineRecords
+ * 
+ */
+export type CrmPipelineRecords = Prisma.CrmPipelineRecordsModel
+/**
+ * Model CrmPipelineEvents
+ * 
+ */
+export type CrmPipelineEvents = Prisma.CrmPipelineEventsModel
+/**
+ * Model CrmSyncJobs
+ * 
+ */
+export type CrmSyncJobs = Prisma.CrmSyncJobsModel
 /**
  * Model User
  * 
  */
 export type User = Prisma.UserModel
 /**
- * Model UserHobby
+ * Model Role
  * 
  */
-export type UserHobby = Prisma.UserHobbyModel
+export type Role = Prisma.RoleModel
 /**
- * Model Hobby
+ * Model Permission
  * 
  */
-export type Hobby = Prisma.HobbyModel
+export type Permission = Prisma.PermissionModel
+/**
+ * Model PermissionRole
+ * 
+ */
+export type PermissionRole = Prisma.PermissionRoleModel

@@ -4,7 +4,7 @@ import { AppLoggerService } from './app-logger.service';
 export const createMorganMiddleware = (logger: AppLoggerService) =>
   morgan(
     (tokens, req, res) => {
-      const user = (req as any).user;
+      const user = req.user;
 
       const payload = {
         message: 'HTTP request completed',
@@ -13,7 +13,11 @@ export const createMorganMiddleware = (logger: AppLoggerService) =>
         action: 'HTTP_REQUEST',
         entityType: 'HTTP',
         requestId: res.getHeader('x-request-id')?.toString(),
-        userId: user?.sub ? String(user.sub) : user?.id ? String(user.id) : undefined,
+        userId: user?.sub
+          ? String(user.sub)
+          : user?.id
+            ? String(user.id)
+            : undefined,
         meta: {
           method: tokens.method(req, res),
           url: tokens.url(req, res),

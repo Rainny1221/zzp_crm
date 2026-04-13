@@ -16,7 +16,7 @@ export class UpdateProfileHandler implements ICommandHandler<UpdateProfileComman
 
   constructor(
     @Inject(I_USER_REPOSITORY)
-    userRepo: any,
+    userRepo: IUserRepository,
     eventBus: EventBus,
     @Inject(WINSTON_MODULE_NEST_PROVIDER)
     logger: Logger,
@@ -52,7 +52,9 @@ export class UpdateProfileHandler implements ICommandHandler<UpdateProfileComman
       const saved = await this.userRepo.save(user);
 
       const events = user.pullDomainEvents();
-      events.forEach((e) => this.eventBus.publish(e));
+      events.forEach((event) => {
+        this.eventBus.publish(event);
+      });
 
       return UserPresenter.toResponse(saved);
     } catch (error) {

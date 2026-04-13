@@ -20,7 +20,7 @@ async function bootstrap() {
 
   app.use(createMorganMiddleware(app.get(AppLoggerService)));
   app.useGlobalInterceptors(app.get(RequestContextInterceptor));
-  
+
   app.useGlobalPipes(new ZodValidationPipe());
 
   const config = new DocumentBuilder()
@@ -41,7 +41,7 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  
+
   SwaggerModule.setup('api/docs', app, document, {
     swaggerOptions: {
       persistAuthorization: true,

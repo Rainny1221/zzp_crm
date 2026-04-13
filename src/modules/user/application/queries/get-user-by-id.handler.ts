@@ -10,7 +10,7 @@ export class GetUserByIdHandler implements IQueryHandler<GetUserByIdQuery> {
 
   constructor(
     @Inject(I_USER_REPOSITORY)
-    userRepo: any,
+    userRepo: IUserRepository,
   ) {
     this.userRepo = userRepo;
   }

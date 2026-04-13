@@ -1,0 +1,2129 @@
+model address {
+  id         BigInt    @unique(map: "address_pkey") @default(autoincrement())
+  address    String?
+  created_at DateTime  @default(now()) @db.Timestamptz(6)
+  created_by Int?
+  updated_at DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by Int?
+  deleted_at DateTime? @db.Timestamptz(6)
+  deleted_by Int?
+  is_default Boolean?  @default(false)
+  type       String?   @db.VarChar(255)
+}
+
+model admin_notification_inbox {
+  id                     BigInt                @id @default(autoincrement())
+  title                  String?               @db.VarChar(255)
+  content                String?
+  related_user_id        BigInt?
+  source_type            String?               @db.VarChar(20)
+  sender_name            String?               @db.VarChar(100)
+  is_read                Boolean?              @default(false)
+  created_at             DateTime?             @default(now()) @db.Timestamp(6)
+  notification_id        BigInt?
+  notification_custom_id BigInt?
+  notifications          notifications?        @relation(fields: [notification_id], references: [id], onUpdate: NoAction, map: "fk_admin_inbox_notification")
+  notification_customs   notification_customs? @relation(fields: [notification_custom_id], references: [id], onUpdate: NoAction, map: "fk_admin_inbox_notification_custom")
+
+  @@index([created_at], map: "idx_admin_inbox_created_at")
+  @@index([related_user_id], map: "idx_admin_inbox_related_user")
+  @@index([source_type], map: "idx_admin_inbox_source_type")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model aff_campaign_categories {
+  id              Int    @default(autoincrement())
+  aff_campaign_id Int?
+  category        String @db.VarChar
+
+  @@ignore
+}
+
+model aff_campaigns {
+  id                    Int                   @id @default(autoincrement())
+  title                 String?
+  description           String?
+  thumbnail_name        String?
+  status                String?               @db.VarChar(255)
+  additional_data       Json?
+  sell_area             String?
+  product_remaining     Int?
+  product_id            Int?
+  created_at            DateTime              @default(now()) @db.Timestamptz(6)
+  created_by            Int?
+  updated_at            DateTime?             @default(now()) @db.Timestamptz(6)
+  updated_by            Int?
+  deleted_at            DateTime?             @db.Timestamptz(6)
+  deleted_by            Int?
+  province_code         String?               @db.VarChar(255)
+  district_code         String?               @db.VarChar(255)
+  ward_code             String?               @db.VarChar(255)
+  total_kol_submission  Int?                  @default(0)
+  scheduled_start_time  DateTime?             @db.Timestamptz(6)
+  referral_id           Int?
+  published_at          DateTime?             @db.Timestamptz(6)
+  brand_name            String?               @db.VarChar(255)
+  is_self_face_required Boolean?              @default(false)
+  brand_tap_id          Int?
+  shop_name             String?               @db.VarChar(255)
+  is_need_gmv           Boolean?              @default(false)
+  aff_campaign_type     String[]              @default(["VIDEO"]) @db.VarChar
+  type                  String?               @default("NORMAL") @db.VarChar(255)
+  clip_simple_url       String[]              @default([]) @db.VarChar
+  cash_amount           Decimal?              @db.Decimal
+  is_private            Boolean?              @default(false)
+  limit                 Int?
+  categories_tap        String?
+  need_draft_approval   Boolean?
+  deadline              DateTime?             @db.Timestamptz(6)
+  hashtag               String[]              @default([]) @db.VarChar
+  ads_commission_rate   String?               @db.VarChar(255)
+  total_koc             Int?                  @default(0)
+  re_published_at       DateTime?             @db.Timestamptz(6)
+  referral_commissions  referral_commissions? @relation(fields: [referral_id], references: [id], onUpdate: NoAction, map: "fk_aff_campaigns_referral")
+}
+
+model ai_chats {
+  id         Int       @id @default(autoincrement())
+  role       String?   @db.VarChar(255)
+  content    String?
+  room_id    Int?
+  created_at DateTime  @default(now()) @db.Timestamptz(6)
+  created_by Int?
+  updated_at DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by Int?
+  deleted_at DateTime? @db.Timestamptz(6)
+  deleted_by Int?
+}
+
+model apps {
+  id      Int     @id @default(autoincrement())
+  type    String?
+  version String?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model bank_accounts {
+  id                  Int       @default(autoincrement())
+  account_number      String?   @db.VarChar
+  bank_code           Int?
+  created_at          DateTime  @default(now()) @db.Timestamptz(6)
+  created_by          Int?
+  updated_at          DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by          Int?
+  deleted_at          DateTime? @db.Timestamptz(6)
+  deleted_by          Int?
+  account_holder_name String?   @db.VarChar(255)
+  is_default          Boolean?  @default(false)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model banks {
+  id          Int       @default(autoincrement())
+  bank_name   String?   @db.VarChar(255)
+  description String?   @db.VarChar(255)
+  code        Int?
+  created_at  DateTime  @default(now()) @db.Timestamptz(6)
+  created_by  Int?
+  updated_at  DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by  Int?
+  deleted_at  DateTime? @db.Timestamptz(6)
+  deleted_by  Int?
+  thumbnail   String?   @db.VarChar(255)
+
+  @@ignore
+}
+
+model blogs {
+  id         Int       @id @default(autoincrement())
+  content    String?
+  created_at DateTime  @default(now()) @db.Timestamptz(6)
+  created_by Int?
+  updated_at DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by Int?
+  deleted_at DateTime? @db.Timestamptz(6)
+  deleted_by Int?
+  title      String?
+  thumbnail  String?
+  status     String?   @db.VarChar(255)
+  type       String?   @db.VarChar(255)
+  content_en String?
+  content_zh String?
+  title_en   String?
+  title_zh   String?
+  mode       String?   @db.VarChar(255)
+}
+
+model brand_subscriptions {
+  id              Int       @id @default(autoincrement())
+  price_at_time   Decimal?  @db.Decimal
+  payment_method  Int?      @db.SmallInt
+  started_at      DateTime? @db.Timestamptz(6)
+  expired_at      DateTime? @db.Timestamptz(6)
+  status          String?   @db.VarChar(255)
+  plan_pricing_id Int?      @db.SmallInt
+  created_at      DateTime? @default(now()) @db.Timestamptz(6)
+  created_by      Int?
+  updated_at      DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by      Int?
+  deleted_at      DateTime? @db.Timestamptz(6)
+  deleted_by      Int?
+}
+
+model brand_taps {
+  id                   Int       @id @default(autoincrement())
+  name                 String?   @db.VarChar(255)
+  created_at           DateTime  @default(now()) @db.Timestamptz(6)
+  created_by           Int?
+  updated_at           DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by           Int?
+  deleted_at           DateTime? @db.Timestamptz(6)
+  deleted_by           Int?
+  tag_name             String?   @db.VarChar(255)
+  brand_approved_count Int?      @default(0)
+  brand_rejected_count Int?      @default(0)
+  bd_approved_count    Int?      @default(0)
+  bd_rejected_count    Int?      @default(0)
+  metadata             Json?     @default("{}")
+  is_send_brand        Boolean?  @default(false)
+  total_show           String?   @default("ALL") @db.VarChar(255)
+  last_active_at       DateTime? @db.Timestamptz(6)
+  is_auto_order        Boolean?  @default(false)
+
+  @@index([tag_name], map: "idx_brand_taps_tag_name")
+}
+
+model brands {
+  id                      Int       @id(map: "brandss_pkey")
+  name                    String    @db.VarChar(255)
+  user_id                 Int
+  company_name            String?   @db.VarChar(255)
+  tax_code                String?   @db.VarChar(255)
+  company_address         String?   @db.VarChar(255)
+  representative_name     String?   @db.VarChar(255)
+  representative_position String?   @db.VarChar(255)
+  created_at              DateTime  @default(now()) @db.Timestamptz(6)
+  created_by              Int?
+  updated_at              DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by              Int?
+  deleted_at              DateTime? @db.Timestamptz(6)
+  deleted_by              Int?
+  brand_core_id           Int?
+}
+
+model brands_info {
+  id                      Int       @id(map: "brands_pkey") @default(autoincrement())
+  name                    String    @db.VarChar(255)
+  user_id                 Int
+  company_name            String?   @db.VarChar(255)
+  tax_code                String?   @db.VarChar(255)
+  company_address         String?   @db.VarChar(255)
+  representative_name     String?   @db.VarChar(255)
+  representative_position String?   @db.VarChar(255)
+  created_at              DateTime  @default(now()) @db.Timestamptz(6)
+  created_by              Int?
+  updated_at              DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by              Int?
+  deleted_at              DateTime? @db.Timestamptz(6)
+  deleted_by              Int?
+  users                   User      @relation(fields: [user_id], references: [id], map: "brands_user_id_fkey")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model campaign_categories {
+  id                        Int? @default(autoincrement())
+  campaign_id               Int?
+  category_id               Int
+  cost_per_view_campaign_id Int?
+
+  @@ignore
+}
+
+model campaign_inspiration {
+  id                        Int       @id @default(autoincrement())
+  name                      String?   @db.VarChar(500)
+  campaign_id               Int?
+  created_at                DateTime  @default(now()) @db.Timestamptz(6)
+  created_by                Int?
+  updated_at                DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by                Int?
+  deleted_at                DateTime? @db.Timestamptz(6)
+  deleted_by                Int?
+  type                      String?   @db.VarChar(255)
+  cost_per_view_campaign_id Int?
+  aff_campaign_id           Int?
+}
+
+model campaign_tasks {
+  id            Int       @id @default(autoincrement())
+  start_time    DateTime? @db.Timestamptz(6)
+  end_time      DateTime? @db.Timestamptz(6)
+  campaign_id   Int?
+  task_id       Int?
+  campaign_type String?   @db.VarChar
+  created_at    DateTime  @default(now()) @db.Timestamptz(6)
+  created_by    Int?
+  updated_at    DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by    Int?
+  deleted_at    DateTime? @db.Timestamptz(6)
+  deleted_by    Int?
+  worked_by     Int?
+  status        String?   @db.VarChar(255)
+}
+
+model campaigns {
+  id                   Int                   @id @default(autoincrement())
+  title                String?               @db.VarChar(255)
+  draft_due_dates      String[]
+  description          String?
+  publish_at           DateTime?             @db.Timestamptz(6)
+  start_at             DateTime?             @db.Timestamptz(6)
+  end_at               DateTime?             @db.Timestamptz(6)
+  is_user_generated    Boolean?
+  is_ship              Boolean?              @default(true)
+  thumbnail_name       String?               @db.VarChar
+  kol_gender           String?               @db.VarChar
+  price_per_kol        Int?
+  kol_limit            Int?
+  is_public            Boolean?              @default(true)
+  created_at           DateTime              @default(now()) @db.Timestamptz(6)
+  created_by           Int?
+  updated_at           DateTime?             @default(now()) @db.Timestamptz(6)
+  updated_by           Int?
+  deleted_at           DateTime?             @db.Timestamptz(6)
+  deleted_by           Int?
+  user_id              Int?
+  status               String?               @db.VarChar(255)
+  additional_data      Json?
+  kol_age_from         Int?                  @db.SmallInt
+  kol_age_to           Int?                  @db.SmallInt
+  kol_follower_from    BigInt?
+  kol_follower_to      BigInt?
+  province_code        String?               @db.VarChar(255)
+  district_code        String?               @db.VarChar(255)
+  ward_code            String?               @db.VarChar(255)
+  sell_area            String?
+  total_kol_submission Int?                  @default(0)
+  kol_submissions      kol_submissions[]
+  platforms_campaigns  platforms_campaigns[]
+}
+
+model categories {
+  id   Int    @id(map: "categories_pk") @default(autoincrement())
+  name String @db.VarChar(255)
+}
+
+model chat_messages {
+  id              Int       @id @default(autoincrement())
+  conversation_id BigInt?
+  sender_id       BigInt?
+  content         String?
+  created_at      DateTime? @default(now()) @db.Timestamp(6)
+  created_by      BigInt?
+  updated_at      DateTime? @db.Timestamp(6)
+  updated_by      BigInt?
+  deleted_at      DateTime? @db.Timestamp(6)
+  deleted_by      String?   @db.VarChar(100)
+  seen_by         String?
+  attachment_url  String[]  @db.VarChar
+  type            String?   @db.VarChar(255)
+
+  @@index([conversation_id])
+}
+
+model cheating_login {
+  id          Int       @id @default(autoincrement())
+  link_tiktok String?
+  created_at  DateTime  @default(now()) @db.Timestamptz(6)
+  created_by  Int?
+  updated_at  DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by  Int?
+  deleted_at  DateTime? @db.Timestamptz(6)
+  deleted_by  Int?
+}
+
+model comment_galleries {
+  id         Int       @id @default(autoincrement())
+  name       String?   @db.VarChar(500)
+  comment_id BigInt?
+  created_at DateTime  @default(now()) @db.Timestamptz(6)
+  created_by Int?
+  updated_at DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by Int?
+  deleted_at DateTime? @db.Timestamptz(6)
+  deleted_by Int?
+  type       String?   @db.VarChar(255)
+}
+
+model comments {
+  id            Int       @id @default(autoincrement())
+  content       String?
+  parent_id     String?   @db.VarChar
+  total_comment String?   @default("0") @db.VarChar
+  draft_id      BigInt?
+  created_at    DateTime  @default(now()) @db.Timestamptz(6)
+  created_by    Int?
+  updated_at    DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by    Int?
+  deleted_at    DateTime? @db.Timestamptz(6)
+  deleted_by    Int?
+  type          String?   @db.VarChar(255)
+}
+
+model contacts {
+  id                BigInt    @unique(map: "contacts_pkey") @default(autoincrement())
+  address           String?
+  created_at        DateTime  @default(now()) @db.Timestamptz(6)
+  created_by        Int?
+  updated_at        DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by        Int?
+  deleted_at        DateTime? @db.Timestamptz(6)
+  deleted_by        Int?
+  is_default        Boolean?  @default(false)
+  type              String?   @db.VarChar(255)
+  full_name         String?   @db.VarChar(255)
+  phone_number      String?   @db.VarChar(255)
+  province_code     String?   @db.VarChar(255)
+  district_code     String?   @db.VarChar(255)
+  ward_code         String?   @db.VarChar(255)
+  next_updated_at   DateTime? @db.Timestamptz(6)
+  is_default_verify Boolean?  @default(false)
+}
+
+model content_performance_daily {
+  id                    BigInt    @id @default(autoincrement())
+  creator_content_id    Int
+  content_id            String?   @db.VarChar(255)
+  view_count            Int?
+  like_count            Int?
+  share_count           Int?
+  comment_num           Int?
+  save_count            Int?
+  paid_order_num        Int?
+  paid_amount           Decimal?  @db.Decimal(18, 2)
+  created_at            DateTime  @default(now()) @db.Timestamptz(6)
+  created_by            Int?
+  updated_at            DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by            Int?
+  deleted_at            DateTime? @db.Timestamptz(6)
+  deleted_by            Int?
+  cl_pay_sub_order_cnt  Int?
+  sponsor_est_comm_amt  String?   @db.VarChar(50)
+  sponsor_paid_comm_amt Int?
+  metric_date           DateTime? @db.Date
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model contracts {
+  id               BigInt    @default(autoincrement())
+  contract_mobi_id String?   @db.VarChar(255)
+  user_id          Int?
+  created_at       DateTime  @default(now()) @db.Timestamptz(6)
+  created_by       Int?
+  updated_at       DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by       Int?
+  deleted_at       DateTime? @db.Timestamptz(6)
+  deleted_by       Int?
+  status           String?   @db.VarChar(255)
+  metadata         Json?
+
+  @@ignore
+}
+
+model conversation_members {
+  id              BigInt  @id @default(autoincrement())
+  conversation_id BigInt?
+  user_id         BigInt?
+}
+
+model conversations {
+  id                BigInt    @id @default(autoincrement())
+  code              String?   @db.VarChar(255)
+  created_at        DateTime? @default(now()) @db.Timestamp(6)
+  created_by        BigInt?
+  updated_at        DateTime? @db.Timestamp(6)
+  updated_by        BigInt?
+  deleted_at        DateTime? @db.Timestamp(6)
+  deleted_by        String?   @db.VarChar(100)
+  status            String?   @db.VarChar(255)
+  aff_campaign_id   Int?
+  kol_submission_id Int?
+}
+
+model cost_per_view_campaigns {
+  id                   Int       @id @default(autoincrement())
+  title                String?   @db.VarChar(255)
+  description          String?
+  publish_at           DateTime? @db.Timestamptz(6)
+  end_at               DateTime? @db.Timestamptz(6)
+  thumbnail_name       String?   @db.VarChar
+  kol_gender           String?   @db.VarChar
+  created_at           DateTime  @default(now()) @db.Timestamptz(6)
+  created_by           Int?
+  updated_at           DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by           Int?
+  deleted_at           DateTime? @db.Timestamptz(6)
+  deleted_by           Int?
+  status               String?   @db.VarChar(255)
+  additional_data      Json?
+  kol_age_from         Int?      @db.SmallInt
+  kol_age_to           Int?      @db.SmallInt
+  kol_follower_from    BigInt?
+  kol_follower_to      BigInt?
+  maximum_budget       Decimal?  @db.Decimal(10, 2)
+  maximum_views        Decimal?  @db.Decimal(10, 2)
+  province_code        String?   @db.VarChar(255)
+  district_code        String?   @db.VarChar(255)
+  ward_code            String?   @db.VarChar(255)
+  sell_area            String?
+  total_kol_submission Int?      @default(0)
+  published_at         DateTime? @db.Timestamptz(6)
+}
+
+model creator_content {
+  id                       Int       @id @default(autoincrement())
+  creator_username         String?   @db.VarChar(255)
+  content_id               String    @unique(map: "creator_content_unique") @db.VarChar(255)
+  content_type             String    @db.VarChar(50)
+  thumbnail_video_url      String?   @db.VarChar
+  linked_tiktok_video      String?   @db.VarChar
+  source_url               String?   @db.VarChar
+  published_date           BigInt?
+  published_at             DateTime? @db.Timestamptz(6)
+  created_at               DateTime  @default(now()) @db.Timestamptz(6)
+  created_by               Int?
+  updated_at               DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by               Int?
+  deleted_at               DateTime? @db.Timestamptz(6)
+  deleted_by               Int?
+  code_ads                 String?
+  is_active                Boolean?  @default(true)
+  creator_id               String?   @db.VarChar(255)
+  video_title              String?
+  video_duration           String?   @db.VarChar(255)
+  is_own_tap               Boolean?
+  has_paid_order           Boolean?  @default(false)
+  draft_id                 Int?
+  total_paid_amount        Decimal?  @db.Decimal
+  order_id                 String?   @db.VarChar(255)
+  hash_tags                String[]  @db.VarChar
+  click_through_rate       Decimal?  @db.Decimal
+  product_id               String?   @db.VarChar(255)
+  seller_id                String?   @db.VarChar(100)
+  is_received_sample       Boolean?
+  is_crawl_received_sample Boolean?  @default(false)
+  campaign_id              String?   @db.VarChar(255)
+  is_live                  Boolean?
+  metric_date              DateTime? @db.Date
+  views                    Int?
+  likes                    Int?
+  shares                   Int?
+  comments                 Int?
+  new_followers            Int?
+
+  @@index([content_id, product_id, seller_id], map: "creator_content_content_id_idx")
+  @@index([content_type])
+  @@index([creator_username])
+  @@index([published_at])
+  @@index([seller_id])
+  @@index([content_id], map: "idx_creator_content_content_id")
+}
+
+model creator_profile_snapshot {
+  id                 Int       @id @default(autoincrement())
+  created_at         DateTime  @default(now()) @db.Timestamptz(6)
+  created_by         Int?
+  creator_username   String    @unique @db.VarChar(255)
+  creator_oecu_id    String?   @db.VarChar(255)
+  creator_id         String?   @db.VarChar(255)
+  updated_at         DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by         Int?
+  deleted_at         DateTime? @db.Timestamptz(6)
+  deleted_by         Int?
+  creator_avatar_url String?
+  follower_count     Decimal?  @db.Decimal
+  total_gmv          Decimal?  @db.Decimal
+  nickname           String?
+
+  @@index([creator_id], map: "creator_profile_cache_creator_id_idx")
+  @@index([creator_username], map: "creator_profile_cache_creator_username_idx")
+}
+
+model districts {
+  id            Int     @id @default(autoincrement())
+  name          String  @db.VarChar(255)
+  code          String  @db.VarChar(255)
+  full_name     String? @db.VarChar(255)
+  province_code String? @db.VarChar
+}
+
+model draft_galleries {
+  id               Int       @id @default(autoincrement())
+  name             String?   @db.VarChar(500)
+  draft_id         BigInt?
+  created_at       DateTime  @default(now()) @db.Timestamptz(6)
+  created_by       Int?
+  updated_at       DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by       Int?
+  deleted_at       DateTime? @db.Timestamptz(6)
+  deleted_by       Int?
+  type             String?   @db.VarChar(255)
+  is_remove_on_aws Boolean?  @default(false)
+}
+
+model drafts {
+  id                        Int       @id @default(autoincrement())
+  content                   String?
+  status                    String?
+  potential_id              Int?
+  created_at                DateTime  @default(now()) @db.Timestamptz(6)
+  created_by                Int?
+  updated_at                DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by                Int?
+  deleted_at                DateTime? @db.Timestamptz(6)
+  deleted_by                Int?
+  version                   Decimal?  @default(1) @db.Decimal
+  submit_url                String?
+  reason                    String?   @db.VarChar(255)
+  reject_description        String?   @db.VarChar(255)
+  submit_at                 DateTime? @db.Timestamptz(6)
+  code_ads                  String?   @db.VarChar(255)
+  kol_submission_id         Int?
+  view                      Int?
+  like                      Int?
+  comment                   Int?
+  share                     Int?
+  request_product_sample_id Int?
+  video_id                  String?   @db.VarChar(255)
+  shop_name                 String?   @db.VarChar(255)
+  is_attach_shop_cart       Boolean?
+  is_koc_deleted            Boolean?
+  is_koc_hidden             Boolean?
+  thumbnail_video_url       String?
+  reject_acceptance_at      DateTime? @db.Timestamptz(6)
+  accept_acceptance_at      DateTime? @db.Timestamptz(6)
+  creator_content_id        Int?
+
+  @@index([kol_submission_id])
+  @@index([request_product_sample_id])
+}
+
+model features {
+  id            Int             @id @default(autoincrement())
+  name          String          @db.VarChar(100)
+  code          String          @unique(map: "features_code_unique") @db.VarChar(100)
+  description   String?
+  created_at    DateTime        @default(now()) @db.Timestamptz(6)
+  created_by    Int?
+  updated_at    DateTime?       @default(now()) @db.Timestamptz(6)
+  updated_by    Int?
+  deleted_at    DateTime?       @db.Timestamptz(6)
+  deleted_by    Int?
+  plan_features plan_features[]
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model feedbacks {
+  id          Int       @default(autoincrement())
+  description String?   @db.VarChar(255)
+  created_at  DateTime  @default(now()) @db.Timestamptz(6)
+  created_by  Int?
+  updated_at  DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by  Int?
+  deleted_at  DateTime? @db.Timestamptz(6)
+  deleted_by  Int?
+  metadata    Json?
+  status      String?   @db.VarChar(255)
+
+  @@ignore
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model file_imports {
+  id            Int       @id @default(autoincrement())
+  file_id       Int
+  user_id       Int
+  total_rows    Int       @default(0)
+  imported_rows Int       @default(0)
+  error_log     Json      @default("[]")
+  created_at    DateTime  @default(now()) @db.Timestamptz(6)
+  completed_at  DateTime? @db.Timestamptz(6)
+  nodes         nodes     @relation(fields: [file_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users         User      @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([file_id], map: "idx_file_imports_file_id")
+  @@index([user_id], map: "idx_file_imports_user_id")
+}
+
+model hide_skus {
+  id         Int       @id @default(autoincrement())
+  sku_id     Int
+  created_at DateTime  @default(now()) @db.Timestamptz(6)
+  created_by Int?
+  updated_at DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by Int?
+  deleted_at DateTime? @db.Timestamptz(6)
+  deleted_by Int?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model holidays {
+  id           Int?      @default(autoincrement())
+  date         DateTime  @db.Date
+  name         String?   @db.VarChar(255)
+  country_code String?   @default("VN") @db.VarChar(10)
+  is_active    Boolean?  @default(true)
+  created_at   DateTime  @default(now()) @db.Timestamptz(6)
+  created_by   Int?
+  updated_at   DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by   Int?
+  deleted_at   DateTime? @db.Timestamptz(6)
+  deleted_by   Int?
+
+  @@unique([date, country_code], map: "unique_holiday")
+  @@ignore
+}
+
+model interacts {
+  id             Int              @id @default(autoincrement())
+  type           String?          @db.VarChar(255)
+  is_active      Boolean          @default(false)
+  user_interacts user_interacts[]
+}
+
+model invite_receive_sample_reminders {
+  id                     BigInt    @id @default(autoincrement())
+  kol_submission_id      Int
+  attempt_no             Int
+  scheduled_at           DateTime  @db.Timestamptz(6)
+  status                 String    @db.VarChar(50)
+  sent_at                DateTime? @db.Timestamptz(6)
+  canceled_at            DateTime? @db.Timestamptz(6)
+  notification_custom_id BigInt?
+  created_at             DateTime  @default(now()) @db.Timestamptz(6)
+  created_by             Int?
+  updated_at             DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by             Int?
+  deleted_at             DateTime? @db.Timestamptz(6)
+  deleted_by             Int?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model invoices {
+  id               Int      @default(autoincrement())
+  amount           Decimal? @db.Decimal
+  currency         String?  @db.VarChar(255)
+  status           String?  @db.VarChar(255)
+  customer_type    String?  @db.VarChar(255)
+  customer_name    String?  @db.VarChar(255)
+  tax_code_or_cccd String?  @db.VarChar(255)
+  representative   String?  @db.VarChar(255)
+  phone_number     String?  @db.VarChar(255)
+  email            String?  @db.VarChar(255)
+  address          String?
+  transaction_id   Int?
+
+  @@ignore
+}
+
+model kol_brand_taps {
+  id           Int       @id @default(autoincrement())
+  brand_tap_id Int
+  created_at   DateTime  @default(now()) @db.Timestamptz(6)
+  created_by   Int?
+  updated_at   DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by   Int?
+  deleted_at   DateTime? @db.Timestamptz(6)
+  deleted_by   Int?
+  brand_action String?   @db.VarChar(255)
+}
+
+model kol_pricing {
+  id                    Int        @id @default(autoincrement())
+  price                 Decimal    @db.Decimal
+  description           String?
+  created_at            DateTime   @default(now()) @db.Timestamptz(6)
+  created_by            Int?
+  updated_at            DateTime?  @default(now()) @db.Timestamptz(6)
+  updated_by            Int?
+  deleted_at            DateTime?  @db.Timestamptz(6)
+  deleted_by            Int?
+  content_type          String?    @db.VarChar(255)
+  platform_id           Int?
+  content               String?
+  content_duration_type String?    @db.VarChar(255)
+  platforms             platforms? @relation(fields: [platform_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "kol_pricing_fk")
+}
+
+model kol_submissions {
+  id                        Int        @id @default(autoincrement())
+  confirmed_by              Int?
+  status                    String?    @db.VarChar(255)
+  campaign_id               Int?
+  created_at                DateTime   @default(now()) @db.Timestamptz(6)
+  created_by                Int?
+  updated_at                DateTime?  @default(now()) @db.Timestamptz(6)
+  updated_by                Int?
+  deleted_at                DateTime?  @db.Timestamptz(6)
+  deleted_by                Int?
+  cover_letter              String?
+  reason                    String?
+  description               String?
+  cost_per_view_campaign_id Int?
+  aff_campaign_id           Int?
+  is_brand_confirm          Boolean?   @default(false)
+  next_status               String?    @db.VarChar(255)
+  working_at                DateTime?  @db.Timestamptz(6)
+  total_clip                Decimal?   @default(1) @db.Decimal
+  content_type              String[]   @default(["VIDEO"]) @db.VarChar
+  brand_approved_at         DateTime?  @db.Timestamptz(6)
+  finished_at               DateTime?  @db.Timestamptz(6)
+  tiktok_username           String?    @db.VarChar(255)
+  product_id                Int?
+  has_been_overdue          Boolean?   @default(false)
+  reason_reject_acceptance  String?    @db.VarChar(255)
+  sample_order_settings_id  Int?       @db.SmallInt
+  seller_id                 String?    @db.VarChar(255)
+  campaigns                 campaigns? @relation(fields: [campaign_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model node_paths {
+  ancestor_id                           Int
+  descendant_id                         Int
+  depth                                 Int
+  nodes_node_paths_ancestor_idTonodes   nodes @relation("node_paths_ancestor_idTonodes", fields: [ancestor_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  nodes_node_paths_descendant_idTonodes nodes @relation("node_paths_descendant_idTonodes", fields: [descendant_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([ancestor_id, descendant_id])
+  @@index([descendant_id], map: "idx_node_paths_descendant")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model nodes {
+  id                                         Int               @id @default(autoincrement())
+  user_id                                    Int
+  parent_id                                  Int?
+  type                                       node_type_enum
+  name                                       String            @db.VarChar(255)
+  storage_key                                String?
+  size_bytes                                 BigInt?
+  mime_type                                  String?           @db.VarChar(100)
+  status                                     file_status_enum?
+  created_at                                 DateTime          @default(now()) @db.Timestamptz(6)
+  deleted_at                                 DateTime?         @db.Timestamptz(6)
+  file_imports                               file_imports[]
+  node_paths_node_paths_ancestor_idTonodes   node_paths[]      @relation("node_paths_ancestor_idTonodes")
+  node_paths_node_paths_descendant_idTonodes node_paths[]      @relation("node_paths_descendant_idTonodes")
+  nodes                                      nodes?            @relation("nodesTonodes", fields: [parent_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  other_nodes                                nodes[]           @relation("nodesTonodes")
+  users                                      User              @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([user_id, parent_id], map: "idx_nodes_user_parent", where: raw("(deleted_at IS NULL)"))
+  @@index([user_id, status], map: "idx_nodes_user_status", where: raw("(deleted_at IS NULL)"))
+}
+
+model notification_campaigns {
+  id              BigInt    @id @default(autoincrement())
+  type            String?   @db.VarChar(255)
+  body            String?   @db.VarChar(1000)
+  created_at      DateTime  @default(now()) @db.Timestamptz(6)
+  created_by      Int?
+  updated_at      DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by      Int?
+  deleted_at      DateTime? @db.Timestamptz(6)
+  deleted_by      Int?
+  is_read         Boolean?  @default(false)
+  additional_data Json?
+
+  @@index([type], map: "notification_campaigns_type_index", type: Hash)
+}
+
+model notification_customs {
+  id                       BigInt                     @id @default(autoincrement())
+  type                     String?                    @db.VarChar(255)
+  body                     String?
+  created_at               DateTime                   @default(now()) @db.Timestamptz(6)
+  created_by               Int?
+  updated_at               DateTime?                  @default(now()) @db.Timestamptz(6)
+  updated_by               Int?
+  deleted_at               DateTime?                  @db.Timestamptz(6)
+  deleted_by               Int?
+  is_read                  Boolean?                   @default(false)
+  receiver_id              BigInt?
+  additional_data          Json?
+  is_sent                  Boolean?                   @default(false)
+  is_priority              Boolean?                   @default(false)
+  admin_notification_inbox admin_notification_inbox[]
+}
+
+model notifications {
+  id                       BigInt                     @id @default(autoincrement())
+  type                     String?                    @db.VarChar(255)
+  body                     String?                    @db.VarChar(1000)
+  created_at               DateTime                   @default(now()) @db.Timestamptz(6)
+  created_by               Int?
+  updated_at               DateTime?                  @default(now()) @db.Timestamptz(6)
+  updated_by               Int?
+  deleted_at               DateTime?                  @db.Timestamptz(6)
+  deleted_by               Int?
+  is_read                  Boolean?                   @default(false)
+  receiver_id              BigInt?
+  additional_data          Json?
+  admin_notification_inbox admin_notification_inbox[]
+
+  @@index([created_by, is_read, created_at, receiver_id], map: "notification_filter_idx")
+  @@index([type], map: "notifications_type_index", type: Hash)
+}
+
+model order_creator_content {
+  id                 Int    @id @default(autoincrement())
+  order_id           BigInt @unique(map: "idx_order_creator_content_order_id")
+  creator_content_id BigInt
+  order_line_item_id Int?
+
+  @@unique([order_id, creator_content_id], map: "order_creator_content_unique")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model order_line_items {
+  id                                      Int?      @default(autoincrement())
+  order_id                                String    @db.VarChar(255)
+  order_line_item_id                      String?   @db.VarChar(255)
+  currency                                String?   @db.VarChar(10)
+  original_price                          Decimal?  @db.Decimal
+  sale_price                              Decimal?  @db.Decimal
+  gift_retail_price                       Decimal?  @db.Decimal
+  platform_discount                       Decimal?  @db.Decimal
+  seller_discount                         Decimal?  @db.Decimal
+  is_gift                                 Boolean?  @default(false)
+  product_id                              String?   @db.VarChar(255)
+  product_name                            String?
+  sku_id                                  String?   @db.VarChar(255)
+  sku_name                                String?   @db.VarChar(255)
+  sku_type                                String?   @db.VarChar(100)
+  sku_image                               String?
+  seller_sku                              String?   @db.VarChar(255)
+  package_id                              String?   @db.VarChar(255)
+  package_status                          String?   @db.VarChar(100)
+  shipping_provider_id                    String?   @db.VarChar(255)
+  shipping_provider_name                  String?   @db.VarChar(255)
+  tracking_number                         String?   @db.VarChar(255)
+  rts_time                                DateTime? @db.Timestamptz(6)
+  display_status                          String?   @db.VarChar(100)
+  cancel_reason                           String?   @db.VarChar(255)
+  cancel_user                             String?   @db.VarChar(255)
+  created_at                              DateTime  @default(now()) @db.Timestamptz(6)
+  created_by                              Int?
+  updated_at                              DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by                              Int?
+  deleted_at                              DateTime? @db.Timestamptz(6)
+  deleted_by                              Int?
+  voucher_deduction_platform              Decimal?  @db.Decimal(18, 2)
+  voucher_deduction_seller                Decimal?  @db.Decimal(18, 2)
+  shipping_fee_deduction_platform_voucher Decimal?  @db.Decimal(18, 2)
+
+  @@unique([order_id, order_line_item_id], map: "uq_order_line_items_order_id_line_item_id")
+  @@index([order_id])
+  @@index([package_id])
+  @@index([product_id])
+  @@index([sku_id])
+  @@ignore
+}
+
+model order_logistics {
+  id          Int       @id @default(autoincrement())
+  order_id    Int
+  title       String?   @db.VarChar(255)
+  description String?   @db.VarChar(255)
+  event_time  String    @db.VarChar(255)
+  created_at  DateTime? @default(now()) @db.Timestamptz(6)
+}
+
+model order_packages {
+  id         Int?   @default(autoincrement())
+  package_id String @db.VarChar(255)
+  order_id   String @db.VarChar(255)
+
+  @@unique([order_id, package_id], map: "uq_order_packages_order_id_package_id")
+  @@index([order_id])
+  @@index([package_id])
+}
+
+model order_payments {
+  id                                      Int?      @default(autoincrement())
+  order_id                                String    @unique @db.VarChar(255)
+  currency                                String    @db.VarChar(10)
+  sub_total                               Decimal?  @default(0) @db.Decimal(18, 2)
+  tax                                     Decimal?  @default(0) @db.Decimal(18, 2)
+  shipping_fee                            Decimal?  @default(0) @db.Decimal(18, 2)
+  original_total_product_price            Decimal?  @default(0) @db.Decimal(18, 2)
+  original_shipping_fee                   Decimal?  @default(0) @db.Decimal(18, 2)
+  platform_discount                       Decimal?  @default(0) @db.Decimal(18, 2)
+  seller_discount                         Decimal?  @default(0) @db.Decimal(18, 2)
+  shipping_fee_platform_discount          Decimal?  @default(0) @db.Decimal(18, 2)
+  shipping_fee_seller_discount            Decimal?  @default(0) @db.Decimal(18, 2)
+  shipping_fee_cofunded_discount          Decimal?  @default(0) @db.Decimal(18, 2)
+  total_amount                            Decimal?  @default(0) @db.Decimal(18, 2)
+  payment_method_name                     String?   @db.VarChar(100)
+  seller_id                               String?   @db.VarChar(255)
+  is_sample_order                         Boolean?
+  partner_id                              String?   @db.VarChar(255)
+  creator_id                              String?   @db.VarChar(255)
+  net_price_amount                        Decimal?  @db.Decimal(18, 2)
+  payment                                 Decimal?  @db.Decimal(18, 2)
+  shipping_fee_deduction_seller           Decimal?  @db.Decimal(18, 2)
+  shipping_fee_deduction_platform         Decimal?  @db.Decimal(18, 2)
+  shipping_fee_deduction_platform_voucher Decimal?  @db.Decimal(18, 2)
+  shipping_list_price                     Decimal?  @db.Decimal(18, 2)
+  shipping_sale_price                     Decimal?  @db.Decimal(18, 2)
+  sku_gift_original_price                 Decimal?  @db.Decimal(18, 2)
+  sku_list_price                          Decimal?  @db.Decimal(18, 2)
+  sku_sale_price                          Decimal?  @db.Decimal(18, 2)
+  subtotal_tax_amount                     Decimal?  @db.Decimal(18, 2)
+  subtotal_deduction_platform             Decimal?  @db.Decimal(18, 2)
+  subtotal_deduction_seller               Decimal?  @db.Decimal(18, 2)
+  tax_amount                              Decimal?  @db.Decimal(18, 2)
+  total                                   Decimal?  @db.Decimal(18, 2)
+  voucher_deduction_platform              Decimal?  @db.Decimal(18, 2)
+  voucher_deduction_seller                Decimal?  @db.Decimal(18, 2)
+  creator_username                        String?   @db.VarChar
+  order_created_at                        DateTime? @db.Timestamptz(6)
+  created_at                              DateTime  @default(now()) @db.Timestamptz(6)
+  created_by                              Int?
+  updated_at                              DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by                              Int?
+  deleted_at                              DateTime? @db.Timestamptz(6)
+  deleted_by                              Int?
+}
+
+model order_recipients {
+  id             Int?      @default(autoincrement())
+  order_id       String    @unique @db.VarChar(255)
+  name           String?   @db.VarChar(255)
+  phone_number   String?   @db.VarChar(50)
+  region_code    String?   @db.VarChar(10)
+  postal_code    String?   @db.VarChar(50)
+  full_address   String?
+  address_detail String?
+  district_info  Json?
+  created_at     DateTime  @default(now()) @db.Timestamptz(6)
+  created_by     Int?
+  updated_at     DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by     Int?
+  deleted_at     DateTime? @db.Timestamptz(6)
+}
+
+model order_skus {
+  id                                      Int?      @default(autoincrement())
+  order_id                                String    @db.VarChar(255)
+  product_id                              String    @db.VarChar(255)
+  quantity                                Int?
+  refunded_quantity                       Int?
+  returned_quantity                       Int?
+  price                                   Json      @default("{}")
+  commission_model                        String?   @db.VarChar(100)
+  commission_rate                         Decimal?  @db.Decimal
+  commission_tier_setting                 String?   @db.VarChar(255)
+  estimated_commission_base               Json      @default("{}")
+  estimated_paid_commission               Json      @default("{}")
+  estimated_cofunded_creator_bonus_amount Json      @default("{}")
+  estimated_paid_shop_ads_commission      Json      @default("{}")
+  actual_commission_base                  Json      @default("{}")
+  actual_paid_commission                  Json      @default("{}")
+  actual_cofunded_creator_bonus_amount    Json      @default("{}")
+  actual_paid_shop_ads_commission         Json      @default("{}")
+  creator_username                        String?   @db.VarChar(255)
+  content_id                              String?   @db.VarChar(255)
+  content_type                            String?   @db.VarChar(50)
+  campaign_id                             String?   @db.VarChar(255)
+  open_collaboration_id                   String?   @db.VarChar(255)
+  target_collaboration_id                 String?   @db.VarChar(255)
+  creator_commission_rate                 Decimal?  @db.Decimal
+  tap_commission_rate                     Decimal?  @db.Decimal
+  creator_commission_reward_rate          Decimal?  @db.Decimal
+  created_at                              DateTime  @default(now()) @db.Timestamptz(6)
+  created_by                              Int?
+  updated_at                              DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by                              Int?
+  deleted_at                              DateTime? @db.Timestamptz(6)
+  deleted_by                              Int?
+  partner_id                              String?   @db.VarChar(255)
+  partner_name                            String?   @db.VarChar(255)
+  campaign_name                           String?
+  shop_ads_commission_rate                String?   @db.VarChar(50)
+  settlement_status                       String?   @db.VarChar(100)
+  fully_return                            String?   @db.VarChar(10)
+  estimated_paid_partner_commission       Json      @default("{}")
+  actual_paid_partner_commission          Json      @default("{}")
+  sku_id                                  String?   @db.VarChar(255)
+  partner_commission_rate                 String?   @db.VarChar(50)
+
+  @@unique([order_id, product_id], map: "uniq_order_skus_order_product", where: raw("(product_id IS NOT NULL)"))
+  @@index([order_id, content_id], map: "idx_order_skus_order_id_content")
+  @@index([content_id])
+  @@index([creator_username])
+  @@index([order_id])
+  @@index([price], map: "order_skus_price_gin_idx", type: Gin)
+  @@index([product_id])
+}
+
+model order_transactions {
+  id                   Int       @id @default(autoincrement())
+  order_id             String    @unique(map: "order_transactions_unique") @db.VarChar(255)
+  currency             String?   @db.VarChar(20)
+  order_created_at     DateTime? @db.Timestamptz(6)
+  revenue_amount       Decimal?  @db.Decimal(18, 2)
+  settlement_amount    Decimal?  @db.Decimal(18, 2)
+  shipping_cost_amount Decimal?  @db.Decimal(18, 2)
+  fee_and_tax_amount   Decimal?  @db.Decimal(18, 2)
+  created_at           DateTime  @default(now()) @db.Timestamptz(6)
+  created_by           Int?
+  updated_at           DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by           Int?
+  deleted_at           DateTime? @db.Timestamptz(6)
+  deleted_by           Int?
+  total_count          Int?
+
+  @@index([order_id])
+}
+
+model orders {
+  id                            Int       @id @default(autoincrement())
+  order_id                      String    @unique(map: "idx_orders_order_id") @db.VarChar(255)
+  quantity                      Int?
+  tracking_number               String?   @db.VarChar(255)
+  delivery_service              String?   @db.VarChar(255)
+  status                        String    @db.VarChar(255)
+  sku_id                        String?   @db.VarChar(255)
+  kol_submission_id             Int?
+  created_at                    DateTime  @default(now()) @db.Timestamptz(6)
+  created_by                    Int?
+  updated_at                    DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by                    Int?
+  deleted_at                    DateTime? @db.Timestamptz(6)
+  deleted_by                    Int?
+  buyer_user_id                 String?   @db.VarChar(255)
+  buyer_email                   String?   @db.VarChar(255)
+  buyer_message                 String?
+  delivery_option_id            String?   @db.VarChar(255)
+  delivery_option_name          String?   @db.VarChar(255)
+  delivery_time                 DateTime? @db.Timestamptz(6)
+  delivery_type                 String?   @db.VarChar(255)
+  collection_due_time           DateTime? @db.Timestamptz(6)
+  collection_time               DateTime? @db.Timestamptz(6)
+  fulfillment_priority_level    Int?
+  fulfillment_type              String?   @db.VarChar(100)
+  recommended_shipping_time     DateTime? @db.Timestamptz(6)
+  shipping_due_time             DateTime? @db.Timestamptz(6)
+  shipping_provider             String?   @db.VarChar(255)
+  shipping_provider_id          String?   @db.VarChar(255)
+  shipping_type                 String?   @db.VarChar(255)
+  cancel_order_sla_time         DateTime? @db.Timestamptz(6)
+  create_time                   DateTime  @db.Timestamptz(6)
+  has_updated_recipient_address Boolean?
+  is_cod                        Boolean?
+  is_on_hold_order              Boolean?
+  is_replacement_order          Boolean?
+  paid_time                     DateTime? @db.Timestamptz(6)
+  payment_method_name           String?   @db.VarChar(255)
+  is_sample_order               Boolean?
+  rts_sla_time                  DateTime? @db.Timestamptz(6)
+  rts_time                      DateTime? @db.Timestamptz(6)
+  tts_sla_time                  DateTime? @db.Timestamptz(6)
+  order_type                    String?   @db.VarChar(100)
+  split_or_combine_tag          String?   @db.VarChar(255)
+  update_time                   DateTime? @db.Timestamptz(6)
+  commerce_platform             String?   @db.VarChar(100)
+  warehouse_id                  String?   @db.VarChar(255)
+  campaign_id                   String?   @db.VarChar(255)
+  creator_username              String?
+  partner_id                    String?   @db.VarChar(255)
+  seller_id                     String    @db.VarChar(255)
+  source                        String    @db.VarChar
+  creator_id                    String?   @db.VarChar(255)
+  cancel_time                   DateTime? @db.Timestamptz(6)
+  cancel_reason                 String?   @db.VarChar(255)
+  partner_name                  String?   @db.VarChar
+  sample_order_id               String?   @db.VarChar(255)
+
+  @@index([buyer_user_id], map: "idx_orders_affiliate_creator_buyer")
+  @@index([source, creator_username, create_time], map: "idx_orders_affiliate_creator_time")
+  @@index([source], map: "idx_orders_source", where: raw("((source)::text = 'AFFILIATE'::text)"))
+  @@index([create_time])
+  @@index([order_type])
+  @@index([paid_time])
+  @@index([shipping_provider_id], map: "orders_shipping_provider_idx")
+  @@index([status])
+}
+
+model orders_tap {
+  id                Int       @id(map: "orders_tap_seq_pkey") @default(autoincrement())
+  order_id          String    @unique(map: "orders_tap_seq_id_unique") @db.VarChar(255)
+  quantity          Int?
+  tracking_number   String?   @db.VarChar(255)
+  delivery_service  String?   @db.VarChar(255)
+  status            String?   @db.VarChar(255)
+  product_id        Int?
+  sku_id            Int?
+  kol_submission_id Int?
+  created_at        DateTime  @default(now()) @db.Timestamptz(6)
+  created_by        Int?
+  updated_at        DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by        Int?
+  deleted_at        DateTime? @db.Timestamptz(6)
+  deleted_by        Int?
+}
+
+model otp_types {
+  id                Int                 @id @default(autoincrement())
+  name              String?             @db.VarChar(255)
+  description       String?
+  user_otp_sessions user_otp_sessions[]
+}
+
+model permission_users {
+  id                   Int @id @default(autoincrement())
+  permission_id        Int
+  user_relationship_id Int
+
+  @@unique([permission_id, user_relationship_id], map: "permission_users_unique")
+}
+
+model plan_features {
+  id          Int       @id @default(autoincrement())
+  plan_id     Int
+  feature_id  Int
+  is_enabled  Boolean   @default(true)
+  limit_value Int?
+  created_at  DateTime  @default(now()) @db.Timestamptz(6)
+  created_by  Int?
+  updated_at  DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by  Int?
+  deleted_at  DateTime? @db.Timestamptz(6)
+  deleted_by  Int?
+  features    features  @relation(fields: [feature_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "plan_features_feature_fk")
+  plans       plans     @relation(fields: [plan_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "plan_features_plan_fk")
+
+  @@unique([plan_id, feature_id], map: "plan_features_unique")
+}
+
+model plans {
+  id            Int             @id @default(autoincrement())
+  name          String          @db.VarChar(100)
+  price_monthly Decimal         @db.Decimal(12, 2)
+  currency      String          @db.Char(3)
+  description   String?
+  is_active     Boolean         @default(true)
+  created_at    DateTime        @default(now()) @db.Timestamptz(6)
+  created_by    Int?
+  updated_at    DateTime?       @default(now()) @db.Timestamptz(6)
+  updated_by    Int?
+  deleted_at    DateTime?       @db.Timestamptz(6)
+  deleted_by    Int?
+  price_yearly  Decimal?        @db.Decimal(12, 2)
+  plan_features plan_features[]
+  subscriptions subscriptions[]
+}
+
+model platforms {
+  id                  Int                   @id @default(autoincrement())
+  name                String?               @db.VarChar(255)
+  is_active           Boolean?              @default(true)
+  kol_pricing         kol_pricing[]
+  platforms_campaigns platforms_campaigns[]
+  users               User[]
+}
+
+model platforms_campaigns {
+  id                        Int        @id @default(autoincrement())
+  campaign_id               Int?
+  platform_id               Int
+  potential_id              Int
+  cost_per_view_campaign_id Int?
+  aff_campaign_id           Int?
+  campaigns                 campaigns? @relation(fields: [campaign_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  potentials                potentials @relation(fields: [potential_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "platforms_campaigns_fk")
+  platforms                 platforms  @relation(fields: [platform_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model policy {
+  device     String?   @db.VarChar(255)
+  status     Boolean?  @default(false)
+  created_at DateTime  @default(now()) @db.Timestamptz(6)
+  id         Int       @default(autoincrement())
+  user_id    Int?
+  updated_at DateTime? @default(now()) @db.Timestamptz(6)
+  type       String?   @db.VarChar(255)
+
+  @@ignore
+}
+
+model potentials {
+  id                        Int                   @id @default(autoincrement())
+  media_type                String?               @db.VarChar(255)
+  description               String?
+  duration_type             String?               @db.VarChar(255)
+  campaign_id               Int?
+  created_at                DateTime              @default(now()) @db.Timestamptz(6)
+  created_by                Int?
+  updated_at                DateTime?             @default(now()) @db.Timestamptz(6)
+  updated_by                Int?
+  deleted_at                DateTime?             @db.Timestamptz(6)
+  deleted_by                Int?
+  duration                  String?               @db.VarChar(255)
+  platform_id               Int?
+  cost_per_view_campaign_id Int?
+  aff_campaign_id           Int?
+  title                     String?               @db.VarChar(255)
+  platforms_campaigns       platforms_campaigns[]
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model product_categories {
+  id        Int      @default(autoincrement())
+  name      String   @db.VarChar(255)
+  parent_id Int?
+  is_leaf   Boolean?
+
+  @@ignore
+}
+
+model product_counts {
+  id         Int       @id @default(autoincrement())
+  product_id Int?
+  user_id    Int?
+  created_at DateTime  @default(now()) @db.Timestamptz(6)
+  deleted_at DateTime? @db.Timestamptz(6)
+  deleted_by Int?
+  type       String?   @db.VarChar(255)
+}
+
+model product_creator_content {
+  id                 Int     @id @default(autoincrement())
+  product_id         String  @db.VarChar(255)
+  creator_content_id BigInt
+  product_name       String? @db.VarChar(255)
+
+  @@unique([product_id, creator_content_id], map: "product_creator_content_un")
+}
+
+model product_detail_reviews {
+  id             Int       @id @default(autoincrement())
+  product_id     Int?
+  product_rating Decimal?  @db.Decimal(2, 1)
+  review_count   Int?
+  created_at     DateTime  @default(now()) @db.Timestamptz(6)
+  created_by     Int?
+  updated_at     DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by     Int?
+  deleted_at     DateTime? @db.Timestamptz(6)
+  deleted_by     Int?
+}
+
+model product_statistics {
+  id               Int       @id @default(autoincrement())
+  top_categories   Json?
+  gmv_range        Json?
+  top_ages         Json?
+  top_female_ratio Json?
+  created_at       DateTime  @default(now()) @db.Timestamptz(6)
+  created_by       Int?
+  updated_at       DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by       Int?
+  deleted_at       DateTime? @db.Timestamptz(6)
+  deleted_by       Int?
+  product_id       String?   @db.VarChar(255)
+}
+
+model products {
+  id                      Int       @id @default(autoincrement())
+  title                   String?   @db.VarChar(255)
+  campaign_id             String?   @db.VarChar(255)
+  product_id              String?   @db.VarChar(255)
+  shop_name               String?   @db.VarChar(255)
+  effective_start_time    DateTime? @db.Timestamptz(6)
+  effective_end_time      DateTime? @db.Timestamptz(6)
+  creator_commission_rate Decimal?  @db.Decimal
+  partner_commission_rate Decimal?  @db.Decimal
+  link                    String?
+  created_at              DateTime  @default(now()) @db.Timestamptz(6)
+  created_by              Int?
+  updated_at              DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by              Int?
+  deleted_at              DateTime? @db.Timestamptz(6)
+  deleted_by              Int?
+  referral_link           String?
+  status                  String?   @db.VarChar(255)
+  sold_count              Int?
+  price                   Json?
+  seller_id               Int?
+  desc_detail             String?
+  desc_video              Json?
+  images                  String[]
+  sale_props              Json?
+  logistic                Json?
+  specifications          Json?
+  category_id             Int?
+  sample_quota            Int?
+  category                String?
+  root_category_id        Int?
+  is_crawl                Boolean?  @default(false)
+  rating                  Decimal?  @db.Decimal
+  review_count            Int?      @db.SmallInt
+  revenue                 Decimal?  @db.Decimal
+  creator_count           Int?      @db.SmallInt
+  video_count             Int?      @db.SmallInt
+  live_count              Int?      @db.SmallInt
+  is_crawling             Boolean?  @default(false)
+  old_link                String?
+  category_info           Json?
+  arr_link                String[]  @default([]) @db.VarChar
+  user_ids                String[]  @default([]) @db.VarChar
+  shop_code               String?   @db.VarChar(255)
+
+  @@unique([campaign_id, product_id, link, shop_code], map: "products_unique")
+}
+
+model products_campaigns {
+  id              Int @id @default(autoincrement())
+  aff_campaign_id Int
+  product_id      Int
+}
+
+model profiles {
+  id                          BigInt    @unique(map: "profiles_pkey") @default(autoincrement())
+  dob                         DateTime? @db.Date
+  province_code               String?   @db.VarChar
+  district_code               String?   @db.VarChar
+  ward_code                   String?   @db.VarChar
+  user_id                     Int?
+  created_at                  DateTime  @default(now()) @db.Timestamptz(6)
+  created_by                  Int?
+  updated_at                  DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by                  Int?
+  deleted_at                  DateTime? @db.Timestamptz(6)
+  deleted_by                  Int?
+  address                     String?   @db.VarChar(255)
+  identify_number             String?   @db.VarChar(255)
+  date_grant_identify         String?   @db.VarChar(255)
+  place_grant_identify        String?   @db.VarChar(255)
+  full_name                   String?   @db.VarChar(255)
+  gender                      String?   @db.VarChar(255)
+  date_expired_identify       String?   @db.VarChar(255)
+  email_contract              String?   @db.VarChar(255)
+  identify_number_front_image String?   @db.VarChar(255)
+  identify_number_back_image  String?   @db.VarChar(255)
+  place_of_origin             String?   @db.VarChar(255)
+  place_of_residence          String?   @db.VarChar(255)
+  identity_card_full_name     String?   @db.VarChar(25)
+  next_updated_at             DateTime? @db.Timestamptz(6)
+  addresses                   Json?
+  tax_code                    String?   @db.VarChar
+}
+
+model protest_overdues {
+  id                Int       @id @default(autoincrement())
+  kol_submission_id Int?
+  status            String?   @db.VarChar(255)
+  reason            String?   @db.VarChar(255)
+  created_at        DateTime  @default(now()) @db.Timestamptz(6)
+  created_by        Int?
+  updated_at        DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by        Int?
+  deleted_at        DateTime? @db.Timestamptz(6)
+  deleted_by        Int?
+  description       String?
+  aff_campaign_id   Int?
+}
+
+model provinces {
+  id   Int    @id @default(autoincrement())
+  name String @db.VarChar(255)
+  code String @db.VarChar(255)
+}
+
+model questions_and_answers {
+  id           BigInt    @unique(map: "questions_and_answers_pkey") @default(autoincrement())
+  question     String
+  answer       String?
+  notes        String?
+  created_at   DateTime  @default(now()) @db.Timestamptz(6)
+  created_by   Int?
+  updated_at   DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by   Int?
+  deleted_at   DateTime? @db.Timestamptz(6)
+  deleted_by   Int?
+  created_from String?   @db.VarChar(255)
+}
+
+model referral_commissions {
+  id            Int             @id(map: "user_commissions_pkey") @default(autoincrement())
+  referral_code String          @db.VarChar
+  subordinates  Int?            @default(0)
+  created_at    DateTime        @default(now()) @db.Timestamptz(6)
+  created_by    Int?
+  updated_at    DateTime?       @default(now()) @db.Timestamptz(6)
+  updated_by    Int?
+  deleted_at    DateTime?       @db.Timestamptz(6)
+  deleted_by    Int?
+  is_active     Boolean         @default(false)
+  referral_type referral_type   @default(NEW)
+  aff_campaigns aff_campaigns[]
+}
+
+model request_product_samples {
+  id                            Int       @id @default(autoincrement())
+  full_name                     String?   @db.VarChar(255)
+  address                       String?
+  phone_number                  String?   @db.VarChar
+  product_id                    Int?
+  created_at                    DateTime  @default(now()) @db.Timestamptz(6)
+  created_by                    Int?
+  updated_at                    DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by                    Int?
+  deleted_at                    DateTime? @db.Timestamptz(6)
+  deleted_by                    Int?
+  status                        String?   @db.VarChar(255)
+  sku_id                        Int?
+  kol_submission_id             Int?
+  kol_brand_tap_id              Int?
+  draft_id                      Int?
+  reason                        String?
+  next_status                   String?   @db.VarChar(255)
+  is_bd_confirm                 Boolean?  @default(false)
+  tracking_number               String?
+  is_updated_sku                Boolean?  @default(false)
+  is_bd_remind                  Boolean?  @default(false)
+  metadata                      Json?     @default("{}")
+  note                          String?
+  delivery_service              String?   @db.VarChar(255)
+  reviewed_at                   DateTime? @db.Timestamptz(6)
+  tap_status                    String?   @db.VarChar(255)
+  reminded_at                   String?   @db.VarChar(255)
+  sku_sale_property_value_names String[]  @default([]) @db.VarChar
+  sku_id_tiktok                 String?   @db.VarChar(255)
+
+  @@index([kol_brand_tap_id])
+  @@index([kol_submission_id])
+}
+
+model review_items {
+  id                       Int       @id @default(autoincrement())
+  review                   Json?     @default("{}")
+  sku_id                   String?   @db.VarChar(255)
+  sku_specification        String?   @db.VarChar(255)
+  review_user              Json?     @default("{}")
+  is_owner                 Boolean?
+  is_anonymous             Boolean?
+  product_detail_review_id Int?
+  created_at               DateTime  @default(now()) @db.Timestamptz(6)
+  created_by               Int?
+  updated_at               DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by               Int?
+  deleted_at               DateTime? @db.Timestamptz(6)
+  deleted_by               Int?
+}
+
+model sample_applications {
+  id                    Int       @id @default(autoincrement())
+  created_at            DateTime  @default(now()) @db.Timestamptz(6)
+  sample_application_id String    @unique(map: "sample_applications_unique_1") @db.VarChar(255)
+  approve_expiration_at DateTime? @db.Timestamptz(6)
+  available_quantity    Int?
+  commission_rate       String?   @db.VarChar(50)
+  creator               Json      @default("{}")
+  creator_username      String?   @db.VarChar(255)
+  creator_id            String?   @db.VarChar(255)
+  product               Json      @default("{}")
+  is_approvable         Boolean?
+  order_id              String?   @unique(map: "sample_applications_unique") @db.VarChar(255)
+  partner_name          String?   @db.VarChar(255)
+  status                String?   @db.VarChar(100)
+  created_by            Int?
+  updated_at            DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by            Int?
+  deleted_at            DateTime? @db.Timestamptz(6)
+  deleted_by            Int?
+  kol_submission_id     Int?
+  requested_at          DateTime? @db.Timestamptz(6)
+  seller_id             String?   @db.VarChar(255)
+
+  @@index([creator_username])
+  @@index([order_id])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model sample_order_settings {
+  id              Int?      @default(autoincrement())
+  start_hour      Int       @db.SmallInt
+  end_hour        Int       @db.SmallInt
+  include_weekend Boolean?  @default(true)
+  include_holiday Boolean?  @default(true)
+  created_at      DateTime  @default(now()) @db.Timestamptz(6)
+  created_by      Int?
+  updated_at      DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by      Int?
+  deleted_at      DateTime? @db.Timestamptz(6)
+  deleted_by      Int?
+
+  @@ignore
+}
+
+model sellers {
+  id              Int       @id @default(autoincrement())
+  seller_id       String?   @unique(map: "seller_id_unique") @db.VarChar(255)
+  name            String?   @db.VarChar(255)
+  avatar_url      String?
+  product_count   Int?
+  seller_location String?   @db.VarChar(255)
+  created_at      DateTime  @default(now()) @db.Timestamptz(6)
+  created_by      Int?
+  updated_at      DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by      Int?
+  deleted_at      DateTime? @db.Timestamptz(6)
+  deleted_by      Int?
+  email_seller    String?   @db.VarChar(255)
+  shop_code       String?   @db.VarChar(255)
+}
+
+model shop_gmv_breakdown_daily {
+  id          BigInt    @id @default(autoincrement())
+  seller_id   String    @db.VarChar(64)
+  metric_date DateTime  @db.Date
+  type        String    @db.VarChar(50)
+  gmv_amount  Decimal   @db.Decimal(30, 2)
+  created_at  DateTime  @default(now()) @db.Timestamptz(6)
+  created_by  Int?
+  updated_at  DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by  Int?
+  deleted_at  DateTime? @db.Timestamptz(6)
+  deleted_by  Int?
+
+  @@unique([seller_id, metric_date, type], map: "shop_gmv_breakdown_daily_unique")
+  @@index([seller_id, metric_date], map: "shop_gmv_breakdown_daily_shop_date_idx")
+  @@index([type])
+}
+
+model shop_performance_daily {
+  id                    Int       @id @default(autoincrement())
+  seller_id             String    @db.VarChar(64)
+  metric_date           DateTime  @db.Date
+  avg_customers_count   Int?
+  items_sold            Int?
+  orders_count          Int?
+  sku_orders_count      Int?
+  gmv_overall           Decimal?  @db.Decimal(18, 2)
+  gross_revenue         Decimal?  @db.Decimal(18, 2)
+  refunds_amount        Decimal?  @db.Decimal(18, 2)
+  avg_conversation_rate Decimal?  @db.Decimal(12, 4)
+  avg_page_views        Int?
+  avg_visitors          Int?
+  currency              String    @db.Char(3)
+  created_at            DateTime  @default(now()) @db.Timestamptz(6)
+  created_by            Int?
+  updated_at            DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by            Int?
+  deleted_at            DateTime? @db.Timestamptz(6)
+  deleted_by            Int?
+
+  @@unique([seller_id, metric_date], map: "shop_performance_daily_unique")
+  @@index([metric_date])
+  @@index([seller_id, metric_date], map: "shop_performance_daily_shop_date_idx")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model shop_sync_states {
+  user_id                   String    @db.VarChar(255)
+  last_synced_at            DateTime? @db.Timestamptz(6)
+  is_initial_sync_completed Boolean?  @default(false)
+  status                    String?   @default("IDLE") @db.VarChar(20)
+  error_message             String?
+  type                      String?   @db.VarChar(100)
+  id                        Int       @default(autoincrement())
+  created_at                DateTime  @default(now()) @db.Timestamptz(6)
+  created_by                Int?
+  updated_at                DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by                Int?
+  deleted_at                DateTime? @db.Timestamptz(6)
+  deleted_by                Int?
+  seller_id                 String?   @db.VarChar(255)
+
+  @@ignore
+}
+
+model shopplus_tokens {
+  id            Int       @id @default(autoincrement())
+  email         String    @db.VarChar(255)
+  token         String
+  expires_at    DateTime  @db.Timestamptz(6)
+  brand_core_id Int?
+  user_id       Int?
+  brand_id      Int?
+  created_at    DateTime  @default(now()) @db.Timestamptz(6)
+  created_by    Int?
+  updated_at    DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by    Int?
+  deleted_at    DateTime? @db.Timestamptz(6)
+  deleted_by    Int?
+}
+
+model sku_transactions {
+  id                      Int       @id @default(autoincrement())
+  order_id                String?   @db.VarChar(255)
+  statement_id            String?   @db.VarChar(255)
+  sku_id                  String?   @db.VarChar(255)
+  sku_name                String?   @db.VarChar(255)
+  product_name            String?
+  quantity                Int?
+  revenue_amount          Decimal?  @db.Decimal(18, 2)
+  settlement_amount       Decimal?  @db.Decimal(18, 2)
+  shipping_cost_amount    Decimal?  @db.Decimal(18, 2)
+  fee_tax_amount          Decimal?  @db.Decimal(18, 2)
+  fee_tax_breakdown       Json      @default("{}")
+  revenue_breakdown       Json      @default("{}")
+  shipping_cost_breakdown Json      @default("{}")
+  created_at              DateTime  @default(now()) @db.Timestamptz(6)
+  created_by              Int?
+  updated_at              DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by              Int?
+  deleted_at              DateTime? @db.Timestamptz(6)
+  deleted_by              Int?
+
+  @@index([order_id])
+  @@index([sku_id])
+  @@index([statement_id])
+}
+
+model skus {
+  id             Int       @id @default(autoincrement())
+  sku_id         String    @db.VarChar(255)
+  sku_sale_props Json      @default("{}")
+  stock          Int
+  purchase_limit Int
+  price          Json      @default("{}")
+  promotion_view Json      @default("{}")
+  product_id     Int
+  created_at     DateTime  @default(now()) @db.Timestamptz(6)
+  created_by     Int?
+  updated_at     DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by     Int?
+  deleted_at     DateTime? @db.Timestamptz(6)
+  deleted_by     Int?
+  is_hidden      Boolean?  @default(false)
+  campaign_id    String?   @db.VarChar(255)
+
+  @@index([product_id])
+}
+
+model subscriptions {
+  id                   Int       @id @default(autoincrement())
+  plan_id              Int
+  status               String    @db.VarChar(50)
+  billing_cycle        String?   @db.VarChar(20)
+  current_period_start DateTime? @db.Timestamptz(6)
+  current_period_end   DateTime? @db.Timestamptz(6)
+  cancel_at_period_end Boolean?  @default(false)
+  created_at           DateTime  @default(now()) @db.Timestamptz(6)
+  created_by           Int?
+  updated_at           DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by           Int?
+  deleted_at           DateTime? @db.Timestamptz(6)
+  deleted_by           Int?
+  plans                plans     @relation(fields: [plan_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "subscriptions_plan_fk")
+}
+
+model tasks {
+  id          Int       @id @default(autoincrement())
+  name        String    @db.VarChar(255)
+  description String?   @db.VarChar(255)
+  created_at  DateTime  @default(now()) @db.Timestamptz(6)
+  created_by  Int?
+  updated_at  DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by  Int?
+  deleted_at  DateTime? @db.Timestamptz(6)
+  deleted_by  Int?
+  duration    String?   @db.VarChar(255)
+}
+
+model tiktok {
+  id                        Int       @id @default(autoincrement())
+  tiktok_id                 String?   @db.VarChar(255)
+  refresh_token             String?   @db.VarChar(255)
+  user_id                   Int?
+  created_at                DateTime  @default(now()) @db.Timestamptz(6)
+  created_by                Int?
+  updated_at                DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by                Int?
+  deleted_at                DateTime? @db.Timestamptz(6)
+  deleted_by                Int?
+  average_view_count        Decimal?  @db.Decimal
+  average_like_count        Decimal?  @db.Decimal
+  average_share_count       Decimal?  @db.Decimal
+  average_engagement_rate   Decimal?  @db.Decimal
+  video_count               Decimal?  @db.Decimal
+  likes_count               Decimal?  @db.Decimal
+  follower_count            Decimal?  @db.Decimal
+  following_count           Decimal?  @db.Decimal
+  link                      String?
+  refresh_token_creator_tap String?   @db.VarChar(255)
+  video_gmv                 Decimal?  @db.Decimal
+  live_gmv                  Decimal?  @db.Decimal
+  female_ratio              Decimal?  @db.Decimal
+  open_id                   String?
+  total_gmv                 Decimal?  @db.Decimal
+  avg_ec_live_uv            Int?
+  avg_ec_video_view_count   Int?
+  gmv_range                 Json?
+  top_follower_demographics Json?
+  category_ids              Json?
+  products_cart_gmv         Decimal?  @db.Decimal
+  follower_state_location   Json?
+  follower_ages             Json?
+  is_authorized             Json?
+  creator_oecu_id           String?   @db.VarChar(255)
+  is_fast_growing           Boolean?
+  creator_id                String?   @unique(map: "tiktok_creator_id_unique") @db.VarChar(255)
+  follower_genders          Json?
+  posting_rate              Decimal?  @db.Decimal
+  is_unauthorized_showcase  Boolean?
+  nearest_link              String?   @db.VarChar(255)
+  koc_cast                  Decimal?  @db.Decimal
+
+  @@index([koc_cast], map: "idx_koc_cast_concurrently")
+  @@index([link])
+  @@index([user_id])
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tiktok_analytics {
+  id                       Int       @default(autoincrement())
+  created_at               DateTime? @default(now()) @db.Timestamp(6)
+  created_by               Int?
+  tiktok_username          String?   @db.VarChar(255)
+  units_sold               Decimal?  @db.Decimal
+  gmv                      Decimal?  @db.Decimal
+  follower                 Decimal?  @db.Decimal
+  video_engagement_rate    Decimal?  @db.Decimal
+  ec_video_engagement_rate Decimal?  @db.Decimal
+  video_play_cnt           Decimal?  @db.Decimal
+  ec_video_play_cnt        Decimal?  @db.Decimal
+  posting_rate             Decimal?  @db.Decimal
+
+  @@index([tiktok_username])
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tiktok_cookies {
+  id         Int       @default(autoincrement())
+  key        String?   @db.VarChar(255)
+  value      String?
+  expires_at DateTime? @db.Timestamptz(6)
+  created_at DateTime  @default(now()) @db.Timestamptz(6)
+  created_by Int?
+  updated_at DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by Int?
+  deleted_at DateTime? @db.Timestamptz(6)
+  deleted_by Int?
+  value_arr  Json?
+  type       String?   @db.VarChar(255)
+  partner_id String?   @db.VarChar(255)
+
+  @@ignore
+}
+
+model tiktok_external {
+  id                        Int       @id @default(autoincrement())
+  link                      String?   @db.VarChar(255)
+  follower_count            Decimal?  @db.Decimal
+  video_gmv                 Decimal?  @db.Decimal
+  live_gmv                  Decimal?  @db.Decimal
+  female_ratio              Decimal?  @db.Decimal
+  total_gmv                 Decimal?  @db.Decimal
+  avg_ec_live_uv            Int?
+  avg_ec_video_view_count   Int?
+  gmv_range                 Json?
+  top_follower_demographics Json?
+  category_ids              Json?
+  created_at                DateTime  @default(now()) @db.Timestamptz(6)
+  created_by                Int?
+  updated_at                DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by                Int?
+  deleted_at                DateTime? @db.Timestamptz(6)
+  deleted_by                Int?
+  product_ids               Json?
+  referral_code             String?   @db.VarChar(255)
+  categories_tap            String?   @db.VarChar(255)
+}
+
+model tiktok_shop_authorizations {
+  id                      Int       @id @default(autoincrement())
+  created_at              DateTime  @default(now()) @db.Timestamptz(6)
+  created_by              Int?
+  open_id                 String
+  seller_name             String?   @db.VarChar(255)
+  seller_base_region      String?   @db.VarChar(10)
+  user_type               Int?
+  access_token            String
+  access_token_expire_at  DateTime  @db.Timestamptz(6)
+  refresh_token           String
+  refresh_token_expire_at DateTime  @db.Timestamptz(6)
+  granted_scopes          Json?
+  is_authorized           Boolean?  @default(true)
+  updated_at              DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by              Int?
+  deleted_at              DateTime? @db.Timestamptz(6)
+  deleted_by              Int?
+  seller_id               String?   @db.VarChar(255)
+
+  @@index([created_by], map: "tiktok_shop_authorizations_user_id_idx")
+}
+
+model tracking_views {
+  id         Int       @id(map: "tracking_view_pkey") @default(autoincrement())
+  draft_id   Int?
+  video_id   String?
+  view_count Decimal?  @db.Decimal
+  created_at DateTime  @default(now()) @db.Timestamptz(6)
+  ended_at   DateTime? @db.Timestamptz(6)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model transactions {
+  id                Int       @default(autoincrement())
+  type              String?   @db.VarChar(255)
+  created_at        DateTime  @default(now()) @db.Timestamptz(6)
+  created_by        Int?
+  updated_at        DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by        Int?
+  deleted_at        DateTime? @db.Timestamptz(6)
+  deleted_by        Int?
+  amount            Decimal?  @db.Decimal(10, 2)
+  status            String?   @db.VarChar(255)
+  payment_gateway   String?   @db.VarChar(255)
+  metadata          Json?
+  kol_submission_id Int?
+  campaign_id       Int?
+  payment_at        DateTime? @db.Timestamptz(6)
+
+  @@ignore
+}
+
+model user_activities {
+  id         Int       @id @default(autoincrement())
+  created_at DateTime? @default(now()) @db.Timestamptz(6)
+  created_by Int?
+
+  @@index([created_by])
+}
+
+model user_categories {
+  id          Int? @default(autoincrement())
+  user_id     Int
+  category_id Int
+
+  @@id([user_id, category_id], map: "user_categories_pk")
+}
+
+model user_categories_tap {
+  id          Int? @default(autoincrement())
+  user_id     Int
+  category_id Int
+
+  @@id([user_id, category_id], map: "user_categories_tap_pk")
+}
+
+model user_galleries {
+  id         Int       @id @default(autoincrement())
+  name       String?   @db.VarChar(500)
+  user_id    BigInt?
+  created_at DateTime  @default(now()) @db.Timestamptz(6)
+  created_by Int?
+  updated_at DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by Int?
+  deleted_at DateTime? @db.Timestamptz(6)
+  deleted_by Int?
+  type       String?   @db.VarChar(255)
+}
+
+model user_interacts {
+  id          Int        @id @default(autoincrement())
+  user_id     Int?
+  entity_id   Int?
+  entity_name String?    @db.VarChar(255)
+  interact_id Int?
+  description String?
+  created_at  DateTime   @default(now()) @db.Timestamptz(6)
+  created_by  Int?
+  updated_at  DateTime?  @default(now()) @db.Timestamptz(6)
+  updated_by  Int?
+  deleted_at  DateTime?  @db.Timestamptz(6)
+  deleted_by  Int?
+  status      String?    @db.VarChar(255)
+  reason      String?    @db.VarChar(255)
+  interacts   interacts? @relation(fields: [interact_id], references: [id])
+  users       User?      @relation(fields: [user_id], references: [id])
+}
+
+model user_notification_watermarks {
+  id                        Int       @id @default(autoincrement())
+  last_read_notification_id Int?
+  entity_name               String?   @db.VarChar(255)
+  type                      String?   @db.VarChar(255)
+  created_at                DateTime  @default(now()) @db.Timestamptz(6)
+  created_by                Int?
+  updated_at                DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by                Int?
+  deleted_at                DateTime? @db.Timestamptz(6)
+  deleted_by                Int?
+}
+
+model user_otp_sessions {
+  id           Int        @id @default(autoincrement())
+  otp_type_id  Int?
+  user_id      Int?
+  code         String?    @db.VarChar(64)
+  expired_at   DateTime   @default(now()) @db.Timestamptz(6)
+  created_at   DateTime   @default(now()) @db.Timestamptz(6)
+  created_by   Int?
+  updated_at   DateTime?  @default(now()) @db.Timestamptz(6)
+  updated_by   Int?
+  deleted_at   DateTime?  @db.Timestamptz(6)
+  deleted_by   Int?
+  email        String?    @db.VarChar(255)
+  phone_number String?    @db.VarChar(255)
+  otp_types    otp_types? @relation(fields: [otp_type_id], references: [id])
+  users        User?      @relation(fields: [user_id], references: [id])
+}
+
+model user_platforms {
+  id          Int?    @default(autoincrement())
+  user_id     Int
+  platform_id Int
+  link        String? @db.VarChar(255)
+
+  @@id([user_id, platform_id])
+}
+
+model user_referrals {
+  id             Int       @id @default(autoincrement())
+  child_user_id  Int
+  parent_user_id Int
+  level_child    Int?      @db.SmallInt
+  created_at     DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at     DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by     Int?
+  deleted_at     DateTime? @db.Timestamptz(6)
+  deleted_by     Int?
+
+  @@index([level_child(sort: Desc)])
+}
+
+model user_relationships {
+  id               Int     @id @default(autoincrement())
+  children_user_id Int
+  parent_user_id   Int?
+  scope            String? @db.VarChar(255)
+
+  @@unique([children_user_id, parent_user_id, scope], map: "user_relationships_unique")
+}
+
+model user_reports {
+  id          Int       @id @default(autoincrement())
+  entity_id   Int
+  entity_name String    @db.VarChar(50)
+  reason      String?   @db.VarChar(1000)
+  created_at  DateTime  @default(now()) @db.Timestamptz(6)
+  created_by  Int?
+  updated_at  DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by  Int?
+  deleted_at  DateTime? @db.Timestamptz(6)
+  deleted_by  Int?
+  status      String?   @default(dbgenerated("1")) @db.VarChar
+  description String?
+}
+
+model user_sessions {
+  id            Int       @id @default(autoincrement())
+  refresh_token String
+  user_agent    String?
+  ip_address    String?
+  expired_at    DateTime? @db.Timestamptz(6)
+  created_at    DateTime? @default(now()) @db.Timestamptz(6)
+  created_by    Int?
+  updated_at    DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by    Int?
+  deleted_at    DateTime? @db.Timestamptz(6)
+  deleted_by    Int?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model wallets {
+  id         Int       @default(autoincrement())
+  user_id    BigInt?
+  balance    Decimal?  @default(0) @db.Decimal
+  created_at DateTime  @default(now()) @db.Timestamptz(6)
+  created_by Int?      @unique(map: "created_by_unique")
+  updated_at DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by Int?
+  deleted_at DateTime? @db.Timestamptz(6)
+  deleted_by Int?
+
+  @@ignore
+}
+
+model wards {
+  id            Int     @id @default(autoincrement())
+  name          String  @db.VarChar(255)
+  code          String  @db.VarChar(255)
+  full_name     String? @db.VarChar(255)
+  district_code String? @db.VarChar(255)
+}
+
+model youtube {
+  id             Int       @id @default(autoincrement())
+  channel_id     String?   @db.VarChar(255)
+  refresh_token  String?   @db.VarChar(255)
+  user_id        Int?
+  created_at     DateTime  @default(now()) @db.Timestamptz(6)
+  created_by     Int?
+  updated_at     DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by     Int?
+  deleted_at     DateTime? @db.Timestamptz(6)
+  deleted_by     Int?
+  view_count     Decimal?  @db.Decimal
+  follower_count Decimal?  @db.Decimal
+  video_count    Decimal?  @db.Decimal
+  link           String?   @db.VarChar
+  data_analyst   Json?
+}
+
+enum file_status_enum {
+  uploading
+  processing
+  ready
+  error
+}
+
+enum interacts_type_enum {
+  LOVE
+  DISLOVE
+  COMMENT
+  REPLYCOMMENT
+}
+
+enum node_type_enum {
+  folder
+  file
+}
+
+enum referral_type {
+  NEW
+  OLD
+}

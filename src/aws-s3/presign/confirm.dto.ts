@@ -14,4 +14,6 @@ export const ConfirmUploadResponseSchema = z.object({
   size: z.number(),
 });
 
-export class ConfirmUploadResponseDto extends createZodDto(ConfirmUploadResponseSchema) {}
+export class ConfirmUploadResponseDto extends createZodDto(
+  ConfirmUploadResponseSchema,
+) {}

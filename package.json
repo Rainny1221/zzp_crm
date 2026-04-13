@@ -18,11 +18,23 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
+    "prisma:pull": "pnpm prisma db pull",
+    "prisma:bootstrap": "pnpm prisma db pull && pnpm prisma generate && pnpm prisma validate",
+    "prisma:validate": "pnpm prisma validate",
     "prisma:generate": "pnpm prisma generate",
-    "prisma:migrate:dev": "pnpm prisma migrate dev --name",
+    "prisma:format": "pnpm prisma format",
+    "prisma:drift:check": "pnpm prisma migrate diff --exit-code --from-config-datasource --to-schema prisma",
+    "prisma:migrate:status": "pnpm prisma migrate status",
+    "prisma:migrate:baseline": "pnpm prisma migrate diff --from-empty --to-schema prisma --script --output prisma/migrations/000_init/migration.sql",
+    "prisma:migrate:resolve:baseline": "pnpm prisma migrate resolve --applied 000_init",
+    "prisma:migrate:dev": "pnpm prisma migrate dev",
+    "prisma:db:push": "node scripts/prisma-db-push-blocked.mjs",
     "prisma:migrate:deploy": "pnpm prisma migrate deploy",
     "postinstall": "pnpm prisma generate",
     "generate:module": "npx ts-node scripts/generate-ddd-module.ts"
+  },
+  "engines": {
+    "node": ">=20.19.0 <25"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.1000.0",
@@ -107,6 +119,9 @@
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "moduleNameMapper": {
+      "^src/(.*)$": "<rootDir>/$1"
     },
     "collectCoverageFrom": [
       "**/*.(t|j)s"

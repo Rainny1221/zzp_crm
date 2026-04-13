@@ -10,7 +10,7 @@ export interface CreateUserProps {
   email: string;
   name?: string;
   phoneNumber?: string;
-  avatar?: Record<string, any>;
+  avatar?: Record<string, unknown>;
   bio?: string;
   address?: string;
   age?: number;
@@ -32,7 +32,7 @@ export interface UpdateProfileProps {
   gender?: Gender;
   hobby?: string;
   major?: string;
-  avatar?: Record<string, any>;
+  avatar?: Record<string, unknown>;
   hobbyIds?: number[];
 }
 
@@ -44,7 +44,7 @@ export class UserEntity {
     private _email: Email,
     private _name: string | null,
     private _phoneNumber: string | null,
-    private _avatar: Record<string, any> | null,
+    private _avatar: Record<string, unknown> | null,
     private _bio: string | null,
     private _address: string | null,
     private _age: number | null,
@@ -143,7 +143,7 @@ export class UserEntity {
     return this._phoneNumber;
   }
 
-  get avatar(): Record<string, any> | null {
+  get avatar(): Record<string, unknown> | null {
     return this._avatar;
   }
 

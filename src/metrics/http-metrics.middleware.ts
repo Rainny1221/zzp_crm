@@ -21,9 +21,7 @@ export class HttpMetricsMiddleware implements NestMiddleware {
     }
 
     res.on('finish', () => {
-      const path =
-        req.route?.path ??
-        req.path.replace(/\/\d+/g, '/:id');
+      const path = req.route?.path ?? req.path.replace(/\/\d+/g, '/:id');
 
       const labels = {
         method: req.method,

@@ -14,11 +14,15 @@ export class AvatarService {
 
   async confirmAndOptimize(userId: number, rawKey: string) {
     await this.s3Service.headObject(rawKey);
-    await this.fileQueue.add('optimize-avatar', { userId, rawKey }, {
-      attempts: 3,
-      backoff: { type: 'exponential', delay: 1000 },
-      removeOnComplete: true,
-    });
+    await this.fileQueue.add(
+      'optimize-avatar',
+      { userId, rawKey },
+      {
+        attempts: 3,
+        backoff: { type: 'exponential', delay: 1000 },
+        removeOnComplete: true,
+      },
+    );
     return { message: 'Avatar đang được tối ưu' };
   }
 }

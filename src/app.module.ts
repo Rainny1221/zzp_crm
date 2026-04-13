@@ -1,8 +1,7 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MetricsModule } from './metrics/prometheus.module';
-import { HttpMetricsMiddleware } from './metrics/http-metrics.middleware';
 import { HealthModule } from './health/health.module';
 import { RedisModule } from './redis/redis.module';
 import { REDIS_CLIENT } from './redis/redis.constants';
@@ -14,7 +13,6 @@ import Redis from 'ioredis';
 import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { TransformInterceptor } from './common/interceptor/transform.interceptor';
 import { GlobalExceptionFilter } from './common/filter/global-exception.filter';
-import { AuthModule } from './modules/auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PermissionsGuard } from './common/guards/permissions.guard';
 import { AuthGuard } from './common/guards/auth.guard';
@@ -61,11 +59,11 @@ import { RequestContextModule } from './common/context/infrastructure/request-co
     }),
     CacheModule.registerAsync({
       isGlobal: true,
-      imports: [RedisModule], 
-      inject: [REDIS_CLIENT], 
+      imports: [RedisModule],
+      inject: [REDIS_CLIENT],
       useFactory: (redisClient: Redis) => {
         const store = new KeyvRedis(redisClient as any);
-        
+
         return {
           stores: [new Keyv({ store })],
           ttl: 60000,
@@ -73,21 +71,20 @@ import { RequestContextModule } from './common/context/infrastructure/request-co
       },
     }),
     RequestContextModule,
-    LoggerModule,  
+    LoggerModule,
     MetricsModule,
     HealthModule,
     RedisModule,
     UserModule,
-    AuthModule,
     AwsS3Module,
     FileModule,
     PrismaModule,
     AvatarModule,
-    ImageModule
+    ImageModule,
   ],
   controllers: [AppController],
   providers: [
-    AppService, 
+    AppService,
     {
       provide: APP_INTERCEPTOR,
       useClass: TransformInterceptor,

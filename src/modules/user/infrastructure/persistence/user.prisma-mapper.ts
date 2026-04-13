@@ -1,56 +1,75 @@
+import { User } from 'src/generated/prisma/client';
 import { UserEntity, Gender } from '../../domain/entities/user.entity';
 
 // Represents the raw shape from Prisma query
-interface PrismaUserRaw {
-  id: number;
-  email: string | null;
-  phone_number: string | null;
-  name: string | null;
-  avatar: any;
-  bio: string | null;
-  address: string | null;
-  age: number | null;
-  gender: Gender | null;
-  major: string | null;
-  free_time_activity: string | null;
-  is_verified: boolean;
-  is_active: boolean;
-  is_block: boolean;
-  user_hobbies?: { hobby_id: number }[];
-}
+export type PrismaUserRaw = Pick<
+  User,
+  | 'id'
+  | 'email'
+  | 'first_name'
+  | 'last_name'
+  | 'phone_number'
+  | 'avatar_name'
+  | 'bio'
+  | 'age'
+  | 'gender'
+  | 'is_verify_email'
+  | 'is_active'
+  | 'is_block'
+>;
 
 export class UserPrismaMapper {
   static toDomain(raw: PrismaUserRaw): UserEntity {
+    const fullName = [raw.first_name, raw.last_name]
+      .filter(Boolean)
+      .join(' ')
+      .trim();
+
     return UserEntity.reconstitute({
       id: raw.id,
-      email: raw.email ?? '',
-      name: raw.name ?? undefined,
+      email: raw.email ?? `user-${raw.id}@local.invalid`,
+      name: fullName || undefined,
       phoneNumber: raw.phone_number ?? undefined,
-      avatar: raw.avatar ?? undefined,
+      avatar: raw.avatar_name ? { key: raw.avatar_name } : undefined,
       bio: raw.bio ?? undefined,
-      address: raw.address ?? undefined,
-      age: raw.age ?? undefined,
-      gender: raw.gender ?? undefined,
-      major: raw.major ?? undefined,
-      freeTimeActivity: raw.free_time_activity ?? undefined,
-      hobbyIds: raw.user_hobbies?.map((h) => h.hobby_id) ?? [],
-      isVerified: raw.is_verified,
-      isActive: raw.is_active,
-      isBlock: raw.is_block,
+      age: UserPrismaMapper.toDomainAge(raw.age),
+      gender: UserPrismaMapper.toDomainGender(raw.gender),
+      hobbyIds: [],
+      isVerified: raw.is_verify_email ?? false,
+      isActive: raw.is_active ?? true,
+      isBlock: raw.is_block ?? false,
     });
   }
 
   static toUpdatePersistence(entity: UserEntity) {
+    const avatarKey =
+      entity.avatar && typeof entity.avatar.key === 'string'
+        ? entity.avatar.key
+        : null;
+
     return {
-      name: entity.name,
+      first_name: entity.name,
+      last_name: null,
       phone_number: entity.phoneNumber,
       bio: entity.bio,
-      address: entity.address,
-      age: entity.age,
+      age: entity.age !== null ? String(entity.age) : null,
       gender: entity.gender,
-      major: entity.major,
-      avatar: entity.avatar ?? undefined,
-      free_time_activity: entity.freeTimeActivity,
+      avatar_name: avatarKey,
     };
+  }
+
+  private static toDomainAge(age: string | null): number | undefined {
+    if (!age) return undefined;
+
+    const parsed = Number(age);
+    return Number.isFinite(parsed) ? parsed : undefined;
+  }
+
+  private static toDomainGender(gender: string | null): Gender | undefined {
+    if (gender === 'MALE' || gender === 'FEMALE' || gender === 'OTHER') {
+      return gender;
+    }
+
+    return undefined;
   }
 }

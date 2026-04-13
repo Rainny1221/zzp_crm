@@ -1,0 +1,147 @@
+model CrmPipelineStages {
+  code               String  @id
+  label              String
+  stage_order        Int
+  mapped_status_code String
+  is_terminal        Boolean @default(false)
+  is_active          Boolean @default(true)
+
+  deals           CrmDeals[]
+  pipelineRecords CrmPipelineRecords[]
+
+  @@index([stage_order])
+  @@map("crm_pipeline_stages")
+}
+
+model CrmSources {
+  code      String  @id
+  label     String
+  is_active Boolean @default(true)
+
+  customers CrmCustomerProfiles[]
+
+  @@map("crm_sources")
+}
+
+model CrmTiers {
+  code      String  @id
+  label     String
+  is_active Boolean @default(true)
+
+  customers CrmCustomerProfiles[]
+
+  @@map("crm_tiers")
+}
+
+model CrmCustomerProfiles {
+  id          Int      @id @default(autoincrement())
+  user_id     Int      @unique
+  source_code String
+  tier_code   String
+  owner_id    Int?
+  created_at  DateTime @default(now()) @db.Timestamptz(6)
+
+  user   User       @relation(fields: [user_id], references: [id])
+  source CrmSources @relation(fields: [source_code], references: [code])
+  tier   CrmTiers   @relation(fields: [tier_code], references: [code])
+  owner  User?      @relation("crm_owner", fields: [owner_id], references: [id])
+
+  deal CrmDeals?
+
+  @@index([owner_id])
+  @@index([source_code])
+  @@index([tier_code])
+  @@map("crm_customer_profiles")
+}
+
+model CrmDeals {
+  id                  Int      @id @default(autoincrement())
+  customer_id         Int      @unique
+  pipeline_stage_code String
+  owner_id            Int?
+  product_package     String   @default("starter")
+  deal_value          Decimal? @default(0) @db.Decimal(14, 2)
+  probability         Int      @default(0)
+  status              String?  @default("new")
+  created_at          DateTime @default(now()) @db.Timestamptz(6)
+  updated_at          DateTime @updatedAt @db.Timestamptz(6)
+
+  customer CrmCustomerProfiles @relation(fields: [customer_id], references: [id])
+  stage    CrmPipelineStages   @relation(fields: [pipeline_stage_code], references: [code])
+  owner    User?               @relation("deal_owner", fields: [owner_id], references: [id])
+
+  pipelineRecords CrmPipelineRecords[]
+
+  @@index([pipeline_stage_code])
+  @@index([owner_id])
+  @@index([product_package])
+  @@index([status])
+  @@map("crm_deals")
+}
+
+model CrmPipelineRecords {
+  id         Int      @id @default(autoincrement())
+  deal_id    Int
+  stage_code String
+  owner_id   Int?
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  updated_at DateTime @updatedAt @db.Timestamptz(6)
+
+  deal  CrmDeals          @relation(fields: [deal_id], references: [id])
+  stage CrmPipelineStages @relation(fields: [stage_code], references: [code])
+  owner User?             @relation("pipeline_owner", fields: [owner_id], references: [id])
+
+  @@index([stage_code])
+  @@index([deal_id, created_at])
+  @@index([owner_id])
+  @@map("crm_pipeline_records")
+}
+
+enum CrmEventStatus {
+  SUCCESS
+  FAILED
+}
+
+model CrmPipelineEvents {
+  id            Int            @id @default(autoincrement())
+  event_type    String
+  entity_type   String
+  entity_id     Int
+  payload       Json?
+  status        CrmEventStatus @default(SUCCESS)
+  error_message String?
+  created_at    DateTime       @default(now()) @db.Timestamptz(6)
+
+  @@index([entity_type, entity_id])
+  @@index([event_type])
+  @@index([status])
+  @@map("crm_pipeline_events")
+}
+
+enum CrmSyncJobStatus {
+  PENDING
+  PROCESSING
+  SUCCESS
+  FAILED
+}
+
+model CrmSyncJobs {
+  id           Int              @id @default(autoincrement())
+  event_key    String           @unique
+  event_type   String
+  user_id      Int
+  payload      Json?
+  status       CrmSyncJobStatus @default(PENDING)
+  retry_count  Int              @default(0)
+  last_error   String?
+  locked_at    DateTime?        @db.Timestamptz(6)
+  processed_at DateTime?        @db.Timestamptz(6)
+  created_at   DateTime         @default(now()) @db.Timestamptz(6)
+  updated_at   DateTime         @updatedAt @db.Timestamptz(6)
+
+  user User @relation(fields: [user_id], references: [id])
+
+  @@index([status, created_at])
+  @@index([user_id])
+  @@map("crm_sync_jobs")
+}

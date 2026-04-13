@@ -9,28 +9,55 @@
 * 🟢 You can import this file directly.
 */
 
-export const UserAction = {
-  LIKE: 'LIKE',
-  DISLIKE: 'DISLIKE',
-  SUPERLIKE: 'SUPERLIKE'
+export const file_status_enum = {
+  uploading: 'uploading',
+  processing: 'processing',
+  ready: 'ready',
+  error: 'error'
 } as const
 
-export type UserAction = (typeof UserAction)[keyof typeof UserAction]
+export type file_status_enum = (typeof file_status_enum)[keyof typeof file_status_enum]
 
 
-export const MatchingStatus = {
+export const interacts_type_enum = {
+  LOVE: 'LOVE',
+  DISLOVE: 'DISLOVE',
+  COMMENT: 'COMMENT',
+  REPLYCOMMENT: 'REPLYCOMMENT'
+} as const
+
+export type interacts_type_enum = (typeof interacts_type_enum)[keyof typeof interacts_type_enum]
+
+
+export const node_type_enum = {
+  folder: 'folder',
+  file: 'file'
+} as const
+
+export type node_type_enum = (typeof node_type_enum)[keyof typeof node_type_enum]
+
+
+export const referral_type = {
+  NEW: 'NEW',
+  OLD: 'OLD'
+} as const
+
+export type referral_type = (typeof referral_type)[keyof typeof referral_type]
+
+
+export const CrmEventStatus = {
+  SUCCESS: 'SUCCESS',
+  FAILED: 'FAILED'
+} as const
+
+export type CrmEventStatus = (typeof CrmEventStatus)[keyof typeof CrmEventStatus]
+
+
+export const CrmSyncJobStatus = {
   PENDING: 'PENDING',
-  ACCEPT: 'ACCEPT',
-  REJECT: 'REJECT'
+  PROCESSING: 'PROCESSING',
+  SUCCESS: 'SUCCESS',
+  FAILED: 'FAILED'
 } as const
 
-export type MatchingStatus = (typeof MatchingStatus)[keyof typeof MatchingStatus]
-
-
-export const Gender = {
-  MALE: 'MALE',
-  FEMALE: 'FEMALE',
-  OTHER: 'OTHER'
-} as const
-
-export type Gender = (typeof Gender)[keyof typeof Gender]
+export type CrmSyncJobStatus = (typeof CrmSyncJobStatus)[keyof typeof CrmSyncJobStatus]

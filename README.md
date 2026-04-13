@@ -23,7 +23,29 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+CRM backend built on NestJS + Prisma + PostgreSQL.
+
+## Prisma Workflow
+
+This repository uses a strict Prisma workflow:
+
+- local, staging, and production follow the same Prisma migration flow
+- Prisma schema lives in multiple files under `prisma/models/*.prisma`
+- `prisma/schema.prisma` is only the entrypoint for generator + datasource
+- `prisma db push` is not allowed
+- local changes use `prisma migrate dev`
+- staging/prod deploy uses `prisma migrate deploy`
+
+Quick start:
+
+```bash
+nvm use
+pnpm prisma:bootstrap
+```
+
+Detailed workflow:
+
+- [Prisma Source-of-Truth Workflow](./docs/prisma-source-of-truth-workflow.md)
 
 ## Project setup
 

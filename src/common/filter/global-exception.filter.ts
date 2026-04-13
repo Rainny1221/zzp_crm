@@ -48,7 +48,10 @@ export class GlobalExceptionFilter implements ExceptionFilter {
 
       if (typeof exceptionResponse === 'string') {
         message = exceptionResponse;
-      } else if (typeof exceptionResponse === 'object' && exceptionResponse !== null) {
+      } else if (
+        typeof exceptionResponse === 'object' &&
+        exceptionResponse !== null
+      ) {
         const responseObj = exceptionResponse as Record<string, any>;
         message = Array.isArray(responseObj.message)
           ? responseObj.message[0]
@@ -73,7 +76,10 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     }
 
     const logPayload = {
-      message: status >= 500 ? 'Unhandled exception captured' : 'HTTP exception captured',
+      message:
+        status >= 500
+          ? 'Unhandled exception captured'
+          : 'HTTP exception captured',
       context: GlobalExceptionFilter.name,
       module: 'http',
       action,

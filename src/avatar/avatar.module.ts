@@ -8,17 +8,17 @@ import { BullMQAdapter } from '@bull-board/api/bullMQAdapter';
 import { AvatarController } from './avatar.controller';
 
 @Module({
-    imports: [
-            BullModule.registerQueue({
-              name: 'file_queue',
-            }),
-            BullBoardModule.forFeature({
-              name: 'file_queue',
-              adapter: BullMQAdapter,
-            }),
-        AwsS3Module,
-        ImageModule
-    ],
+  imports: [
+    BullModule.registerQueue({
+      name: 'file_queue',
+    }),
+    BullBoardModule.forFeature({
+      name: 'file_queue',
+      adapter: BullMQAdapter,
+    }),
+    AwsS3Module,
+    ImageModule,
+  ],
   providers: [AvatarService],
   exports: [AvatarService],
   controllers: [AvatarController],

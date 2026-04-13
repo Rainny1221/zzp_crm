@@ -10,7 +10,7 @@ export class GetUserByEmailHandler implements IQueryHandler<GetUserByEmailQuery>
 
   constructor(
     @Inject(I_USER_REPOSITORY)
-    userRepo: any,
+    userRepo: IUserRepository,
   ) {
     this.userRepo = userRepo;
   }

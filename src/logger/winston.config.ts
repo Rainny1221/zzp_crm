@@ -42,15 +42,10 @@ export const winstonConfig: WinstonModuleOptions = {
     service,
     env,
   },
-  format: combine(
-    timestamp(),
-    errors({ stack: true }),
-  ),
+  format: combine(timestamp(), errors({ stack: true })),
   transports: [
     new winston.transports.Console({
-      format: isProd
-        ? combine(json())
-        : combine(colorize(), devFormat),
+      format: isProd ? combine(json()) : combine(colorize(), devFormat),
     }),
   ],
 };
