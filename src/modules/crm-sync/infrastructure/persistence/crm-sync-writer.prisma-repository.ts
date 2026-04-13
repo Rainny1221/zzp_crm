@@ -46,7 +46,7 @@ export class CrmSyncWriterPrismaRepository implements ICrmSyncWriterRepository {
         }),
         this.prisma.crmPipelineStages.findUnique({
           where: { code: CRM_SYNC_DEFAULTS.PIPELINE_STAGE },
-          select: { code: true },
+          select: { code: true, mapped_status_code: true },
         }),
       ]);
 
@@ -127,7 +127,7 @@ export class CrmSyncWriterPrismaRepository implements ICrmSyncWriterRepository {
               product_package: CRM_SYNC_DEFAULTS.PRODUCT_PACKAGE,
               deal_value: 0,
               probability: CRM_SYNC_DEFAULTS.PROBABILITY,
-              status: CRM_SYNC_DEFAULTS.DEAL_STATUS,
+              status: stage.mapped_status_code,
             },
           });
 

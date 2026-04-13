@@ -1,5 +1,5 @@
 import { Command } from '@nestjs/cqrs';
-import type { CrmSyncJobStatus } from '../../domain/entities/crm-sync.entity';
+import type { CrmSyncJobStatus } from '../../domain/crm-sync.constants';
 
 export type ProcessCrmSyncJobResult = {
   id: number;

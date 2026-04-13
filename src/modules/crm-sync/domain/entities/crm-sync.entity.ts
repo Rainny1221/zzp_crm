@@ -1,4 +1,9 @@
-export type CrmSyncJobStatus = 'PENDING' | 'PROCESSING' | 'SUCCESS' | 'FAILED';
+import {
+  CRM_SYNC_JOB_STATUS,
+  type CrmSyncJobStatus,
+} from '../crm-sync.constants';
+
+export type { CrmSyncJobStatus };
 
 export class CrmSyncEntity {
   constructor(
@@ -17,6 +22,9 @@ export class CrmSyncEntity {
   ) {}
 
   canProcess(): boolean {
-    return this.status === 'PENDING' || this.status === 'FAILED';
+    return (
+      this.status === CRM_SYNC_JOB_STATUS.PENDING ||
+      this.status === CRM_SYNC_JOB_STATUS.FAILED
+    );
   }
 }

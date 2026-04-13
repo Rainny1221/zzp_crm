@@ -25,6 +25,14 @@ export class ErrorFactory {
           detail,
         );
 
+      case ErrorCode.CRM_SYNC_JOB_NOT_REPLAYABLE:
+        return new BaseException(
+          code,
+          customMessage || 'CRM sync job cannot be replayed',
+          HttpStatus.BAD_REQUEST,
+          detail,
+        );
+
       case ErrorCode.INVALID_CREDENTIALS:
         return new BaseException(
           code,

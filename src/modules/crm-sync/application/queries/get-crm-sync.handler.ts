@@ -2,6 +2,7 @@ import { Inject } from '@nestjs/common';
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import type { ICrmSyncRepository } from '../../domain/repositories/i-crm-sync.repository';
 import { I_CRM_SYNC_REPOSITORY } from '../../domain/repositories/i-crm-sync.repository';
+import { CrmSyncPresenter } from '../../presentation/crm-sync.presenter';
 import { GetCrmSyncQuery, GetCrmSyncQueryResult } from './get-crm-sync.query';
 
 @QueryHandler(GetCrmSyncQuery)
@@ -19,9 +20,6 @@ export class GetCrmSyncHandler implements IQueryHandler<GetCrmSyncQuery> {
     const entity = await this.repo.findById(query.id);
     if (!entity) return null;
 
-    // TODO: map to response DTO
-    return {
-      id: entity.id,
-    };
+    return CrmSyncPresenter.toResponse(entity);
   }
 }

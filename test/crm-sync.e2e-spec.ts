@@ -7,11 +7,16 @@ import { RequestContextModule } from '../src/common/context/infrastructure/reque
 import { AppLoggerService } from '../src/logger/app-logger.service';
 import { CrmSyncModule } from '../src/modules/crm-sync/crm-sync.module';
 import { PrismaService } from '../src/prisma/prisma.service';
-import { CRM_SYNC_DEFAULTS } from '../src/modules/crm-sync/domain/crm-sync.constants';
+import {
+  CRM_SYNC_DEFAULTS,
+  CRM_SYNC_EVENT_TYPE,
+  CRM_SYNC_JOB_STATUS,
+  type CrmSyncJobStatus,
+} from '../src/modules/crm-sync/domain/crm-sync.constants';
 
 interface ProcessJobResponse {
   id: number;
-  status: string;
+  status: CrmSyncJobStatus;
   skipped?: boolean;
   result?: {
     customerProfileId: number;
@@ -77,7 +82,7 @@ describe('CrmSyncController (e2e)', () => {
 
     expect(response).toMatchObject({
       id: jobId,
-      status: 'SUCCESS',
+      status: CRM_SYNC_JOB_STATUS.SUCCESS,
     });
     expect(response.skipped).toBeUndefined();
     expect(response.result).toBeDefined();
@@ -95,7 +100,7 @@ describe('CrmSyncController (e2e)', () => {
     expect(state.profiles).toHaveLength(1);
     expect(state.deals).toHaveLength(1);
     expect(state.pipelineRecords).toHaveLength(1);
-    expect(state.job?.status).toBe('SUCCESS');
+    expect(state.job?.status).toBe(CRM_SYNC_JOB_STATUS.SUCCESS);
     expect(state.job?.processed_at).toBeInstanceOf(Date);
   });
 
@@ -110,7 +115,8 @@ describe('CrmSyncController (e2e)', () => {
 
     expect(replayResponse.id).toBe(jobId);
     expect(
-      replayResponse.skipped === true || replayResponse.status === 'SUCCESS',
+      replayResponse.skipped === true ||
+        replayResponse.status === CRM_SYNC_JOB_STATUS.SUCCESS,
     ).toBe(true);
 
     expect(afterReplay.profiles).toHaveLength(1);
@@ -125,7 +131,7 @@ describe('CrmSyncController (e2e)', () => {
     expect(afterReplay.pipelineRecords.map((record) => record.id)).toEqual(
       beforeReplay.pipelineRecords.map((record) => record.id),
     );
-    expect(afterReplay.job?.status).toBe('SUCCESS');
+    expect(afterReplay.job?.status).toBe(CRM_SYNC_JOB_STATUS.SUCCESS);
   });
 
   it('claims only one job when two process requests run concurrently', async () => {
@@ -134,7 +140,9 @@ describe('CrmSyncController (e2e)', () => {
     const responses = await Promise.all([processJob(jobId), processJob(jobId)]);
 
     const successfulResponses = responses.filter(
-      (response) => response.status === 'SUCCESS' && response.skipped !== true,
+      (response) =>
+        response.status === CRM_SYNC_JOB_STATUS.SUCCESS &&
+        response.skipped !== true,
     );
     const skippedResponses = responses.filter(
       (response) => response.skipped === true,
@@ -148,7 +156,7 @@ describe('CrmSyncController (e2e)', () => {
     expect(state.profiles).toHaveLength(1);
     expect(state.deals).toHaveLength(1);
     expect(state.pipelineRecords).toHaveLength(1);
-    expect(state.job?.status).toBe('SUCCESS');
+    expect(state.job?.status).toBe(CRM_SYNC_JOB_STATUS.SUCCESS);
   });
 
   async function seedCrmDefaults(): Promise<void> {
@@ -183,7 +191,7 @@ describe('CrmSyncController (e2e)', () => {
       update: {
         label: CRM_SYNC_DEFAULTS.PIPELINE_STAGE,
         stage_order: 1,
-        mapped_status_code: CRM_SYNC_DEFAULTS.DEAL_STATUS,
+        mapped_status_code: CRM_SYNC_DEFAULTS.PIPELINE_MAPPED_STATUS_CODE,
         is_terminal: false,
         is_active: true,
       },
@@ -191,7 +199,7 @@ describe('CrmSyncController (e2e)', () => {
         code: CRM_SYNC_DEFAULTS.PIPELINE_STAGE,
         label: CRM_SYNC_DEFAULTS.PIPELINE_STAGE,
         stage_order: 1,
-        mapped_status_code: CRM_SYNC_DEFAULTS.DEAL_STATUS,
+        mapped_status_code: CRM_SYNC_DEFAULTS.PIPELINE_MAPPED_STATUS_CODE,
         is_terminal: false,
         is_active: true,
       },
@@ -222,13 +230,13 @@ describe('CrmSyncController (e2e)', () => {
     const job = await prisma.crmSyncJobs.findFirst({
       where: {
         user_id: user.id,
-        event_type: 'USER_CREATED',
+        event_type: CRM_SYNC_EVENT_TYPE.USER_CREATED,
       },
       orderBy: { id: 'desc' },
     });
 
     expect(job).not.toBeNull();
-    expect(job?.status).toBe('PENDING');
+    expect(job?.status).toBe(CRM_SYNC_JOB_STATUS.PENDING);
 
     return {
       userId: user.id,

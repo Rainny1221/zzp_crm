@@ -4,8 +4,17 @@ import { ErrorFactory } from 'src/common/error.factory';
 import { toErrorMeta } from 'src/common/logging/application/error-meta.helper';
 import { AppLoggerService } from 'src/logger/app-logger.service';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CRM_SYNC_LOG } from '../../domain/crm-sync.constants';
-import type { ICrmSyncRepository } from '../../domain/repositories/i-crm-sync.repository';
+import type { Prisma } from 'src/generated/prisma/client';
+import {
+  CRM_SYNC_JOB_STATUS,
+  CRM_SYNC_LOG,
+  CRM_SYNC_PROCESSABLE_STATUSES,
+} from '../../domain/crm-sync.constants';
+import type {
+  FindCrmSyncJobsParams,
+  FindCrmSyncJobsResult,
+  ICrmSyncRepository,
+} from '../../domain/repositories/i-crm-sync.repository';
 import { CrmSyncEntity } from '../../domain/entities/crm-sync.entity';
 import { CrmSyncPrismaMapper } from './crm-sync.prisma-mapper';
 
@@ -50,6 +59,67 @@ export class CrmSyncPrismaRepository implements ICrmSyncRepository {
     }
   }
 
+  async findMany(
+    params: FindCrmSyncJobsParams,
+  ): Promise<FindCrmSyncJobsResult> {
+    const where: Prisma.CrmSyncJobsWhereInput = {
+      ...(params.status ? { status: params.status } : {}),
+      ...(params.eventType ? { event_type: params.eventType } : {}),
+    };
+    const skip = (params.page - 1) * params.limit;
+
+    try {
+      const [items, total] = await Promise.all([
+        this.prisma.crmSyncJobs.findMany({
+          where,
+          orderBy: { created_at: 'desc' },
+          skip,
+          take: params.limit,
+        }),
+        this.prisma.crmSyncJobs.count({ where }),
+      ]);
+
+      this.logger.debug({
+        message: 'CRM sync jobs listed',
+        context: CrmSyncPrismaRepository.name,
+        module: CRM_SYNC_LOG.MODULE,
+        action: CRM_SYNC_LOG.ACTIONS.LIST_JOBS,
+        entityType: CRM_SYNC_LOG.ENTITIES.JOB,
+        meta: {
+          filters: params,
+          total,
+          itemCount: items.length,
+        },
+      });
+
+      return {
+        items: items.map((job) => CrmSyncPrismaMapper.toDomain(job)),
+        total,
+      };
+    } catch (error: unknown) {
+      this.logger.error({
+        message: 'Failed to list CRM sync jobs',
+        context: CrmSyncPrismaRepository.name,
+        module: CRM_SYNC_LOG.MODULE,
+        action: CRM_SYNC_LOG.ACTIONS.LIST_JOBS,
+        entityType: CRM_SYNC_LOG.ENTITIES.JOB,
+        meta: {
+          filters: params,
+          error: toErrorMeta(error),
+        },
+      });
+
+      throw ErrorFactory.create(
+        ErrorCode.CRM_SYNC_REPOSITORY_ERROR,
+        'Failed to list CRM sync jobs',
+        {
+          filters: params,
+          error: toErrorMeta(error),
+        },
+      );
+    }
+  }
+
   async tryStartProcessing(id: number): Promise<CrmSyncEntity | null> {
     const now = new Date();
 
@@ -57,10 +127,10 @@ export class CrmSyncPrismaRepository implements ICrmSyncRepository {
       const rows = await this.prisma.crmSyncJobs.updateManyAndReturn({
         where: {
           id,
-          status: { in: ['PENDING', 'FAILED'] },
+          status: { in: CRM_SYNC_PROCESSABLE_STATUSES },
         },
         data: {
-          status: 'PROCESSING',
+          status: CRM_SYNC_JOB_STATUS.PROCESSING,
           locked_at: now,
           updated_at: now,
         },
@@ -109,12 +179,69 @@ export class CrmSyncPrismaRepository implements ICrmSyncRepository {
     }
   }
 
+  async requeue(id: number): Promise<CrmSyncEntity | null> {
+    try {
+      const rows = await this.prisma.crmSyncJobs.updateManyAndReturn({
+        where: {
+          id,
+          status: CRM_SYNC_JOB_STATUS.FAILED,
+        },
+        data: {
+          status: CRM_SYNC_JOB_STATUS.PENDING,
+          locked_at: null,
+          processed_at: null,
+          last_error: null,
+        },
+      });
+
+      if (!rows.length) return null;
+
+      const job = rows[0];
+
+      this.logger.info({
+        message: 'CRM sync job requeued',
+        context: CrmSyncPrismaRepository.name,
+        module: CRM_SYNC_LOG.MODULE,
+        action: CRM_SYNC_LOG.ACTIONS.REQUEUE_JOB,
+        entityType: CRM_SYNC_LOG.ENTITIES.JOB,
+        entityId: id,
+        meta: {
+          jobId: id,
+        },
+      });
+
+      return CrmSyncPrismaMapper.toDomain(job);
+    } catch (error: unknown) {
+      this.logger.error({
+        message: 'Failed to requeue CRM sync job',
+        context: CrmSyncPrismaRepository.name,
+        module: CRM_SYNC_LOG.MODULE,
+        action: CRM_SYNC_LOG.ACTIONS.REQUEUE_JOB,
+        entityType: CRM_SYNC_LOG.ENTITIES.JOB,
+        entityId: id,
+        meta: {
+          jobId: id,
+          error: toErrorMeta(error),
+        },
+      });
+
+      throw ErrorFactory.create(
+        ErrorCode.CRM_SYNC_REPOSITORY_ERROR,
+        'Failed to requeue CRM sync job',
+        {
+          jobId: id,
+          error: toErrorMeta(error),
+        },
+      );
+    }
+  }
+
   async markSuccess(id: number): Promise<void> {
     try {
       await this.prisma.crmSyncJobs.update({
         where: { id },
         data: {
-          status: 'SUCCESS',
+          status: CRM_SYNC_JOB_STATUS.SUCCESS,
           processed_at: new Date(),
           last_error: null,
         },
@@ -149,7 +276,7 @@ export class CrmSyncPrismaRepository implements ICrmSyncRepository {
       await this.prisma.crmSyncJobs.update({
         where: { id },
         data: {
-          status: 'FAILED',
+          status: CRM_SYNC_JOB_STATUS.FAILED,
           retry_count: {
             increment: 1,
           },

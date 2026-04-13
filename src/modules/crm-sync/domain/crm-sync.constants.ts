@@ -1,9 +1,43 @@
+export const CRM_SYNC_JOB_STATUS = {
+  PENDING: 'PENDING',
+  PROCESSING: 'PROCESSING',
+  SUCCESS: 'SUCCESS',
+  FAILED: 'FAILED',
+} as const;
+
+export type CrmSyncJobStatus =
+  (typeof CRM_SYNC_JOB_STATUS)[keyof typeof CRM_SYNC_JOB_STATUS];
+
+export const CRM_SYNC_JOB_STATUS_VALUES = [
+  CRM_SYNC_JOB_STATUS.PENDING,
+  CRM_SYNC_JOB_STATUS.PROCESSING,
+  CRM_SYNC_JOB_STATUS.SUCCESS,
+  CRM_SYNC_JOB_STATUS.FAILED,
+] as const;
+
+export const CRM_SYNC_PROCESSABLE_STATUSES: CrmSyncJobStatus[] = [
+  CRM_SYNC_JOB_STATUS.PENDING,
+  CRM_SYNC_JOB_STATUS.FAILED,
+];
+
+export const CRM_SYNC_EVENT_TYPE = {
+  USER_CREATED: 'USER_CREATED',
+} as const;
+
+export type CrmSyncEventType =
+  (typeof CRM_SYNC_EVENT_TYPE)[keyof typeof CRM_SYNC_EVENT_TYPE];
+
+export const buildCrmSyncEventKey = (
+  eventType: CrmSyncEventType,
+  entityId: number,
+): string => `${eventType}:${entityId}`;
+
 export const CRM_SYNC_DEFAULTS = {
   SOURCE_CODE: 'website',
   TIER_CODE: 'trial',
   PIPELINE_STAGE: 'NEW_LEAD',
+  PIPELINE_MAPPED_STATUS_CODE: 'NEW',
   PRODUCT_PACKAGE: 'starter',
-  DEAL_STATUS: 'new',
   PROBABILITY: 0,
 } as const;
 
@@ -22,10 +56,14 @@ export const CRM_SYNC_LOG = {
   },
   ACTIONS: {
     FIND_JOB: 'CRM_SYNC_FIND_JOB',
+    LIST_JOBS: 'CRM_SYNC_LIST_JOBS',
     CLAIM_JOB: 'CRM_SYNC_CLAIM_JOB',
     MARK_SUCCESS: 'CRM_SYNC_MARK_SUCCESS',
     MARK_FAILED: 'CRM_SYNC_MARK_FAILED',
+    REQUEUE_JOB: 'CRM_SYNC_REQUEUE_JOB',
     PROCESS_JOB: 'CRM_SYNC_PROCESS_JOB',
     SYNC_FROM_USER: 'CRM_SYNC_FROM_USER',
+    BACKFILL: 'CRM_SYNC_BACKFILL',
+    ENQUEUE_JOB: 'CRM_SYNC_ENQUEUE_JOB',
   },
 } as const;

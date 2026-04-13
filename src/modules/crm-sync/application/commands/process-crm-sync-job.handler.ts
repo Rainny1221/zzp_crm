@@ -5,7 +5,10 @@ import { ErrorCode } from 'src/common/enums/error-codes.enum';
 import { ErrorFactory } from 'src/common/error.factory';
 import { toErrorMeta } from 'src/common/logging/application/error-meta.helper';
 import { AppLoggerService } from 'src/logger/app-logger.service';
-import { CRM_SYNC_LOG } from '../../domain/crm-sync.constants';
+import {
+  CRM_SYNC_JOB_STATUS,
+  CRM_SYNC_LOG,
+} from '../../domain/crm-sync.constants';
 import type { CrmSyncEntity } from '../../domain/entities/crm-sync.entity';
 import type { ICrmSyncRepository } from '../../domain/repositories/i-crm-sync.repository';
 import { I_CRM_SYNC_REPOSITORY } from '../../domain/repositories/i-crm-sync.repository';
@@ -104,7 +107,7 @@ export class ProcessCrmSyncJobHandler implements ICommandHandler<
 
       return {
         id: claimedJob.id,
-        status: 'SUCCESS',
+        status: CRM_SYNC_JOB_STATUS.SUCCESS,
         result,
       };
     } catch (error: unknown) {

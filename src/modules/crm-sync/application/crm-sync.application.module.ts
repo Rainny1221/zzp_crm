@@ -1,11 +1,19 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { CrmSyncInfrastructureModule } from '../infrastructure/crm-sync.infrastructure.module';
-import { GetCrmSyncHandler } from './queries';
-import { ProcessCrmSyncJobHandler } from './commands';
+import { GetCrmSyncHandler, GetCrmSyncJobsHandler } from './queries';
+import {
+  BackfillCrmSyncHandler,
+  ProcessCrmSyncJobHandler,
+  ReplayCrmSyncJobHandler,
+} from './commands';
 
-const QueryHandlers = [GetCrmSyncHandler];
-const CommandHandlers = [ProcessCrmSyncJobHandler];
+const QueryHandlers = [GetCrmSyncHandler, GetCrmSyncJobsHandler];
+const CommandHandlers = [
+  ProcessCrmSyncJobHandler,
+  ReplayCrmSyncJobHandler,
+  BackfillCrmSyncHandler,
+];
 
 @Module({
   imports: [CqrsModule, CrmSyncInfrastructureModule],
