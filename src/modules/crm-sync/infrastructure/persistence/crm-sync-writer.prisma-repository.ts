@@ -6,11 +6,12 @@ import { toErrorMeta } from 'src/common/logging/application/error-meta.helper';
 import type { LogEntry } from 'src/common/logging/application/log-entry';
 import { AppLoggerService } from 'src/logger/app-logger.service';
 import { PrismaService } from 'src/prisma/prisma.service';
-import type { Prisma } from 'src/generated/prisma/client';
+import { Prisma } from 'src/generated/prisma/client';
 import type { ICrmSyncWriterRepository } from '../../domain/repositories/i-crm-sync-writer.repository';
 import {
   CRM_SYNC_DEFAULTS,
   CRM_SYNC_LOG,
+  CRM_SYNC_TRANSACTION,
 } from '../../domain/crm-sync.constants';
 
 type SyncFromUserResult = Awaited<
@@ -38,61 +39,72 @@ export class CrmSyncWriterPrismaRepository implements ICrmSyncWriterRepository {
     });
 
     try {
+      const [user, stage] = await Promise.all([
+        this.prisma.user.findUnique({
+          where: { id: userId },
+          select: { id: true },
+        }),
+        this.prisma.crmPipelineStages.findUnique({
+          where: { code: CRM_SYNC_DEFAULTS.PIPELINE_STAGE },
+          select: { code: true },
+        }),
+      ]);
+
+      if (!user) {
+        this.logger.warn({
+          message: 'CRM sync user not found',
+          context: CrmSyncWriterPrismaRepository.name,
+          module: CRM_SYNC_LOG.MODULE,
+          action: CRM_SYNC_LOG.ACTIONS.SYNC_FROM_USER,
+          entityType: CRM_SYNC_LOG.ENTITIES.USER,
+          entityId: userId,
+          meta: {
+            userId,
+          },
+        });
+
+        throw ErrorFactory.create(
+          ErrorCode.USER_NOT_FOUND,
+          `User ${userId} not found`,
+          {
+            userId,
+          },
+        );
+      }
+
+      if (!stage) {
+        this.logger.error({
+          message: 'CRM sync pipeline stage not found',
+          context: CrmSyncWriterPrismaRepository.name,
+          module: CRM_SYNC_LOG.MODULE,
+          action: CRM_SYNC_LOG.ACTIONS.SYNC_FROM_USER,
+          entityType: CRM_SYNC_LOG.ENTITIES.PIPELINE_STAGE,
+          entityId: CRM_SYNC_DEFAULTS.PIPELINE_STAGE,
+          meta: {
+            userId,
+            stageCode: CRM_SYNC_DEFAULTS.PIPELINE_STAGE,
+          },
+        });
+
+        throw ErrorFactory.create(
+          ErrorCode.CRM_SYNC_CONFIGURATION_ERROR,
+          `Pipeline stage ${CRM_SYNC_DEFAULTS.PIPELINE_STAGE} not found`,
+          {
+            userId,
+            stageCode: CRM_SYNC_DEFAULTS.PIPELINE_STAGE,
+          },
+        );
+      }
+
       const result = await this.prisma.$transaction<SyncFromUserResult>(
         async (tx: Prisma.TransactionClient): Promise<SyncFromUserResult> => {
-          const user = await tx.user.findUnique({
-            where: { id: userId },
-          });
-
-          if (!user) {
-            this.logger.warn({
-              message: 'CRM sync user not found',
-              context: CrmSyncWriterPrismaRepository.name,
-              module: CRM_SYNC_LOG.MODULE,
-              action: CRM_SYNC_LOG.ACTIONS.SYNC_FROM_USER,
-              entityType: CRM_SYNC_LOG.ENTITIES.USER,
-              entityId: userId,
-              meta: {
-                userId,
-              },
-            });
-
-            throw ErrorFactory.create(
-              ErrorCode.USER_NOT_FOUND,
-              `User ${userId} not found`,
-              {
-                userId,
-              },
-            );
-          }
-
-          const stage = await tx.crmPipelineStages.findUnique({
-            where: { code: CRM_SYNC_DEFAULTS.PIPELINE_STAGE },
-          });
-
-          if (!stage) {
-            this.logger.error({
-              message: 'CRM sync pipeline stage not found',
-              context: CrmSyncWriterPrismaRepository.name,
-              module: CRM_SYNC_LOG.MODULE,
-              action: CRM_SYNC_LOG.ACTIONS.SYNC_FROM_USER,
-              entityType: CRM_SYNC_LOG.ENTITIES.PIPELINE_STAGE,
-              entityId: CRM_SYNC_DEFAULTS.PIPELINE_STAGE,
-              meta: {
-                userId,
-                stageCode: CRM_SYNC_DEFAULTS.PIPELINE_STAGE,
-              },
-            });
-
-            throw ErrorFactory.create(
-              ErrorCode.CRM_SYNC_CONFIGURATION_ERROR,
-              `Pipeline stage ${CRM_SYNC_DEFAULTS.PIPELINE_STAGE} not found`,
-              {
-                userId,
-                stageCode: CRM_SYNC_DEFAULTS.PIPELINE_STAGE,
-              },
-            );
-          }
+          await tx.$queryRaw<Array<{ set_config: string }>>`
+            SELECT set_config(
+              'lock_timeout',
+              ${`${CRM_SYNC_TRANSACTION.LOCK_TIMEOUT_MS}ms`},
+              true
+            )
+          `;
 
           const profile = await tx.crmCustomerProfiles.upsert({
             where: { user_id: user.id },
@@ -143,6 +155,11 @@ export class CrmSyncWriterPrismaRepository implements ICrmSyncWriterRepository {
             dealId: deal.id,
             pipelineRecordId,
           };
+        },
+        {
+          maxWait: CRM_SYNC_TRANSACTION.MAX_WAIT_MS,
+          timeout: CRM_SYNC_TRANSACTION.TIMEOUT_MS,
+          isolationLevel: Prisma.TransactionIsolationLevel.ReadCommitted,
         },
       );
 

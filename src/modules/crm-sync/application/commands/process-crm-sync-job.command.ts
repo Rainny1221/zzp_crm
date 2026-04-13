@@ -1,8 +1,9 @@
 import { Command } from '@nestjs/cqrs';
+import type { CrmSyncJobStatus } from '../../domain/entities/crm-sync.entity';
 
 export type ProcessCrmSyncJobResult = {
   id: number;
-  status: string;
+  status: CrmSyncJobStatus;
   skipped?: boolean;
   result?: {
     customerProfileId: number;

@@ -146,16 +146,13 @@ export class CrmSyncPrismaRepository implements ICrmSyncRepository {
 
   async markFailed(id: number, error: string): Promise<void> {
     try {
-      const current = await this.prisma.crmSyncJobs.findUnique({
-        where: { id },
-        select: { retry_count: true },
-      });
-
       await this.prisma.crmSyncJobs.update({
         where: { id },
         data: {
           status: 'FAILED',
-          retry_count: (current?.retry_count ?? 0) + 1,
+          retry_count: {
+            increment: 1,
+          },
           last_error: error,
         },
       });

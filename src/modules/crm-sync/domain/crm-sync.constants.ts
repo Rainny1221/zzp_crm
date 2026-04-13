@@ -7,6 +7,12 @@ export const CRM_SYNC_DEFAULTS = {
   PROBABILITY: 0,
 } as const;
 
+export const CRM_SYNC_TRANSACTION = {
+  MAX_WAIT_MS: 1000,
+  LOCK_TIMEOUT_MS: 1000,
+  TIMEOUT_MS: 3000,
+} as const;
+
 export const CRM_SYNC_LOG = {
   MODULE: 'crm-sync',
   ENTITIES: {
