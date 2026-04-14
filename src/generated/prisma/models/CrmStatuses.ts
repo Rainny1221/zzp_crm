@@ -15,7 +15,7 @@ import type * as Prisma from "../internal/prismaNamespace.js"
 /**
  * Model CrmStatuses
  * CRM read-side lookup tables for UI options that are not covered by the
- * existing crm_pipeline_stages, crm_sources, and crm_tiers tables.
+ * existing crm_pipeline_stages and crm_sources tables.
  */
 export type CrmStatusesModel = runtime.Types.Result.DefaultSelection<Prisma.$CrmStatusesPayload>
 

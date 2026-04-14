@@ -172,7 +172,6 @@ export const ModelName = {
   CrmSalesMembers: 'CrmSalesMembers',
   CrmPipelineStages: 'CrmPipelineStages',
   CrmSources: 'CrmSources',
-  CrmTiers: 'CrmTiers',
   CrmCustomerProfiles: 'CrmCustomerProfiles',
   CrmDeals: 'CrmDeals',
   CrmPipelineRecords: 'CrmPipelineRecords',
@@ -2428,20 +2427,10 @@ export const CrmSourcesScalarFieldEnum = {
 export type CrmSourcesScalarFieldEnum = (typeof CrmSourcesScalarFieldEnum)[keyof typeof CrmSourcesScalarFieldEnum]
 
 
-export const CrmTiersScalarFieldEnum = {
-  code: 'code',
-  label: 'label',
-  is_active: 'is_active'
-} as const
-
-export type CrmTiersScalarFieldEnum = (typeof CrmTiersScalarFieldEnum)[keyof typeof CrmTiersScalarFieldEnum]
-
-
 export const CrmCustomerProfilesScalarFieldEnum = {
   id: 'id',
   user_id: 'user_id',
   source_code: 'source_code',
-  legacy_tier_code: 'legacy_tier_code',
   gmv_monthly: 'gmv_monthly',
   customer_tier_code: 'customer_tier_code',
   owner_id: 'owner_id',
@@ -2456,7 +2445,6 @@ export const CrmDealsScalarFieldEnum = {
   customer_id: 'customer_id',
   pipeline_stage_code: 'pipeline_stage_code',
   owner_id: 'owner_id',
-  legacy_product_package: 'legacy_product_package',
   product_package_code: 'product_package_code',
   deal_value: 'deal_value',
   probability: 'probability',

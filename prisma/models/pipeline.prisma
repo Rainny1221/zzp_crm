@@ -23,19 +23,10 @@ model CrmSources {
   @@map("crm_sources")
 }
 
-model CrmTiers {
-  code      String  @id
-  label     String
-  is_active Boolean @default(true)
-
-  @@map("crm_tiers")
-}
-
 model CrmCustomerProfiles {
   id                 Int      @id @default(autoincrement())
   user_id            Int      @unique
   source_code        String
-  legacy_tier_code   String?  @map("tier_code")
   gmv_monthly        Decimal? @db.Decimal(18, 2)
   customer_tier_code String?
   owner_id           Int?
@@ -49,35 +40,32 @@ model CrmCustomerProfiles {
 
   @@index([owner_id])
   @@index([source_code])
-  @@index([legacy_tier_code], map: "crm_customer_profiles_tier_code_idx")
   @@index([customer_tier_code])
   @@index([gmv_monthly])
   @@map("crm_customer_profiles")
 }
 
 model CrmDeals {
-  id                     Int      @id @default(autoincrement())
-  customer_id            Int      @unique
-  pipeline_stage_code    String
-  owner_id               Int?
-  legacy_product_package String   @default("starter") @map("product_package")
-  product_package_code   String?
-  deal_value             Decimal? @default(0) @db.Decimal(14, 2)
-  probability            Int      @default(0)
-  status                 String?  @default("new")
-  created_at             DateTime @default(now()) @db.Timestamptz(6)
-  updated_at             DateTime @updatedAt @db.Timestamptz(6)
+  id                   Int      @id @default(autoincrement())
+  customer_id          Int      @unique
+  pipeline_stage_code  String
+  owner_id             Int?
+  product_package_code String?
+  deal_value           Decimal? @default(0) @db.Decimal(14, 2)
+  probability          Int      @default(0)
+  status               String?  @default("new")
+  created_at           DateTime @default(now()) @db.Timestamptz(6)
+  updated_at           DateTime @updatedAt @db.Timestamptz(6)
 
-  customer       CrmCustomerProfiles  @relation(fields: [customer_id], references: [id])
-  stage          CrmPipelineStages    @relation(fields: [pipeline_stage_code], references: [code])
-  owner          User?                @relation("deal_owner", fields: [owner_id], references: [id])
-  productPackage CrmProductPackages?  @relation(fields: [product_package_code], references: [code])
+  customer       CrmCustomerProfiles @relation(fields: [customer_id], references: [id])
+  stage          CrmPipelineStages   @relation(fields: [pipeline_stage_code], references: [code])
+  owner          User?               @relation("deal_owner", fields: [owner_id], references: [id])
+  productPackage CrmProductPackages? @relation(fields: [product_package_code], references: [code])
 
   pipelineRecords CrmPipelineRecords[]
 
   @@index([pipeline_stage_code])
   @@index([owner_id])
-  @@index([legacy_product_package], map: "crm_deals_product_package_idx")
   @@index([product_package_code])
   @@index([status])
   @@map("crm_deals")

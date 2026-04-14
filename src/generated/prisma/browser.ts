@@ -557,7 +557,7 @@ export type CrmSalesKpiQuotas = Prisma.CrmSalesKpiQuotasModel
 /**
  * Model CrmStatuses
  * CRM read-side lookup tables for UI options that are not covered by the
- * existing crm_pipeline_stages, crm_sources, and crm_tiers tables.
+ * existing crm_pipeline_stages and crm_sources tables.
  */
 export type CrmStatuses = Prisma.CrmStatusesModel
 /**
@@ -626,11 +626,6 @@ export type CrmPipelineStages = Prisma.CrmPipelineStagesModel
  * 
  */
 export type CrmSources = Prisma.CrmSourcesModel
-/**
- * Model CrmTiers
- * 
- */
-export type CrmTiers = Prisma.CrmTiersModel
 /**
  * Model CrmCustomerProfiles
  * 

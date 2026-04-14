@@ -1,5 +1,5 @@
 /// CRM read-side lookup tables for UI options that are not covered by the
-/// existing crm_pipeline_stages, crm_sources, and crm_tiers tables.
+/// existing crm_pipeline_stages and crm_sources tables.
 model CrmStatuses {
   code       String  @id
   label      String

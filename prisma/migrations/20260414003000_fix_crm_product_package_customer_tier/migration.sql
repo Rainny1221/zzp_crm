@@ -93,3 +93,15 @@ BEGIN
             ON UPDATE CASCADE;
     END IF;
 END $$;
+
+DROP INDEX IF EXISTS "crm_deals_product_package_idx";
+
+ALTER TABLE "crm_deals"
+    DROP COLUMN IF EXISTS "product_package";
+
+DROP INDEX IF EXISTS "crm_customer_profiles_tier_code_idx";
+
+ALTER TABLE "crm_customer_profiles"
+    DROP COLUMN IF EXISTS "tier_code";
+
+DROP TABLE IF EXISTS "crm_tiers";

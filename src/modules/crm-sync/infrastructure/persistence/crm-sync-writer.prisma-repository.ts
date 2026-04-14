@@ -153,7 +153,6 @@ export class CrmSyncWriterPrismaRepository implements ICrmSyncWriterRepository {
               customer_id: profile.id,
               pipeline_stage_code: CRM_SYNC_DEFAULTS.PIPELINE_STAGE,
               owner_id: null,
-              legacy_product_package: productPackage.code,
               product_package_code: productPackage.code,
               deal_value: 0,
               probability: CRM_SYNC_DEFAULTS.PROBABILITY,
