@@ -18,6 +18,7 @@ export interface FindCrmSyncJobsResult {
 export interface ICrmSyncRepository {
   findById(id: number): Promise<CrmSyncEntity | null>;
   findMany(params: FindCrmSyncJobsParams): Promise<FindCrmSyncJobsResult>;
+  findPendingBatch(limit: number): Promise<CrmSyncEntity[]>;
   tryStartProcessing(id: number): Promise<CrmSyncEntity | null>;
   requeue(id: number): Promise<CrmSyncEntity | null>;
   markSuccess(id: number): Promise<void>;

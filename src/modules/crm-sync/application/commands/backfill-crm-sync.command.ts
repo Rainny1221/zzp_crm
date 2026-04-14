@@ -4,6 +4,7 @@ export interface BackfillCrmSyncResult {
   limit: number;
   scanned: number;
   enqueued: number;
+  dispatched: number;
   skipped: number;
 }
 

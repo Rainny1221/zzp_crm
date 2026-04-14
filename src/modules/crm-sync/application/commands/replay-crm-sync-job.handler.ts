@@ -5,6 +5,7 @@ import { ErrorCode } from 'src/common/enums/error-codes.enum';
 import { ErrorFactory } from 'src/common/error.factory';
 import { toErrorMeta } from 'src/common/logging/application/error-meta.helper';
 import { AppLoggerService } from 'src/logger/app-logger.service';
+import { CrmSyncQueueService } from '../../infrastructure/queue/crm-sync-queue.service';
 import {
   CRM_SYNC_JOB_STATUS,
   CRM_SYNC_LOG,
@@ -25,6 +26,7 @@ export class ReplayCrmSyncJobHandler implements ICommandHandler<
   constructor(
     @Inject(I_CRM_SYNC_REPOSITORY)
     private readonly syncRepo: ICrmSyncRepository,
+    private readonly queueService: CrmSyncQueueService,
     private readonly logger: AppLoggerService,
   ) {}
 
@@ -81,6 +83,8 @@ export class ReplayCrmSyncJobHandler implements ICommandHandler<
           },
         );
       }
+
+      await this.queueService.enqueueProcessJob(requeuedJob.id);
 
       this.logger.info({
         message: 'CRM sync job replayed',

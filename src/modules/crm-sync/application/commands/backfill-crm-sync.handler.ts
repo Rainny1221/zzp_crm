@@ -5,6 +5,7 @@ import { ErrorCode } from 'src/common/enums/error-codes.enum';
 import { ErrorFactory } from 'src/common/error.factory';
 import { toErrorMeta } from 'src/common/logging/application/error-meta.helper';
 import { AppLoggerService } from 'src/logger/app-logger.service';
+import { CrmSyncQueueService } from '../../infrastructure/queue/crm-sync-queue.service';
 import { CRM_SYNC_LOG } from '../../domain/crm-sync.constants';
 import type { ICrmSyncEnqueueRepository } from '../../domain/repositories/i-crm-sync-enqueue.repository';
 import { I_CRM_SYNC_ENQUEUE_REPOSITORY } from '../../domain/repositories/i-crm-sync-enqueue.repository';
@@ -21,6 +22,7 @@ export class BackfillCrmSyncHandler implements ICommandHandler<
   constructor(
     @Inject(I_CRM_SYNC_ENQUEUE_REPOSITORY)
     private readonly enqueueRepo: ICrmSyncEnqueueRepository,
+    private readonly queueService: CrmSyncQueueService,
     private readonly logger: AppLoggerService,
   ) {}
 
@@ -43,12 +45,15 @@ export class BackfillCrmSyncHandler implements ICommandHandler<
         command.limit,
       );
       let enqueued = 0;
+      let dispatched = 0;
 
       for (const user of users) {
-        const created = await this.enqueueRepo.enqueueUserCreatedJob(user.id);
+        const result = await this.enqueueRepo.enqueueUserCreatedJob(user.id);
 
-        if (created) {
+        if (result.enqueued) {
           enqueued += 1;
+          await this.queueService.enqueueProcessJob(result.jobId);
+          dispatched += 1;
         }
       }
 
@@ -56,6 +61,7 @@ export class BackfillCrmSyncHandler implements ICommandHandler<
         limit: command.limit,
         scanned: users.length,
         enqueued,
+        dispatched,
         skipped: users.length - enqueued,
       };
 

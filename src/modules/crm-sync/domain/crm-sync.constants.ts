@@ -32,6 +32,20 @@ export const buildCrmSyncEventKey = (
   entityId: number,
 ): string => `${eventType}:${entityId}`;
 
+export const CRM_SYNC_QUEUE = {
+  NAME: 'crm-sync',
+  JOBS: {
+    DISPATCH_PENDING: 'dispatch-pending',
+    PROCESS_JOB: 'process-job',
+  },
+  PROCESS_JOB_ID_PREFIX: 'crm-sync:process',
+  DISPATCH_EVERY_MS: 10_000,
+  DISPATCH_BATCH_SIZE: 20,
+} as const;
+
+export const buildCrmSyncProcessQueueJobId = (jobId: number): string =>
+  `${CRM_SYNC_QUEUE.PROCESS_JOB_ID_PREFIX}:${jobId}`;
+
 export const CRM_SYNC_DEFAULTS = {
   SOURCE_CODE: 'website',
   TIER_CODE: 'trial',
@@ -65,5 +79,9 @@ export const CRM_SYNC_LOG = {
     SYNC_FROM_USER: 'CRM_SYNC_FROM_USER',
     BACKFILL: 'CRM_SYNC_BACKFILL',
     ENQUEUE_JOB: 'CRM_SYNC_ENQUEUE_JOB',
+    REGISTER_REPEATABLE_JOB: 'CRM_SYNC_REGISTER_REPEATABLE_JOB',
+    PROCESS_BULL_JOB: 'CRM_SYNC_PROCESS_BULL_JOB',
+    DISPATCH_PENDING_JOBS: 'CRM_SYNC_DISPATCH_PENDING_JOBS',
+    BULL_JOB_FAILED: 'CRM_SYNC_BULL_JOB_FAILED',
   },
 } as const;

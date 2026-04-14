@@ -120,6 +120,51 @@ export class CrmSyncPrismaRepository implements ICrmSyncRepository {
     }
   }
 
+  async findPendingBatch(limit: number): Promise<CrmSyncEntity[]> {
+    try {
+      const jobs = await this.prisma.crmSyncJobs.findMany({
+        where: { status: CRM_SYNC_JOB_STATUS.PENDING },
+        orderBy: { created_at: 'asc' },
+        take: limit,
+      });
+
+      this.logger.debug({
+        message: 'CRM sync pending jobs batch listed',
+        context: CrmSyncPrismaRepository.name,
+        module: CRM_SYNC_LOG.MODULE,
+        action: CRM_SYNC_LOG.ACTIONS.DISPATCH_PENDING_JOBS,
+        entityType: CRM_SYNC_LOG.ENTITIES.JOB,
+        meta: {
+          limit,
+          count: jobs.length,
+        },
+      });
+
+      return jobs.map((job) => CrmSyncPrismaMapper.toDomain(job));
+    } catch (error: unknown) {
+      this.logger.error({
+        message: 'Failed to list CRM sync pending jobs batch',
+        context: CrmSyncPrismaRepository.name,
+        module: CRM_SYNC_LOG.MODULE,
+        action: CRM_SYNC_LOG.ACTIONS.DISPATCH_PENDING_JOBS,
+        entityType: CRM_SYNC_LOG.ENTITIES.JOB,
+        meta: {
+          limit,
+          error: toErrorMeta(error),
+        },
+      });
+
+      throw ErrorFactory.create(
+        ErrorCode.CRM_SYNC_REPOSITORY_ERROR,
+        'Failed to list CRM sync pending jobs batch',
+        {
+          limit,
+          error: toErrorMeta(error),
+        },
+      );
+    }
+  }
+
   async tryStartProcessing(id: number): Promise<CrmSyncEntity | null> {
     const now = new Date();
 

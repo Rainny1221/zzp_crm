@@ -10,7 +10,10 @@ import {
   CRM_SYNC_JOB_STATUS,
   CRM_SYNC_LOG,
 } from '../../domain/crm-sync.constants';
-import type { ICrmSyncEnqueueRepository } from '../../domain/repositories/i-crm-sync-enqueue.repository';
+import type {
+  EnqueueCrmSyncJobResult,
+  ICrmSyncEnqueueRepository,
+} from '../../domain/repositories/i-crm-sync-enqueue.repository';
 
 @Injectable()
 export class CrmSyncEnqueuePrismaRepository implements ICrmSyncEnqueueRepository {
@@ -74,13 +77,16 @@ export class CrmSyncEnqueuePrismaRepository implements ICrmSyncEnqueueRepository
     }
   }
 
-  async enqueueUserCreatedJob(userId: number): Promise<boolean> {
+  async enqueueUserCreatedJob(
+    userId: number,
+  ): Promise<EnqueueCrmSyncJobResult> {
     const now = new Date();
     const eventType = CRM_SYNC_EVENT_TYPE.USER_CREATED;
     const eventKey = buildCrmSyncEventKey(eventType, userId);
 
     try {
-      const result = await this.prisma.crmSyncJobs.createMany({
+      const jobs = await this.prisma.crmSyncJobs.createManyAndReturn({
+        select: { id: true },
         data: {
           event_key: eventKey,
           event_type: eventType,
@@ -97,7 +103,27 @@ export class CrmSyncEnqueuePrismaRepository implements ICrmSyncEnqueueRepository
         skipDuplicates: true,
       });
 
-      const enqueued = result.count > 0;
+      const createdJob = jobs[0] ?? null;
+      const existingJob =
+        createdJob ??
+        (await this.prisma.crmSyncJobs.findUnique({
+          where: { event_key: eventKey },
+          select: { id: true },
+        }));
+
+      if (!existingJob) {
+        throw ErrorFactory.create(
+          ErrorCode.CRM_SYNC_REPOSITORY_ERROR,
+          'Failed to resolve CRM sync job after enqueue',
+          {
+            userId,
+            eventKey,
+            eventType,
+          },
+        );
+      }
+
+      const enqueued = Boolean(createdJob);
 
       this.logger.debug({
         message: enqueued
@@ -113,10 +139,14 @@ export class CrmSyncEnqueuePrismaRepository implements ICrmSyncEnqueueRepository
           eventKey,
           eventType,
           enqueued,
+          jobId: existingJob.id,
         },
       });
 
-      return enqueued;
+      return {
+        jobId: existingJob.id,
+        enqueued,
+      };
     } catch (error: unknown) {
       this.logger.error({
         message: 'Failed to enqueue CRM sync job from backfill',
