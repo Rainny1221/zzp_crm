@@ -13,12 +13,6 @@ type LookupRow = {
   is_active: boolean;
 };
 
-type PermissionLookup = {
-  name: string | null;
-  type: string | null;
-  scope: string | null;
-};
-
 type ActiveLookupFindManyArgs = {
   where: { is_active: true };
   orderBy: Array<{ sort_order: 'asc' } | { code: 'asc' }>;
@@ -33,6 +27,20 @@ type ActiveLookupFindManyArgs = {
 type ActiveLookupDelegate = {
   findMany(args: ActiveLookupFindManyArgs): Promise<LookupRow[]>;
 };
+
+const CRM_PERMISSION_FLAGS = {
+  canViewBootstrap: 'CRM_BOOTSTRAP_VIEW',
+  canViewPipeline: 'CRM_PIPELINE_VIEW',
+  canManagePipeline: 'CRM_PIPELINE_MANAGE',
+  canViewCustomers: 'CRM_CUSTOMER_VIEW',
+  canManageCustomers: 'CRM_CUSTOMER_MANAGE',
+  canAssignLead: 'CRM_LEAD_ASSIGN',
+  canViewSync: 'CRM_SYNC_VIEW',
+  canManageSync: 'CRM_SYNC_MANAGE',
+  canViewReports: 'CRM_REPORT_VIEW',
+} as const;
+
+const CRM_ASSIGNABLE_ROLE_NAMES = ['ADMIN', 'SALE_MANAGER', 'SALE'] as const;
 
 const toLookupOption = (item: LookupRow) => ({
   code: item.code,
@@ -115,6 +123,13 @@ export class CrmBootstrapService {
           deleted_at: null,
           is_active: true,
           is_block: false,
+          role: {
+            is: {
+              name: {
+                in: [...CRM_ASSIGNABLE_ROLE_NAMES],
+              },
+            },
+          },
         },
         orderBy: [{ first_name: 'asc' }, { id: 'asc' }],
         select: {
@@ -124,6 +139,11 @@ export class CrmBootstrapService {
           first_name: true,
           last_name: true,
           avatar_name: true,
+          role: {
+            select: {
+              name: true,
+            },
+          },
         },
       }),
       this.findRolePermissions(user.roleId),
@@ -134,12 +154,8 @@ export class CrmBootstrapService {
     );
 
     return {
-      permissions: {
-        required: ['CRM_BOOTSTRAP_VIEW'],
-        granted: permissions,
-      },
-      allowed: true,
-      user,
+      user: this.normalizeUser(user),
+      permissions: this.toPermissionMap(user, permissions),
       lookups: {
         pipelineStages: pipelineStages.map((item) => ({
           code: item.code,
@@ -175,6 +191,7 @@ export class CrmBootstrapService {
             `User ${item.id}`,
           email: item.email,
           avatarName: item.avatar_name,
+          roleName: item.role?.name ?? null,
         })),
       },
       defaults: {
@@ -208,7 +225,7 @@ export class CrmBootstrapService {
 
   private async findRolePermissions(
     roleId: number | undefined,
-  ): Promise<PermissionLookup[]> {
+  ): Promise<string[]> {
     if (!roleId) return [];
 
     const permissions = await this.prisma.permissionRole.findMany({
@@ -217,8 +234,6 @@ export class CrmBootstrapService {
         permission: {
           select: {
             name: true,
-            type: true,
-            scope: true,
             is_active: true,
           },
         },
@@ -228,10 +243,31 @@ export class CrmBootstrapService {
     return permissions
       .map((item) => item.permission)
       .filter((item) => item.is_active !== false)
-      .map((item) => ({
-        name: item.name,
-        type: item.type,
-        scope: item.scope,
-      }));
+      .map((item) => item.name)
+      .filter((name): name is string => Boolean(name));
+  }
+
+  private normalizeUser(user: AuthenticatedUser) {
+    return {
+      id: user.id,
+      email: user.email ?? null,
+      roleId: user.roleId ?? null,
+      roleName: user.roleName ?? null,
+      currentParentUserId: user.currentParentUserId,
+      isActive: user.isActive,
+      isBlock: user.isBlock,
+    };
+  }
+
+  private toPermissionMap(user: AuthenticatedUser, permissions: string[]) {
+    const isAdmin = user.roleName === 'ADMIN';
+    const grantedPermissions = new Set(permissions);
+
+    return Object.fromEntries(
+      Object.entries(CRM_PERMISSION_FLAGS).map(([flag, permission]) => [
+        flag,
+        isAdmin || grantedPermissions.has(permission),
+      ]),
+    ) as Record<keyof typeof CRM_PERMISSION_FLAGS, boolean>;
   }
 }
