@@ -1,0 +1,59 @@
+model CrmFeedbacks {
+  id             Int      @id @default(autoincrement())
+  customer_id    Int
+  category_code  String
+  content        String
+  sales_user_id  Int?
+  sales_name     String?
+  created_at     DateTime @default(now()) @db.Timestamptz(6)
+
+  reads CrmFeedbackReads[]
+
+  @@index([customer_id])
+  @@index([category_code])
+  @@index([sales_user_id])
+  @@index([created_at])
+  @@map("crm_feedbacks")
+}
+
+model CrmFeedbackReads {
+  id          Int      @id @default(autoincrement())
+  feedback_id Int
+  user_id     Int
+  read_at     DateTime @default(now()) @db.Timestamptz(6)
+
+  feedback CrmFeedbacks @relation(fields: [feedback_id], references: [id], onDelete: Cascade)
+
+  @@unique([feedback_id, user_id])
+  @@index([user_id])
+  @@map("crm_feedback_reads")
+}
+
+model CrmNotifications {
+  id          Int      @id @default(autoincrement())
+  type_code   String
+  title       String
+  description String
+  customer_id Int?
+  created_at  DateTime @default(now()) @db.Timestamptz(6)
+
+  reads CrmNotificationReads[]
+
+  @@index([type_code])
+  @@index([customer_id])
+  @@index([created_at])
+  @@map("crm_notifications")
+}
+
+model CrmNotificationReads {
+  id              Int      @id @default(autoincrement())
+  notification_id Int
+  user_id         Int
+  read_at         DateTime @default(now()) @db.Timestamptz(6)
+
+  notification CrmNotifications @relation(fields: [notification_id], references: [id], onDelete: Cascade)
+
+  @@unique([notification_id, user_id])
+  @@index([user_id])
+  @@map("crm_notification_reads")
+}

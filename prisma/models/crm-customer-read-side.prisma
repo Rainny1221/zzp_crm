@@ -1,0 +1,97 @@
+/// One-to-one extension for crm_customer_profiles. customer_id points to
+/// crm_customer_profiles.id but is kept scalar to avoid altering existing models.
+model CrmCustomerBusinessProfiles {
+  id            Int       @id @default(autoincrement())
+  customer_id   Int       @unique
+  shop_name     String
+  tiktok_link   String?
+  phone         String
+  email         String
+  gmv_monthly   Decimal   @default(0) @db.Decimal(18, 2)
+  industry      String?
+  job_title     String?
+  province      String?
+  partner_name  String?
+  source_note   String?
+  synced_at     DateTime? @db.Timestamptz(6)
+  created_at    DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at    DateTime? @updatedAt @db.Timestamptz(6)
+
+  @@index([shop_name])
+  @@index([email])
+  @@index([phone])
+  @@map("crm_customer_business_profiles")
+}
+
+/// One-to-one extension for crm_deals. deal_id points to crm_deals.id.
+model CrmDealDetails {
+  id                  Int       @id @default(autoincrement())
+  deal_id             Int       @unique
+  closed_revenue      Decimal   @default(0) @db.Decimal(14, 2)
+  trial_start_date    DateTime? @db.Timestamptz(6)
+  trial_end_date      DateTime? @db.Timestamptz(6)
+  failure_reason_code String?
+  failure_note        String?
+  last_contacted_at   DateTime? @db.Timestamptz(6)
+  created_at          DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at          DateTime? @updatedAt @db.Timestamptz(6)
+
+  payments CrmDealPayments[]
+
+  @@index([failure_reason_code])
+  @@index([trial_end_date])
+  @@index([last_contacted_at])
+  @@map("crm_deal_details")
+}
+
+model CrmDealPayments {
+  id               Int      @id @default(autoincrement())
+  deal_detail_id   Int
+  plan_name        String
+  paid_at          DateTime @db.Timestamptz(6)
+  duration_days    Int
+  package_end_date DateTime @db.Timestamptz(6)
+  carry_over_days  Int      @default(0)
+  sales_commission Decimal  @default(0) @db.Decimal(14, 2)
+  created_at       DateTime @default(now()) @db.Timestamptz(6)
+
+  dealDetail CrmDealDetails @relation(fields: [deal_detail_id], references: [id], onDelete: Cascade)
+
+  @@index([deal_detail_id])
+  @@index([paid_at])
+  @@map("crm_deal_payments")
+}
+
+model CrmActivities {
+  id                   Int      @id @default(autoincrement())
+  customer_id           Int
+  activity_type_code    String
+  description           String
+  author_user_id        Int?
+  author_name           String?
+  occurred_at           DateTime @default(now()) @db.Timestamptz(6)
+  created_at            DateTime @default(now()) @db.Timestamptz(6)
+
+  @@index([customer_id, occurred_at])
+  @@index([activity_type_code])
+  @@index([author_user_id])
+  @@map("crm_activities")
+}
+
+model CrmTasks {
+  id               Int       @id @default(autoincrement())
+  customer_id      Int
+  task_type_code   String
+  title            String
+  due_date         DateTime  @db.Timestamptz(6)
+  completed        Boolean   @default(false)
+  assignee_user_id Int?
+  priority_code    String    @default("medium")
+  created_at       DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at       DateTime? @updatedAt @db.Timestamptz(6)
+
+  @@index([customer_id, completed, due_date])
+  @@index([assignee_user_id, completed, due_date])
+  @@index([priority_code])
+  @@map("crm_tasks")
+}

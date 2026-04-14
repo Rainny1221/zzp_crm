@@ -1,0 +1,17 @@
+model CrmSalesKpiQuotas {
+  id              Int       @id @default(autoincrement())
+  sales_member_id Int
+  period_code     String
+  period_start    DateTime  @db.Date
+  period_end      DateTime  @db.Date
+  quota           Decimal   @default(0) @db.Decimal(14, 2)
+  created_at      DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at      DateTime? @updatedAt @db.Timestamptz(6)
+
+  salesMember CrmSalesMembers @relation(fields: [sales_member_id], references: [id], onDelete: Cascade)
+
+  @@unique([sales_member_id, period_code])
+  @@index([period_code])
+  @@index([period_start, period_end])
+  @@map("crm_sales_kpi_quotas")
+}

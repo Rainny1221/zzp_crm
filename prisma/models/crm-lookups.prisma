@@ -1,0 +1,110 @@
+/// CRM read-side lookup tables for UI options that are not covered by the
+/// existing crm_pipeline_stages, crm_sources, and crm_tiers tables.
+model CrmStatuses {
+  code       String  @id
+  label      String
+  sort_order Int
+  is_active  Boolean @default(true)
+
+  @@index([sort_order])
+  @@map("crm_statuses")
+}
+
+model CrmProductPackages {
+  code       String  @id
+  label      String
+  sort_order Int
+  is_active  Boolean @default(true)
+
+  @@index([sort_order])
+  @@map("crm_product_packages")
+}
+
+model CrmFailureReasons {
+  code       String  @id
+  label      String
+  sort_order Int
+  is_active  Boolean @default(true)
+
+  @@index([sort_order])
+  @@map("crm_failure_reasons")
+}
+
+model CrmFeedbackCategories {
+  code       String  @id
+  label      String
+  sort_order Int
+  is_active  Boolean @default(true)
+
+  @@index([sort_order])
+  @@map("crm_feedback_categories")
+}
+
+model CrmNotificationTypes {
+  code       String  @id
+  label      String
+  sort_order Int
+  is_active  Boolean @default(true)
+
+  @@index([sort_order])
+  @@map("crm_notification_types")
+}
+
+model CrmInteractionChannels {
+  code       String  @id
+  label      String
+  sort_order Int
+  is_active  Boolean @default(true)
+
+  @@index([sort_order])
+  @@map("crm_interaction_channels")
+}
+
+model CrmCallOutcomes {
+  code       String  @id
+  label      String
+  sort_order Int
+  is_active  Boolean @default(true)
+
+  @@index([sort_order])
+  @@map("crm_call_outcomes")
+}
+
+model CrmMessageOutcomes {
+  code       String  @id
+  label      String
+  sort_order Int
+  is_active  Boolean @default(true)
+
+  @@index([sort_order])
+  @@map("crm_message_outcomes")
+}
+
+model CrmTaskTypes {
+  code       String  @id
+  label      String
+  sort_order Int
+  is_active  Boolean @default(true)
+
+  @@index([sort_order])
+  @@map("crm_task_types")
+}
+
+model CrmPriorities {
+  code       String  @id
+  label      String
+  sort_order Int
+  is_active  Boolean @default(true)
+
+  @@index([sort_order])
+  @@map("crm_priorities")
+}
+
+/// Stage note used by the pipeline board header, kept separate so the existing
+/// crm_pipeline_stages table does not need to change.
+model CrmPipelineStageNotes {
+  stage_code String @id
+  note       String
+
+  @@map("crm_pipeline_stage_notes")
+}

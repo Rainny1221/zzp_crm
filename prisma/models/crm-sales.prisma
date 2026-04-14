@@ -1,0 +1,16 @@
+model CrmSalesMembers {
+  id           Int       @id @default(autoincrement())
+  user_id      Int       @unique
+  crm_role     String
+  display_name String
+  avatar       String?
+  is_active    Boolean   @default(true)
+  created_at   DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at   DateTime? @updatedAt @db.Timestamptz(6)
+
+  kpiQuotas CrmSalesKpiQuotas[]
+
+  @@index([crm_role])
+  @@index([is_active])
+  @@map("crm_sales_members")
+}
