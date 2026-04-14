@@ -9,12 +9,6 @@ CREATE TABLE IF NOT EXISTS "crm_product_packages" (
     CONSTRAINT "crm_product_packages_pkey" PRIMARY KEY ("code")
 );
 
-ALTER TABLE "crm_product_packages"
-    ADD COLUMN IF NOT EXISTS "sort_order" INTEGER NOT NULL DEFAULT 0;
-
-ALTER TABLE "crm_product_packages"
-    ADD COLUMN IF NOT EXISTS "is_active" BOOLEAN NOT NULL DEFAULT true;
-
 CREATE INDEX IF NOT EXISTS "crm_product_packages_sort_order_idx"
     ON "crm_product_packages"("sort_order");
 
@@ -32,9 +26,6 @@ ALTER TABLE "crm_customer_profiles"
     DROP CONSTRAINT IF EXISTS "crm_customer_profiles_tier_code_fkey";
 
 ALTER TABLE "crm_customer_profiles"
-    ALTER COLUMN "tier_code" DROP NOT NULL;
-
-ALTER TABLE "crm_customer_profiles"
     ADD COLUMN IF NOT EXISTS "gmv_monthly" NUMERIC(18, 2);
 
 ALTER TABLE "crm_customer_profiles"
@@ -44,12 +35,6 @@ UPDATE "crm_customer_profiles"
 SET "customer_tier_code" = "tier_code"
 WHERE "customer_tier_code" IS NULL
   AND "tier_code" IN ('tiny', 'potential', 'whale');
-
-CREATE INDEX IF NOT EXISTS "crm_customer_profiles_customer_tier_code_idx"
-    ON "crm_customer_profiles"("customer_tier_code");
-
-CREATE INDEX IF NOT EXISTS "crm_customer_profiles_gmv_monthly_idx"
-    ON "crm_customer_profiles"("gmv_monthly");
 
 ALTER TABLE "crm_deals"
     ADD COLUMN IF NOT EXISTS "product_package_code" TEXT;
@@ -70,10 +55,11 @@ FROM "crm_customer_profiles" AS "profile"
 WHERE "profile"."id" = "deal"."customer_id"
   AND "deal"."product_package_code" IS NULL;
 
-UPDATE "crm_deals"
-SET "product_package" = "product_package_code"
-WHERE "product_package_code" IS NOT NULL
-  AND "product_package" <> "product_package_code";
+CREATE INDEX IF NOT EXISTS "crm_customer_profiles_customer_tier_code_idx"
+    ON "crm_customer_profiles"("customer_tier_code");
+
+CREATE INDEX IF NOT EXISTS "crm_customer_profiles_gmv_monthly_idx"
+    ON "crm_customer_profiles"("gmv_monthly");
 
 CREATE INDEX IF NOT EXISTS "crm_deals_product_package_code_idx"
     ON "crm_deals"("product_package_code");
