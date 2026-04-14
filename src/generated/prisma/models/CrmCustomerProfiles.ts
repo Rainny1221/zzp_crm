@@ -29,12 +29,14 @@ export type AggregateCrmCustomerProfiles = {
 export type CrmCustomerProfilesAvgAggregateOutputType = {
   id: number | null
   user_id: number | null
+  gmv_monthly: runtime.Decimal | null
   owner_id: number | null
 }
 
 export type CrmCustomerProfilesSumAggregateOutputType = {
   id: number | null
   user_id: number | null
+  gmv_monthly: runtime.Decimal | null
   owner_id: number | null
 }
 
@@ -42,7 +44,9 @@ export type CrmCustomerProfilesMinAggregateOutputType = {
   id: number | null
   user_id: number | null
   source_code: string | null
-  tier_code: string | null
+  legacy_tier_code: string | null
+  gmv_monthly: runtime.Decimal | null
+  customer_tier_code: string | null
   owner_id: number | null
   created_at: Date | null
 }
@@ -51,7 +55,9 @@ export type CrmCustomerProfilesMaxAggregateOutputType = {
   id: number | null
   user_id: number | null
   source_code: string | null
-  tier_code: string | null
+  legacy_tier_code: string | null
+  gmv_monthly: runtime.Decimal | null
+  customer_tier_code: string | null
   owner_id: number | null
   created_at: Date | null
 }
@@ -60,7 +66,9 @@ export type CrmCustomerProfilesCountAggregateOutputType = {
   id: number
   user_id: number
   source_code: number
-  tier_code: number
+  legacy_tier_code: number
+  gmv_monthly: number
+  customer_tier_code: number
   owner_id: number
   created_at: number
   _all: number
@@ -70,12 +78,14 @@ export type CrmCustomerProfilesCountAggregateOutputType = {
 export type CrmCustomerProfilesAvgAggregateInputType = {
   id?: true
   user_id?: true
+  gmv_monthly?: true
   owner_id?: true
 }
 
 export type CrmCustomerProfilesSumAggregateInputType = {
   id?: true
   user_id?: true
+  gmv_monthly?: true
   owner_id?: true
 }
 
@@ -83,7 +93,9 @@ export type CrmCustomerProfilesMinAggregateInputType = {
   id?: true
   user_id?: true
   source_code?: true
-  tier_code?: true
+  legacy_tier_code?: true
+  gmv_monthly?: true
+  customer_tier_code?: true
   owner_id?: true
   created_at?: true
 }
@@ -92,7 +104,9 @@ export type CrmCustomerProfilesMaxAggregateInputType = {
   id?: true
   user_id?: true
   source_code?: true
-  tier_code?: true
+  legacy_tier_code?: true
+  gmv_monthly?: true
+  customer_tier_code?: true
   owner_id?: true
   created_at?: true
 }
@@ -101,7 +115,9 @@ export type CrmCustomerProfilesCountAggregateInputType = {
   id?: true
   user_id?: true
   source_code?: true
-  tier_code?: true
+  legacy_tier_code?: true
+  gmv_monthly?: true
+  customer_tier_code?: true
   owner_id?: true
   created_at?: true
   _all?: true
@@ -197,7 +213,9 @@ export type CrmCustomerProfilesGroupByOutputType = {
   id: number
   user_id: number
   source_code: string
-  tier_code: string
+  legacy_tier_code: string | null
+  gmv_monthly: runtime.Decimal | null
+  customer_tier_code: string | null
   owner_id: number | null
   created_at: Date
   _count: CrmCustomerProfilesCountAggregateOutputType | null
@@ -229,12 +247,13 @@ export type CrmCustomerProfilesWhereInput = {
   id?: Prisma.IntFilter<"CrmCustomerProfiles"> | number
   user_id?: Prisma.IntFilter<"CrmCustomerProfiles"> | number
   source_code?: Prisma.StringFilter<"CrmCustomerProfiles"> | string
-  tier_code?: Prisma.StringFilter<"CrmCustomerProfiles"> | string
+  legacy_tier_code?: Prisma.StringNullableFilter<"CrmCustomerProfiles"> | string | null
+  gmv_monthly?: Prisma.DecimalNullableFilter<"CrmCustomerProfiles"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: Prisma.StringNullableFilter<"CrmCustomerProfiles"> | string | null
   owner_id?: Prisma.IntNullableFilter<"CrmCustomerProfiles"> | number | null
   created_at?: Prisma.DateTimeFilter<"CrmCustomerProfiles"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   source?: Prisma.XOR<Prisma.CrmSourcesScalarRelationFilter, Prisma.CrmSourcesWhereInput>
-  tier?: Prisma.XOR<Prisma.CrmTiersScalarRelationFilter, Prisma.CrmTiersWhereInput>
   owner?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   deal?: Prisma.XOR<Prisma.CrmDealsNullableScalarRelationFilter, Prisma.CrmDealsWhereInput> | null
 }
@@ -243,12 +262,13 @@ export type CrmCustomerProfilesOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   source_code?: Prisma.SortOrder
-  tier_code?: Prisma.SortOrder
+  legacy_tier_code?: Prisma.SortOrderInput | Prisma.SortOrder
+  gmv_monthly?: Prisma.SortOrderInput | Prisma.SortOrder
+  customer_tier_code?: Prisma.SortOrderInput | Prisma.SortOrder
   owner_id?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   source?: Prisma.CrmSourcesOrderByWithRelationInput
-  tier?: Prisma.CrmTiersOrderByWithRelationInput
   owner?: Prisma.UserOrderByWithRelationInput
   deal?: Prisma.CrmDealsOrderByWithRelationInput
 }
@@ -260,12 +280,13 @@ export type CrmCustomerProfilesWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.CrmCustomerProfilesWhereInput[]
   NOT?: Prisma.CrmCustomerProfilesWhereInput | Prisma.CrmCustomerProfilesWhereInput[]
   source_code?: Prisma.StringFilter<"CrmCustomerProfiles"> | string
-  tier_code?: Prisma.StringFilter<"CrmCustomerProfiles"> | string
+  legacy_tier_code?: Prisma.StringNullableFilter<"CrmCustomerProfiles"> | string | null
+  gmv_monthly?: Prisma.DecimalNullableFilter<"CrmCustomerProfiles"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: Prisma.StringNullableFilter<"CrmCustomerProfiles"> | string | null
   owner_id?: Prisma.IntNullableFilter<"CrmCustomerProfiles"> | number | null
   created_at?: Prisma.DateTimeFilter<"CrmCustomerProfiles"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   source?: Prisma.XOR<Prisma.CrmSourcesScalarRelationFilter, Prisma.CrmSourcesWhereInput>
-  tier?: Prisma.XOR<Prisma.CrmTiersScalarRelationFilter, Prisma.CrmTiersWhereInput>
   owner?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   deal?: Prisma.XOR<Prisma.CrmDealsNullableScalarRelationFilter, Prisma.CrmDealsWhereInput> | null
 }, "id" | "user_id">
@@ -274,7 +295,9 @@ export type CrmCustomerProfilesOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   source_code?: Prisma.SortOrder
-  tier_code?: Prisma.SortOrder
+  legacy_tier_code?: Prisma.SortOrderInput | Prisma.SortOrder
+  gmv_monthly?: Prisma.SortOrderInput | Prisma.SortOrder
+  customer_tier_code?: Prisma.SortOrderInput | Prisma.SortOrder
   owner_id?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   _count?: Prisma.CrmCustomerProfilesCountOrderByAggregateInput
@@ -291,16 +314,20 @@ export type CrmCustomerProfilesScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"CrmCustomerProfiles"> | number
   user_id?: Prisma.IntWithAggregatesFilter<"CrmCustomerProfiles"> | number
   source_code?: Prisma.StringWithAggregatesFilter<"CrmCustomerProfiles"> | string
-  tier_code?: Prisma.StringWithAggregatesFilter<"CrmCustomerProfiles"> | string
+  legacy_tier_code?: Prisma.StringNullableWithAggregatesFilter<"CrmCustomerProfiles"> | string | null
+  gmv_monthly?: Prisma.DecimalNullableWithAggregatesFilter<"CrmCustomerProfiles"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: Prisma.StringNullableWithAggregatesFilter<"CrmCustomerProfiles"> | string | null
   owner_id?: Prisma.IntNullableWithAggregatesFilter<"CrmCustomerProfiles"> | number | null
   created_at?: Prisma.DateTimeWithAggregatesFilter<"CrmCustomerProfiles"> | Date | string
 }
 
 export type CrmCustomerProfilesCreateInput = {
+  legacy_tier_code?: string | null
+  gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: string | null
   created_at?: Date | string
   user: Prisma.UserCreateNestedOneWithoutCrmCustomerProfileInput
   source: Prisma.CrmSourcesCreateNestedOneWithoutCustomersInput
-  tier: Prisma.CrmTiersCreateNestedOneWithoutCustomersInput
   owner?: Prisma.UserCreateNestedOneWithoutOwnedCrmCustomerProfilesInput
   deal?: Prisma.CrmDealsCreateNestedOneWithoutCustomerInput
 }
@@ -309,17 +336,21 @@ export type CrmCustomerProfilesUncheckedCreateInput = {
   id?: number
   user_id: number
   source_code: string
-  tier_code: string
+  legacy_tier_code?: string | null
+  gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: string | null
   owner_id?: number | null
   created_at?: Date | string
   deal?: Prisma.CrmDealsUncheckedCreateNestedOneWithoutCustomerInput
 }
 
 export type CrmCustomerProfilesUpdateInput = {
+  legacy_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutCrmCustomerProfileNestedInput
   source?: Prisma.CrmSourcesUpdateOneRequiredWithoutCustomersNestedInput
-  tier?: Prisma.CrmTiersUpdateOneRequiredWithoutCustomersNestedInput
   owner?: Prisma.UserUpdateOneWithoutOwnedCrmCustomerProfilesNestedInput
   deal?: Prisma.CrmDealsUpdateOneWithoutCustomerNestedInput
 }
@@ -328,7 +359,9 @@ export type CrmCustomerProfilesUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   user_id?: Prisma.IntFieldUpdateOperationsInput | number
   source_code?: Prisma.StringFieldUpdateOperationsInput | string
-  tier_code?: Prisma.StringFieldUpdateOperationsInput | string
+  legacy_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deal?: Prisma.CrmDealsUncheckedUpdateOneWithoutCustomerNestedInput
@@ -338,12 +371,17 @@ export type CrmCustomerProfilesCreateManyInput = {
   id?: number
   user_id: number
   source_code: string
-  tier_code: string
+  legacy_tier_code?: string | null
+  gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: string | null
   owner_id?: number | null
   created_at?: Date | string
 }
 
 export type CrmCustomerProfilesUpdateManyMutationInput = {
+  legacy_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -351,7 +389,9 @@ export type CrmCustomerProfilesUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   user_id?: Prisma.IntFieldUpdateOperationsInput | number
   source_code?: Prisma.StringFieldUpdateOperationsInput | string
-  tier_code?: Prisma.StringFieldUpdateOperationsInput | string
+  legacy_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -370,7 +410,9 @@ export type CrmCustomerProfilesCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   source_code?: Prisma.SortOrder
-  tier_code?: Prisma.SortOrder
+  legacy_tier_code?: Prisma.SortOrder
+  gmv_monthly?: Prisma.SortOrder
+  customer_tier_code?: Prisma.SortOrder
   owner_id?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
 }
@@ -378,6 +420,7 @@ export type CrmCustomerProfilesCountOrderByAggregateInput = {
 export type CrmCustomerProfilesAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
+  gmv_monthly?: Prisma.SortOrder
   owner_id?: Prisma.SortOrder
 }
 
@@ -385,7 +428,9 @@ export type CrmCustomerProfilesMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   source_code?: Prisma.SortOrder
-  tier_code?: Prisma.SortOrder
+  legacy_tier_code?: Prisma.SortOrder
+  gmv_monthly?: Prisma.SortOrder
+  customer_tier_code?: Prisma.SortOrder
   owner_id?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
 }
@@ -394,7 +439,9 @@ export type CrmCustomerProfilesMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   source_code?: Prisma.SortOrder
-  tier_code?: Prisma.SortOrder
+  legacy_tier_code?: Prisma.SortOrder
+  gmv_monthly?: Prisma.SortOrder
+  customer_tier_code?: Prisma.SortOrder
   owner_id?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
 }
@@ -402,6 +449,7 @@ export type CrmCustomerProfilesMinOrderByAggregateInput = {
 export type CrmCustomerProfilesSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
+  gmv_monthly?: Prisma.SortOrder
   owner_id?: Prisma.SortOrder
 }
 
@@ -454,48 +502,6 @@ export type CrmCustomerProfilesUncheckedUpdateManyWithoutSourceNestedInput = {
   connect?: Prisma.CrmCustomerProfilesWhereUniqueInput | Prisma.CrmCustomerProfilesWhereUniqueInput[]
   update?: Prisma.CrmCustomerProfilesUpdateWithWhereUniqueWithoutSourceInput | Prisma.CrmCustomerProfilesUpdateWithWhereUniqueWithoutSourceInput[]
   updateMany?: Prisma.CrmCustomerProfilesUpdateManyWithWhereWithoutSourceInput | Prisma.CrmCustomerProfilesUpdateManyWithWhereWithoutSourceInput[]
-  deleteMany?: Prisma.CrmCustomerProfilesScalarWhereInput | Prisma.CrmCustomerProfilesScalarWhereInput[]
-}
-
-export type CrmCustomerProfilesCreateNestedManyWithoutTierInput = {
-  create?: Prisma.XOR<Prisma.CrmCustomerProfilesCreateWithoutTierInput, Prisma.CrmCustomerProfilesUncheckedCreateWithoutTierInput> | Prisma.CrmCustomerProfilesCreateWithoutTierInput[] | Prisma.CrmCustomerProfilesUncheckedCreateWithoutTierInput[]
-  connectOrCreate?: Prisma.CrmCustomerProfilesCreateOrConnectWithoutTierInput | Prisma.CrmCustomerProfilesCreateOrConnectWithoutTierInput[]
-  createMany?: Prisma.CrmCustomerProfilesCreateManyTierInputEnvelope
-  connect?: Prisma.CrmCustomerProfilesWhereUniqueInput | Prisma.CrmCustomerProfilesWhereUniqueInput[]
-}
-
-export type CrmCustomerProfilesUncheckedCreateNestedManyWithoutTierInput = {
-  create?: Prisma.XOR<Prisma.CrmCustomerProfilesCreateWithoutTierInput, Prisma.CrmCustomerProfilesUncheckedCreateWithoutTierInput> | Prisma.CrmCustomerProfilesCreateWithoutTierInput[] | Prisma.CrmCustomerProfilesUncheckedCreateWithoutTierInput[]
-  connectOrCreate?: Prisma.CrmCustomerProfilesCreateOrConnectWithoutTierInput | Prisma.CrmCustomerProfilesCreateOrConnectWithoutTierInput[]
-  createMany?: Prisma.CrmCustomerProfilesCreateManyTierInputEnvelope
-  connect?: Prisma.CrmCustomerProfilesWhereUniqueInput | Prisma.CrmCustomerProfilesWhereUniqueInput[]
-}
-
-export type CrmCustomerProfilesUpdateManyWithoutTierNestedInput = {
-  create?: Prisma.XOR<Prisma.CrmCustomerProfilesCreateWithoutTierInput, Prisma.CrmCustomerProfilesUncheckedCreateWithoutTierInput> | Prisma.CrmCustomerProfilesCreateWithoutTierInput[] | Prisma.CrmCustomerProfilesUncheckedCreateWithoutTierInput[]
-  connectOrCreate?: Prisma.CrmCustomerProfilesCreateOrConnectWithoutTierInput | Prisma.CrmCustomerProfilesCreateOrConnectWithoutTierInput[]
-  upsert?: Prisma.CrmCustomerProfilesUpsertWithWhereUniqueWithoutTierInput | Prisma.CrmCustomerProfilesUpsertWithWhereUniqueWithoutTierInput[]
-  createMany?: Prisma.CrmCustomerProfilesCreateManyTierInputEnvelope
-  set?: Prisma.CrmCustomerProfilesWhereUniqueInput | Prisma.CrmCustomerProfilesWhereUniqueInput[]
-  disconnect?: Prisma.CrmCustomerProfilesWhereUniqueInput | Prisma.CrmCustomerProfilesWhereUniqueInput[]
-  delete?: Prisma.CrmCustomerProfilesWhereUniqueInput | Prisma.CrmCustomerProfilesWhereUniqueInput[]
-  connect?: Prisma.CrmCustomerProfilesWhereUniqueInput | Prisma.CrmCustomerProfilesWhereUniqueInput[]
-  update?: Prisma.CrmCustomerProfilesUpdateWithWhereUniqueWithoutTierInput | Prisma.CrmCustomerProfilesUpdateWithWhereUniqueWithoutTierInput[]
-  updateMany?: Prisma.CrmCustomerProfilesUpdateManyWithWhereWithoutTierInput | Prisma.CrmCustomerProfilesUpdateManyWithWhereWithoutTierInput[]
-  deleteMany?: Prisma.CrmCustomerProfilesScalarWhereInput | Prisma.CrmCustomerProfilesScalarWhereInput[]
-}
-
-export type CrmCustomerProfilesUncheckedUpdateManyWithoutTierNestedInput = {
-  create?: Prisma.XOR<Prisma.CrmCustomerProfilesCreateWithoutTierInput, Prisma.CrmCustomerProfilesUncheckedCreateWithoutTierInput> | Prisma.CrmCustomerProfilesCreateWithoutTierInput[] | Prisma.CrmCustomerProfilesUncheckedCreateWithoutTierInput[]
-  connectOrCreate?: Prisma.CrmCustomerProfilesCreateOrConnectWithoutTierInput | Prisma.CrmCustomerProfilesCreateOrConnectWithoutTierInput[]
-  upsert?: Prisma.CrmCustomerProfilesUpsertWithWhereUniqueWithoutTierInput | Prisma.CrmCustomerProfilesUpsertWithWhereUniqueWithoutTierInput[]
-  createMany?: Prisma.CrmCustomerProfilesCreateManyTierInputEnvelope
-  set?: Prisma.CrmCustomerProfilesWhereUniqueInput | Prisma.CrmCustomerProfilesWhereUniqueInput[]
-  disconnect?: Prisma.CrmCustomerProfilesWhereUniqueInput | Prisma.CrmCustomerProfilesWhereUniqueInput[]
-  delete?: Prisma.CrmCustomerProfilesWhereUniqueInput | Prisma.CrmCustomerProfilesWhereUniqueInput[]
-  connect?: Prisma.CrmCustomerProfilesWhereUniqueInput | Prisma.CrmCustomerProfilesWhereUniqueInput[]
-  update?: Prisma.CrmCustomerProfilesUpdateWithWhereUniqueWithoutTierInput | Prisma.CrmCustomerProfilesUpdateWithWhereUniqueWithoutTierInput[]
-  updateMany?: Prisma.CrmCustomerProfilesUpdateManyWithWhereWithoutTierInput | Prisma.CrmCustomerProfilesUpdateManyWithWhereWithoutTierInput[]
   deleteMany?: Prisma.CrmCustomerProfilesScalarWhereInput | Prisma.CrmCustomerProfilesScalarWhereInput[]
 }
 
@@ -588,9 +594,11 @@ export type CrmCustomerProfilesUncheckedUpdateManyWithoutOwnerNestedInput = {
 }
 
 export type CrmCustomerProfilesCreateWithoutSourceInput = {
+  legacy_tier_code?: string | null
+  gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: string | null
   created_at?: Date | string
   user: Prisma.UserCreateNestedOneWithoutCrmCustomerProfileInput
-  tier: Prisma.CrmTiersCreateNestedOneWithoutCustomersInput
   owner?: Prisma.UserCreateNestedOneWithoutOwnedCrmCustomerProfilesInput
   deal?: Prisma.CrmDealsCreateNestedOneWithoutCustomerInput
 }
@@ -598,7 +606,9 @@ export type CrmCustomerProfilesCreateWithoutSourceInput = {
 export type CrmCustomerProfilesUncheckedCreateWithoutSourceInput = {
   id?: number
   user_id: number
-  tier_code: string
+  legacy_tier_code?: string | null
+  gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: string | null
   owner_id?: number | null
   created_at?: Date | string
   deal?: Prisma.CrmDealsUncheckedCreateNestedOneWithoutCustomerInput
@@ -637,59 +647,20 @@ export type CrmCustomerProfilesScalarWhereInput = {
   id?: Prisma.IntFilter<"CrmCustomerProfiles"> | number
   user_id?: Prisma.IntFilter<"CrmCustomerProfiles"> | number
   source_code?: Prisma.StringFilter<"CrmCustomerProfiles"> | string
-  tier_code?: Prisma.StringFilter<"CrmCustomerProfiles"> | string
+  legacy_tier_code?: Prisma.StringNullableFilter<"CrmCustomerProfiles"> | string | null
+  gmv_monthly?: Prisma.DecimalNullableFilter<"CrmCustomerProfiles"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: Prisma.StringNullableFilter<"CrmCustomerProfiles"> | string | null
   owner_id?: Prisma.IntNullableFilter<"CrmCustomerProfiles"> | number | null
   created_at?: Prisma.DateTimeFilter<"CrmCustomerProfiles"> | Date | string
 }
 
-export type CrmCustomerProfilesCreateWithoutTierInput = {
-  created_at?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutCrmCustomerProfileInput
-  source: Prisma.CrmSourcesCreateNestedOneWithoutCustomersInput
-  owner?: Prisma.UserCreateNestedOneWithoutOwnedCrmCustomerProfilesInput
-  deal?: Prisma.CrmDealsCreateNestedOneWithoutCustomerInput
-}
-
-export type CrmCustomerProfilesUncheckedCreateWithoutTierInput = {
-  id?: number
-  user_id: number
-  source_code: string
-  owner_id?: number | null
-  created_at?: Date | string
-  deal?: Prisma.CrmDealsUncheckedCreateNestedOneWithoutCustomerInput
-}
-
-export type CrmCustomerProfilesCreateOrConnectWithoutTierInput = {
-  where: Prisma.CrmCustomerProfilesWhereUniqueInput
-  create: Prisma.XOR<Prisma.CrmCustomerProfilesCreateWithoutTierInput, Prisma.CrmCustomerProfilesUncheckedCreateWithoutTierInput>
-}
-
-export type CrmCustomerProfilesCreateManyTierInputEnvelope = {
-  data: Prisma.CrmCustomerProfilesCreateManyTierInput | Prisma.CrmCustomerProfilesCreateManyTierInput[]
-  skipDuplicates?: boolean
-}
-
-export type CrmCustomerProfilesUpsertWithWhereUniqueWithoutTierInput = {
-  where: Prisma.CrmCustomerProfilesWhereUniqueInput
-  update: Prisma.XOR<Prisma.CrmCustomerProfilesUpdateWithoutTierInput, Prisma.CrmCustomerProfilesUncheckedUpdateWithoutTierInput>
-  create: Prisma.XOR<Prisma.CrmCustomerProfilesCreateWithoutTierInput, Prisma.CrmCustomerProfilesUncheckedCreateWithoutTierInput>
-}
-
-export type CrmCustomerProfilesUpdateWithWhereUniqueWithoutTierInput = {
-  where: Prisma.CrmCustomerProfilesWhereUniqueInput
-  data: Prisma.XOR<Prisma.CrmCustomerProfilesUpdateWithoutTierInput, Prisma.CrmCustomerProfilesUncheckedUpdateWithoutTierInput>
-}
-
-export type CrmCustomerProfilesUpdateManyWithWhereWithoutTierInput = {
-  where: Prisma.CrmCustomerProfilesScalarWhereInput
-  data: Prisma.XOR<Prisma.CrmCustomerProfilesUpdateManyMutationInput, Prisma.CrmCustomerProfilesUncheckedUpdateManyWithoutTierInput>
-}
-
 export type CrmCustomerProfilesCreateWithoutDealInput = {
+  legacy_tier_code?: string | null
+  gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: string | null
   created_at?: Date | string
   user: Prisma.UserCreateNestedOneWithoutCrmCustomerProfileInput
   source: Prisma.CrmSourcesCreateNestedOneWithoutCustomersInput
-  tier: Prisma.CrmTiersCreateNestedOneWithoutCustomersInput
   owner?: Prisma.UserCreateNestedOneWithoutOwnedCrmCustomerProfilesInput
 }
 
@@ -697,7 +668,9 @@ export type CrmCustomerProfilesUncheckedCreateWithoutDealInput = {
   id?: number
   user_id: number
   source_code: string
-  tier_code: string
+  legacy_tier_code?: string | null
+  gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: string | null
   owner_id?: number | null
   created_at?: Date | string
 }
@@ -719,10 +692,12 @@ export type CrmCustomerProfilesUpdateToOneWithWhereWithoutDealInput = {
 }
 
 export type CrmCustomerProfilesUpdateWithoutDealInput = {
+  legacy_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutCrmCustomerProfileNestedInput
   source?: Prisma.CrmSourcesUpdateOneRequiredWithoutCustomersNestedInput
-  tier?: Prisma.CrmTiersUpdateOneRequiredWithoutCustomersNestedInput
   owner?: Prisma.UserUpdateOneWithoutOwnedCrmCustomerProfilesNestedInput
 }
 
@@ -730,15 +705,19 @@ export type CrmCustomerProfilesUncheckedUpdateWithoutDealInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   user_id?: Prisma.IntFieldUpdateOperationsInput | number
   source_code?: Prisma.StringFieldUpdateOperationsInput | string
-  tier_code?: Prisma.StringFieldUpdateOperationsInput | string
+  legacy_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CrmCustomerProfilesCreateWithoutUserInput = {
+  legacy_tier_code?: string | null
+  gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: string | null
   created_at?: Date | string
   source: Prisma.CrmSourcesCreateNestedOneWithoutCustomersInput
-  tier: Prisma.CrmTiersCreateNestedOneWithoutCustomersInput
   owner?: Prisma.UserCreateNestedOneWithoutOwnedCrmCustomerProfilesInput
   deal?: Prisma.CrmDealsCreateNestedOneWithoutCustomerInput
 }
@@ -746,7 +725,9 @@ export type CrmCustomerProfilesCreateWithoutUserInput = {
 export type CrmCustomerProfilesUncheckedCreateWithoutUserInput = {
   id?: number
   source_code: string
-  tier_code: string
+  legacy_tier_code?: string | null
+  gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: string | null
   owner_id?: number | null
   created_at?: Date | string
   deal?: Prisma.CrmDealsUncheckedCreateNestedOneWithoutCustomerInput
@@ -758,10 +739,12 @@ export type CrmCustomerProfilesCreateOrConnectWithoutUserInput = {
 }
 
 export type CrmCustomerProfilesCreateWithoutOwnerInput = {
+  legacy_tier_code?: string | null
+  gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: string | null
   created_at?: Date | string
   user: Prisma.UserCreateNestedOneWithoutCrmCustomerProfileInput
   source: Prisma.CrmSourcesCreateNestedOneWithoutCustomersInput
-  tier: Prisma.CrmTiersCreateNestedOneWithoutCustomersInput
   deal?: Prisma.CrmDealsCreateNestedOneWithoutCustomerInput
 }
 
@@ -769,7 +752,9 @@ export type CrmCustomerProfilesUncheckedCreateWithoutOwnerInput = {
   id?: number
   user_id: number
   source_code: string
-  tier_code: string
+  legacy_tier_code?: string | null
+  gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: string | null
   created_at?: Date | string
   deal?: Prisma.CrmDealsUncheckedCreateNestedOneWithoutCustomerInput
 }
@@ -796,9 +781,11 @@ export type CrmCustomerProfilesUpdateToOneWithWhereWithoutUserInput = {
 }
 
 export type CrmCustomerProfilesUpdateWithoutUserInput = {
+  legacy_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   source?: Prisma.CrmSourcesUpdateOneRequiredWithoutCustomersNestedInput
-  tier?: Prisma.CrmTiersUpdateOneRequiredWithoutCustomersNestedInput
   owner?: Prisma.UserUpdateOneWithoutOwnedCrmCustomerProfilesNestedInput
   deal?: Prisma.CrmDealsUpdateOneWithoutCustomerNestedInput
 }
@@ -806,7 +793,9 @@ export type CrmCustomerProfilesUpdateWithoutUserInput = {
 export type CrmCustomerProfilesUncheckedUpdateWithoutUserInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   source_code?: Prisma.StringFieldUpdateOperationsInput | string
-  tier_code?: Prisma.StringFieldUpdateOperationsInput | string
+  legacy_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deal?: Prisma.CrmDealsUncheckedUpdateOneWithoutCustomerNestedInput
@@ -831,15 +820,19 @@ export type CrmCustomerProfilesUpdateManyWithWhereWithoutOwnerInput = {
 export type CrmCustomerProfilesCreateManySourceInput = {
   id?: number
   user_id: number
-  tier_code: string
+  legacy_tier_code?: string | null
+  gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: string | null
   owner_id?: number | null
   created_at?: Date | string
 }
 
 export type CrmCustomerProfilesUpdateWithoutSourceInput = {
+  legacy_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutCrmCustomerProfileNestedInput
-  tier?: Prisma.CrmTiersUpdateOneRequiredWithoutCustomersNestedInput
   owner?: Prisma.UserUpdateOneWithoutOwnedCrmCustomerProfilesNestedInput
   deal?: Prisma.CrmDealsUpdateOneWithoutCustomerNestedInput
 }
@@ -847,7 +840,9 @@ export type CrmCustomerProfilesUpdateWithoutSourceInput = {
 export type CrmCustomerProfilesUncheckedUpdateWithoutSourceInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   user_id?: Prisma.IntFieldUpdateOperationsInput | number
-  tier_code?: Prisma.StringFieldUpdateOperationsInput | string
+  legacy_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deal?: Prisma.CrmDealsUncheckedUpdateOneWithoutCustomerNestedInput
@@ -856,40 +851,9 @@ export type CrmCustomerProfilesUncheckedUpdateWithoutSourceInput = {
 export type CrmCustomerProfilesUncheckedUpdateManyWithoutSourceInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   user_id?: Prisma.IntFieldUpdateOperationsInput | number
-  tier_code?: Prisma.StringFieldUpdateOperationsInput | string
-  owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type CrmCustomerProfilesCreateManyTierInput = {
-  id?: number
-  user_id: number
-  source_code: string
-  owner_id?: number | null
-  created_at?: Date | string
-}
-
-export type CrmCustomerProfilesUpdateWithoutTierInput = {
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutCrmCustomerProfileNestedInput
-  source?: Prisma.CrmSourcesUpdateOneRequiredWithoutCustomersNestedInput
-  owner?: Prisma.UserUpdateOneWithoutOwnedCrmCustomerProfilesNestedInput
-  deal?: Prisma.CrmDealsUpdateOneWithoutCustomerNestedInput
-}
-
-export type CrmCustomerProfilesUncheckedUpdateWithoutTierInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  user_id?: Prisma.IntFieldUpdateOperationsInput | number
-  source_code?: Prisma.StringFieldUpdateOperationsInput | string
-  owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deal?: Prisma.CrmDealsUncheckedUpdateOneWithoutCustomerNestedInput
-}
-
-export type CrmCustomerProfilesUncheckedUpdateManyWithoutTierInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  user_id?: Prisma.IntFieldUpdateOperationsInput | number
-  source_code?: Prisma.StringFieldUpdateOperationsInput | string
+  legacy_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -898,15 +862,19 @@ export type CrmCustomerProfilesCreateManyOwnerInput = {
   id?: number
   user_id: number
   source_code: string
-  tier_code: string
+  legacy_tier_code?: string | null
+  gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: string | null
   created_at?: Date | string
 }
 
 export type CrmCustomerProfilesUpdateWithoutOwnerInput = {
+  legacy_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutCrmCustomerProfileNestedInput
   source?: Prisma.CrmSourcesUpdateOneRequiredWithoutCustomersNestedInput
-  tier?: Prisma.CrmTiersUpdateOneRequiredWithoutCustomersNestedInput
   deal?: Prisma.CrmDealsUpdateOneWithoutCustomerNestedInput
 }
 
@@ -914,7 +882,9 @@ export type CrmCustomerProfilesUncheckedUpdateWithoutOwnerInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   user_id?: Prisma.IntFieldUpdateOperationsInput | number
   source_code?: Prisma.StringFieldUpdateOperationsInput | string
-  tier_code?: Prisma.StringFieldUpdateOperationsInput | string
+  legacy_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deal?: Prisma.CrmDealsUncheckedUpdateOneWithoutCustomerNestedInput
 }
@@ -923,7 +893,9 @@ export type CrmCustomerProfilesUncheckedUpdateManyWithoutOwnerInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   user_id?: Prisma.IntFieldUpdateOperationsInput | number
   source_code?: Prisma.StringFieldUpdateOperationsInput | string
-  tier_code?: Prisma.StringFieldUpdateOperationsInput | string
+  legacy_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -933,12 +905,13 @@ export type CrmCustomerProfilesSelect<ExtArgs extends runtime.Types.Extensions.I
   id?: boolean
   user_id?: boolean
   source_code?: boolean
-  tier_code?: boolean
+  legacy_tier_code?: boolean
+  gmv_monthly?: boolean
+  customer_tier_code?: boolean
   owner_id?: boolean
   created_at?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   source?: boolean | Prisma.CrmSourcesDefaultArgs<ExtArgs>
-  tier?: boolean | Prisma.CrmTiersDefaultArgs<ExtArgs>
   owner?: boolean | Prisma.CrmCustomerProfiles$ownerArgs<ExtArgs>
   deal?: boolean | Prisma.CrmCustomerProfiles$dealArgs<ExtArgs>
 }, ExtArgs["result"]["crmCustomerProfiles"]>
@@ -947,12 +920,13 @@ export type CrmCustomerProfilesSelectCreateManyAndReturn<ExtArgs extends runtime
   id?: boolean
   user_id?: boolean
   source_code?: boolean
-  tier_code?: boolean
+  legacy_tier_code?: boolean
+  gmv_monthly?: boolean
+  customer_tier_code?: boolean
   owner_id?: boolean
   created_at?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   source?: boolean | Prisma.CrmSourcesDefaultArgs<ExtArgs>
-  tier?: boolean | Prisma.CrmTiersDefaultArgs<ExtArgs>
   owner?: boolean | Prisma.CrmCustomerProfiles$ownerArgs<ExtArgs>
 }, ExtArgs["result"]["crmCustomerProfiles"]>
 
@@ -960,12 +934,13 @@ export type CrmCustomerProfilesSelectUpdateManyAndReturn<ExtArgs extends runtime
   id?: boolean
   user_id?: boolean
   source_code?: boolean
-  tier_code?: boolean
+  legacy_tier_code?: boolean
+  gmv_monthly?: boolean
+  customer_tier_code?: boolean
   owner_id?: boolean
   created_at?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   source?: boolean | Prisma.CrmSourcesDefaultArgs<ExtArgs>
-  tier?: boolean | Prisma.CrmTiersDefaultArgs<ExtArgs>
   owner?: boolean | Prisma.CrmCustomerProfiles$ownerArgs<ExtArgs>
 }, ExtArgs["result"]["crmCustomerProfiles"]>
 
@@ -973,29 +948,28 @@ export type CrmCustomerProfilesSelectScalar = {
   id?: boolean
   user_id?: boolean
   source_code?: boolean
-  tier_code?: boolean
+  legacy_tier_code?: boolean
+  gmv_monthly?: boolean
+  customer_tier_code?: boolean
   owner_id?: boolean
   created_at?: boolean
 }
 
-export type CrmCustomerProfilesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "source_code" | "tier_code" | "owner_id" | "created_at", ExtArgs["result"]["crmCustomerProfiles"]>
+export type CrmCustomerProfilesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "source_code" | "legacy_tier_code" | "gmv_monthly" | "customer_tier_code" | "owner_id" | "created_at", ExtArgs["result"]["crmCustomerProfiles"]>
 export type CrmCustomerProfilesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   source?: boolean | Prisma.CrmSourcesDefaultArgs<ExtArgs>
-  tier?: boolean | Prisma.CrmTiersDefaultArgs<ExtArgs>
   owner?: boolean | Prisma.CrmCustomerProfiles$ownerArgs<ExtArgs>
   deal?: boolean | Prisma.CrmCustomerProfiles$dealArgs<ExtArgs>
 }
 export type CrmCustomerProfilesIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   source?: boolean | Prisma.CrmSourcesDefaultArgs<ExtArgs>
-  tier?: boolean | Prisma.CrmTiersDefaultArgs<ExtArgs>
   owner?: boolean | Prisma.CrmCustomerProfiles$ownerArgs<ExtArgs>
 }
 export type CrmCustomerProfilesIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   source?: boolean | Prisma.CrmSourcesDefaultArgs<ExtArgs>
-  tier?: boolean | Prisma.CrmTiersDefaultArgs<ExtArgs>
   owner?: boolean | Prisma.CrmCustomerProfiles$ownerArgs<ExtArgs>
 }
 
@@ -1004,7 +978,6 @@ export type $CrmCustomerProfilesPayload<ExtArgs extends runtime.Types.Extensions
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
     source: Prisma.$CrmSourcesPayload<ExtArgs>
-    tier: Prisma.$CrmTiersPayload<ExtArgs>
     owner: Prisma.$UserPayload<ExtArgs> | null
     deal: Prisma.$CrmDealsPayload<ExtArgs> | null
   }
@@ -1012,7 +985,9 @@ export type $CrmCustomerProfilesPayload<ExtArgs extends runtime.Types.Extensions
     id: number
     user_id: number
     source_code: string
-    tier_code: string
+    legacy_tier_code: string | null
+    gmv_monthly: runtime.Decimal | null
+    customer_tier_code: string | null
     owner_id: number | null
     created_at: Date
   }, ExtArgs["result"]["crmCustomerProfiles"]>
@@ -1411,7 +1386,6 @@ export interface Prisma__CrmCustomerProfilesClient<T, Null = never, ExtArgs exte
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   source<T extends Prisma.CrmSourcesDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CrmSourcesDefaultArgs<ExtArgs>>): Prisma.Prisma__CrmSourcesClient<runtime.Types.Result.GetResult<Prisma.$CrmSourcesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  tier<T extends Prisma.CrmTiersDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CrmTiersDefaultArgs<ExtArgs>>): Prisma.Prisma__CrmTiersClient<runtime.Types.Result.GetResult<Prisma.$CrmTiersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   owner<T extends Prisma.CrmCustomerProfiles$ownerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CrmCustomerProfiles$ownerArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   deal<T extends Prisma.CrmCustomerProfiles$dealArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CrmCustomerProfiles$dealArgs<ExtArgs>>): Prisma.Prisma__CrmDealsClient<runtime.Types.Result.GetResult<Prisma.$CrmDealsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
@@ -1446,7 +1420,9 @@ export interface CrmCustomerProfilesFieldRefs {
   readonly id: Prisma.FieldRef<"CrmCustomerProfiles", 'Int'>
   readonly user_id: Prisma.FieldRef<"CrmCustomerProfiles", 'Int'>
   readonly source_code: Prisma.FieldRef<"CrmCustomerProfiles", 'String'>
-  readonly tier_code: Prisma.FieldRef<"CrmCustomerProfiles", 'String'>
+  readonly legacy_tier_code: Prisma.FieldRef<"CrmCustomerProfiles", 'String'>
+  readonly gmv_monthly: Prisma.FieldRef<"CrmCustomerProfiles", 'Decimal'>
+  readonly customer_tier_code: Prisma.FieldRef<"CrmCustomerProfiles", 'String'>
   readonly owner_id: Prisma.FieldRef<"CrmCustomerProfiles", 'Int'>
   readonly created_at: Prisma.FieldRef<"CrmCustomerProfiles", 'DateTime'>
 }

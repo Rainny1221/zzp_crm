@@ -504,6 +504,119 @@ export type wards = Prisma.wardsModel
  */
 export type youtube = Prisma.youtubeModel
 /**
+ * Model CrmCustomerBusinessProfiles
+ * One-to-one extension for crm_customer_profiles. customer_id points to
+ * crm_customer_profiles.id but is kept scalar to avoid altering existing models.
+ */
+export type CrmCustomerBusinessProfiles = Prisma.CrmCustomerBusinessProfilesModel
+/**
+ * Model CrmDealDetails
+ * One-to-one extension for crm_deals. deal_id points to crm_deals.id.
+ */
+export type CrmDealDetails = Prisma.CrmDealDetailsModel
+/**
+ * Model CrmDealPayments
+ * 
+ */
+export type CrmDealPayments = Prisma.CrmDealPaymentsModel
+/**
+ * Model CrmActivities
+ * 
+ */
+export type CrmActivities = Prisma.CrmActivitiesModel
+/**
+ * Model CrmTasks
+ * 
+ */
+export type CrmTasks = Prisma.CrmTasksModel
+/**
+ * Model CrmFeedbacks
+ * 
+ */
+export type CrmFeedbacks = Prisma.CrmFeedbacksModel
+/**
+ * Model CrmFeedbackReads
+ * 
+ */
+export type CrmFeedbackReads = Prisma.CrmFeedbackReadsModel
+/**
+ * Model CrmNotifications
+ * 
+ */
+export type CrmNotifications = Prisma.CrmNotificationsModel
+/**
+ * Model CrmNotificationReads
+ * 
+ */
+export type CrmNotificationReads = Prisma.CrmNotificationReadsModel
+/**
+ * Model CrmSalesKpiQuotas
+ * 
+ */
+export type CrmSalesKpiQuotas = Prisma.CrmSalesKpiQuotasModel
+/**
+ * Model CrmStatuses
+ * CRM read-side lookup tables for UI options that are not covered by the
+ * existing crm_pipeline_stages, crm_sources, and crm_tiers tables.
+ */
+export type CrmStatuses = Prisma.CrmStatusesModel
+/**
+ * Model CrmProductPackages
+ * 
+ */
+export type CrmProductPackages = Prisma.CrmProductPackagesModel
+/**
+ * Model CrmFailureReasons
+ * 
+ */
+export type CrmFailureReasons = Prisma.CrmFailureReasonsModel
+/**
+ * Model CrmFeedbackCategories
+ * 
+ */
+export type CrmFeedbackCategories = Prisma.CrmFeedbackCategoriesModel
+/**
+ * Model CrmNotificationTypes
+ * 
+ */
+export type CrmNotificationTypes = Prisma.CrmNotificationTypesModel
+/**
+ * Model CrmInteractionChannels
+ * 
+ */
+export type CrmInteractionChannels = Prisma.CrmInteractionChannelsModel
+/**
+ * Model CrmCallOutcomes
+ * 
+ */
+export type CrmCallOutcomes = Prisma.CrmCallOutcomesModel
+/**
+ * Model CrmMessageOutcomes
+ * 
+ */
+export type CrmMessageOutcomes = Prisma.CrmMessageOutcomesModel
+/**
+ * Model CrmTaskTypes
+ * 
+ */
+export type CrmTaskTypes = Prisma.CrmTaskTypesModel
+/**
+ * Model CrmPriorities
+ * 
+ */
+export type CrmPriorities = Prisma.CrmPrioritiesModel
+/**
+ * Model CrmPipelineStageNotes
+ * Stage note used by the pipeline board header, kept separate so the existing
+ * crm_pipeline_stages table does not need to change.
+ */
+export type CrmPipelineStageNotes = Prisma.CrmPipelineStageNotesModel
+/**
+ * Model CrmSalesMembers
+ * 
+ */
+export type CrmSalesMembers = Prisma.CrmSalesMembersModel
+/**
  * Model CrmPipelineStages
  * 
  */

@@ -46,12 +46,69 @@ export const CRM_SYNC_QUEUE = {
 export const buildCrmSyncProcessQueueJobId = (jobId: number): string =>
   `${CRM_SYNC_QUEUE.PROCESS_JOB_ID_PREFIX}:${jobId}`;
 
+export const CRM_PRODUCT_PACKAGE_CODE = {
+  TRIAL: 'trial',
+  PACKAGE_399: '399',
+  PACKAGE_699: '699',
+} as const;
+
+export type CrmProductPackageCode =
+  (typeof CRM_PRODUCT_PACKAGE_CODE)[keyof typeof CRM_PRODUCT_PACKAGE_CODE];
+
+export const CRM_PRODUCT_PACKAGE_OPTIONS = [
+  {
+    code: CRM_PRODUCT_PACKAGE_CODE.TRIAL,
+    label: 'Trial',
+    sortOrder: 1,
+    isActive: true,
+  },
+  {
+    code: CRM_PRODUCT_PACKAGE_CODE.PACKAGE_399,
+    label: 'Gói 399k',
+    sortOrder: 2,
+    isActive: true,
+  },
+  {
+    code: CRM_PRODUCT_PACKAGE_CODE.PACKAGE_699,
+    label: 'Gói 699k',
+    sortOrder: 3,
+    isActive: true,
+  },
+] as const;
+
+export const CRM_CUSTOMER_TIER_CODE = {
+  TINY: 'tiny',
+  POTENTIAL: 'potential',
+  WHALE: 'whale',
+} as const;
+
+export type CrmCustomerTierCode =
+  (typeof CRM_CUSTOMER_TIER_CODE)[keyof typeof CRM_CUSTOMER_TIER_CODE];
+
+export const CRM_CUSTOMER_TIER_OPTIONS = [
+  {
+    code: CRM_CUSTOMER_TIER_CODE.TINY,
+    label: 'Tiny',
+    isActive: true,
+  },
+  {
+    code: CRM_CUSTOMER_TIER_CODE.POTENTIAL,
+    label: 'Potential',
+    isActive: true,
+  },
+  {
+    code: CRM_CUSTOMER_TIER_CODE.WHALE,
+    label: 'Whale',
+    isActive: true,
+  },
+] as const;
+
 export const CRM_SYNC_DEFAULTS = {
   SOURCE_CODE: 'website',
-  TIER_CODE: 'trial',
+  CUSTOMER_TIER_CODE: null as CrmCustomerTierCode | null,
   PIPELINE_STAGE: 'NEW_LEAD',
   PIPELINE_MAPPED_STATUS_CODE: 'NEW',
-  PRODUCT_PACKAGE: 'starter',
+  PRODUCT_PACKAGE_CODE: CRM_PRODUCT_PACKAGE_CODE.TRIAL,
   PROBABILITY: 0,
 } as const;
 
@@ -67,6 +124,7 @@ export const CRM_SYNC_LOG = {
     JOB: 'CRM_SYNC_JOB',
     USER: 'USER',
     PIPELINE_STAGE: 'CRM_PIPELINE_STAGE',
+    PRODUCT_PACKAGE: 'CRM_PRODUCT_PACKAGE',
   },
   ACTIONS: {
     FIND_JOB: 'CRM_SYNC_FIND_JOB',

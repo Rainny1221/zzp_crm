@@ -166,14 +166,12 @@ export type CrmTiersWhereInput = {
   code?: Prisma.StringFilter<"CrmTiers"> | string
   label?: Prisma.StringFilter<"CrmTiers"> | string
   is_active?: Prisma.BoolFilter<"CrmTiers"> | boolean
-  customers?: Prisma.CrmCustomerProfilesListRelationFilter
 }
 
 export type CrmTiersOrderByWithRelationInput = {
   code?: Prisma.SortOrder
   label?: Prisma.SortOrder
   is_active?: Prisma.SortOrder
-  customers?: Prisma.CrmCustomerProfilesOrderByRelationAggregateInput
 }
 
 export type CrmTiersWhereUniqueInput = Prisma.AtLeast<{
@@ -183,7 +181,6 @@ export type CrmTiersWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.CrmTiersWhereInput | Prisma.CrmTiersWhereInput[]
   label?: Prisma.StringFilter<"CrmTiers"> | string
   is_active?: Prisma.BoolFilter<"CrmTiers"> | boolean
-  customers?: Prisma.CrmCustomerProfilesListRelationFilter
 }, "code">
 
 export type CrmTiersOrderByWithAggregationInput = {
@@ -208,28 +205,24 @@ export type CrmTiersCreateInput = {
   code: string
   label: string
   is_active?: boolean
-  customers?: Prisma.CrmCustomerProfilesCreateNestedManyWithoutTierInput
 }
 
 export type CrmTiersUncheckedCreateInput = {
   code: string
   label: string
   is_active?: boolean
-  customers?: Prisma.CrmCustomerProfilesUncheckedCreateNestedManyWithoutTierInput
 }
 
 export type CrmTiersUpdateInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   label?: Prisma.StringFieldUpdateOperationsInput | string
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  customers?: Prisma.CrmCustomerProfilesUpdateManyWithoutTierNestedInput
 }
 
 export type CrmTiersUncheckedUpdateInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   label?: Prisma.StringFieldUpdateOperationsInput | string
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  customers?: Prisma.CrmCustomerProfilesUncheckedUpdateManyWithoutTierNestedInput
 }
 
 export type CrmTiersCreateManyInput = {
@@ -268,102 +261,12 @@ export type CrmTiersMinOrderByAggregateInput = {
   is_active?: Prisma.SortOrder
 }
 
-export type CrmTiersScalarRelationFilter = {
-  is?: Prisma.CrmTiersWhereInput
-  isNot?: Prisma.CrmTiersWhereInput
-}
-
-export type CrmTiersCreateNestedOneWithoutCustomersInput = {
-  create?: Prisma.XOR<Prisma.CrmTiersCreateWithoutCustomersInput, Prisma.CrmTiersUncheckedCreateWithoutCustomersInput>
-  connectOrCreate?: Prisma.CrmTiersCreateOrConnectWithoutCustomersInput
-  connect?: Prisma.CrmTiersWhereUniqueInput
-}
-
-export type CrmTiersUpdateOneRequiredWithoutCustomersNestedInput = {
-  create?: Prisma.XOR<Prisma.CrmTiersCreateWithoutCustomersInput, Prisma.CrmTiersUncheckedCreateWithoutCustomersInput>
-  connectOrCreate?: Prisma.CrmTiersCreateOrConnectWithoutCustomersInput
-  upsert?: Prisma.CrmTiersUpsertWithoutCustomersInput
-  connect?: Prisma.CrmTiersWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CrmTiersUpdateToOneWithWhereWithoutCustomersInput, Prisma.CrmTiersUpdateWithoutCustomersInput>, Prisma.CrmTiersUncheckedUpdateWithoutCustomersInput>
-}
-
-export type CrmTiersCreateWithoutCustomersInput = {
-  code: string
-  label: string
-  is_active?: boolean
-}
-
-export type CrmTiersUncheckedCreateWithoutCustomersInput = {
-  code: string
-  label: string
-  is_active?: boolean
-}
-
-export type CrmTiersCreateOrConnectWithoutCustomersInput = {
-  where: Prisma.CrmTiersWhereUniqueInput
-  create: Prisma.XOR<Prisma.CrmTiersCreateWithoutCustomersInput, Prisma.CrmTiersUncheckedCreateWithoutCustomersInput>
-}
-
-export type CrmTiersUpsertWithoutCustomersInput = {
-  update: Prisma.XOR<Prisma.CrmTiersUpdateWithoutCustomersInput, Prisma.CrmTiersUncheckedUpdateWithoutCustomersInput>
-  create: Prisma.XOR<Prisma.CrmTiersCreateWithoutCustomersInput, Prisma.CrmTiersUncheckedCreateWithoutCustomersInput>
-  where?: Prisma.CrmTiersWhereInput
-}
-
-export type CrmTiersUpdateToOneWithWhereWithoutCustomersInput = {
-  where?: Prisma.CrmTiersWhereInput
-  data: Prisma.XOR<Prisma.CrmTiersUpdateWithoutCustomersInput, Prisma.CrmTiersUncheckedUpdateWithoutCustomersInput>
-}
-
-export type CrmTiersUpdateWithoutCustomersInput = {
-  code?: Prisma.StringFieldUpdateOperationsInput | string
-  label?: Prisma.StringFieldUpdateOperationsInput | string
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-}
-
-export type CrmTiersUncheckedUpdateWithoutCustomersInput = {
-  code?: Prisma.StringFieldUpdateOperationsInput | string
-  label?: Prisma.StringFieldUpdateOperationsInput | string
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-}
-
-
-/**
- * Count Type CrmTiersCountOutputType
- */
-
-export type CrmTiersCountOutputType = {
-  customers: number
-}
-
-export type CrmTiersCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  customers?: boolean | CrmTiersCountOutputTypeCountCustomersArgs
-}
-
-/**
- * CrmTiersCountOutputType without action
- */
-export type CrmTiersCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the CrmTiersCountOutputType
-   */
-  select?: Prisma.CrmTiersCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * CrmTiersCountOutputType without action
- */
-export type CrmTiersCountOutputTypeCountCustomersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CrmCustomerProfilesWhereInput
-}
 
 
 export type CrmTiersSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   code?: boolean
   label?: boolean
   is_active?: boolean
-  customers?: boolean | Prisma.CrmTiers$customersArgs<ExtArgs>
-  _count?: boolean | Prisma.CrmTiersCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["crmTiers"]>
 
 export type CrmTiersSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -385,18 +288,10 @@ export type CrmTiersSelectScalar = {
 }
 
 export type CrmTiersOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"code" | "label" | "is_active", ExtArgs["result"]["crmTiers"]>
-export type CrmTiersInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  customers?: boolean | Prisma.CrmTiers$customersArgs<ExtArgs>
-  _count?: boolean | Prisma.CrmTiersCountOutputTypeDefaultArgs<ExtArgs>
-}
-export type CrmTiersIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type CrmTiersIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $CrmTiersPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "CrmTiers"
-  objects: {
-    customers: Prisma.$CrmCustomerProfilesPayload<ExtArgs>[]
-  }
+  objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     code: string
     label: string
@@ -795,7 +690,6 @@ readonly fields: CrmTiersFieldRefs;
  */
 export interface Prisma__CrmTiersClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  customers<T extends Prisma.CrmTiers$customersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CrmTiers$customersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CrmCustomerProfilesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -845,10 +739,6 @@ export type CrmTiersFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Inte
    */
   omit?: Prisma.CrmTiersOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CrmTiersInclude<ExtArgs> | null
-  /**
    * Filter, which CrmTiers to fetch.
    */
   where: Prisma.CrmTiersWhereUniqueInput
@@ -867,10 +757,6 @@ export type CrmTiersFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensio
    */
   omit?: Prisma.CrmTiersOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CrmTiersInclude<ExtArgs> | null
-  /**
    * Filter, which CrmTiers to fetch.
    */
   where: Prisma.CrmTiersWhereUniqueInput
@@ -888,10 +774,6 @@ export type CrmTiersFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Omit specific fields from the CrmTiers
    */
   omit?: Prisma.CrmTiersOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CrmTiersInclude<ExtArgs> | null
   /**
    * Filter, which CrmTiers to fetch.
    */
@@ -941,10 +823,6 @@ export type CrmTiersFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extension
    */
   omit?: Prisma.CrmTiersOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CrmTiersInclude<ExtArgs> | null
-  /**
    * Filter, which CrmTiers to fetch.
    */
   where?: Prisma.CrmTiersWhereInput
@@ -993,10 +871,6 @@ export type CrmTiersFindManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   omit?: Prisma.CrmTiersOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CrmTiersInclude<ExtArgs> | null
-  /**
    * Filter, which CrmTiers to fetch.
    */
   where?: Prisma.CrmTiersWhereInput
@@ -1039,10 +913,6 @@ export type CrmTiersCreateArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Omit specific fields from the CrmTiers
    */
   omit?: Prisma.CrmTiersOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CrmTiersInclude<ExtArgs> | null
   /**
    * The data needed to create a CrmTiers.
    */
@@ -1091,10 +961,6 @@ export type CrmTiersUpdateArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Omit specific fields from the CrmTiers
    */
   omit?: Prisma.CrmTiersOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CrmTiersInclude<ExtArgs> | null
   /**
    * The data needed to update a CrmTiers.
    */
@@ -1162,10 +1028,6 @@ export type CrmTiersUpsertArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   omit?: Prisma.CrmTiersOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CrmTiersInclude<ExtArgs> | null
-  /**
    * The filter to search for the CrmTiers to update in case it exists.
    */
   where: Prisma.CrmTiersWhereUniqueInput
@@ -1192,10 +1054,6 @@ export type CrmTiersDeleteArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   omit?: Prisma.CrmTiersOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CrmTiersInclude<ExtArgs> | null
-  /**
    * Filter which CrmTiers to delete.
    */
   where: Prisma.CrmTiersWhereUniqueInput
@@ -1216,30 +1074,6 @@ export type CrmTiersDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
- * CrmTiers.customers
- */
-export type CrmTiers$customersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the CrmCustomerProfiles
-   */
-  select?: Prisma.CrmCustomerProfilesSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the CrmCustomerProfiles
-   */
-  omit?: Prisma.CrmCustomerProfilesOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CrmCustomerProfilesInclude<ExtArgs> | null
-  where?: Prisma.CrmCustomerProfilesWhereInput
-  orderBy?: Prisma.CrmCustomerProfilesOrderByWithRelationInput | Prisma.CrmCustomerProfilesOrderByWithRelationInput[]
-  cursor?: Prisma.CrmCustomerProfilesWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.CrmCustomerProfilesScalarFieldEnum | Prisma.CrmCustomerProfilesScalarFieldEnum[]
-}
-
-/**
  * CrmTiers without action
  */
 export type CrmTiersDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1251,8 +1085,4 @@ export type CrmTiersDefaultArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Omit specific fields from the CrmTiers
    */
   omit?: Prisma.CrmTiersOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CrmTiersInclude<ExtArgs> | null
 }

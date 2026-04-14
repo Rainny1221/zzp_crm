@@ -16,6 +16,8 @@ model CrmProductPackages {
   sort_order Int
   is_active  Boolean @default(true)
 
+  deals CrmDeals[]
+
   @@index([sort_order])
   @@map("crm_product_packages")
 }

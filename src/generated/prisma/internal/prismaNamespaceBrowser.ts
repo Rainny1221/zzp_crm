@@ -148,6 +148,28 @@ export const ModelName = {
   user_sessions: 'user_sessions',
   wards: 'wards',
   youtube: 'youtube',
+  CrmCustomerBusinessProfiles: 'CrmCustomerBusinessProfiles',
+  CrmDealDetails: 'CrmDealDetails',
+  CrmDealPayments: 'CrmDealPayments',
+  CrmActivities: 'CrmActivities',
+  CrmTasks: 'CrmTasks',
+  CrmFeedbacks: 'CrmFeedbacks',
+  CrmFeedbackReads: 'CrmFeedbackReads',
+  CrmNotifications: 'CrmNotifications',
+  CrmNotificationReads: 'CrmNotificationReads',
+  CrmSalesKpiQuotas: 'CrmSalesKpiQuotas',
+  CrmStatuses: 'CrmStatuses',
+  CrmProductPackages: 'CrmProductPackages',
+  CrmFailureReasons: 'CrmFailureReasons',
+  CrmFeedbackCategories: 'CrmFeedbackCategories',
+  CrmNotificationTypes: 'CrmNotificationTypes',
+  CrmInteractionChannels: 'CrmInteractionChannels',
+  CrmCallOutcomes: 'CrmCallOutcomes',
+  CrmMessageOutcomes: 'CrmMessageOutcomes',
+  CrmTaskTypes: 'CrmTaskTypes',
+  CrmPriorities: 'CrmPriorities',
+  CrmPipelineStageNotes: 'CrmPipelineStageNotes',
+  CrmSalesMembers: 'CrmSalesMembers',
   CrmPipelineStages: 'CrmPipelineStages',
   CrmSources: 'CrmSources',
   CrmTiers: 'CrmTiers',
@@ -2122,6 +2144,269 @@ export const YoutubeScalarFieldEnum = {
 export type YoutubeScalarFieldEnum = (typeof YoutubeScalarFieldEnum)[keyof typeof YoutubeScalarFieldEnum]
 
 
+export const CrmCustomerBusinessProfilesScalarFieldEnum = {
+  id: 'id',
+  customer_id: 'customer_id',
+  shop_name: 'shop_name',
+  tiktok_link: 'tiktok_link',
+  phone: 'phone',
+  email: 'email',
+  gmv_monthly: 'gmv_monthly',
+  industry: 'industry',
+  job_title: 'job_title',
+  province: 'province',
+  partner_name: 'partner_name',
+  source_note: 'source_note',
+  synced_at: 'synced_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type CrmCustomerBusinessProfilesScalarFieldEnum = (typeof CrmCustomerBusinessProfilesScalarFieldEnum)[keyof typeof CrmCustomerBusinessProfilesScalarFieldEnum]
+
+
+export const CrmDealDetailsScalarFieldEnum = {
+  id: 'id',
+  deal_id: 'deal_id',
+  closed_revenue: 'closed_revenue',
+  trial_start_date: 'trial_start_date',
+  trial_end_date: 'trial_end_date',
+  failure_reason_code: 'failure_reason_code',
+  failure_note: 'failure_note',
+  last_contacted_at: 'last_contacted_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type CrmDealDetailsScalarFieldEnum = (typeof CrmDealDetailsScalarFieldEnum)[keyof typeof CrmDealDetailsScalarFieldEnum]
+
+
+export const CrmDealPaymentsScalarFieldEnum = {
+  id: 'id',
+  deal_detail_id: 'deal_detail_id',
+  plan_name: 'plan_name',
+  paid_at: 'paid_at',
+  duration_days: 'duration_days',
+  package_end_date: 'package_end_date',
+  carry_over_days: 'carry_over_days',
+  sales_commission: 'sales_commission',
+  created_at: 'created_at'
+} as const
+
+export type CrmDealPaymentsScalarFieldEnum = (typeof CrmDealPaymentsScalarFieldEnum)[keyof typeof CrmDealPaymentsScalarFieldEnum]
+
+
+export const CrmActivitiesScalarFieldEnum = {
+  id: 'id',
+  customer_id: 'customer_id',
+  activity_type_code: 'activity_type_code',
+  description: 'description',
+  author_user_id: 'author_user_id',
+  author_name: 'author_name',
+  occurred_at: 'occurred_at',
+  created_at: 'created_at'
+} as const
+
+export type CrmActivitiesScalarFieldEnum = (typeof CrmActivitiesScalarFieldEnum)[keyof typeof CrmActivitiesScalarFieldEnum]
+
+
+export const CrmTasksScalarFieldEnum = {
+  id: 'id',
+  customer_id: 'customer_id',
+  task_type_code: 'task_type_code',
+  title: 'title',
+  due_date: 'due_date',
+  completed: 'completed',
+  assignee_user_id: 'assignee_user_id',
+  priority_code: 'priority_code',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type CrmTasksScalarFieldEnum = (typeof CrmTasksScalarFieldEnum)[keyof typeof CrmTasksScalarFieldEnum]
+
+
+export const CrmFeedbacksScalarFieldEnum = {
+  id: 'id',
+  customer_id: 'customer_id',
+  category_code: 'category_code',
+  content: 'content',
+  sales_user_id: 'sales_user_id',
+  sales_name: 'sales_name',
+  created_at: 'created_at'
+} as const
+
+export type CrmFeedbacksScalarFieldEnum = (typeof CrmFeedbacksScalarFieldEnum)[keyof typeof CrmFeedbacksScalarFieldEnum]
+
+
+export const CrmFeedbackReadsScalarFieldEnum = {
+  id: 'id',
+  feedback_id: 'feedback_id',
+  user_id: 'user_id',
+  read_at: 'read_at'
+} as const
+
+export type CrmFeedbackReadsScalarFieldEnum = (typeof CrmFeedbackReadsScalarFieldEnum)[keyof typeof CrmFeedbackReadsScalarFieldEnum]
+
+
+export const CrmNotificationsScalarFieldEnum = {
+  id: 'id',
+  type_code: 'type_code',
+  title: 'title',
+  description: 'description',
+  customer_id: 'customer_id',
+  created_at: 'created_at'
+} as const
+
+export type CrmNotificationsScalarFieldEnum = (typeof CrmNotificationsScalarFieldEnum)[keyof typeof CrmNotificationsScalarFieldEnum]
+
+
+export const CrmNotificationReadsScalarFieldEnum = {
+  id: 'id',
+  notification_id: 'notification_id',
+  user_id: 'user_id',
+  read_at: 'read_at'
+} as const
+
+export type CrmNotificationReadsScalarFieldEnum = (typeof CrmNotificationReadsScalarFieldEnum)[keyof typeof CrmNotificationReadsScalarFieldEnum]
+
+
+export const CrmSalesKpiQuotasScalarFieldEnum = {
+  id: 'id',
+  sales_member_id: 'sales_member_id',
+  period_code: 'period_code',
+  period_start: 'period_start',
+  period_end: 'period_end',
+  quota: 'quota',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type CrmSalesKpiQuotasScalarFieldEnum = (typeof CrmSalesKpiQuotasScalarFieldEnum)[keyof typeof CrmSalesKpiQuotasScalarFieldEnum]
+
+
+export const CrmStatusesScalarFieldEnum = {
+  code: 'code',
+  label: 'label',
+  sort_order: 'sort_order',
+  is_active: 'is_active'
+} as const
+
+export type CrmStatusesScalarFieldEnum = (typeof CrmStatusesScalarFieldEnum)[keyof typeof CrmStatusesScalarFieldEnum]
+
+
+export const CrmProductPackagesScalarFieldEnum = {
+  code: 'code',
+  label: 'label',
+  sort_order: 'sort_order',
+  is_active: 'is_active'
+} as const
+
+export type CrmProductPackagesScalarFieldEnum = (typeof CrmProductPackagesScalarFieldEnum)[keyof typeof CrmProductPackagesScalarFieldEnum]
+
+
+export const CrmFailureReasonsScalarFieldEnum = {
+  code: 'code',
+  label: 'label',
+  sort_order: 'sort_order',
+  is_active: 'is_active'
+} as const
+
+export type CrmFailureReasonsScalarFieldEnum = (typeof CrmFailureReasonsScalarFieldEnum)[keyof typeof CrmFailureReasonsScalarFieldEnum]
+
+
+export const CrmFeedbackCategoriesScalarFieldEnum = {
+  code: 'code',
+  label: 'label',
+  sort_order: 'sort_order',
+  is_active: 'is_active'
+} as const
+
+export type CrmFeedbackCategoriesScalarFieldEnum = (typeof CrmFeedbackCategoriesScalarFieldEnum)[keyof typeof CrmFeedbackCategoriesScalarFieldEnum]
+
+
+export const CrmNotificationTypesScalarFieldEnum = {
+  code: 'code',
+  label: 'label',
+  sort_order: 'sort_order',
+  is_active: 'is_active'
+} as const
+
+export type CrmNotificationTypesScalarFieldEnum = (typeof CrmNotificationTypesScalarFieldEnum)[keyof typeof CrmNotificationTypesScalarFieldEnum]
+
+
+export const CrmInteractionChannelsScalarFieldEnum = {
+  code: 'code',
+  label: 'label',
+  sort_order: 'sort_order',
+  is_active: 'is_active'
+} as const
+
+export type CrmInteractionChannelsScalarFieldEnum = (typeof CrmInteractionChannelsScalarFieldEnum)[keyof typeof CrmInteractionChannelsScalarFieldEnum]
+
+
+export const CrmCallOutcomesScalarFieldEnum = {
+  code: 'code',
+  label: 'label',
+  sort_order: 'sort_order',
+  is_active: 'is_active'
+} as const
+
+export type CrmCallOutcomesScalarFieldEnum = (typeof CrmCallOutcomesScalarFieldEnum)[keyof typeof CrmCallOutcomesScalarFieldEnum]
+
+
+export const CrmMessageOutcomesScalarFieldEnum = {
+  code: 'code',
+  label: 'label',
+  sort_order: 'sort_order',
+  is_active: 'is_active'
+} as const
+
+export type CrmMessageOutcomesScalarFieldEnum = (typeof CrmMessageOutcomesScalarFieldEnum)[keyof typeof CrmMessageOutcomesScalarFieldEnum]
+
+
+export const CrmTaskTypesScalarFieldEnum = {
+  code: 'code',
+  label: 'label',
+  sort_order: 'sort_order',
+  is_active: 'is_active'
+} as const
+
+export type CrmTaskTypesScalarFieldEnum = (typeof CrmTaskTypesScalarFieldEnum)[keyof typeof CrmTaskTypesScalarFieldEnum]
+
+
+export const CrmPrioritiesScalarFieldEnum = {
+  code: 'code',
+  label: 'label',
+  sort_order: 'sort_order',
+  is_active: 'is_active'
+} as const
+
+export type CrmPrioritiesScalarFieldEnum = (typeof CrmPrioritiesScalarFieldEnum)[keyof typeof CrmPrioritiesScalarFieldEnum]
+
+
+export const CrmPipelineStageNotesScalarFieldEnum = {
+  stage_code: 'stage_code',
+  note: 'note'
+} as const
+
+export type CrmPipelineStageNotesScalarFieldEnum = (typeof CrmPipelineStageNotesScalarFieldEnum)[keyof typeof CrmPipelineStageNotesScalarFieldEnum]
+
+
+export const CrmSalesMembersScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  crm_role: 'crm_role',
+  display_name: 'display_name',
+  avatar: 'avatar',
+  is_active: 'is_active',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type CrmSalesMembersScalarFieldEnum = (typeof CrmSalesMembersScalarFieldEnum)[keyof typeof CrmSalesMembersScalarFieldEnum]
+
+
 export const CrmPipelineStagesScalarFieldEnum = {
   code: 'code',
   label: 'label',
@@ -2156,7 +2441,9 @@ export const CrmCustomerProfilesScalarFieldEnum = {
   id: 'id',
   user_id: 'user_id',
   source_code: 'source_code',
-  tier_code: 'tier_code',
+  legacy_tier_code: 'legacy_tier_code',
+  gmv_monthly: 'gmv_monthly',
+  customer_tier_code: 'customer_tier_code',
   owner_id: 'owner_id',
   created_at: 'created_at'
 } as const
@@ -2169,7 +2456,8 @@ export const CrmDealsScalarFieldEnum = {
   customer_id: 'customer_id',
   pipeline_stage_code: 'pipeline_stage_code',
   owner_id: 'owner_id',
-  product_package: 'product_package',
+  legacy_product_package: 'legacy_product_package',
+  product_package_code: 'product_package_code',
   deal_value: 'deal_value',
   probability: 'probability',
   status: 'status',

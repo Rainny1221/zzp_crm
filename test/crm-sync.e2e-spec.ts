@@ -1,3 +1,6 @@
+import { BullBoardModule } from '@bull-board/nestjs';
+import { ExpressAdapter } from '@bull-board/express';
+import { getQueueToken } from '@nestjs/bullmq';
 import { Global, INestApplication, Module } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
@@ -8,11 +11,15 @@ import { AppLoggerService } from '../src/logger/app-logger.service';
 import { CrmSyncModule } from '../src/modules/crm-sync/crm-sync.module';
 import { PrismaService } from '../src/prisma/prisma.service';
 import {
+  CRM_PRODUCT_PACKAGE_OPTIONS,
+  CRM_SYNC_QUEUE,
   CRM_SYNC_DEFAULTS,
   CRM_SYNC_EVENT_TYPE,
   CRM_SYNC_JOB_STATUS,
   type CrmSyncJobStatus,
 } from '../src/modules/crm-sync/domain/crm-sync.constants';
+import { CrmSyncQueueBootstrap } from '../src/modules/crm-sync/infrastructure/queue/crm-sync-queue.bootstrap';
+import { CrmSyncQueueProcessor } from '../src/modules/crm-sync/infrastructure/queue/crm-sync-queue.processor';
 
 interface ProcessJobResponse {
   id: number;
@@ -31,6 +38,14 @@ const loggerMock = {
   log: jest.fn(),
   warn: jest.fn(),
   error: jest.fn(),
+};
+
+const queueMock = {
+  name: CRM_SYNC_QUEUE.NAME,
+  metaValues: {
+    version: 'bullmq-test',
+  },
+  add: jest.fn(),
 };
 
 @Global()
@@ -56,8 +71,27 @@ describe('CrmSyncController (e2e)', () => {
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [RequestContextModule, TestLoggerModule, CrmSyncModule],
-    }).compile();
+      imports: [
+        BullBoardModule.forRoot({
+          route: '/admin/queues',
+          adapter: ExpressAdapter,
+        }),
+        RequestContextModule,
+        TestLoggerModule,
+        CrmSyncModule,
+      ],
+    })
+      .overrideProvider(getQueueToken(CRM_SYNC_QUEUE.NAME))
+      .useValue(queueMock)
+      .overrideProvider(CrmSyncQueueBootstrap)
+      .useValue({
+        onModuleInit: jest.fn(),
+      })
+      .overrideProvider(CrmSyncQueueProcessor)
+      .useValue({
+        process: jest.fn(),
+      })
+      .compile();
 
     app = moduleFixture.createNestApplication();
     prisma = moduleFixture.get(PrismaService, { strict: false });
@@ -100,6 +134,10 @@ describe('CrmSyncController (e2e)', () => {
     expect(state.profiles).toHaveLength(1);
     expect(state.deals).toHaveLength(1);
     expect(state.pipelineRecords).toHaveLength(1);
+    expect(state.profiles[0].customer_tier_code).toBeNull();
+    expect(state.deals[0].product_package_code).toBe(
+      CRM_SYNC_DEFAULTS.PRODUCT_PACKAGE_CODE,
+    );
     expect(state.job?.status).toBe(CRM_SYNC_JOB_STATUS.SUCCESS);
     expect(state.job?.processed_at).toBeInstanceOf(Date);
   });
@@ -173,18 +211,22 @@ describe('CrmSyncController (e2e)', () => {
       },
     });
 
-    await prisma.crmTiers.upsert({
-      where: { code: CRM_SYNC_DEFAULTS.TIER_CODE },
-      update: {
-        label: CRM_SYNC_DEFAULTS.TIER_CODE,
-        is_active: true,
-      },
-      create: {
-        code: CRM_SYNC_DEFAULTS.TIER_CODE,
-        label: CRM_SYNC_DEFAULTS.TIER_CODE,
-        is_active: true,
-      },
-    });
+    for (const productPackage of CRM_PRODUCT_PACKAGE_OPTIONS) {
+      await prisma.crmProductPackages.upsert({
+        where: { code: productPackage.code },
+        update: {
+          label: productPackage.label,
+          sort_order: productPackage.sortOrder,
+          is_active: productPackage.isActive,
+        },
+        create: {
+          code: productPackage.code,
+          label: productPackage.label,
+          sort_order: productPackage.sortOrder,
+          is_active: productPackage.isActive,
+        },
+      });
+    }
 
     await prisma.crmPipelineStages.upsert({
       where: { code: CRM_SYNC_DEFAULTS.PIPELINE_STAGE },

@@ -29,6 +29,7 @@ import { ImageModule } from './image/image.module';
 import { LoggerModule } from './logger/logger.module';
 import { RequestContextModule } from './common/context/infrastructure/request-context.module';
 import { CrmSyncModule } from './modules/crm-sync/crm-sync.module';
+import { CrmBootstrapModule } from './modules/crm-bootstrap/crm-bootstrap.module';
 
 @Module({
   imports: [
@@ -82,6 +83,7 @@ import { CrmSyncModule } from './modules/crm-sync/crm-sync.module';
     PrismaModule,
     AvatarModule,
     ImageModule,
+    CrmBootstrapModule,
     CrmSyncModule,
   ],
   controllers: [AppController],

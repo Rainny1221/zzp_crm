@@ -39,7 +39,7 @@ export class CrmSyncWriterPrismaRepository implements ICrmSyncWriterRepository {
     });
 
     try {
-      const [user, stage] = await Promise.all([
+      const [user, stage, productPackage] = await Promise.all([
         this.prisma.user.findUnique({
           where: { id: userId },
           select: { id: true },
@@ -47,6 +47,10 @@ export class CrmSyncWriterPrismaRepository implements ICrmSyncWriterRepository {
         this.prisma.crmPipelineStages.findUnique({
           where: { code: CRM_SYNC_DEFAULTS.PIPELINE_STAGE },
           select: { code: true, mapped_status_code: true },
+        }),
+        this.prisma.crmProductPackages.findUnique({
+          where: { code: CRM_SYNC_DEFAULTS.PRODUCT_PACKAGE_CODE },
+          select: { code: true },
         }),
       ]);
 
@@ -96,6 +100,30 @@ export class CrmSyncWriterPrismaRepository implements ICrmSyncWriterRepository {
         );
       }
 
+      if (!productPackage) {
+        this.logger.error({
+          message: 'CRM sync product package not found',
+          context: CrmSyncWriterPrismaRepository.name,
+          module: CRM_SYNC_LOG.MODULE,
+          action: CRM_SYNC_LOG.ACTIONS.SYNC_FROM_USER,
+          entityType: CRM_SYNC_LOG.ENTITIES.PRODUCT_PACKAGE,
+          entityId: CRM_SYNC_DEFAULTS.PRODUCT_PACKAGE_CODE,
+          meta: {
+            userId,
+            productPackageCode: CRM_SYNC_DEFAULTS.PRODUCT_PACKAGE_CODE,
+          },
+        });
+
+        throw ErrorFactory.create(
+          ErrorCode.CRM_SYNC_CONFIGURATION_ERROR,
+          `Product package ${CRM_SYNC_DEFAULTS.PRODUCT_PACKAGE_CODE} not found`,
+          {
+            userId,
+            productPackageCode: CRM_SYNC_DEFAULTS.PRODUCT_PACKAGE_CODE,
+          },
+        );
+      }
+
       const result = await this.prisma.$transaction<SyncFromUserResult>(
         async (tx: Prisma.TransactionClient): Promise<SyncFromUserResult> => {
           await tx.$queryRaw<Array<{ set_config: string }>>`
@@ -112,7 +140,8 @@ export class CrmSyncWriterPrismaRepository implements ICrmSyncWriterRepository {
             create: {
               user_id: user.id,
               source_code: CRM_SYNC_DEFAULTS.SOURCE_CODE,
-              tier_code: CRM_SYNC_DEFAULTS.TIER_CODE,
+              gmv_monthly: null,
+              customer_tier_code: CRM_SYNC_DEFAULTS.CUSTOMER_TIER_CODE,
               owner_id: null,
             },
           });
@@ -124,7 +153,8 @@ export class CrmSyncWriterPrismaRepository implements ICrmSyncWriterRepository {
               customer_id: profile.id,
               pipeline_stage_code: CRM_SYNC_DEFAULTS.PIPELINE_STAGE,
               owner_id: null,
-              product_package: CRM_SYNC_DEFAULTS.PRODUCT_PACKAGE,
+              legacy_product_package: productPackage.code,
+              product_package_code: productPackage.code,
               deal_value: 0,
               probability: CRM_SYNC_DEFAULTS.PROBABILITY,
               status: stage.mapped_status_code,

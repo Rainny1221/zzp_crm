@@ -47,7 +47,8 @@ export type CrmDealsMinAggregateOutputType = {
   customer_id: number | null
   pipeline_stage_code: string | null
   owner_id: number | null
-  product_package: string | null
+  legacy_product_package: string | null
+  product_package_code: string | null
   deal_value: runtime.Decimal | null
   probability: number | null
   status: string | null
@@ -60,7 +61,8 @@ export type CrmDealsMaxAggregateOutputType = {
   customer_id: number | null
   pipeline_stage_code: string | null
   owner_id: number | null
-  product_package: string | null
+  legacy_product_package: string | null
+  product_package_code: string | null
   deal_value: runtime.Decimal | null
   probability: number | null
   status: string | null
@@ -73,7 +75,8 @@ export type CrmDealsCountAggregateOutputType = {
   customer_id: number
   pipeline_stage_code: number
   owner_id: number
-  product_package: number
+  legacy_product_package: number
+  product_package_code: number
   deal_value: number
   probability: number
   status: number
@@ -104,7 +107,8 @@ export type CrmDealsMinAggregateInputType = {
   customer_id?: true
   pipeline_stage_code?: true
   owner_id?: true
-  product_package?: true
+  legacy_product_package?: true
+  product_package_code?: true
   deal_value?: true
   probability?: true
   status?: true
@@ -117,7 +121,8 @@ export type CrmDealsMaxAggregateInputType = {
   customer_id?: true
   pipeline_stage_code?: true
   owner_id?: true
-  product_package?: true
+  legacy_product_package?: true
+  product_package_code?: true
   deal_value?: true
   probability?: true
   status?: true
@@ -130,7 +135,8 @@ export type CrmDealsCountAggregateInputType = {
   customer_id?: true
   pipeline_stage_code?: true
   owner_id?: true
-  product_package?: true
+  legacy_product_package?: true
+  product_package_code?: true
   deal_value?: true
   probability?: true
   status?: true
@@ -230,7 +236,8 @@ export type CrmDealsGroupByOutputType = {
   customer_id: number
   pipeline_stage_code: string
   owner_id: number | null
-  product_package: string
+  legacy_product_package: string
+  product_package_code: string | null
   deal_value: runtime.Decimal | null
   probability: number
   status: string | null
@@ -266,7 +273,8 @@ export type CrmDealsWhereInput = {
   customer_id?: Prisma.IntFilter<"CrmDeals"> | number
   pipeline_stage_code?: Prisma.StringFilter<"CrmDeals"> | string
   owner_id?: Prisma.IntNullableFilter<"CrmDeals"> | number | null
-  product_package?: Prisma.StringFilter<"CrmDeals"> | string
+  legacy_product_package?: Prisma.StringFilter<"CrmDeals"> | string
+  product_package_code?: Prisma.StringNullableFilter<"CrmDeals"> | string | null
   deal_value?: Prisma.DecimalNullableFilter<"CrmDeals"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: Prisma.IntFilter<"CrmDeals"> | number
   status?: Prisma.StringNullableFilter<"CrmDeals"> | string | null
@@ -275,6 +283,7 @@ export type CrmDealsWhereInput = {
   customer?: Prisma.XOR<Prisma.CrmCustomerProfilesScalarRelationFilter, Prisma.CrmCustomerProfilesWhereInput>
   stage?: Prisma.XOR<Prisma.CrmPipelineStagesScalarRelationFilter, Prisma.CrmPipelineStagesWhereInput>
   owner?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  productPackage?: Prisma.XOR<Prisma.CrmProductPackagesNullableScalarRelationFilter, Prisma.CrmProductPackagesWhereInput> | null
   pipelineRecords?: Prisma.CrmPipelineRecordsListRelationFilter
 }
 
@@ -283,7 +292,8 @@ export type CrmDealsOrderByWithRelationInput = {
   customer_id?: Prisma.SortOrder
   pipeline_stage_code?: Prisma.SortOrder
   owner_id?: Prisma.SortOrderInput | Prisma.SortOrder
-  product_package?: Prisma.SortOrder
+  legacy_product_package?: Prisma.SortOrder
+  product_package_code?: Prisma.SortOrderInput | Prisma.SortOrder
   deal_value?: Prisma.SortOrderInput | Prisma.SortOrder
   probability?: Prisma.SortOrder
   status?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -292,6 +302,7 @@ export type CrmDealsOrderByWithRelationInput = {
   customer?: Prisma.CrmCustomerProfilesOrderByWithRelationInput
   stage?: Prisma.CrmPipelineStagesOrderByWithRelationInput
   owner?: Prisma.UserOrderByWithRelationInput
+  productPackage?: Prisma.CrmProductPackagesOrderByWithRelationInput
   pipelineRecords?: Prisma.CrmPipelineRecordsOrderByRelationAggregateInput
 }
 
@@ -303,7 +314,8 @@ export type CrmDealsWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.CrmDealsWhereInput | Prisma.CrmDealsWhereInput[]
   pipeline_stage_code?: Prisma.StringFilter<"CrmDeals"> | string
   owner_id?: Prisma.IntNullableFilter<"CrmDeals"> | number | null
-  product_package?: Prisma.StringFilter<"CrmDeals"> | string
+  legacy_product_package?: Prisma.StringFilter<"CrmDeals"> | string
+  product_package_code?: Prisma.StringNullableFilter<"CrmDeals"> | string | null
   deal_value?: Prisma.DecimalNullableFilter<"CrmDeals"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: Prisma.IntFilter<"CrmDeals"> | number
   status?: Prisma.StringNullableFilter<"CrmDeals"> | string | null
@@ -312,6 +324,7 @@ export type CrmDealsWhereUniqueInput = Prisma.AtLeast<{
   customer?: Prisma.XOR<Prisma.CrmCustomerProfilesScalarRelationFilter, Prisma.CrmCustomerProfilesWhereInput>
   stage?: Prisma.XOR<Prisma.CrmPipelineStagesScalarRelationFilter, Prisma.CrmPipelineStagesWhereInput>
   owner?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  productPackage?: Prisma.XOR<Prisma.CrmProductPackagesNullableScalarRelationFilter, Prisma.CrmProductPackagesWhereInput> | null
   pipelineRecords?: Prisma.CrmPipelineRecordsListRelationFilter
 }, "id" | "customer_id">
 
@@ -320,7 +333,8 @@ export type CrmDealsOrderByWithAggregationInput = {
   customer_id?: Prisma.SortOrder
   pipeline_stage_code?: Prisma.SortOrder
   owner_id?: Prisma.SortOrderInput | Prisma.SortOrder
-  product_package?: Prisma.SortOrder
+  legacy_product_package?: Prisma.SortOrder
+  product_package_code?: Prisma.SortOrderInput | Prisma.SortOrder
   deal_value?: Prisma.SortOrderInput | Prisma.SortOrder
   probability?: Prisma.SortOrder
   status?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -341,7 +355,8 @@ export type CrmDealsScalarWhereWithAggregatesInput = {
   customer_id?: Prisma.IntWithAggregatesFilter<"CrmDeals"> | number
   pipeline_stage_code?: Prisma.StringWithAggregatesFilter<"CrmDeals"> | string
   owner_id?: Prisma.IntNullableWithAggregatesFilter<"CrmDeals"> | number | null
-  product_package?: Prisma.StringWithAggregatesFilter<"CrmDeals"> | string
+  legacy_product_package?: Prisma.StringWithAggregatesFilter<"CrmDeals"> | string
+  product_package_code?: Prisma.StringNullableWithAggregatesFilter<"CrmDeals"> | string | null
   deal_value?: Prisma.DecimalNullableWithAggregatesFilter<"CrmDeals"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: Prisma.IntWithAggregatesFilter<"CrmDeals"> | number
   status?: Prisma.StringNullableWithAggregatesFilter<"CrmDeals"> | string | null
@@ -350,7 +365,7 @@ export type CrmDealsScalarWhereWithAggregatesInput = {
 }
 
 export type CrmDealsCreateInput = {
-  product_package?: string
+  legacy_product_package?: string
   deal_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: number
   status?: string | null
@@ -359,6 +374,7 @@ export type CrmDealsCreateInput = {
   customer: Prisma.CrmCustomerProfilesCreateNestedOneWithoutDealInput
   stage: Prisma.CrmPipelineStagesCreateNestedOneWithoutDealsInput
   owner?: Prisma.UserCreateNestedOneWithoutOwnedCrmDealsInput
+  productPackage?: Prisma.CrmProductPackagesCreateNestedOneWithoutDealsInput
   pipelineRecords?: Prisma.CrmPipelineRecordsCreateNestedManyWithoutDealInput
 }
 
@@ -367,7 +383,8 @@ export type CrmDealsUncheckedCreateInput = {
   customer_id: number
   pipeline_stage_code: string
   owner_id?: number | null
-  product_package?: string
+  legacy_product_package?: string
+  product_package_code?: string | null
   deal_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: number
   status?: string | null
@@ -377,7 +394,7 @@ export type CrmDealsUncheckedCreateInput = {
 }
 
 export type CrmDealsUpdateInput = {
-  product_package?: Prisma.StringFieldUpdateOperationsInput | string
+  legacy_product_package?: Prisma.StringFieldUpdateOperationsInput | string
   deal_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -386,6 +403,7 @@ export type CrmDealsUpdateInput = {
   customer?: Prisma.CrmCustomerProfilesUpdateOneRequiredWithoutDealNestedInput
   stage?: Prisma.CrmPipelineStagesUpdateOneRequiredWithoutDealsNestedInput
   owner?: Prisma.UserUpdateOneWithoutOwnedCrmDealsNestedInput
+  productPackage?: Prisma.CrmProductPackagesUpdateOneWithoutDealsNestedInput
   pipelineRecords?: Prisma.CrmPipelineRecordsUpdateManyWithoutDealNestedInput
 }
 
@@ -394,7 +412,8 @@ export type CrmDealsUncheckedUpdateInput = {
   customer_id?: Prisma.IntFieldUpdateOperationsInput | number
   pipeline_stage_code?: Prisma.StringFieldUpdateOperationsInput | string
   owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  product_package?: Prisma.StringFieldUpdateOperationsInput | string
+  legacy_product_package?: Prisma.StringFieldUpdateOperationsInput | string
+  product_package_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deal_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -408,7 +427,8 @@ export type CrmDealsCreateManyInput = {
   customer_id: number
   pipeline_stage_code: string
   owner_id?: number | null
-  product_package?: string
+  legacy_product_package?: string
+  product_package_code?: string | null
   deal_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: number
   status?: string | null
@@ -417,7 +437,7 @@ export type CrmDealsCreateManyInput = {
 }
 
 export type CrmDealsUpdateManyMutationInput = {
-  product_package?: Prisma.StringFieldUpdateOperationsInput | string
+  legacy_product_package?: Prisma.StringFieldUpdateOperationsInput | string
   deal_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -430,7 +450,8 @@ export type CrmDealsUncheckedUpdateManyInput = {
   customer_id?: Prisma.IntFieldUpdateOperationsInput | number
   pipeline_stage_code?: Prisma.StringFieldUpdateOperationsInput | string
   owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  product_package?: Prisma.StringFieldUpdateOperationsInput | string
+  legacy_product_package?: Prisma.StringFieldUpdateOperationsInput | string
+  product_package_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deal_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -458,7 +479,8 @@ export type CrmDealsCountOrderByAggregateInput = {
   customer_id?: Prisma.SortOrder
   pipeline_stage_code?: Prisma.SortOrder
   owner_id?: Prisma.SortOrder
-  product_package?: Prisma.SortOrder
+  legacy_product_package?: Prisma.SortOrder
+  product_package_code?: Prisma.SortOrder
   deal_value?: Prisma.SortOrder
   probability?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -479,7 +501,8 @@ export type CrmDealsMaxOrderByAggregateInput = {
   customer_id?: Prisma.SortOrder
   pipeline_stage_code?: Prisma.SortOrder
   owner_id?: Prisma.SortOrder
-  product_package?: Prisma.SortOrder
+  legacy_product_package?: Prisma.SortOrder
+  product_package_code?: Prisma.SortOrder
   deal_value?: Prisma.SortOrder
   probability?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -492,7 +515,8 @@ export type CrmDealsMinOrderByAggregateInput = {
   customer_id?: Prisma.SortOrder
   pipeline_stage_code?: Prisma.SortOrder
   owner_id?: Prisma.SortOrder
-  product_package?: Prisma.SortOrder
+  legacy_product_package?: Prisma.SortOrder
+  product_package_code?: Prisma.SortOrder
   deal_value?: Prisma.SortOrder
   probability?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -511,6 +535,48 @@ export type CrmDealsSumOrderByAggregateInput = {
 export type CrmDealsScalarRelationFilter = {
   is?: Prisma.CrmDealsWhereInput
   isNot?: Prisma.CrmDealsWhereInput
+}
+
+export type CrmDealsCreateNestedManyWithoutProductPackageInput = {
+  create?: Prisma.XOR<Prisma.CrmDealsCreateWithoutProductPackageInput, Prisma.CrmDealsUncheckedCreateWithoutProductPackageInput> | Prisma.CrmDealsCreateWithoutProductPackageInput[] | Prisma.CrmDealsUncheckedCreateWithoutProductPackageInput[]
+  connectOrCreate?: Prisma.CrmDealsCreateOrConnectWithoutProductPackageInput | Prisma.CrmDealsCreateOrConnectWithoutProductPackageInput[]
+  createMany?: Prisma.CrmDealsCreateManyProductPackageInputEnvelope
+  connect?: Prisma.CrmDealsWhereUniqueInput | Prisma.CrmDealsWhereUniqueInput[]
+}
+
+export type CrmDealsUncheckedCreateNestedManyWithoutProductPackageInput = {
+  create?: Prisma.XOR<Prisma.CrmDealsCreateWithoutProductPackageInput, Prisma.CrmDealsUncheckedCreateWithoutProductPackageInput> | Prisma.CrmDealsCreateWithoutProductPackageInput[] | Prisma.CrmDealsUncheckedCreateWithoutProductPackageInput[]
+  connectOrCreate?: Prisma.CrmDealsCreateOrConnectWithoutProductPackageInput | Prisma.CrmDealsCreateOrConnectWithoutProductPackageInput[]
+  createMany?: Prisma.CrmDealsCreateManyProductPackageInputEnvelope
+  connect?: Prisma.CrmDealsWhereUniqueInput | Prisma.CrmDealsWhereUniqueInput[]
+}
+
+export type CrmDealsUpdateManyWithoutProductPackageNestedInput = {
+  create?: Prisma.XOR<Prisma.CrmDealsCreateWithoutProductPackageInput, Prisma.CrmDealsUncheckedCreateWithoutProductPackageInput> | Prisma.CrmDealsCreateWithoutProductPackageInput[] | Prisma.CrmDealsUncheckedCreateWithoutProductPackageInput[]
+  connectOrCreate?: Prisma.CrmDealsCreateOrConnectWithoutProductPackageInput | Prisma.CrmDealsCreateOrConnectWithoutProductPackageInput[]
+  upsert?: Prisma.CrmDealsUpsertWithWhereUniqueWithoutProductPackageInput | Prisma.CrmDealsUpsertWithWhereUniqueWithoutProductPackageInput[]
+  createMany?: Prisma.CrmDealsCreateManyProductPackageInputEnvelope
+  set?: Prisma.CrmDealsWhereUniqueInput | Prisma.CrmDealsWhereUniqueInput[]
+  disconnect?: Prisma.CrmDealsWhereUniqueInput | Prisma.CrmDealsWhereUniqueInput[]
+  delete?: Prisma.CrmDealsWhereUniqueInput | Prisma.CrmDealsWhereUniqueInput[]
+  connect?: Prisma.CrmDealsWhereUniqueInput | Prisma.CrmDealsWhereUniqueInput[]
+  update?: Prisma.CrmDealsUpdateWithWhereUniqueWithoutProductPackageInput | Prisma.CrmDealsUpdateWithWhereUniqueWithoutProductPackageInput[]
+  updateMany?: Prisma.CrmDealsUpdateManyWithWhereWithoutProductPackageInput | Prisma.CrmDealsUpdateManyWithWhereWithoutProductPackageInput[]
+  deleteMany?: Prisma.CrmDealsScalarWhereInput | Prisma.CrmDealsScalarWhereInput[]
+}
+
+export type CrmDealsUncheckedUpdateManyWithoutProductPackageNestedInput = {
+  create?: Prisma.XOR<Prisma.CrmDealsCreateWithoutProductPackageInput, Prisma.CrmDealsUncheckedCreateWithoutProductPackageInput> | Prisma.CrmDealsCreateWithoutProductPackageInput[] | Prisma.CrmDealsUncheckedCreateWithoutProductPackageInput[]
+  connectOrCreate?: Prisma.CrmDealsCreateOrConnectWithoutProductPackageInput | Prisma.CrmDealsCreateOrConnectWithoutProductPackageInput[]
+  upsert?: Prisma.CrmDealsUpsertWithWhereUniqueWithoutProductPackageInput | Prisma.CrmDealsUpsertWithWhereUniqueWithoutProductPackageInput[]
+  createMany?: Prisma.CrmDealsCreateManyProductPackageInputEnvelope
+  set?: Prisma.CrmDealsWhereUniqueInput | Prisma.CrmDealsWhereUniqueInput[]
+  disconnect?: Prisma.CrmDealsWhereUniqueInput | Prisma.CrmDealsWhereUniqueInput[]
+  delete?: Prisma.CrmDealsWhereUniqueInput | Prisma.CrmDealsWhereUniqueInput[]
+  connect?: Prisma.CrmDealsWhereUniqueInput | Prisma.CrmDealsWhereUniqueInput[]
+  update?: Prisma.CrmDealsUpdateWithWhereUniqueWithoutProductPackageInput | Prisma.CrmDealsUpdateWithWhereUniqueWithoutProductPackageInput[]
+  updateMany?: Prisma.CrmDealsUpdateManyWithWhereWithoutProductPackageInput | Prisma.CrmDealsUpdateManyWithWhereWithoutProductPackageInput[]
+  deleteMany?: Prisma.CrmDealsScalarWhereInput | Prisma.CrmDealsScalarWhereInput[]
 }
 
 export type CrmDealsCreateNestedManyWithoutStageInput = {
@@ -643,8 +709,78 @@ export type CrmDealsUncheckedUpdateManyWithoutOwnerNestedInput = {
   deleteMany?: Prisma.CrmDealsScalarWhereInput | Prisma.CrmDealsScalarWhereInput[]
 }
 
+export type CrmDealsCreateWithoutProductPackageInput = {
+  legacy_product_package?: string
+  deal_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  probability?: number
+  status?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  customer: Prisma.CrmCustomerProfilesCreateNestedOneWithoutDealInput
+  stage: Prisma.CrmPipelineStagesCreateNestedOneWithoutDealsInput
+  owner?: Prisma.UserCreateNestedOneWithoutOwnedCrmDealsInput
+  pipelineRecords?: Prisma.CrmPipelineRecordsCreateNestedManyWithoutDealInput
+}
+
+export type CrmDealsUncheckedCreateWithoutProductPackageInput = {
+  id?: number
+  customer_id: number
+  pipeline_stage_code: string
+  owner_id?: number | null
+  legacy_product_package?: string
+  deal_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  probability?: number
+  status?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  pipelineRecords?: Prisma.CrmPipelineRecordsUncheckedCreateNestedManyWithoutDealInput
+}
+
+export type CrmDealsCreateOrConnectWithoutProductPackageInput = {
+  where: Prisma.CrmDealsWhereUniqueInput
+  create: Prisma.XOR<Prisma.CrmDealsCreateWithoutProductPackageInput, Prisma.CrmDealsUncheckedCreateWithoutProductPackageInput>
+}
+
+export type CrmDealsCreateManyProductPackageInputEnvelope = {
+  data: Prisma.CrmDealsCreateManyProductPackageInput | Prisma.CrmDealsCreateManyProductPackageInput[]
+  skipDuplicates?: boolean
+}
+
+export type CrmDealsUpsertWithWhereUniqueWithoutProductPackageInput = {
+  where: Prisma.CrmDealsWhereUniqueInput
+  update: Prisma.XOR<Prisma.CrmDealsUpdateWithoutProductPackageInput, Prisma.CrmDealsUncheckedUpdateWithoutProductPackageInput>
+  create: Prisma.XOR<Prisma.CrmDealsCreateWithoutProductPackageInput, Prisma.CrmDealsUncheckedCreateWithoutProductPackageInput>
+}
+
+export type CrmDealsUpdateWithWhereUniqueWithoutProductPackageInput = {
+  where: Prisma.CrmDealsWhereUniqueInput
+  data: Prisma.XOR<Prisma.CrmDealsUpdateWithoutProductPackageInput, Prisma.CrmDealsUncheckedUpdateWithoutProductPackageInput>
+}
+
+export type CrmDealsUpdateManyWithWhereWithoutProductPackageInput = {
+  where: Prisma.CrmDealsScalarWhereInput
+  data: Prisma.XOR<Prisma.CrmDealsUpdateManyMutationInput, Prisma.CrmDealsUncheckedUpdateManyWithoutProductPackageInput>
+}
+
+export type CrmDealsScalarWhereInput = {
+  AND?: Prisma.CrmDealsScalarWhereInput | Prisma.CrmDealsScalarWhereInput[]
+  OR?: Prisma.CrmDealsScalarWhereInput[]
+  NOT?: Prisma.CrmDealsScalarWhereInput | Prisma.CrmDealsScalarWhereInput[]
+  id?: Prisma.IntFilter<"CrmDeals"> | number
+  customer_id?: Prisma.IntFilter<"CrmDeals"> | number
+  pipeline_stage_code?: Prisma.StringFilter<"CrmDeals"> | string
+  owner_id?: Prisma.IntNullableFilter<"CrmDeals"> | number | null
+  legacy_product_package?: Prisma.StringFilter<"CrmDeals"> | string
+  product_package_code?: Prisma.StringNullableFilter<"CrmDeals"> | string | null
+  deal_value?: Prisma.DecimalNullableFilter<"CrmDeals"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  probability?: Prisma.IntFilter<"CrmDeals"> | number
+  status?: Prisma.StringNullableFilter<"CrmDeals"> | string | null
+  created_at?: Prisma.DateTimeFilter<"CrmDeals"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"CrmDeals"> | Date | string
+}
+
 export type CrmDealsCreateWithoutStageInput = {
-  product_package?: string
+  legacy_product_package?: string
   deal_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: number
   status?: string | null
@@ -652,6 +788,7 @@ export type CrmDealsCreateWithoutStageInput = {
   updated_at?: Date | string
   customer: Prisma.CrmCustomerProfilesCreateNestedOneWithoutDealInput
   owner?: Prisma.UserCreateNestedOneWithoutOwnedCrmDealsInput
+  productPackage?: Prisma.CrmProductPackagesCreateNestedOneWithoutDealsInput
   pipelineRecords?: Prisma.CrmPipelineRecordsCreateNestedManyWithoutDealInput
 }
 
@@ -659,7 +796,8 @@ export type CrmDealsUncheckedCreateWithoutStageInput = {
   id?: number
   customer_id: number
   owner_id?: number | null
-  product_package?: string
+  legacy_product_package?: string
+  product_package_code?: string | null
   deal_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: number
   status?: string | null
@@ -694,24 +832,8 @@ export type CrmDealsUpdateManyWithWhereWithoutStageInput = {
   data: Prisma.XOR<Prisma.CrmDealsUpdateManyMutationInput, Prisma.CrmDealsUncheckedUpdateManyWithoutStageInput>
 }
 
-export type CrmDealsScalarWhereInput = {
-  AND?: Prisma.CrmDealsScalarWhereInput | Prisma.CrmDealsScalarWhereInput[]
-  OR?: Prisma.CrmDealsScalarWhereInput[]
-  NOT?: Prisma.CrmDealsScalarWhereInput | Prisma.CrmDealsScalarWhereInput[]
-  id?: Prisma.IntFilter<"CrmDeals"> | number
-  customer_id?: Prisma.IntFilter<"CrmDeals"> | number
-  pipeline_stage_code?: Prisma.StringFilter<"CrmDeals"> | string
-  owner_id?: Prisma.IntNullableFilter<"CrmDeals"> | number | null
-  product_package?: Prisma.StringFilter<"CrmDeals"> | string
-  deal_value?: Prisma.DecimalNullableFilter<"CrmDeals"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  probability?: Prisma.IntFilter<"CrmDeals"> | number
-  status?: Prisma.StringNullableFilter<"CrmDeals"> | string | null
-  created_at?: Prisma.DateTimeFilter<"CrmDeals"> | Date | string
-  updated_at?: Prisma.DateTimeFilter<"CrmDeals"> | Date | string
-}
-
 export type CrmDealsCreateWithoutCustomerInput = {
-  product_package?: string
+  legacy_product_package?: string
   deal_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: number
   status?: string | null
@@ -719,6 +841,7 @@ export type CrmDealsCreateWithoutCustomerInput = {
   updated_at?: Date | string
   stage: Prisma.CrmPipelineStagesCreateNestedOneWithoutDealsInput
   owner?: Prisma.UserCreateNestedOneWithoutOwnedCrmDealsInput
+  productPackage?: Prisma.CrmProductPackagesCreateNestedOneWithoutDealsInput
   pipelineRecords?: Prisma.CrmPipelineRecordsCreateNestedManyWithoutDealInput
 }
 
@@ -726,7 +849,8 @@ export type CrmDealsUncheckedCreateWithoutCustomerInput = {
   id?: number
   pipeline_stage_code: string
   owner_id?: number | null
-  product_package?: string
+  legacy_product_package?: string
+  product_package_code?: string | null
   deal_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: number
   status?: string | null
@@ -752,7 +876,7 @@ export type CrmDealsUpdateToOneWithWhereWithoutCustomerInput = {
 }
 
 export type CrmDealsUpdateWithoutCustomerInput = {
-  product_package?: Prisma.StringFieldUpdateOperationsInput | string
+  legacy_product_package?: Prisma.StringFieldUpdateOperationsInput | string
   deal_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -760,6 +884,7 @@ export type CrmDealsUpdateWithoutCustomerInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   stage?: Prisma.CrmPipelineStagesUpdateOneRequiredWithoutDealsNestedInput
   owner?: Prisma.UserUpdateOneWithoutOwnedCrmDealsNestedInput
+  productPackage?: Prisma.CrmProductPackagesUpdateOneWithoutDealsNestedInput
   pipelineRecords?: Prisma.CrmPipelineRecordsUpdateManyWithoutDealNestedInput
 }
 
@@ -767,7 +892,8 @@ export type CrmDealsUncheckedUpdateWithoutCustomerInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   pipeline_stage_code?: Prisma.StringFieldUpdateOperationsInput | string
   owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  product_package?: Prisma.StringFieldUpdateOperationsInput | string
+  legacy_product_package?: Prisma.StringFieldUpdateOperationsInput | string
+  product_package_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deal_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -777,7 +903,7 @@ export type CrmDealsUncheckedUpdateWithoutCustomerInput = {
 }
 
 export type CrmDealsCreateWithoutPipelineRecordsInput = {
-  product_package?: string
+  legacy_product_package?: string
   deal_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: number
   status?: string | null
@@ -786,6 +912,7 @@ export type CrmDealsCreateWithoutPipelineRecordsInput = {
   customer: Prisma.CrmCustomerProfilesCreateNestedOneWithoutDealInput
   stage: Prisma.CrmPipelineStagesCreateNestedOneWithoutDealsInput
   owner?: Prisma.UserCreateNestedOneWithoutOwnedCrmDealsInput
+  productPackage?: Prisma.CrmProductPackagesCreateNestedOneWithoutDealsInput
 }
 
 export type CrmDealsUncheckedCreateWithoutPipelineRecordsInput = {
@@ -793,7 +920,8 @@ export type CrmDealsUncheckedCreateWithoutPipelineRecordsInput = {
   customer_id: number
   pipeline_stage_code: string
   owner_id?: number | null
-  product_package?: string
+  legacy_product_package?: string
+  product_package_code?: string | null
   deal_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: number
   status?: string | null
@@ -818,7 +946,7 @@ export type CrmDealsUpdateToOneWithWhereWithoutPipelineRecordsInput = {
 }
 
 export type CrmDealsUpdateWithoutPipelineRecordsInput = {
-  product_package?: Prisma.StringFieldUpdateOperationsInput | string
+  legacy_product_package?: Prisma.StringFieldUpdateOperationsInput | string
   deal_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -827,6 +955,7 @@ export type CrmDealsUpdateWithoutPipelineRecordsInput = {
   customer?: Prisma.CrmCustomerProfilesUpdateOneRequiredWithoutDealNestedInput
   stage?: Prisma.CrmPipelineStagesUpdateOneRequiredWithoutDealsNestedInput
   owner?: Prisma.UserUpdateOneWithoutOwnedCrmDealsNestedInput
+  productPackage?: Prisma.CrmProductPackagesUpdateOneWithoutDealsNestedInput
 }
 
 export type CrmDealsUncheckedUpdateWithoutPipelineRecordsInput = {
@@ -834,7 +963,8 @@ export type CrmDealsUncheckedUpdateWithoutPipelineRecordsInput = {
   customer_id?: Prisma.IntFieldUpdateOperationsInput | number
   pipeline_stage_code?: Prisma.StringFieldUpdateOperationsInput | string
   owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  product_package?: Prisma.StringFieldUpdateOperationsInput | string
+  legacy_product_package?: Prisma.StringFieldUpdateOperationsInput | string
+  product_package_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deal_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -843,7 +973,7 @@ export type CrmDealsUncheckedUpdateWithoutPipelineRecordsInput = {
 }
 
 export type CrmDealsCreateWithoutOwnerInput = {
-  product_package?: string
+  legacy_product_package?: string
   deal_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: number
   status?: string | null
@@ -851,6 +981,7 @@ export type CrmDealsCreateWithoutOwnerInput = {
   updated_at?: Date | string
   customer: Prisma.CrmCustomerProfilesCreateNestedOneWithoutDealInput
   stage: Prisma.CrmPipelineStagesCreateNestedOneWithoutDealsInput
+  productPackage?: Prisma.CrmProductPackagesCreateNestedOneWithoutDealsInput
   pipelineRecords?: Prisma.CrmPipelineRecordsCreateNestedManyWithoutDealInput
 }
 
@@ -858,7 +989,8 @@ export type CrmDealsUncheckedCreateWithoutOwnerInput = {
   id?: number
   customer_id: number
   pipeline_stage_code: string
-  product_package?: string
+  legacy_product_package?: string
+  product_package_code?: string | null
   deal_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: number
   status?: string | null
@@ -893,11 +1025,65 @@ export type CrmDealsUpdateManyWithWhereWithoutOwnerInput = {
   data: Prisma.XOR<Prisma.CrmDealsUpdateManyMutationInput, Prisma.CrmDealsUncheckedUpdateManyWithoutOwnerInput>
 }
 
+export type CrmDealsCreateManyProductPackageInput = {
+  id?: number
+  customer_id: number
+  pipeline_stage_code: string
+  owner_id?: number | null
+  legacy_product_package?: string
+  deal_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  probability?: number
+  status?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+}
+
+export type CrmDealsUpdateWithoutProductPackageInput = {
+  legacy_product_package?: Prisma.StringFieldUpdateOperationsInput | string
+  deal_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  probability?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customer?: Prisma.CrmCustomerProfilesUpdateOneRequiredWithoutDealNestedInput
+  stage?: Prisma.CrmPipelineStagesUpdateOneRequiredWithoutDealsNestedInput
+  owner?: Prisma.UserUpdateOneWithoutOwnedCrmDealsNestedInput
+  pipelineRecords?: Prisma.CrmPipelineRecordsUpdateManyWithoutDealNestedInput
+}
+
+export type CrmDealsUncheckedUpdateWithoutProductPackageInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  customer_id?: Prisma.IntFieldUpdateOperationsInput | number
+  pipeline_stage_code?: Prisma.StringFieldUpdateOperationsInput | string
+  owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  legacy_product_package?: Prisma.StringFieldUpdateOperationsInput | string
+  deal_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  probability?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pipelineRecords?: Prisma.CrmPipelineRecordsUncheckedUpdateManyWithoutDealNestedInput
+}
+
+export type CrmDealsUncheckedUpdateManyWithoutProductPackageInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  customer_id?: Prisma.IntFieldUpdateOperationsInput | number
+  pipeline_stage_code?: Prisma.StringFieldUpdateOperationsInput | string
+  owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  legacy_product_package?: Prisma.StringFieldUpdateOperationsInput | string
+  deal_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  probability?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type CrmDealsCreateManyStageInput = {
   id?: number
   customer_id: number
   owner_id?: number | null
-  product_package?: string
+  legacy_product_package?: string
+  product_package_code?: string | null
   deal_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: number
   status?: string | null
@@ -906,7 +1092,7 @@ export type CrmDealsCreateManyStageInput = {
 }
 
 export type CrmDealsUpdateWithoutStageInput = {
-  product_package?: Prisma.StringFieldUpdateOperationsInput | string
+  legacy_product_package?: Prisma.StringFieldUpdateOperationsInput | string
   deal_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -914,6 +1100,7 @@ export type CrmDealsUpdateWithoutStageInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customer?: Prisma.CrmCustomerProfilesUpdateOneRequiredWithoutDealNestedInput
   owner?: Prisma.UserUpdateOneWithoutOwnedCrmDealsNestedInput
+  productPackage?: Prisma.CrmProductPackagesUpdateOneWithoutDealsNestedInput
   pipelineRecords?: Prisma.CrmPipelineRecordsUpdateManyWithoutDealNestedInput
 }
 
@@ -921,7 +1108,8 @@ export type CrmDealsUncheckedUpdateWithoutStageInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   customer_id?: Prisma.IntFieldUpdateOperationsInput | number
   owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  product_package?: Prisma.StringFieldUpdateOperationsInput | string
+  legacy_product_package?: Prisma.StringFieldUpdateOperationsInput | string
+  product_package_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deal_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -934,7 +1122,8 @@ export type CrmDealsUncheckedUpdateManyWithoutStageInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   customer_id?: Prisma.IntFieldUpdateOperationsInput | number
   owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  product_package?: Prisma.StringFieldUpdateOperationsInput | string
+  legacy_product_package?: Prisma.StringFieldUpdateOperationsInput | string
+  product_package_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deal_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -946,7 +1135,8 @@ export type CrmDealsCreateManyOwnerInput = {
   id?: number
   customer_id: number
   pipeline_stage_code: string
-  product_package?: string
+  legacy_product_package?: string
+  product_package_code?: string | null
   deal_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: number
   status?: string | null
@@ -955,7 +1145,7 @@ export type CrmDealsCreateManyOwnerInput = {
 }
 
 export type CrmDealsUpdateWithoutOwnerInput = {
-  product_package?: Prisma.StringFieldUpdateOperationsInput | string
+  legacy_product_package?: Prisma.StringFieldUpdateOperationsInput | string
   deal_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -963,6 +1153,7 @@ export type CrmDealsUpdateWithoutOwnerInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customer?: Prisma.CrmCustomerProfilesUpdateOneRequiredWithoutDealNestedInput
   stage?: Prisma.CrmPipelineStagesUpdateOneRequiredWithoutDealsNestedInput
+  productPackage?: Prisma.CrmProductPackagesUpdateOneWithoutDealsNestedInput
   pipelineRecords?: Prisma.CrmPipelineRecordsUpdateManyWithoutDealNestedInput
 }
 
@@ -970,7 +1161,8 @@ export type CrmDealsUncheckedUpdateWithoutOwnerInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   customer_id?: Prisma.IntFieldUpdateOperationsInput | number
   pipeline_stage_code?: Prisma.StringFieldUpdateOperationsInput | string
-  product_package?: Prisma.StringFieldUpdateOperationsInput | string
+  legacy_product_package?: Prisma.StringFieldUpdateOperationsInput | string
+  product_package_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deal_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -983,7 +1175,8 @@ export type CrmDealsUncheckedUpdateManyWithoutOwnerInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   customer_id?: Prisma.IntFieldUpdateOperationsInput | number
   pipeline_stage_code?: Prisma.StringFieldUpdateOperationsInput | string
-  product_package?: Prisma.StringFieldUpdateOperationsInput | string
+  legacy_product_package?: Prisma.StringFieldUpdateOperationsInput | string
+  product_package_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deal_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1027,7 +1220,8 @@ export type CrmDealsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   customer_id?: boolean
   pipeline_stage_code?: boolean
   owner_id?: boolean
-  product_package?: boolean
+  legacy_product_package?: boolean
+  product_package_code?: boolean
   deal_value?: boolean
   probability?: boolean
   status?: boolean
@@ -1036,6 +1230,7 @@ export type CrmDealsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   customer?: boolean | Prisma.CrmCustomerProfilesDefaultArgs<ExtArgs>
   stage?: boolean | Prisma.CrmPipelineStagesDefaultArgs<ExtArgs>
   owner?: boolean | Prisma.CrmDeals$ownerArgs<ExtArgs>
+  productPackage?: boolean | Prisma.CrmDeals$productPackageArgs<ExtArgs>
   pipelineRecords?: boolean | Prisma.CrmDeals$pipelineRecordsArgs<ExtArgs>
   _count?: boolean | Prisma.CrmDealsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["crmDeals"]>
@@ -1045,7 +1240,8 @@ export type CrmDealsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   customer_id?: boolean
   pipeline_stage_code?: boolean
   owner_id?: boolean
-  product_package?: boolean
+  legacy_product_package?: boolean
+  product_package_code?: boolean
   deal_value?: boolean
   probability?: boolean
   status?: boolean
@@ -1054,6 +1250,7 @@ export type CrmDealsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   customer?: boolean | Prisma.CrmCustomerProfilesDefaultArgs<ExtArgs>
   stage?: boolean | Prisma.CrmPipelineStagesDefaultArgs<ExtArgs>
   owner?: boolean | Prisma.CrmDeals$ownerArgs<ExtArgs>
+  productPackage?: boolean | Prisma.CrmDeals$productPackageArgs<ExtArgs>
 }, ExtArgs["result"]["crmDeals"]>
 
 export type CrmDealsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1061,7 +1258,8 @@ export type CrmDealsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   customer_id?: boolean
   pipeline_stage_code?: boolean
   owner_id?: boolean
-  product_package?: boolean
+  legacy_product_package?: boolean
+  product_package_code?: boolean
   deal_value?: boolean
   probability?: boolean
   status?: boolean
@@ -1070,6 +1268,7 @@ export type CrmDealsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   customer?: boolean | Prisma.CrmCustomerProfilesDefaultArgs<ExtArgs>
   stage?: boolean | Prisma.CrmPipelineStagesDefaultArgs<ExtArgs>
   owner?: boolean | Prisma.CrmDeals$ownerArgs<ExtArgs>
+  productPackage?: boolean | Prisma.CrmDeals$productPackageArgs<ExtArgs>
 }, ExtArgs["result"]["crmDeals"]>
 
 export type CrmDealsSelectScalar = {
@@ -1077,7 +1276,8 @@ export type CrmDealsSelectScalar = {
   customer_id?: boolean
   pipeline_stage_code?: boolean
   owner_id?: boolean
-  product_package?: boolean
+  legacy_product_package?: boolean
+  product_package_code?: boolean
   deal_value?: boolean
   probability?: boolean
   status?: boolean
@@ -1085,11 +1285,12 @@ export type CrmDealsSelectScalar = {
   updated_at?: boolean
 }
 
-export type CrmDealsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "customer_id" | "pipeline_stage_code" | "owner_id" | "product_package" | "deal_value" | "probability" | "status" | "created_at" | "updated_at", ExtArgs["result"]["crmDeals"]>
+export type CrmDealsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "customer_id" | "pipeline_stage_code" | "owner_id" | "legacy_product_package" | "product_package_code" | "deal_value" | "probability" | "status" | "created_at" | "updated_at", ExtArgs["result"]["crmDeals"]>
 export type CrmDealsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   customer?: boolean | Prisma.CrmCustomerProfilesDefaultArgs<ExtArgs>
   stage?: boolean | Prisma.CrmPipelineStagesDefaultArgs<ExtArgs>
   owner?: boolean | Prisma.CrmDeals$ownerArgs<ExtArgs>
+  productPackage?: boolean | Prisma.CrmDeals$productPackageArgs<ExtArgs>
   pipelineRecords?: boolean | Prisma.CrmDeals$pipelineRecordsArgs<ExtArgs>
   _count?: boolean | Prisma.CrmDealsCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -1097,11 +1298,13 @@ export type CrmDealsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   customer?: boolean | Prisma.CrmCustomerProfilesDefaultArgs<ExtArgs>
   stage?: boolean | Prisma.CrmPipelineStagesDefaultArgs<ExtArgs>
   owner?: boolean | Prisma.CrmDeals$ownerArgs<ExtArgs>
+  productPackage?: boolean | Prisma.CrmDeals$productPackageArgs<ExtArgs>
 }
 export type CrmDealsIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   customer?: boolean | Prisma.CrmCustomerProfilesDefaultArgs<ExtArgs>
   stage?: boolean | Prisma.CrmPipelineStagesDefaultArgs<ExtArgs>
   owner?: boolean | Prisma.CrmDeals$ownerArgs<ExtArgs>
+  productPackage?: boolean | Prisma.CrmDeals$productPackageArgs<ExtArgs>
 }
 
 export type $CrmDealsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1110,6 +1313,7 @@ export type $CrmDealsPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     customer: Prisma.$CrmCustomerProfilesPayload<ExtArgs>
     stage: Prisma.$CrmPipelineStagesPayload<ExtArgs>
     owner: Prisma.$UserPayload<ExtArgs> | null
+    productPackage: Prisma.$CrmProductPackagesPayload<ExtArgs> | null
     pipelineRecords: Prisma.$CrmPipelineRecordsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1117,7 +1321,8 @@ export type $CrmDealsPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     customer_id: number
     pipeline_stage_code: string
     owner_id: number | null
-    product_package: string
+    legacy_product_package: string
+    product_package_code: string | null
     deal_value: runtime.Decimal | null
     probability: number
     status: string | null
@@ -1520,6 +1725,7 @@ export interface Prisma__CrmDealsClient<T, Null = never, ExtArgs extends runtime
   customer<T extends Prisma.CrmCustomerProfilesDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CrmCustomerProfilesDefaultArgs<ExtArgs>>): Prisma.Prisma__CrmCustomerProfilesClient<runtime.Types.Result.GetResult<Prisma.$CrmCustomerProfilesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   stage<T extends Prisma.CrmPipelineStagesDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CrmPipelineStagesDefaultArgs<ExtArgs>>): Prisma.Prisma__CrmPipelineStagesClient<runtime.Types.Result.GetResult<Prisma.$CrmPipelineStagesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   owner<T extends Prisma.CrmDeals$ownerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CrmDeals$ownerArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  productPackage<T extends Prisma.CrmDeals$productPackageArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CrmDeals$productPackageArgs<ExtArgs>>): Prisma.Prisma__CrmProductPackagesClient<runtime.Types.Result.GetResult<Prisma.$CrmProductPackagesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   pipelineRecords<T extends Prisma.CrmDeals$pipelineRecordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CrmDeals$pipelineRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CrmPipelineRecordsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1554,7 +1760,8 @@ export interface CrmDealsFieldRefs {
   readonly customer_id: Prisma.FieldRef<"CrmDeals", 'Int'>
   readonly pipeline_stage_code: Prisma.FieldRef<"CrmDeals", 'String'>
   readonly owner_id: Prisma.FieldRef<"CrmDeals", 'Int'>
-  readonly product_package: Prisma.FieldRef<"CrmDeals", 'String'>
+  readonly legacy_product_package: Prisma.FieldRef<"CrmDeals", 'String'>
+  readonly product_package_code: Prisma.FieldRef<"CrmDeals", 'String'>
   readonly deal_value: Prisma.FieldRef<"CrmDeals", 'Decimal'>
   readonly probability: Prisma.FieldRef<"CrmDeals", 'Int'>
   readonly status: Prisma.FieldRef<"CrmDeals", 'String'>
@@ -1972,6 +2179,25 @@ export type CrmDeals$ownerArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   include?: Prisma.UserInclude<ExtArgs> | null
   where?: Prisma.UserWhereInput
+}
+
+/**
+ * CrmDeals.productPackage
+ */
+export type CrmDeals$productPackageArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CrmProductPackages
+   */
+  select?: Prisma.CrmProductPackagesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CrmProductPackages
+   */
+  omit?: Prisma.CrmProductPackagesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmProductPackagesInclude<ExtArgs> | null
+  where?: Prisma.CrmProductPackagesWhereInput
 }
 
 /**
