@@ -32,6 +32,7 @@ import { CrmSyncModule } from './modules/crm-sync/crm-sync.module';
 import { CrmBootstrapModule } from './modules/crm-bootstrap/crm-bootstrap.module';
 import { CrmCustomersModule } from './modules/crm-customers/crm-customers.module';
 import { CrmPipelineModule } from './modules/crm-pipeline/crm-pipeline.module';
+import { CrmDashboardModule } from './modules/crm-dashboard/crm-dashboard.module';
 
 @Module({
   imports: [
@@ -88,6 +89,7 @@ import { CrmPipelineModule } from './modules/crm-pipeline/crm-pipeline.module';
     CrmBootstrapModule,
     CrmCustomersModule,
     CrmPipelineModule,
+    CrmDashboardModule,
     CrmSyncModule,
   ],
   controllers: [AppController],
