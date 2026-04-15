@@ -637,6 +637,11 @@ export type CrmCustomerProfiles = Prisma.CrmCustomerProfilesModel
  */
 export type CrmDeals = Prisma.CrmDealsModel
 /**
+ * Model CrmDealAssignments
+ * 
+ */
+export type CrmDealAssignments = Prisma.CrmDealAssignmentsModel
+/**
  * Model CrmPipelineRecords
  * 
  */

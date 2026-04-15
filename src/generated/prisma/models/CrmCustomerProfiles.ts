@@ -248,6 +248,7 @@ export type CrmCustomerProfilesWhereInput = {
   source?: Prisma.XOR<Prisma.CrmSourcesScalarRelationFilter, Prisma.CrmSourcesWhereInput>
   owner?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   deal?: Prisma.XOR<Prisma.CrmDealsNullableScalarRelationFilter, Prisma.CrmDealsWhereInput> | null
+  assignments?: Prisma.CrmDealAssignmentsListRelationFilter
 }
 
 export type CrmCustomerProfilesOrderByWithRelationInput = {
@@ -262,6 +263,7 @@ export type CrmCustomerProfilesOrderByWithRelationInput = {
   source?: Prisma.CrmSourcesOrderByWithRelationInput
   owner?: Prisma.UserOrderByWithRelationInput
   deal?: Prisma.CrmDealsOrderByWithRelationInput
+  assignments?: Prisma.CrmDealAssignmentsOrderByRelationAggregateInput
 }
 
 export type CrmCustomerProfilesWhereUniqueInput = Prisma.AtLeast<{
@@ -279,6 +281,7 @@ export type CrmCustomerProfilesWhereUniqueInput = Prisma.AtLeast<{
   source?: Prisma.XOR<Prisma.CrmSourcesScalarRelationFilter, Prisma.CrmSourcesWhereInput>
   owner?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   deal?: Prisma.XOR<Prisma.CrmDealsNullableScalarRelationFilter, Prisma.CrmDealsWhereInput> | null
+  assignments?: Prisma.CrmDealAssignmentsListRelationFilter
 }, "id" | "user_id">
 
 export type CrmCustomerProfilesOrderByWithAggregationInput = {
@@ -317,6 +320,7 @@ export type CrmCustomerProfilesCreateInput = {
   source: Prisma.CrmSourcesCreateNestedOneWithoutCustomersInput
   owner?: Prisma.UserCreateNestedOneWithoutOwnedCrmCustomerProfilesInput
   deal?: Prisma.CrmDealsCreateNestedOneWithoutCustomerInput
+  assignments?: Prisma.CrmDealAssignmentsCreateNestedManyWithoutCustomerInput
 }
 
 export type CrmCustomerProfilesUncheckedCreateInput = {
@@ -328,6 +332,7 @@ export type CrmCustomerProfilesUncheckedCreateInput = {
   owner_id?: number | null
   created_at?: Date | string
   deal?: Prisma.CrmDealsUncheckedCreateNestedOneWithoutCustomerInput
+  assignments?: Prisma.CrmDealAssignmentsUncheckedCreateNestedManyWithoutCustomerInput
 }
 
 export type CrmCustomerProfilesUpdateInput = {
@@ -338,6 +343,7 @@ export type CrmCustomerProfilesUpdateInput = {
   source?: Prisma.CrmSourcesUpdateOneRequiredWithoutCustomersNestedInput
   owner?: Prisma.UserUpdateOneWithoutOwnedCrmCustomerProfilesNestedInput
   deal?: Prisma.CrmDealsUpdateOneWithoutCustomerNestedInput
+  assignments?: Prisma.CrmDealAssignmentsUpdateManyWithoutCustomerNestedInput
 }
 
 export type CrmCustomerProfilesUncheckedUpdateInput = {
@@ -349,6 +355,7 @@ export type CrmCustomerProfilesUncheckedUpdateInput = {
   owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deal?: Prisma.CrmDealsUncheckedUpdateOneWithoutCustomerNestedInput
+  assignments?: Prisma.CrmDealAssignmentsUncheckedUpdateManyWithoutCustomerNestedInput
 }
 
 export type CrmCustomerProfilesCreateManyInput = {
@@ -497,6 +504,20 @@ export type CrmCustomerProfilesUpdateOneRequiredWithoutDealNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CrmCustomerProfilesUpdateToOneWithWhereWithoutDealInput, Prisma.CrmCustomerProfilesUpdateWithoutDealInput>, Prisma.CrmCustomerProfilesUncheckedUpdateWithoutDealInput>
 }
 
+export type CrmCustomerProfilesCreateNestedOneWithoutAssignmentsInput = {
+  create?: Prisma.XOR<Prisma.CrmCustomerProfilesCreateWithoutAssignmentsInput, Prisma.CrmCustomerProfilesUncheckedCreateWithoutAssignmentsInput>
+  connectOrCreate?: Prisma.CrmCustomerProfilesCreateOrConnectWithoutAssignmentsInput
+  connect?: Prisma.CrmCustomerProfilesWhereUniqueInput
+}
+
+export type CrmCustomerProfilesUpdateOneRequiredWithoutAssignmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.CrmCustomerProfilesCreateWithoutAssignmentsInput, Prisma.CrmCustomerProfilesUncheckedCreateWithoutAssignmentsInput>
+  connectOrCreate?: Prisma.CrmCustomerProfilesCreateOrConnectWithoutAssignmentsInput
+  upsert?: Prisma.CrmCustomerProfilesUpsertWithoutAssignmentsInput
+  connect?: Prisma.CrmCustomerProfilesWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CrmCustomerProfilesUpdateToOneWithWhereWithoutAssignmentsInput, Prisma.CrmCustomerProfilesUpdateWithoutAssignmentsInput>, Prisma.CrmCustomerProfilesUncheckedUpdateWithoutAssignmentsInput>
+}
+
 export type CrmCustomerProfilesCreateNestedOneWithoutUserInput = {
   create?: Prisma.XOR<Prisma.CrmCustomerProfilesCreateWithoutUserInput, Prisma.CrmCustomerProfilesUncheckedCreateWithoutUserInput>
   connectOrCreate?: Prisma.CrmCustomerProfilesCreateOrConnectWithoutUserInput
@@ -578,6 +599,7 @@ export type CrmCustomerProfilesCreateWithoutSourceInput = {
   user: Prisma.UserCreateNestedOneWithoutCrmCustomerProfileInput
   owner?: Prisma.UserCreateNestedOneWithoutOwnedCrmCustomerProfilesInput
   deal?: Prisma.CrmDealsCreateNestedOneWithoutCustomerInput
+  assignments?: Prisma.CrmDealAssignmentsCreateNestedManyWithoutCustomerInput
 }
 
 export type CrmCustomerProfilesUncheckedCreateWithoutSourceInput = {
@@ -588,6 +610,7 @@ export type CrmCustomerProfilesUncheckedCreateWithoutSourceInput = {
   owner_id?: number | null
   created_at?: Date | string
   deal?: Prisma.CrmDealsUncheckedCreateNestedOneWithoutCustomerInput
+  assignments?: Prisma.CrmDealAssignmentsUncheckedCreateNestedManyWithoutCustomerInput
 }
 
 export type CrmCustomerProfilesCreateOrConnectWithoutSourceInput = {
@@ -636,6 +659,7 @@ export type CrmCustomerProfilesCreateWithoutDealInput = {
   user: Prisma.UserCreateNestedOneWithoutCrmCustomerProfileInput
   source: Prisma.CrmSourcesCreateNestedOneWithoutCustomersInput
   owner?: Prisma.UserCreateNestedOneWithoutOwnedCrmCustomerProfilesInput
+  assignments?: Prisma.CrmDealAssignmentsCreateNestedManyWithoutCustomerInput
 }
 
 export type CrmCustomerProfilesUncheckedCreateWithoutDealInput = {
@@ -646,6 +670,7 @@ export type CrmCustomerProfilesUncheckedCreateWithoutDealInput = {
   customer_tier_code?: string | null
   owner_id?: number | null
   created_at?: Date | string
+  assignments?: Prisma.CrmDealAssignmentsUncheckedCreateNestedManyWithoutCustomerInput
 }
 
 export type CrmCustomerProfilesCreateOrConnectWithoutDealInput = {
@@ -671,6 +696,7 @@ export type CrmCustomerProfilesUpdateWithoutDealInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutCrmCustomerProfileNestedInput
   source?: Prisma.CrmSourcesUpdateOneRequiredWithoutCustomersNestedInput
   owner?: Prisma.UserUpdateOneWithoutOwnedCrmCustomerProfilesNestedInput
+  assignments?: Prisma.CrmDealAssignmentsUpdateManyWithoutCustomerNestedInput
 }
 
 export type CrmCustomerProfilesUncheckedUpdateWithoutDealInput = {
@@ -681,6 +707,65 @@ export type CrmCustomerProfilesUncheckedUpdateWithoutDealInput = {
   customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignments?: Prisma.CrmDealAssignmentsUncheckedUpdateManyWithoutCustomerNestedInput
+}
+
+export type CrmCustomerProfilesCreateWithoutAssignmentsInput = {
+  gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: string | null
+  created_at?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutCrmCustomerProfileInput
+  source: Prisma.CrmSourcesCreateNestedOneWithoutCustomersInput
+  owner?: Prisma.UserCreateNestedOneWithoutOwnedCrmCustomerProfilesInput
+  deal?: Prisma.CrmDealsCreateNestedOneWithoutCustomerInput
+}
+
+export type CrmCustomerProfilesUncheckedCreateWithoutAssignmentsInput = {
+  id?: number
+  user_id: number
+  source_code: string
+  gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: string | null
+  owner_id?: number | null
+  created_at?: Date | string
+  deal?: Prisma.CrmDealsUncheckedCreateNestedOneWithoutCustomerInput
+}
+
+export type CrmCustomerProfilesCreateOrConnectWithoutAssignmentsInput = {
+  where: Prisma.CrmCustomerProfilesWhereUniqueInput
+  create: Prisma.XOR<Prisma.CrmCustomerProfilesCreateWithoutAssignmentsInput, Prisma.CrmCustomerProfilesUncheckedCreateWithoutAssignmentsInput>
+}
+
+export type CrmCustomerProfilesUpsertWithoutAssignmentsInput = {
+  update: Prisma.XOR<Prisma.CrmCustomerProfilesUpdateWithoutAssignmentsInput, Prisma.CrmCustomerProfilesUncheckedUpdateWithoutAssignmentsInput>
+  create: Prisma.XOR<Prisma.CrmCustomerProfilesCreateWithoutAssignmentsInput, Prisma.CrmCustomerProfilesUncheckedCreateWithoutAssignmentsInput>
+  where?: Prisma.CrmCustomerProfilesWhereInput
+}
+
+export type CrmCustomerProfilesUpdateToOneWithWhereWithoutAssignmentsInput = {
+  where?: Prisma.CrmCustomerProfilesWhereInput
+  data: Prisma.XOR<Prisma.CrmCustomerProfilesUpdateWithoutAssignmentsInput, Prisma.CrmCustomerProfilesUncheckedUpdateWithoutAssignmentsInput>
+}
+
+export type CrmCustomerProfilesUpdateWithoutAssignmentsInput = {
+  gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutCrmCustomerProfileNestedInput
+  source?: Prisma.CrmSourcesUpdateOneRequiredWithoutCustomersNestedInput
+  owner?: Prisma.UserUpdateOneWithoutOwnedCrmCustomerProfilesNestedInput
+  deal?: Prisma.CrmDealsUpdateOneWithoutCustomerNestedInput
+}
+
+export type CrmCustomerProfilesUncheckedUpdateWithoutAssignmentsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  user_id?: Prisma.IntFieldUpdateOperationsInput | number
+  source_code?: Prisma.StringFieldUpdateOperationsInput | string
+  gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deal?: Prisma.CrmDealsUncheckedUpdateOneWithoutCustomerNestedInput
 }
 
 export type CrmCustomerProfilesCreateWithoutUserInput = {
@@ -690,6 +775,7 @@ export type CrmCustomerProfilesCreateWithoutUserInput = {
   source: Prisma.CrmSourcesCreateNestedOneWithoutCustomersInput
   owner?: Prisma.UserCreateNestedOneWithoutOwnedCrmCustomerProfilesInput
   deal?: Prisma.CrmDealsCreateNestedOneWithoutCustomerInput
+  assignments?: Prisma.CrmDealAssignmentsCreateNestedManyWithoutCustomerInput
 }
 
 export type CrmCustomerProfilesUncheckedCreateWithoutUserInput = {
@@ -700,6 +786,7 @@ export type CrmCustomerProfilesUncheckedCreateWithoutUserInput = {
   owner_id?: number | null
   created_at?: Date | string
   deal?: Prisma.CrmDealsUncheckedCreateNestedOneWithoutCustomerInput
+  assignments?: Prisma.CrmDealAssignmentsUncheckedCreateNestedManyWithoutCustomerInput
 }
 
 export type CrmCustomerProfilesCreateOrConnectWithoutUserInput = {
@@ -714,6 +801,7 @@ export type CrmCustomerProfilesCreateWithoutOwnerInput = {
   user: Prisma.UserCreateNestedOneWithoutCrmCustomerProfileInput
   source: Prisma.CrmSourcesCreateNestedOneWithoutCustomersInput
   deal?: Prisma.CrmDealsCreateNestedOneWithoutCustomerInput
+  assignments?: Prisma.CrmDealAssignmentsCreateNestedManyWithoutCustomerInput
 }
 
 export type CrmCustomerProfilesUncheckedCreateWithoutOwnerInput = {
@@ -724,6 +812,7 @@ export type CrmCustomerProfilesUncheckedCreateWithoutOwnerInput = {
   customer_tier_code?: string | null
   created_at?: Date | string
   deal?: Prisma.CrmDealsUncheckedCreateNestedOneWithoutCustomerInput
+  assignments?: Prisma.CrmDealAssignmentsUncheckedCreateNestedManyWithoutCustomerInput
 }
 
 export type CrmCustomerProfilesCreateOrConnectWithoutOwnerInput = {
@@ -754,6 +843,7 @@ export type CrmCustomerProfilesUpdateWithoutUserInput = {
   source?: Prisma.CrmSourcesUpdateOneRequiredWithoutCustomersNestedInput
   owner?: Prisma.UserUpdateOneWithoutOwnedCrmCustomerProfilesNestedInput
   deal?: Prisma.CrmDealsUpdateOneWithoutCustomerNestedInput
+  assignments?: Prisma.CrmDealAssignmentsUpdateManyWithoutCustomerNestedInput
 }
 
 export type CrmCustomerProfilesUncheckedUpdateWithoutUserInput = {
@@ -764,6 +854,7 @@ export type CrmCustomerProfilesUncheckedUpdateWithoutUserInput = {
   owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deal?: Prisma.CrmDealsUncheckedUpdateOneWithoutCustomerNestedInput
+  assignments?: Prisma.CrmDealAssignmentsUncheckedUpdateManyWithoutCustomerNestedInput
 }
 
 export type CrmCustomerProfilesUpsertWithWhereUniqueWithoutOwnerInput = {
@@ -798,6 +889,7 @@ export type CrmCustomerProfilesUpdateWithoutSourceInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutCrmCustomerProfileNestedInput
   owner?: Prisma.UserUpdateOneWithoutOwnedCrmCustomerProfilesNestedInput
   deal?: Prisma.CrmDealsUpdateOneWithoutCustomerNestedInput
+  assignments?: Prisma.CrmDealAssignmentsUpdateManyWithoutCustomerNestedInput
 }
 
 export type CrmCustomerProfilesUncheckedUpdateWithoutSourceInput = {
@@ -808,6 +900,7 @@ export type CrmCustomerProfilesUncheckedUpdateWithoutSourceInput = {
   owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deal?: Prisma.CrmDealsUncheckedUpdateOneWithoutCustomerNestedInput
+  assignments?: Prisma.CrmDealAssignmentsUncheckedUpdateManyWithoutCustomerNestedInput
 }
 
 export type CrmCustomerProfilesUncheckedUpdateManyWithoutSourceInput = {
@@ -835,6 +928,7 @@ export type CrmCustomerProfilesUpdateWithoutOwnerInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutCrmCustomerProfileNestedInput
   source?: Prisma.CrmSourcesUpdateOneRequiredWithoutCustomersNestedInput
   deal?: Prisma.CrmDealsUpdateOneWithoutCustomerNestedInput
+  assignments?: Prisma.CrmDealAssignmentsUpdateManyWithoutCustomerNestedInput
 }
 
 export type CrmCustomerProfilesUncheckedUpdateWithoutOwnerInput = {
@@ -845,6 +939,7 @@ export type CrmCustomerProfilesUncheckedUpdateWithoutOwnerInput = {
   customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deal?: Prisma.CrmDealsUncheckedUpdateOneWithoutCustomerNestedInput
+  assignments?: Prisma.CrmDealAssignmentsUncheckedUpdateManyWithoutCustomerNestedInput
 }
 
 export type CrmCustomerProfilesUncheckedUpdateManyWithoutOwnerInput = {
@@ -856,6 +951,35 @@ export type CrmCustomerProfilesUncheckedUpdateManyWithoutOwnerInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+
+/**
+ * Count Type CrmCustomerProfilesCountOutputType
+ */
+
+export type CrmCustomerProfilesCountOutputType = {
+  assignments: number
+}
+
+export type CrmCustomerProfilesCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  assignments?: boolean | CrmCustomerProfilesCountOutputTypeCountAssignmentsArgs
+}
+
+/**
+ * CrmCustomerProfilesCountOutputType without action
+ */
+export type CrmCustomerProfilesCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CrmCustomerProfilesCountOutputType
+   */
+  select?: Prisma.CrmCustomerProfilesCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * CrmCustomerProfilesCountOutputType without action
+ */
+export type CrmCustomerProfilesCountOutputTypeCountAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CrmDealAssignmentsWhereInput
+}
 
 
 export type CrmCustomerProfilesSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -870,6 +994,8 @@ export type CrmCustomerProfilesSelect<ExtArgs extends runtime.Types.Extensions.I
   source?: boolean | Prisma.CrmSourcesDefaultArgs<ExtArgs>
   owner?: boolean | Prisma.CrmCustomerProfiles$ownerArgs<ExtArgs>
   deal?: boolean | Prisma.CrmCustomerProfiles$dealArgs<ExtArgs>
+  assignments?: boolean | Prisma.CrmCustomerProfiles$assignmentsArgs<ExtArgs>
+  _count?: boolean | Prisma.CrmCustomerProfilesCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["crmCustomerProfiles"]>
 
 export type CrmCustomerProfilesSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -914,6 +1040,8 @@ export type CrmCustomerProfilesInclude<ExtArgs extends runtime.Types.Extensions.
   source?: boolean | Prisma.CrmSourcesDefaultArgs<ExtArgs>
   owner?: boolean | Prisma.CrmCustomerProfiles$ownerArgs<ExtArgs>
   deal?: boolean | Prisma.CrmCustomerProfiles$dealArgs<ExtArgs>
+  assignments?: boolean | Prisma.CrmCustomerProfiles$assignmentsArgs<ExtArgs>
+  _count?: boolean | Prisma.CrmCustomerProfilesCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CrmCustomerProfilesIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -933,6 +1061,7 @@ export type $CrmCustomerProfilesPayload<ExtArgs extends runtime.Types.Extensions
     source: Prisma.$CrmSourcesPayload<ExtArgs>
     owner: Prisma.$UserPayload<ExtArgs> | null
     deal: Prisma.$CrmDealsPayload<ExtArgs> | null
+    assignments: Prisma.$CrmDealAssignmentsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1340,6 +1469,7 @@ export interface Prisma__CrmCustomerProfilesClient<T, Null = never, ExtArgs exte
   source<T extends Prisma.CrmSourcesDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CrmSourcesDefaultArgs<ExtArgs>>): Prisma.Prisma__CrmSourcesClient<runtime.Types.Result.GetResult<Prisma.$CrmSourcesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   owner<T extends Prisma.CrmCustomerProfiles$ownerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CrmCustomerProfiles$ownerArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   deal<T extends Prisma.CrmCustomerProfiles$dealArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CrmCustomerProfiles$dealArgs<ExtArgs>>): Prisma.Prisma__CrmDealsClient<runtime.Types.Result.GetResult<Prisma.$CrmDealsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  assignments<T extends Prisma.CrmCustomerProfiles$assignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CrmCustomerProfiles$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CrmDealAssignmentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1807,6 +1937,30 @@ export type CrmCustomerProfiles$dealArgs<ExtArgs extends runtime.Types.Extension
    */
   include?: Prisma.CrmDealsInclude<ExtArgs> | null
   where?: Prisma.CrmDealsWhereInput
+}
+
+/**
+ * CrmCustomerProfiles.assignments
+ */
+export type CrmCustomerProfiles$assignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CrmDealAssignments
+   */
+  select?: Prisma.CrmDealAssignmentsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CrmDealAssignments
+   */
+  omit?: Prisma.CrmDealAssignmentsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmDealAssignmentsInclude<ExtArgs> | null
+  where?: Prisma.CrmDealAssignmentsWhereInput
+  orderBy?: Prisma.CrmDealAssignmentsOrderByWithRelationInput | Prisma.CrmDealAssignmentsOrderByWithRelationInput[]
+  cursor?: Prisma.CrmDealAssignmentsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CrmDealAssignmentsScalarFieldEnum | Prisma.CrmDealAssignmentsScalarFieldEnum[]
 }
 
 /**

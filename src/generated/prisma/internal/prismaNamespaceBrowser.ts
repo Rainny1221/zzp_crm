@@ -174,6 +174,7 @@ export const ModelName = {
   CrmSources: 'CrmSources',
   CrmCustomerProfiles: 'CrmCustomerProfiles',
   CrmDeals: 'CrmDeals',
+  CrmDealAssignments: 'CrmDealAssignments',
   CrmPipelineRecords: 'CrmPipelineRecords',
   CrmPipelineEvents: 'CrmPipelineEvents',
   CrmSyncJobs: 'CrmSyncJobs',
@@ -2454,6 +2455,20 @@ export const CrmDealsScalarFieldEnum = {
 } as const
 
 export type CrmDealsScalarFieldEnum = (typeof CrmDealsScalarFieldEnum)[keyof typeof CrmDealsScalarFieldEnum]
+
+
+export const CrmDealAssignmentsScalarFieldEnum = {
+  id: 'id',
+  deal_id: 'deal_id',
+  customer_id: 'customer_id',
+  from_user_id: 'from_user_id',
+  to_user_id: 'to_user_id',
+  note: 'note',
+  created_by: 'created_by',
+  created_at: 'created_at'
+} as const
+
+export type CrmDealAssignmentsScalarFieldEnum = (typeof CrmDealAssignmentsScalarFieldEnum)[keyof typeof CrmDealAssignmentsScalarFieldEnum]
 
 
 export const CrmPipelineRecordsScalarFieldEnum = {

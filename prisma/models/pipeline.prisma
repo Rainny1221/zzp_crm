@@ -36,7 +36,8 @@ model CrmCustomerProfiles {
   source CrmSources @relation(fields: [source_code], references: [code])
   owner  User?      @relation("crm_owner", fields: [owner_id], references: [id])
 
-  deal CrmDeals?
+  deal        CrmDeals?
+  assignments CrmDealAssignments[]
 
   @@index([owner_id])
   @@index([source_code])
@@ -63,12 +64,37 @@ model CrmDeals {
   productPackage CrmProductPackages? @relation(fields: [product_package_code], references: [code])
 
   pipelineRecords CrmPipelineRecords[]
+  assignments     CrmDealAssignments[]
 
   @@index([pipeline_stage_code])
   @@index([owner_id])
   @@index([product_package_code])
   @@index([status])
   @@map("crm_deals")
+}
+
+model CrmDealAssignments {
+  id           Int      @id @default(autoincrement())
+  deal_id      Int
+  customer_id  Int
+  from_user_id Int?
+  to_user_id   Int?
+  note         String?
+  created_by   Int?
+  created_at   DateTime @default(now()) @db.Timestamptz(6)
+
+  deal      CrmDeals            @relation(fields: [deal_id], references: [id], onDelete: Cascade)
+  customer  CrmCustomerProfiles @relation(fields: [customer_id], references: [id], onDelete: Cascade)
+  fromUser  User?               @relation("crm_assignment_from_user", fields: [from_user_id], references: [id])
+  toUser    User?               @relation("crm_assignment_to_user", fields: [to_user_id], references: [id])
+  createdBy User?               @relation("crm_assignment_created_by", fields: [created_by], references: [id])
+
+  @@index([deal_id, created_at])
+  @@index([customer_id, created_at])
+  @@index([from_user_id])
+  @@index([to_user_id])
+  @@index([created_by])
+  @@map("crm_deal_assignments")
 }
 
 model CrmPipelineRecords {

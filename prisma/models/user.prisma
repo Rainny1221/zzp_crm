@@ -63,6 +63,9 @@ model User {
   ownedCrmCustomerProfiles CrmCustomerProfiles[] @relation("crm_owner")
   ownedPipelineRecords     CrmPipelineRecords[]  @relation("pipeline_owner")
   ownedCrmDeals            CrmDeals[]            @relation("deal_owner")
+  crmAssignmentFrom         CrmDealAssignments[]  @relation("crm_assignment_from_user")
+  crmAssignmentTo           CrmDealAssignments[]  @relation("crm_assignment_to_user")
+  crmAssignmentCreatedBy    CrmDealAssignments[]  @relation("crm_assignment_created_by")
   crmSyncJobs              CrmSyncJobs[]
 
   @@map("users")

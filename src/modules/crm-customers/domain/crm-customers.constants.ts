@@ -1,0 +1,24 @@
+export const CRM_CUSTOMERS_LOG = {
+  MODULE: 'crm-customers',
+  ACTIONS: {
+    GET_CUSTOMER_DETAIL: 'CRM_CUSTOMERS_GET_DETAIL',
+    LIST_CUSTOMERS: 'CRM_CUSTOMERS_LIST',
+    UPDATE_ASSIGNMENT: 'CRM_CUSTOMERS_UPDATE_ASSIGNMENT',
+  },
+  ENTITIES: {
+    ASSIGNEE: 'CRM_ASSIGNEE',
+    CUSTOMER: 'CRM_CUSTOMER',
+    DEAL: 'CRM_DEAL',
+  },
+} as const;
+
+export const CRM_ACTIVITY_TYPE = {
+  ASSIGNMENT_CHANGED: 'assignment_changed',
+  UNASSIGNED: 'unassigned',
+} as const;
+
+export const CRM_CUSTOMER_ASSIGNABLE_ROLE_NAMES = [
+  'ADMIN',
+  'SALE_MANAGER',
+  'SALE',
+] as const;
