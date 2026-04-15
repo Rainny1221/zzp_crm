@@ -31,6 +31,7 @@ import { RequestContextModule } from './common/context/infrastructure/request-co
 import { CrmSyncModule } from './modules/crm-sync/crm-sync.module';
 import { CrmBootstrapModule } from './modules/crm-bootstrap/crm-bootstrap.module';
 import { CrmCustomersModule } from './modules/crm-customers/crm-customers.module';
+import { CrmPipelineModule } from './modules/crm-pipeline/crm-pipeline.module';
 
 @Module({
   imports: [
@@ -86,6 +87,7 @@ import { CrmCustomersModule } from './modules/crm-customers/crm-customers.module
     ImageModule,
     CrmBootstrapModule,
     CrmCustomersModule,
+    CrmPipelineModule,
     CrmSyncModule,
   ],
   controllers: [AppController],
