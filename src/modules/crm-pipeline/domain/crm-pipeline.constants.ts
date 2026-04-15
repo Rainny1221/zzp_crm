@@ -1,6 +1,7 @@
 export const CRM_PIPELINE_LOG = {
   MODULE: 'crm-pipeline',
   ACTIONS: {
+    GET_KANBAN: 'CRM_PIPELINE_GET_KANBAN',
     GET_TABLE: 'CRM_PIPELINE_GET_TABLE',
   },
   ENTITIES: {

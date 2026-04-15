@@ -3,7 +3,11 @@ import { QueryBus } from '@nestjs/cqrs';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { RequirePermissions } from 'src/common/decorator/require-permissions.decorator';
 import type { AuthenticatedRequest } from 'src/common/interfaces/authenticated-request.interface';
-import { GetCrmPipelineTableQuery } from '../application/queries';
+import {
+  GetCrmPipelineKanbanQuery,
+  GetCrmPipelineTableQuery,
+} from '../application/queries';
+import { GetCrmPipelineKanbanDto } from './dto/get-crm-pipeline-kanban.dto';
 import { GetCrmPipelineTableDto } from './dto/get-crm-pipeline-table.dto';
 
 @ApiTags('CRM Pipeline')
@@ -21,6 +25,22 @@ export class CrmPipelineController {
   ) {
     return this.queryBus.execute(
       new GetCrmPipelineTableQuery({
+        ...query,
+        currentUserId: req.user.id,
+        currentUserRoleName: req.user.roleName ?? null,
+      }),
+    );
+  }
+
+  @Get('kanban')
+  @ApiOperation({ summary: 'Get CRM pipeline kanban by stage' })
+  @RequirePermissions('CRM_PIPELINE_VIEW')
+  async getKanban(
+    @Query() query: GetCrmPipelineKanbanDto,
+    @Req() req: AuthenticatedRequest,
+  ) {
+    return this.queryBus.execute(
+      new GetCrmPipelineKanbanQuery({
         ...query,
         currentUserId: req.user.id,
         currentUserRoleName: req.user.roleName ?? null,

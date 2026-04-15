@@ -7,6 +7,7 @@ import { AppLoggerService } from 'src/logger/app-logger.service';
 import { PrismaService } from 'src/prisma/prisma.service';
 import type {
   CrmPipelineTableSummary,
+  GetCrmPipelineKanbanQueryFilters,
   GetCrmPipelineTableQueryFilters,
 } from '../../application/queries';
 import { CRM_PIPELINE_LOG } from '../../domain/crm-pipeline.constants';
@@ -16,6 +17,14 @@ type CountRow = {
 };
 
 type SummaryRow = CrmPipelineTableSummary;
+type CrmPipelineFilterParams = Omit<
+  GetCrmPipelineTableQueryFilters,
+  'page' | 'limit' | 'sortKey' | 'sortDirection'
+>;
+
+export type CrmPipelineStageRow = {
+  code: string;
+};
 
 export type CrmPipelineTableRow = {
   dealId: string;
@@ -63,6 +72,12 @@ export type FindCrmPipelineTableResult = {
   summary: CrmPipelineTableSummary;
 };
 
+export type FindCrmPipelineKanbanByStageResult = {
+  stages: CrmPipelineStageRow[];
+  rows: CrmPipelineTableRow[];
+  summary: CrmPipelineTableSummary;
+};
+
 @Injectable()
 export class CrmPipelineReadRepository {
   constructor(
@@ -78,7 +93,7 @@ export class CrmPipelineReadRepository {
     const baseSql = this.buildBaseSql(whereSql);
 
     try {
-      const [rows, countRows, summaryRows] = await Promise.all([
+      const [rows, countRows, summary] = await Promise.all([
         this.prisma.$queryRaw<CrmPipelineTableRow[]>(Prisma.sql`
           WITH base AS (
             ${baseSql}
@@ -96,40 +111,10 @@ export class CrmPipelineReadRepository {
           SELECT COUNT(*)::int AS "count"
           FROM base
         `),
-        this.prisma.$queryRaw<SummaryRow[]>(Prisma.sql`
-          WITH base AS (
-            ${baseSql}
-          )
-          SELECT
-            COUNT(*) FILTER (
-              WHERE COALESCE("statusCode", 'new') NOT IN ('success', 'failed')
-            )::int AS "progressingDeals",
-            COUNT(*) FILTER (
-              WHERE ${this.buildBaseStuckConditionSql()}
-            )::int AS "stuckDeals",
-            COUNT(*) FILTER (
-              WHERE "pipelineStageCode" IN ('negotiation', 'close_deal')
-            )::int AS "closingDeals",
-            COALESCE(SUM(COALESCE("dealValue", 0)), 0)::double precision
-              AS "totalPipelineValue",
-            COALESCE(SUM(COALESCE("dealValue", 0)) FILTER (
-              WHERE "statusCode" = 'success'
-            ), 0)::double precision AS "wonValue",
-            COUNT(*) FILTER (
-              WHERE "statusCode" = 'failed'
-            )::int AS "lostDeals",
-            COUNT(*) FILTER (
-              WHERE "trialEndAt" >= now()
-                AND "trialEndAt" <= now() + interval '7 days'
-            )::int AS "trialsExpiringSoon",
-            COALESCE(SUM(COALESCE("commission", 0)), 0)::double precision
-              AS "totalCommission"
-          FROM base
-        `),
+        this.loadSummary(baseSql),
       ]);
 
       const total = countRows[0]?.count ?? 0;
-      const summary = summaryRows[0] ?? this.getEmptySummary();
 
       this.logger.debug({
         message: 'CRM pipeline table loaded',
@@ -171,6 +156,113 @@ export class CrmPipelineReadRepository {
         },
       );
     }
+  }
+
+  async findKanbanByStage(
+    params: GetCrmPipelineKanbanQueryFilters,
+  ): Promise<FindCrmPipelineKanbanByStageResult> {
+    const whereSql = this.buildWhereSql(params);
+    const baseSql = this.buildBaseSql(whereSql);
+
+    try {
+      const [stages, rows, summary] = await Promise.all([
+        this.prisma.crmPipelineStages.findMany({
+          where: { is_active: true },
+          orderBy: { stage_order: 'asc' },
+          select: { code: true },
+        }),
+        this.prisma.$queryRaw<CrmPipelineTableRow[]>(Prisma.sql`
+          WITH base AS (
+            ${baseSql}
+          )
+          SELECT *
+          FROM base
+          ORDER BY
+            "stageTransitionAt" DESC NULLS LAST,
+            "lastActivityAt" DESC NULLS LAST,
+            "dealValue" DESC NULLS LAST,
+            "dealId" ASC
+        `),
+        this.loadSummary(baseSql),
+      ]);
+
+      this.logger.debug({
+        message: 'CRM pipeline kanban loaded',
+        context: CrmPipelineReadRepository.name,
+        module: CRM_PIPELINE_LOG.MODULE,
+        action: CRM_PIPELINE_LOG.ACTIONS.GET_KANBAN,
+        entityType: CRM_PIPELINE_LOG.ENTITIES.DEAL,
+        meta: {
+          filters: params,
+          stageCount: stages.length,
+          rowCount: rows.length,
+        },
+      });
+
+      return {
+        stages,
+        rows,
+        summary,
+      };
+    } catch (error: unknown) {
+      this.logger.error({
+        message: 'Failed to load CRM pipeline kanban',
+        context: CrmPipelineReadRepository.name,
+        module: CRM_PIPELINE_LOG.MODULE,
+        action: CRM_PIPELINE_LOG.ACTIONS.GET_KANBAN,
+        entityType: CRM_PIPELINE_LOG.ENTITIES.DEAL,
+        meta: {
+          filters: params,
+          error: toErrorMeta(error),
+        },
+      });
+
+      throw ErrorFactory.create(
+        ErrorCode.INTERNAL_ERROR,
+        'Failed to load CRM pipeline kanban',
+        {
+          filters: params,
+          error: toErrorMeta(error),
+        },
+      );
+    }
+  }
+
+  private async loadSummary(
+    baseSql: Prisma.Sql,
+  ): Promise<CrmPipelineTableSummary> {
+    const rows = await this.prisma.$queryRaw<SummaryRow[]>(Prisma.sql`
+      WITH base AS (
+        ${baseSql}
+      )
+      SELECT
+        COUNT(*) FILTER (
+          WHERE COALESCE("statusCode", 'new') NOT IN ('success', 'failed')
+        )::int AS "progressingDeals",
+        COUNT(*) FILTER (
+          WHERE ${this.buildBaseStuckConditionSql()}
+        )::int AS "stuckDeals",
+        COUNT(*) FILTER (
+          WHERE "pipelineStageCode" IN ('negotiation', 'close_deal')
+        )::int AS "closingDeals",
+        COALESCE(SUM(COALESCE("dealValue", 0)), 0)::double precision
+          AS "totalPipelineValue",
+        COALESCE(SUM(COALESCE("dealValue", 0)) FILTER (
+          WHERE "statusCode" = 'success'
+        ), 0)::double precision AS "wonValue",
+        COUNT(*) FILTER (
+          WHERE "statusCode" = 'failed'
+        )::int AS "lostDeals",
+        COUNT(*) FILTER (
+          WHERE "trialEndAt" >= now()
+            AND "trialEndAt" <= now() + interval '7 days'
+        )::int AS "trialsExpiringSoon",
+        COALESCE(SUM(COALESCE("commission", 0)), 0)::double precision
+          AS "totalCommission"
+      FROM base
+    `);
+
+    return rows[0] ?? this.getEmptySummary();
   }
 
   private buildBaseSql(whereSql: Prisma.Sql): Prisma.Sql {
@@ -260,7 +352,7 @@ export class CrmPipelineReadRepository {
     `;
   }
 
-  private buildWhereSql(params: GetCrmPipelineTableQueryFilters): Prisma.Sql {
+  private buildWhereSql(params: CrmPipelineFilterParams): Prisma.Sql {
     const where: Prisma.Sql[] = [];
 
     if (params.search) {
