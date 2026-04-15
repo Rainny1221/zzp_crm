@@ -5,11 +5,15 @@ import { toErrorMeta } from 'src/common/logging/application/error-meta.helper';
 import { Prisma } from 'src/generated/prisma/client';
 import { AppLoggerService } from 'src/logger/app-logger.service';
 import { PrismaService } from 'src/prisma/prisma.service';
-import type { GetCrmCustomersQueryFilters } from '../../application/queries';
+import type {
+  GetCrmCustomerByIdQueryParams,
+  GetCrmCustomersQueryFilters,
+} from '../../application/queries';
 
 const CRM_CUSTOMERS_LOG = {
   MODULE: 'crm-customers',
   ACTIONS: {
+    GET_CUSTOMER_DETAIL: 'CRM_CUSTOMERS_GET_DETAIL',
     LIST_CUSTOMERS: 'CRM_CUSTOMERS_LIST',
   },
   ENTITIES: {
@@ -59,6 +63,24 @@ export type CrmCustomerListRow = {
   nextTaskPriority: string | null;
 };
 
+export type CrmCustomerActivityRow = {
+  id: string;
+  type: string;
+  description: string | null;
+  author: string | null;
+  timestamp: Date;
+};
+
+export type CrmCustomerTaskRow = {
+  id: string;
+  title: string;
+  type: string | null;
+  dueAt: Date | null;
+  completed: boolean;
+  assigneeId: number | null;
+  priority: string | null;
+};
+
 type CountRow = {
   count: number;
 };
@@ -67,6 +89,12 @@ export type FindCrmCustomersReadResult = {
   items: CrmCustomerListRow[];
   filteredCount: number;
   totalCount: number;
+};
+
+export type CrmCustomerDetailResult = {
+  customer: CrmCustomerListRow;
+  activities: CrmCustomerActivityRow[];
+  tasks: CrmCustomerTaskRow[];
 };
 
 @Injectable()
@@ -190,6 +218,142 @@ export class CrmCustomersReadRepository {
         'Failed to list CRM customers',
         {
           filters: params,
+          error: toErrorMeta(error),
+        },
+      );
+    }
+  }
+
+  async findCustomerById(
+    params: GetCrmCustomerByIdQueryParams,
+  ): Promise<CrmCustomerDetailResult | null> {
+    try {
+      const customerRows = await this.prisma.$queryRaw<CrmCustomerListRow[]>(
+        Prisma.sql`
+          SELECT
+            c.id::text AS "customerId",
+            c.user_id AS "userId",
+            d.id::text AS "dealId",
+            cbp.shop_name AS "shopName",
+            cbp.tiktok_link AS "tiktokLink",
+            COALESCE(cbp.phone, profile_user.phone_number) AS "phone",
+            COALESCE(cbp.email, profile_user.email) AS "email",
+            COALESCE(c.gmv_monthly, cbp.gmv_monthly)::double precision AS "gmvMonthly",
+            cbp.industry AS "industry",
+            cbp.job_title AS "jobTitle",
+            cbp.province AS "province",
+            c.customer_tier_code AS "tierCode",
+            c.source_code AS "sourceCode",
+            cbp.partner_name AS "partnerName",
+            cbp.source_note AS "sourceNote",
+            cbp.synced_at AS "syncedAt",
+            c.created_at AS "customerCreatedAt",
+            d.owner_id AS "assigneeId",
+            COALESCE(
+              NULLIF(TRIM(CONCAT_WS(' ', owner.first_name, owner.last_name)), ''),
+              owner.username,
+              owner.email
+            ) AS "assigneeName",
+            owner.email AS "assigneeEmail",
+            owner.avatar_name AS "assigneeAvatar",
+            owner_role.name AS "assigneeRole",
+            d.status AS "statusCode",
+            d.pipeline_stage_code AS "pipelineStageCode",
+            dd.trial_start_date AS "trialStartAt",
+            dd.trial_end_date AS "trialEndAt",
+            dd.closed_revenue::double precision AS "revenue",
+            d.deal_value::double precision AS "dealValue",
+            d.probability AS "probability",
+            d.product_package_code AS "productPackageCode",
+            dd.failure_reason_code AS "failureReasonCode",
+            dd.failure_note AS "failureNote",
+            dd.last_contacted_at AS "lastContactedAt",
+            last_activity.last_activity_at AS "lastActivityAt",
+            COALESCE(task_summary.open_task_count, 0)::int AS "openTaskCount",
+            next_task.id::text AS "nextTaskId",
+            next_task.title AS "nextTaskTitle",
+            next_task.due_date AS "nextTaskDueAt",
+            next_task.priority_code AS "nextTaskPriority"
+          ${this.buildListFromSql()}
+          WHERE c.id = ${params.customerId}
+          LIMIT 1
+        `,
+      );
+
+      const customer = customerRows[0];
+      if (!customer) return null;
+
+      const [activities, tasks] = await Promise.all([
+        this.prisma.$queryRaw<CrmCustomerActivityRow[]>(Prisma.sql`
+          SELECT
+            activity.id::text AS "id",
+            activity.activity_type_code AS "type",
+            activity.description AS "description",
+            COALESCE(
+              activity.author_name,
+              NULLIF(TRIM(CONCAT_WS(' ', author.first_name, author.last_name)), ''),
+              author.username,
+              author.email
+            ) AS "author",
+            activity.occurred_at AS "timestamp"
+          FROM crm_activities activity
+          LEFT JOIN users author ON author.id = activity.author_user_id
+          WHERE activity.customer_id = ${params.customerId}
+          ORDER BY activity.occurred_at DESC, activity.id DESC
+        `),
+        this.prisma.$queryRaw<CrmCustomerTaskRow[]>(Prisma.sql`
+          SELECT
+            task.id::text AS "id",
+            task.title AS "title",
+            task.task_type_code AS "type",
+            task.due_date AS "dueAt",
+            task.completed AS "completed",
+            task.assignee_user_id AS "assigneeId",
+            task.priority_code AS "priority"
+          FROM crm_tasks task
+          WHERE task.customer_id = ${params.customerId}
+          ORDER BY task.completed ASC, task.due_date ASC NULLS LAST, task.id DESC
+        `),
+      ]);
+
+      this.logger.debug({
+        message: 'CRM customer detail loaded',
+        context: CrmCustomersReadRepository.name,
+        module: CRM_CUSTOMERS_LOG.MODULE,
+        action: CRM_CUSTOMERS_LOG.ACTIONS.GET_CUSTOMER_DETAIL,
+        entityType: CRM_CUSTOMERS_LOG.ENTITIES.CUSTOMER,
+        entityId: params.customerId,
+        meta: {
+          params,
+          activityCount: activities.length,
+          taskCount: tasks.length,
+        },
+      });
+
+      return {
+        customer,
+        activities,
+        tasks,
+      };
+    } catch (error: unknown) {
+      this.logger.error({
+        message: 'Failed to get CRM customer detail',
+        context: CrmCustomersReadRepository.name,
+        module: CRM_CUSTOMERS_LOG.MODULE,
+        action: CRM_CUSTOMERS_LOG.ACTIONS.GET_CUSTOMER_DETAIL,
+        entityType: CRM_CUSTOMERS_LOG.ENTITIES.CUSTOMER,
+        entityId: params.customerId,
+        meta: {
+          params,
+          error: toErrorMeta(error),
+        },
+      });
+
+      throw ErrorFactory.create(
+        ErrorCode.INTERNAL_ERROR,
+        'Failed to get CRM customer detail',
+        {
+          params,
           error: toErrorMeta(error),
         },
       );

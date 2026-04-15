@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { CrmCustomersInfrastructureModule } from '../infrastructure/crm-customers.infrastructure.module';
-import { GetCrmCustomersHandler } from './queries';
+import { GetCrmCustomerByIdHandler, GetCrmCustomersHandler } from './queries';
 
-const QueryHandlers = [GetCrmCustomersHandler];
+const QueryHandlers = [GetCrmCustomersHandler, GetCrmCustomerByIdHandler];
 
 @Module({
   imports: [CqrsModule, CrmCustomersInfrastructureModule],

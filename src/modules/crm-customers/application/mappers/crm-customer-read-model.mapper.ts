@@ -1,11 +1,19 @@
 import type {
+  ActivityItem,
+  CustomerDetailResponse,
   CustomerReadModel,
   CustomerRecordResponse,
   CustomerRelationship,
   CustomerTaskLite,
+  TaskItem,
   UserLite,
 } from '../queries';
-import type { CrmCustomerListRow } from '../../infrastructure/repositories/crm-customers-read.repository';
+import type {
+  CrmCustomerActivityRow,
+  CrmCustomerDetailResult,
+  CrmCustomerListRow,
+  CrmCustomerTaskRow,
+} from '../../infrastructure/repositories/crm-customers-read.repository';
 
 const toIsoString = (value: Date | null): string | null =>
   value ? value.toISOString() : null;
@@ -32,6 +40,25 @@ const toNextTask = (row: CrmCustomerListRow): CustomerTaskLite | null => {
     priority: row.nextTaskPriority,
   };
 };
+
+const toActivityItem = (row: CrmCustomerActivityRow): ActivityItem => ({
+  id: row.id,
+  type: row.type,
+  description: row.description ?? '',
+  author: row.author ?? 'System',
+  timestamp: row.timestamp.toISOString(),
+});
+
+const toTaskItem = (row: CrmCustomerTaskRow, customerId: string): TaskItem => ({
+  id: row.id,
+  customerId,
+  type: row.type ?? 'follow_up',
+  title: row.title,
+  dueDate: toIsoString(row.dueAt),
+  completed: row.completed,
+  assigneeId: row.assigneeId === null ? null : String(row.assigneeId),
+  priority: row.priority ?? 'medium',
+});
 
 const toRelationship = (status: string | null): CustomerRelationship => {
   switch (status?.toLowerCase()) {
@@ -143,5 +170,29 @@ export const toCustomerRecordResponse = (
     openTaskCount: row.openTaskCount,
     nextTask,
     activeDealValue: row.dealValue,
+  };
+};
+
+export const toCustomerDetailResponse = (
+  result: CrmCustomerDetailResult,
+): CustomerDetailResponse => {
+  const customer = toCustomerReadModel(result.customer);
+  const owner = toUserLite(result.customer);
+  const lastActivityAt =
+    result.customer.lastActivityAt ??
+    result.customer.lastContactedAt ??
+    result.customer.customerCreatedAt;
+
+  return {
+    customer,
+    ...(owner ? { owner } : {}),
+    activities: result.activities.map(toActivityItem),
+    tasks: result.tasks.map((task) =>
+      toTaskItem(task, result.customer.customerId),
+    ),
+    stats: {
+      openTaskCount: result.customer.openTaskCount,
+      lastActivityAt: lastActivityAt.toISOString(),
+    },
   };
 };

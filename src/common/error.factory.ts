@@ -57,6 +57,14 @@ export class ErrorFactory {
           detail,
         );
 
+      case ErrorCode.ITEM_NOT_FOUND:
+        return new BaseException(
+          code,
+          customMessage || 'The item was not found',
+          HttpStatus.NOT_FOUND,
+          detail,
+        );
+
       case ErrorCode.VALIDATION_ERROR:
         return new BaseException(
           code,
