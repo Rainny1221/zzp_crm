@@ -26,6 +26,10 @@ export type CrmPipelineStageRow = {
   code: string;
 };
 
+export type CrmPipelineProductPackageRow = {
+  code: string;
+};
+
 export type CrmPipelineTableRow = {
   dealId: string;
   customerId: string;
@@ -74,6 +78,12 @@ export type FindCrmPipelineTableResult = {
 
 export type FindCrmPipelineKanbanByStageResult = {
   stages: CrmPipelineStageRow[];
+  rows: CrmPipelineTableRow[];
+  summary: CrmPipelineTableSummary;
+};
+
+export type FindCrmPipelineKanbanByProductPackageResult = {
+  productPackages: CrmPipelineProductPackageRow[];
   rows: CrmPipelineTableRow[];
   summary: CrmPipelineTableSummary;
 };
@@ -220,6 +230,77 @@ export class CrmPipelineReadRepository {
       throw ErrorFactory.create(
         ErrorCode.INTERNAL_ERROR,
         'Failed to load CRM pipeline kanban',
+        {
+          filters: params,
+          error: toErrorMeta(error),
+        },
+      );
+    }
+  }
+
+  async findKanbanByProductPackage(
+    params: GetCrmPipelineKanbanQueryFilters,
+  ): Promise<FindCrmPipelineKanbanByProductPackageResult> {
+    const whereSql = this.buildWhereSql(params);
+    const baseSql = this.buildBaseSql(whereSql);
+
+    try {
+      const [productPackages, rows, summary] = await Promise.all([
+        this.prisma.crmProductPackages.findMany({
+          where: { is_active: true },
+          orderBy: { sort_order: 'asc' },
+          select: { code: true },
+        }),
+        this.prisma.$queryRaw<CrmPipelineTableRow[]>(Prisma.sql`
+          WITH base AS (
+            ${baseSql}
+          )
+          SELECT *
+          FROM base
+          ORDER BY
+            "productPackageCode" ASC NULLS LAST,
+            "lastActivityAt" DESC NULLS LAST,
+            "stageTransitionAt" DESC NULLS LAST,
+            "dealValue" DESC NULLS LAST,
+            "dealId" ASC
+        `),
+        this.loadSummary(baseSql),
+      ]);
+
+      this.logger.debug({
+        message: 'CRM pipeline product kanban loaded',
+        context: CrmPipelineReadRepository.name,
+        module: CRM_PIPELINE_LOG.MODULE,
+        action: CRM_PIPELINE_LOG.ACTIONS.GET_PRODUCT_KANBAN,
+        entityType: CRM_PIPELINE_LOG.ENTITIES.DEAL,
+        meta: {
+          filters: params,
+          productPackageCount: productPackages.length,
+          rowCount: rows.length,
+        },
+      });
+
+      return {
+        productPackages,
+        rows,
+        summary,
+      };
+    } catch (error: unknown) {
+      this.logger.error({
+        message: 'Failed to load CRM pipeline product kanban',
+        context: CrmPipelineReadRepository.name,
+        module: CRM_PIPELINE_LOG.MODULE,
+        action: CRM_PIPELINE_LOG.ACTIONS.GET_PRODUCT_KANBAN,
+        entityType: CRM_PIPELINE_LOG.ENTITIES.DEAL,
+        meta: {
+          filters: params,
+          error: toErrorMeta(error),
+        },
+      });
+
+      throw ErrorFactory.create(
+        ErrorCode.INTERNAL_ERROR,
+        'Failed to load CRM pipeline product kanban',
         {
           filters: params,
           error: toErrorMeta(error),

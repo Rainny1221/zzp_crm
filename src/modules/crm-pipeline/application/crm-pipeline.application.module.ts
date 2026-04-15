@@ -3,10 +3,15 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { CrmPipelineInfrastructureModule } from '../infrastructure/crm-pipeline.infrastructure.module';
 import {
   GetCrmPipelineKanbanHandler,
+  GetCrmPipelineProductKanbanHandler,
   GetCrmPipelineTableHandler,
 } from './queries';
 
-const QueryHandlers = [GetCrmPipelineTableHandler, GetCrmPipelineKanbanHandler];
+const QueryHandlers = [
+  GetCrmPipelineTableHandler,
+  GetCrmPipelineKanbanHandler,
+  GetCrmPipelineProductKanbanHandler,
+];
 
 @Module({
   imports: [CqrsModule, CrmPipelineInfrastructureModule],

@@ -5,6 +5,7 @@ import { RequirePermissions } from 'src/common/decorator/require-permissions.dec
 import type { AuthenticatedRequest } from 'src/common/interfaces/authenticated-request.interface';
 import {
   GetCrmPipelineKanbanQuery,
+  GetCrmPipelineProductKanbanQuery,
   GetCrmPipelineTableQuery,
 } from '../application/queries';
 import { GetCrmPipelineKanbanDto } from './dto/get-crm-pipeline-kanban.dto';
@@ -41,6 +42,22 @@ export class CrmPipelineController {
   ) {
     return this.queryBus.execute(
       new GetCrmPipelineKanbanQuery({
+        ...query,
+        currentUserId: req.user.id,
+        currentUserRoleName: req.user.roleName ?? null,
+      }),
+    );
+  }
+
+  @Get('product-kanban')
+  @ApiOperation({ summary: 'Get CRM pipeline kanban by product package' })
+  @RequirePermissions('CRM_PIPELINE_VIEW')
+  async getProductKanban(
+    @Query() query: GetCrmPipelineKanbanDto,
+    @Req() req: AuthenticatedRequest,
+  ) {
+    return this.queryBus.execute(
+      new GetCrmPipelineProductKanbanQuery({
         ...query,
         currentUserId: req.user.id,
         currentUserRoleName: req.user.roleName ?? null,
