@@ -1,9 +1,15 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { CrmDashboardInfrastructureModule } from '../infrastructure/crm-dashboard.infrastructure.module';
-import { GetCrmDashboardAdminHandler } from './queries';
+import {
+  GetCrmDashboardAdminHandler,
+  GetCrmDashboardSalesHandler,
+} from './queries';
 
-const QueryHandlers = [GetCrmDashboardAdminHandler];
+const QueryHandlers = [
+  GetCrmDashboardAdminHandler,
+  GetCrmDashboardSalesHandler,
+];
 
 @Module({
   imports: [CqrsModule, CrmDashboardInfrastructureModule],
