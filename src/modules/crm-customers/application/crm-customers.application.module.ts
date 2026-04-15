@@ -6,6 +6,7 @@ import {
   CreateCrmCustomerNoteHandler,
   UpdateCrmCustomerAssignmentHandler,
   UpdateCrmCustomerPipelineStageHandler,
+  UpdateCrmCustomerProductPackageHandler,
 } from './commands';
 import { GetCrmCustomerByIdHandler, GetCrmCustomersHandler } from './queries';
 
@@ -15,6 +16,7 @@ const CommandHandlers = [
   CreateCrmCustomerNoteHandler,
   CreateCrmCustomerInteractionHandler,
   UpdateCrmCustomerPipelineStageHandler,
+  UpdateCrmCustomerProductPackageHandler,
 ];
 
 @Module({

@@ -22,6 +22,8 @@ import type {
   UpdateCrmCustomerAssignmentResult,
   UpdateCrmCustomerPipelineStageCommand,
   UpdateCrmCustomerPipelineStageResult,
+  UpdateCrmCustomerProductPackageCommand,
+  UpdateCrmCustomerProductPackageResult,
 } from '../../application/commands';
 
 type CreateInteractionParams = CreateCrmCustomerInteractionCommand['params'];
@@ -29,6 +31,8 @@ type CreateNoteParams = CreateCrmCustomerNoteCommand['params'];
 type UpdateAssignmentParams = UpdateCrmCustomerAssignmentCommand['params'];
 type UpdatePipelineStageParams =
   UpdateCrmCustomerPipelineStageCommand['params'];
+type UpdateProductPackageParams =
+  UpdateCrmCustomerProductPackageCommand['params'];
 type ActorLookupParams = {
   actorUserId: number;
   actorEmail?: string | null;
@@ -694,6 +698,174 @@ export class CrmCustomersWriteRepository {
     }
   }
 
+  async updateProductPackage(
+    params: UpdateProductPackageParams,
+  ): Promise<UpdateCrmCustomerProductPackageResult> {
+    const note = params.note?.trim() || undefined;
+    const requestedDealValue = params.dealValue ?? null;
+
+    if (requestedDealValue !== null && requestedDealValue < 0) {
+      throw ErrorFactory.create(
+        ErrorCode.VALIDATION_ERROR,
+        'CRM deal value must be greater than or equal to 0',
+        {
+          customerId: params.customerId,
+          dealValue: requestedDealValue,
+        },
+      );
+    }
+
+    const actor = await this.findActiveActor(params);
+
+    if (!actor) {
+      throw ErrorFactory.create(
+        ErrorCode.INVALID_TOKEN,
+        'Authenticated CRM actor not found',
+        {
+          actorUserId: params.actorUserId,
+          actorEmail: params.actorEmail ?? null,
+        },
+      );
+    }
+
+    try {
+      return await this.prisma.$transaction(
+        async (tx): Promise<UpdateCrmCustomerProductPackageResult> => {
+          await tx.$queryRaw<Array<{ set_config: string }>>`
+            SELECT set_config(
+              'lock_timeout',
+              ${`${CRM_CUSTOMERS_TRANSACTION.LOCK_TIMEOUT_MS}ms`},
+              true
+            )
+          `;
+
+          const customer = await tx.crmCustomerProfiles.findUnique({
+            where: { id: params.customerId },
+            select: {
+              id: true,
+              deal: true,
+            },
+          });
+
+          if (!customer) {
+            throw ErrorFactory.create(
+              ErrorCode.ITEM_NOT_FOUND,
+              'CRM customer not found',
+              { customerId: params.customerId },
+            );
+          }
+
+          if (!customer.deal) {
+            throw ErrorFactory.create(
+              ErrorCode.ITEM_NOT_FOUND,
+              'CRM deal not found for customer',
+              { customerId: params.customerId },
+            );
+          }
+
+          const productPackage = await tx.crmProductPackages.findFirst({
+            where: {
+              code: params.productPackage,
+              is_active: true,
+            },
+            select: {
+              code: true,
+            },
+          });
+
+          if (!productPackage) {
+            throw ErrorFactory.create(
+              ErrorCode.ITEM_NOT_FOUND,
+              'CRM product package not found or inactive',
+              { productPackage: params.productPackage },
+            );
+          }
+
+          const deal = customer.deal;
+          const previousProductPackage = deal.product_package_code;
+          const previousDealValue =
+            deal.deal_value === null ? null : Number(deal.deal_value);
+          const nextDealValue =
+            requestedDealValue === null
+              ? previousDealValue
+              : requestedDealValue;
+          const changed =
+            previousProductPackage !== params.productPackage ||
+            previousDealValue !== nextDealValue;
+          const now = new Date();
+
+          if (changed) {
+            await tx.crmDeals.update({
+              where: { id: deal.id },
+              data: {
+                product_package_code: params.productPackage,
+                deal_value: nextDealValue,
+                updated_at: now,
+              },
+            });
+
+            await tx.crmActivities.create({
+              data: {
+                customer_id: customer.id,
+                activity_type_code: CRM_ACTIVITY_TYPE.PRODUCT_PACKAGE_CHANGED,
+                description: this.buildProductPackageActivityDescription({
+                  fromPackage: previousProductPackage,
+                  toPackage: params.productPackage,
+                  previousDealValue,
+                  dealValue: nextDealValue,
+                  note,
+                }),
+                author_user_id: actor.id,
+                author_name: toUserDisplayName(actor),
+                occurred_at: now,
+                created_at: now,
+              },
+            });
+          }
+
+          return {
+            customerId: String(customer.id),
+            dealId: String(deal.id),
+            previousProductPackage,
+            productPackage: params.productPackage,
+            previousDealValue,
+            dealValue: nextDealValue,
+            changed,
+            changedAt: now.toISOString(),
+          };
+        },
+        {
+          maxWait: CRM_CUSTOMERS_TRANSACTION.MAX_WAIT_MS,
+          timeout: CRM_CUSTOMERS_TRANSACTION.TIMEOUT_MS,
+          isolationLevel: Prisma.TransactionIsolationLevel.ReadCommitted,
+        },
+      );
+    } catch (error: unknown) {
+      this.logger.error({
+        message: 'Failed to update CRM customer product package',
+        context: CrmCustomersWriteRepository.name,
+        module: CRM_CUSTOMERS_LOG.MODULE,
+        action: CRM_CUSTOMERS_LOG.ACTIONS.UPDATE_PRODUCT_PACKAGE,
+        entityType: CRM_CUSTOMERS_LOG.ENTITIES.CUSTOMER,
+        entityId: params.customerId,
+        meta: {
+          params: {
+            customerId: params.customerId,
+            productPackage: params.productPackage,
+            dealValue: requestedDealValue,
+            actorUserId: params.actorUserId,
+            actorEmail: params.actorEmail ?? null,
+            actorRoleName: params.actorRoleName ?? null,
+            noteLength: note?.length ?? 0,
+          },
+          error: toErrorMeta(error),
+        },
+      });
+
+      throw error;
+    }
+  }
+
   async createNote(
     params: CreateNoteParams,
   ): Promise<CreateCrmCustomerNoteResult> {
@@ -1002,6 +1174,30 @@ export class CrmCustomersWriteRepository {
 
     if (params.failureNote) {
       parts.push(`Failure note: ${params.failureNote}.`);
+    }
+
+    if (params.note) {
+      parts.push(`Note: ${params.note}`);
+    }
+
+    return parts.join(' ');
+  }
+
+  private buildProductPackageActivityDescription(params: {
+    fromPackage: string | null;
+    toPackage: string;
+    previousDealValue: number | null;
+    dealValue: number | null;
+    note?: string;
+  }): string {
+    const parts = [
+      `Product package changed from "${params.fromPackage ?? 'null'}" to "${params.toPackage}".`,
+    ];
+
+    if (params.previousDealValue !== params.dealValue) {
+      parts.push(
+        `Deal value changed from "${params.previousDealValue ?? 0}" to "${params.dealValue ?? 0}".`,
+      );
     }
 
     if (params.note) {

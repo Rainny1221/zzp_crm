@@ -6,3 +6,5 @@ export * from './update-crm-customer-assignment.command';
 export * from './update-crm-customer-assignment.handler';
 export * from './update-crm-customer-pipeline-stage.command';
 export * from './update-crm-customer-pipeline-stage.handler';
+export * from './update-crm-customer-product-package.command';
+export * from './update-crm-customer-product-package.handler';

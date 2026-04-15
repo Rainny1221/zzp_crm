@@ -22,12 +22,14 @@ import {
   CreateCrmCustomerNoteCommand,
   UpdateCrmCustomerAssignmentCommand,
   UpdateCrmCustomerPipelineStageCommand,
+  UpdateCrmCustomerProductPackageCommand,
 } from '../application/commands';
 import { CreateCrmCustomerInteractionDto } from './dto/create-crm-customer-interaction.dto';
 import { CreateCrmCustomerNoteDto } from './dto/create-crm-customer-note.dto';
 import { GetCrmCustomersDto } from './dto/get-crm-customers.dto';
 import { UpdateCrmCustomerAssignmentDto } from './dto/update-crm-customer-assignment.dto';
 import { UpdateCrmCustomerPipelineStageDto } from './dto/update-crm-customer-pipeline-stage.dto';
+import { UpdateCrmCustomerProductPackageDto } from './dto/update-crm-customer-product-package.dto';
 
 @ApiTags('CRM Customers')
 @ApiBearerAuth('access-token')
@@ -146,6 +148,27 @@ export class CrmCustomersController {
         note: dto.note,
         failureReason: dto.failureReason ?? null,
         failureNote: dto.failureNote ?? null,
+        actorUserId: req.user.id,
+        actorEmail: req.user.email ?? null,
+        actorRoleName: req.user.roleName ?? null,
+      }),
+    );
+  }
+
+  @Patch(':id/product-package')
+  @ApiOperation({ summary: 'Update CRM customer product package' })
+  @RequirePermissions('CRM_PIPELINE_MANAGE')
+  async updateProductPackage(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() dto: UpdateCrmCustomerProductPackageDto,
+    @Req() req: AuthenticatedRequest,
+  ) {
+    return this.commandBus.execute(
+      new UpdateCrmCustomerProductPackageCommand({
+        customerId: id,
+        productPackage: dto.productPackage,
+        dealValue: dto.dealValue ?? null,
+        note: dto.note,
         actorUserId: req.user.id,
         actorEmail: req.user.email ?? null,
         actorRoleName: req.user.roleName ?? null,

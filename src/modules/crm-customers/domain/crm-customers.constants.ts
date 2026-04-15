@@ -7,6 +7,7 @@ export const CRM_CUSTOMERS_LOG = {
     CREATE_NOTE: 'CRM_CUSTOMERS_CREATE_NOTE',
     UPDATE_ASSIGNMENT: 'CRM_CUSTOMERS_UPDATE_ASSIGNMENT',
     UPDATE_PIPELINE_STAGE: 'CRM_CUSTOMERS_UPDATE_PIPELINE_STAGE',
+    UPDATE_PRODUCT_PACKAGE: 'CRM_CUSTOMERS_UPDATE_PRODUCT_PACKAGE',
   },
   ENTITIES: {
     ASSIGNEE: 'CRM_ASSIGNEE',
@@ -21,6 +22,7 @@ export const CRM_ACTIVITY_TYPE = {
   MESSAGE_LOGGED: 'message_logged',
   NOTE_ADDED: 'note_added',
   PIPELINE_STAGE_CHANGED: 'pipeline_stage_changed',
+  PRODUCT_PACKAGE_CHANGED: 'product_package_changed',
   UNASSIGNED: 'unassigned',
 } as const;
 
@@ -76,3 +78,7 @@ export const CRM_FAILURE_PIPELINE_STAGES = [
   'fail',
   'lost_unqualified',
 ] as const satisfies readonly CrmPipelineStageCode[];
+
+export const CRM_PRODUCT_PACKAGE_CODES = ['trial', '399', '699'] as const;
+
+export type CrmProductPackageCode = (typeof CRM_PRODUCT_PACKAGE_CODES)[number];
