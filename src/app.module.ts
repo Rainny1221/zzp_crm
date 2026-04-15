@@ -30,6 +30,7 @@ import { LoggerModule } from './logger/logger.module';
 import { RequestContextModule } from './common/context/infrastructure/request-context.module';
 import { CrmSyncModule } from './modules/crm-sync/crm-sync.module';
 import { CrmBootstrapModule } from './modules/crm-bootstrap/crm-bootstrap.module';
+import { CrmCustomersModule } from './modules/crm-customers/crm-customers.module';
 
 @Module({
   imports: [
@@ -84,6 +85,7 @@ import { CrmBootstrapModule } from './modules/crm-bootstrap/crm-bootstrap.module
     AvatarModule,
     ImageModule,
     CrmBootstrapModule,
+    CrmCustomersModule,
     CrmSyncModule,
   ],
   controllers: [AppController],
