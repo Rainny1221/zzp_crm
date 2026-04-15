@@ -18,12 +18,16 @@ import {
   GetCrmCustomersQuery,
 } from '../application/queries';
 import {
+  CreateCrmCustomerInteractionCommand,
   CreateCrmCustomerNoteCommand,
   UpdateCrmCustomerAssignmentCommand,
+  UpdateCrmCustomerPipelineStageCommand,
 } from '../application/commands';
+import { CreateCrmCustomerInteractionDto } from './dto/create-crm-customer-interaction.dto';
 import { CreateCrmCustomerNoteDto } from './dto/create-crm-customer-note.dto';
 import { GetCrmCustomersDto } from './dto/get-crm-customers.dto';
 import { UpdateCrmCustomerAssignmentDto } from './dto/update-crm-customer-assignment.dto';
+import { UpdateCrmCustomerPipelineStageDto } from './dto/update-crm-customer-pipeline-stage.dto';
 
 @ApiTags('CRM Customers')
 @ApiBearerAuth('access-token')
@@ -98,6 +102,50 @@ export class CrmCustomersController {
       new CreateCrmCustomerNoteCommand({
         customerId: id,
         content: dto.content,
+        actorUserId: req.user.id,
+        actorEmail: req.user.email ?? null,
+        actorRoleName: req.user.roleName ?? null,
+      }),
+    );
+  }
+
+  @Post(':id/interactions')
+  @ApiOperation({ summary: 'Create CRM customer interaction' })
+  @RequirePermissions('CRM_CUSTOMER_MANAGE')
+  async createInteraction(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() dto: CreateCrmCustomerInteractionDto,
+    @Req() req: AuthenticatedRequest,
+  ) {
+    return this.commandBus.execute(
+      new CreateCrmCustomerInteractionCommand({
+        customerId: id,
+        channel: dto.channel,
+        outcomeCode: dto.outcomeCode,
+        summary: dto.summary,
+        occurredAt: dto.occurredAt,
+        actorUserId: req.user.id,
+        actorEmail: req.user.email ?? null,
+        actorRoleName: req.user.roleName ?? null,
+      }),
+    );
+  }
+
+  @Patch(':id/pipeline-stage')
+  @ApiOperation({ summary: 'Update CRM customer pipeline stage' })
+  @RequirePermissions('CRM_PIPELINE_MANAGE')
+  async updatePipelineStage(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() dto: UpdateCrmCustomerPipelineStageDto,
+    @Req() req: AuthenticatedRequest,
+  ) {
+    return this.commandBus.execute(
+      new UpdateCrmCustomerPipelineStageCommand({
+        customerId: id,
+        pipelineStage: dto.pipelineStage,
+        note: dto.note,
+        failureReason: dto.failureReason ?? null,
+        failureNote: dto.failureNote ?? null,
         actorUserId: req.user.id,
         actorEmail: req.user.email ?? null,
         actorRoleName: req.user.roleName ?? null,
