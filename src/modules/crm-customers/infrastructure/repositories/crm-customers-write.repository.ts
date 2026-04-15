@@ -11,11 +11,18 @@ import {
   CRM_CUSTOMERS_LOG,
 } from '../../domain/crm-customers.constants';
 import type {
+  CreateCrmCustomerNoteCommand,
+  CreateCrmCustomerNoteResult,
   UpdateCrmCustomerAssignmentCommand,
   UpdateCrmCustomerAssignmentResult,
 } from '../../application/commands';
 
+type CreateNoteParams = CreateCrmCustomerNoteCommand['params'];
 type UpdateAssignmentParams = UpdateCrmCustomerAssignmentCommand['params'];
+type ActorLookupParams = {
+  actorUserId: number;
+  actorEmail?: string | null;
+};
 
 type UserSnapshot = {
   id: number;
@@ -35,19 +42,19 @@ const CRM_CUSTOMERS_TRANSACTION = {
   TIMEOUT_MS: 3000,
 } as const;
 
+const toUserDisplayName = (user: UserSnapshot): string | null =>
+  [user.first_name, user.last_name].filter(Boolean).join(' ') ||
+  user.username ||
+  user.email;
+
 const toOwnerSnapshot = (
   assignee: UserSnapshot | null,
 ): UpdateCrmCustomerAssignmentResult['owner'] => {
   if (!assignee) return null;
 
-  const name =
-    [assignee.first_name, assignee.last_name].filter(Boolean).join(' ') ||
-    assignee.username ||
-    assignee.email;
-
   return {
     id: String(assignee.id),
-    name,
+    name: toUserDisplayName(assignee),
     email: assignee.email,
     avatarName: assignee.avatar_name,
     roleName: assignee.role?.name ?? null,
@@ -207,6 +214,132 @@ export class CrmCustomersWriteRepository {
     }
   }
 
+  async createNote(
+    params: CreateNoteParams,
+  ): Promise<CreateCrmCustomerNoteResult> {
+    const content = params.content.trim();
+
+    if (!content) {
+      throw ErrorFactory.create(
+        ErrorCode.VALIDATION_ERROR,
+        'CRM customer note content is required',
+        { customerId: params.customerId },
+      );
+    }
+
+    const actor = await this.findActiveActor(params);
+
+    if (!actor) {
+      throw ErrorFactory.create(
+        ErrorCode.INVALID_TOKEN,
+        'Authenticated CRM actor not found',
+        {
+          actorUserId: params.actorUserId,
+          actorEmail: params.actorEmail ?? null,
+        },
+      );
+    }
+
+    try {
+      return await this.prisma.$transaction(
+        async (tx): Promise<CreateCrmCustomerNoteResult> => {
+          await tx.$queryRaw<Array<{ set_config: string }>>`
+            SELECT set_config(
+              'lock_timeout',
+              ${`${CRM_CUSTOMERS_TRANSACTION.LOCK_TIMEOUT_MS}ms`},
+              true
+            )
+          `;
+
+          const customer = await tx.crmCustomerProfiles.findUnique({
+            where: { id: params.customerId },
+            select: {
+              id: true,
+              deal: {
+                select: {
+                  id: true,
+                },
+              },
+            },
+          });
+
+          if (!customer) {
+            throw ErrorFactory.create(
+              ErrorCode.ITEM_NOT_FOUND,
+              'CRM customer not found',
+              { customerId: params.customerId },
+            );
+          }
+
+          if (!customer.deal) {
+            throw ErrorFactory.create(
+              ErrorCode.ITEM_NOT_FOUND,
+              'CRM deal not found for customer',
+              { customerId: params.customerId },
+            );
+          }
+
+          const now = new Date();
+          const authorName = toUserDisplayName(actor);
+          const activity = await tx.crmActivities.create({
+            data: {
+              customer_id: customer.id,
+              activity_type_code: CRM_ACTIVITY_TYPE.NOTE_ADDED,
+              description: content,
+              author_user_id: actor.id,
+              author_name: authorName,
+              occurred_at: now,
+              created_at: now,
+            },
+            select: {
+              id: true,
+              occurred_at: true,
+            },
+          });
+
+          return {
+            customerId: String(customer.id),
+            activityId: String(activity.id),
+            type: CRM_ACTIVITY_TYPE.NOTE_ADDED,
+            content,
+            author: {
+              id: String(actor.id),
+              name: authorName,
+              email: actor.email,
+            },
+            createdAt: activity.occurred_at.toISOString(),
+          };
+        },
+        {
+          maxWait: CRM_CUSTOMERS_TRANSACTION.MAX_WAIT_MS,
+          timeout: CRM_CUSTOMERS_TRANSACTION.TIMEOUT_MS,
+          isolationLevel: Prisma.TransactionIsolationLevel.ReadCommitted,
+        },
+      );
+    } catch (error: unknown) {
+      this.logger.error({
+        message: 'Failed to create CRM customer note',
+        context: CrmCustomersWriteRepository.name,
+        module: CRM_CUSTOMERS_LOG.MODULE,
+        action: CRM_CUSTOMERS_LOG.ACTIONS.CREATE_NOTE,
+        entityType: CRM_CUSTOMERS_LOG.ENTITIES.CUSTOMER,
+        entityId: params.customerId,
+        meta: {
+          params: {
+            customerId: params.customerId,
+            actorUserId: params.actorUserId,
+            actorEmail: params.actorEmail ?? null,
+            actorRoleName: params.actorRoleName ?? null,
+            contentLength: content.length,
+          },
+          error: toErrorMeta(error),
+        },
+      });
+
+      throw error;
+    }
+  }
+
   private async findEligibleAssignee(
     assigneeId: number,
   ): Promise<UserSnapshot | null> {
@@ -241,7 +374,7 @@ export class CrmCustomersWriteRepository {
   }
 
   private async findActiveActor(
-    params: UpdateAssignmentParams,
+    params: ActorLookupParams,
   ): Promise<UserSnapshot | null> {
     const actorById = await this.prisma.user.findFirst({
       where: {

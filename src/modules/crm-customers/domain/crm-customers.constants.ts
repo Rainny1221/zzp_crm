@@ -3,6 +3,7 @@ export const CRM_CUSTOMERS_LOG = {
   ACTIONS: {
     GET_CUSTOMER_DETAIL: 'CRM_CUSTOMERS_GET_DETAIL',
     LIST_CUSTOMERS: 'CRM_CUSTOMERS_LIST',
+    CREATE_NOTE: 'CRM_CUSTOMERS_CREATE_NOTE',
     UPDATE_ASSIGNMENT: 'CRM_CUSTOMERS_UPDATE_ASSIGNMENT',
   },
   ENTITIES: {
@@ -14,6 +15,7 @@ export const CRM_CUSTOMERS_LOG = {
 
 export const CRM_ACTIVITY_TYPE = {
   ASSIGNMENT_CHANGED: 'assignment_changed',
+  NOTE_ADDED: 'note_added',
   UNASSIGNED: 'unassigned',
 } as const;
 

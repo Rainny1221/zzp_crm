@@ -5,6 +5,7 @@ import {
   Param,
   ParseIntPipe,
   Patch,
+  Post,
   Query,
   Req,
 } from '@nestjs/common';
@@ -16,7 +17,11 @@ import {
   GetCrmCustomerByIdQuery,
   GetCrmCustomersQuery,
 } from '../application/queries';
-import { UpdateCrmCustomerAssignmentCommand } from '../application/commands';
+import {
+  CreateCrmCustomerNoteCommand,
+  UpdateCrmCustomerAssignmentCommand,
+} from '../application/commands';
+import { CreateCrmCustomerNoteDto } from './dto/create-crm-customer-note.dto';
 import { GetCrmCustomersDto } from './dto/get-crm-customers.dto';
 import { UpdateCrmCustomerAssignmentDto } from './dto/update-crm-customer-assignment.dto';
 
@@ -74,6 +79,25 @@ export class CrmCustomersController {
         customerId: id,
         assigneeId: dto.assigneeId,
         note: dto.note,
+        actorUserId: req.user.id,
+        actorEmail: req.user.email ?? null,
+        actorRoleName: req.user.roleName ?? null,
+      }),
+    );
+  }
+
+  @Post(':id/notes')
+  @ApiOperation({ summary: 'Create CRM customer note' })
+  @RequirePermissions('CRM_CUSTOMER_MANAGE')
+  async createNote(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() dto: CreateCrmCustomerNoteDto,
+    @Req() req: AuthenticatedRequest,
+  ) {
+    return this.commandBus.execute(
+      new CreateCrmCustomerNoteCommand({
+        customerId: id,
+        content: dto.content,
         actorUserId: req.user.id,
         actorEmail: req.user.email ?? null,
         actorRoleName: req.user.roleName ?? null,

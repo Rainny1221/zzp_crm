@@ -1,11 +1,17 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { CrmCustomersInfrastructureModule } from '../infrastructure/crm-customers.infrastructure.module';
-import { UpdateCrmCustomerAssignmentHandler } from './commands';
+import {
+  CreateCrmCustomerNoteHandler,
+  UpdateCrmCustomerAssignmentHandler,
+} from './commands';
 import { GetCrmCustomerByIdHandler, GetCrmCustomersHandler } from './queries';
 
 const QueryHandlers = [GetCrmCustomersHandler, GetCrmCustomerByIdHandler];
-const CommandHandlers = [UpdateCrmCustomerAssignmentHandler];
+const CommandHandlers = [
+  UpdateCrmCustomerAssignmentHandler,
+  CreateCrmCustomerNoteHandler,
+];
 
 @Module({
   imports: [CqrsModule, CrmCustomersInfrastructureModule],
