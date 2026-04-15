@@ -45,7 +45,7 @@ export class CrmSyncWriterPrismaRepository implements ICrmSyncWriterRepository {
           select: { id: true },
         }),
         this.prisma.crmPipelineStages.findUnique({
-          where: { code: CRM_SYNC_DEFAULTS.PIPELINE_STAGE },
+          where: { code: CRM_SYNC_DEFAULTS.PIPELINE_STAGE_CODE },
           select: { code: true, mapped_status_code: true },
         }),
         this.prisma.crmProductPackages.findUnique({
@@ -83,19 +83,19 @@ export class CrmSyncWriterPrismaRepository implements ICrmSyncWriterRepository {
           module: CRM_SYNC_LOG.MODULE,
           action: CRM_SYNC_LOG.ACTIONS.SYNC_FROM_USER,
           entityType: CRM_SYNC_LOG.ENTITIES.PIPELINE_STAGE,
-          entityId: CRM_SYNC_DEFAULTS.PIPELINE_STAGE,
+          entityId: CRM_SYNC_DEFAULTS.PIPELINE_STAGE_CODE,
           meta: {
             userId,
-            stageCode: CRM_SYNC_DEFAULTS.PIPELINE_STAGE,
+            stageCode: CRM_SYNC_DEFAULTS.PIPELINE_STAGE_CODE,
           },
         });
 
         throw ErrorFactory.create(
           ErrorCode.CRM_SYNC_CONFIGURATION_ERROR,
-          `Pipeline stage ${CRM_SYNC_DEFAULTS.PIPELINE_STAGE} not found`,
+          `Pipeline stage ${CRM_SYNC_DEFAULTS.PIPELINE_STAGE_CODE} not found`,
           {
             userId,
-            stageCode: CRM_SYNC_DEFAULTS.PIPELINE_STAGE,
+            stageCode: CRM_SYNC_DEFAULTS.PIPELINE_STAGE_CODE,
           },
         );
       }
@@ -151,7 +151,7 @@ export class CrmSyncWriterPrismaRepository implements ICrmSyncWriterRepository {
             update: {},
             create: {
               customer_id: profile.id,
-              pipeline_stage_code: CRM_SYNC_DEFAULTS.PIPELINE_STAGE,
+              pipeline_stage_code: CRM_SYNC_DEFAULTS.PIPELINE_STAGE_CODE,
               owner_id: null,
               product_package_code: productPackage.code,
               deal_value: 0,
@@ -171,7 +171,7 @@ export class CrmSyncWriterPrismaRepository implements ICrmSyncWriterRepository {
             const history = await tx.crmPipelineRecords.create({
               data: {
                 deal_id: deal.id,
-                stage_code: CRM_SYNC_DEFAULTS.PIPELINE_STAGE,
+                stage_code: CRM_SYNC_DEFAULTS.PIPELINE_STAGE_CODE,
                 owner_id: null,
               },
             });

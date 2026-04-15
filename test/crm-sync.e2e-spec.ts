@@ -229,17 +229,17 @@ describe('CrmSyncController (e2e)', () => {
     }
 
     await prisma.crmPipelineStages.upsert({
-      where: { code: CRM_SYNC_DEFAULTS.PIPELINE_STAGE },
+      where: { code: CRM_SYNC_DEFAULTS.PIPELINE_STAGE_CODE },
       update: {
-        label: CRM_SYNC_DEFAULTS.PIPELINE_STAGE,
+        label: CRM_SYNC_DEFAULTS.PIPELINE_STAGE_CODE,
         stage_order: 1,
         mapped_status_code: CRM_SYNC_DEFAULTS.PIPELINE_MAPPED_STATUS_CODE,
         is_terminal: false,
         is_active: true,
       },
       create: {
-        code: CRM_SYNC_DEFAULTS.PIPELINE_STAGE,
-        label: CRM_SYNC_DEFAULTS.PIPELINE_STAGE,
+        code: CRM_SYNC_DEFAULTS.PIPELINE_STAGE_CODE,
+        label: CRM_SYNC_DEFAULTS.PIPELINE_STAGE_CODE,
         stage_order: 1,
         mapped_status_code: CRM_SYNC_DEFAULTS.PIPELINE_MAPPED_STATUS_CODE,
         is_terminal: false,

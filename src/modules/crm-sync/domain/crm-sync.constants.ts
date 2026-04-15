@@ -103,12 +103,43 @@ export const CRM_CUSTOMER_TIER_OPTIONS = [
   },
 ] as const;
 
+export const CRM_PIPELINE_STAGE_CODE = {
+  NEW_LEAD: 'new_lead',
+  CONNECT: 'connect',
+  QUALIFIED: 'qualified',
+  BOOKING_DEMO: 'booking_demo',
+  DEMO: 'demo',
+  PROPOSAL: 'proposal',
+  NEGOTIATION: 'negotiation',
+  CLOSE_DEAL: 'close_deal',
+  FAIL: 'fail',
+  LOST_UNQUALIFIED: 'lost_unqualified',
+} as const;
+
+export type CrmPipelineStageCode =
+  (typeof CRM_PIPELINE_STAGE_CODE)[keyof typeof CRM_PIPELINE_STAGE_CODE];
+
+export const CRM_DEAL_STATUS_CODE = {
+  NEW: 'new',
+  TRIAL: 'trial',
+  FAILED: 'failed',
+  SUCCESS: 'success',
+} as const;
+
+export type CrmDealStatusCode =
+  (typeof CRM_DEAL_STATUS_CODE)[keyof typeof CRM_DEAL_STATUS_CODE];
+
+export const CRM_PRIORITY_CODE = {
+  MEDIUM: 'medium',
+} as const;
+
 export const CRM_SYNC_DEFAULTS = {
   SOURCE_CODE: 'website',
   CUSTOMER_TIER_CODE: null as CrmCustomerTierCode | null,
-  PIPELINE_STAGE: 'NEW_LEAD',
-  PIPELINE_MAPPED_STATUS_CODE: 'NEW',
+  PIPELINE_STAGE_CODE: CRM_PIPELINE_STAGE_CODE.NEW_LEAD,
+  PIPELINE_MAPPED_STATUS_CODE: CRM_DEAL_STATUS_CODE.NEW,
   PRODUCT_PACKAGE_CODE: CRM_PRODUCT_PACKAGE_CODE.TRIAL,
+  PRIORITY_CODE: CRM_PRIORITY_CODE.MEDIUM,
   PROBABILITY: 0,
 } as const;
 

@@ -196,13 +196,13 @@ export class CrmBootstrapService {
       },
       defaults: {
         sourceCode: CRM_SYNC_DEFAULTS.SOURCE_CODE,
-        pipelineStageCode: CRM_SYNC_DEFAULTS.PIPELINE_STAGE,
+        pipelineStageCode: CRM_SYNC_DEFAULTS.PIPELINE_STAGE_CODE,
         statusCode: CRM_SYNC_DEFAULTS.PIPELINE_MAPPED_STATUS_CODE,
         productPackageCode: CRM_SYNC_DEFAULTS.PRODUCT_PACKAGE_CODE,
         tierCode: CRM_SYNC_DEFAULTS.CUSTOMER_TIER_CODE,
         ownerId: null,
         assigneeId: null,
-        priorityCode: 'medium',
+        priorityCode: CRM_SYNC_DEFAULTS.PRIORITY_CODE,
         probability: CRM_SYNC_DEFAULTS.PROBABILITY,
       },
     };

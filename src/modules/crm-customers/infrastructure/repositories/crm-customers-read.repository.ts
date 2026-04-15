@@ -275,7 +275,7 @@ export class CrmCustomersReadRepository {
     if (params.focus === 'unassigned_leads') {
       where.push(Prisma.sql`
         d.owner_id IS NULL
-        AND UPPER(COALESCE(d.status, '')) IN ('NEW')
+        AND d.status = 'new'
       `);
     }
 
@@ -291,13 +291,13 @@ export class CrmCustomersReadRepository {
   ): Prisma.Sql {
     switch (status) {
       case 'new':
-        return Prisma.sql`UPPER(COALESCE(d.status, '')) IN ('NEW')`;
+        return Prisma.sql`d.status = 'new'`;
       case 'trial':
-        return Prisma.sql`LOWER(COALESCE(d.status, '')) = 'trial'`;
+        return Prisma.sql`d.status = 'trial'`;
       case 'success':
-        return Prisma.sql`UPPER(COALESCE(d.status, '')) IN ('SUCCESS', 'WON')`;
+        return Prisma.sql`d.status = 'success'`;
       case 'failed':
-        return Prisma.sql`UPPER(COALESCE(d.status, '')) IN ('FAILED', 'FAIL', 'LOST')`;
+        return Prisma.sql`d.status = 'failed'`;
       case 'all':
         return Prisma.empty;
     }
