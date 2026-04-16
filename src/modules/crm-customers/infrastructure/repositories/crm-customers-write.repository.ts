@@ -8,12 +8,16 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import {
   CRM_ACTIVITY_TYPE,
   CRM_CUSTOMER_ASSIGNABLE_ROLE_NAMES,
+  CRM_CUSTOMER_CREATE_DEFAULTS,
+  CRM_CUSTOMER_TIER_GMV_THRESHOLDS,
   CRM_CUSTOMERS_LOG,
   CRM_FAILURE_PIPELINE_STAGES,
   CRM_INTERACTION_CHANNEL_CODES,
   CRM_PIPELINE_STAGE_TO_STATUS,
 } from '../../domain/crm-customers.constants';
 import type {
+  CreateCrmCustomerCommand,
+  CreateCrmCustomerResult,
   CreateCrmCustomerInteractionCommand,
   CreateCrmCustomerInteractionResult,
   CreateCrmCustomerNoteCommand,
@@ -26,6 +30,7 @@ import type {
   UpdateCrmCustomerProductPackageResult,
 } from '../../application/commands';
 
+type CreateCustomerParams = CreateCrmCustomerCommand['params'];
 type CreateInteractionParams = CreateCrmCustomerInteractionCommand['params'];
 type CreateNoteParams = CreateCrmCustomerNoteCommand['params'];
 type UpdateAssignmentParams = UpdateCrmCustomerAssignmentCommand['params'];
@@ -52,6 +57,10 @@ type UserSnapshot = {
 
 type LookupCodeSnapshot = {
   code: string;
+};
+
+type PipelineStageSnapshot = LookupCodeSnapshot & {
+  mapped_status_code: string;
 };
 
 const CRM_CUSTOMERS_TRANSACTION = {
@@ -97,6 +106,238 @@ export class CrmCustomersWriteRepository {
     private readonly prisma: PrismaService,
     private readonly logger: AppLoggerService,
   ) {}
+
+  async createCustomer(
+    params: CreateCustomerParams,
+  ): Promise<CreateCrmCustomerResult> {
+    const contact = {
+      phone: params.phone?.trim() || null,
+      email: params.email?.trim() || null,
+      tiktokLink: params.tiktokLink?.trim() || null,
+    };
+    const source = params.source.trim();
+    const dealValue =
+      params.dealValue ?? CRM_CUSTOMER_CREATE_DEFAULTS.DEAL_VALUE;
+    const note = params.note?.trim() || undefined;
+
+    if (!contact.phone && !contact.email && !contact.tiktokLink) {
+      throw ErrorFactory.create(
+        ErrorCode.VALIDATION_ERROR,
+        'At least one contact field is required',
+        contact,
+      );
+    }
+
+    if (dealValue < 0) {
+      throw ErrorFactory.create(
+        ErrorCode.VALIDATION_ERROR,
+        'CRM deal value must be greater than or equal to 0',
+        { dealValue },
+      );
+    }
+
+    const [actor, activeSource, activeProductPackage, activePipelineStage] =
+      await Promise.all([
+        this.findActiveActor(params),
+        this.findActiveSource(source),
+        this.findActiveProductPackage(params.productPackage),
+        this.findActivePipelineStage(
+          CRM_CUSTOMER_CREATE_DEFAULTS.PIPELINE_STAGE_CODE,
+        ),
+      ]);
+
+    const assignee =
+      params.assigneeId == null
+        ? null
+        : await this.findEligibleAssignee(params.assigneeId);
+
+    if (!actor) {
+      throw ErrorFactory.create(
+        ErrorCode.INVALID_TOKEN,
+        'Authenticated CRM actor not found',
+        {
+          actorUserId: params.actorUserId,
+          actorEmail: params.actorEmail ?? null,
+        },
+      );
+    }
+
+    if (!activeSource) {
+      throw ErrorFactory.create(
+        ErrorCode.VALIDATION_ERROR,
+        'CRM customer source is not configured or inactive',
+        { source },
+      );
+    }
+
+    if (!activeProductPackage) {
+      throw ErrorFactory.create(
+        ErrorCode.VALIDATION_ERROR,
+        'CRM product package is not configured or inactive',
+        { productPackage: params.productPackage },
+      );
+    }
+
+    if (!activePipelineStage) {
+      throw ErrorFactory.create(
+        ErrorCode.VALIDATION_ERROR,
+        'CRM initial pipeline stage is not configured or inactive',
+        { pipelineStage: CRM_CUSTOMER_CREATE_DEFAULTS.PIPELINE_STAGE_CODE },
+      );
+    }
+
+    if (params.assigneeId != null && !assignee) {
+      throw ErrorFactory.create(
+        ErrorCode.ITEM_NOT_FOUND,
+        'CRM assignee not found or not eligible',
+        { assigneeId: params.assigneeId },
+      );
+    }
+
+    try {
+      return await this.prisma.$transaction(
+        async (tx): Promise<CreateCrmCustomerResult> => {
+          await tx.$queryRaw<Array<{ set_config: string }>>`
+            SELECT set_config(
+              'lock_timeout',
+              ${`${CRM_CUSTOMERS_TRANSACTION.LOCK_TIMEOUT_MS}ms`},
+              true
+            )
+          `;
+
+          const now = new Date();
+          const customer = await tx.crmCustomerProfiles.create({
+            data: {
+              source_code: source,
+              gmv_monthly: params.gmvMonthly ?? null,
+              customer_tier_code: this.deriveTier(params.gmvMonthly ?? null),
+              owner_id: params.assigneeId ?? null,
+              created_at: now,
+            },
+            select: {
+              id: true,
+            },
+          });
+
+          await tx.crmCustomerBusinessProfiles.create({
+            data: {
+              customer_id: customer.id,
+              shop_name: params.shopName?.trim() || null,
+              tiktok_link: contact.tiktokLink,
+              phone: contact.phone,
+              email: contact.email,
+              gmv_monthly: params.gmvMonthly ?? null,
+              industry: params.industry?.trim() || null,
+              job_title: params.jobTitle?.trim() || null,
+              province: params.province?.trim() || null,
+              partner_name: params.partnerName?.trim() || null,
+              source_note: params.sourceNote?.trim() || null,
+              created_at: now,
+              updated_at: now,
+            },
+          });
+
+          const deal = await tx.crmDeals.create({
+            data: {
+              customer_id: customer.id,
+              pipeline_stage_code:
+                CRM_CUSTOMER_CREATE_DEFAULTS.PIPELINE_STAGE_CODE,
+              owner_id: params.assigneeId ?? null,
+              product_package_code: params.productPackage,
+              deal_value: dealValue,
+              probability: CRM_CUSTOMER_CREATE_DEFAULTS.PROBABILITY,
+              status: activePipelineStage.mapped_status_code,
+              created_at: now,
+              updated_at: now,
+            },
+            select: {
+              id: true,
+              pipeline_stage_code: true,
+              status: true,
+              product_package_code: true,
+              owner_id: true,
+            },
+          });
+
+          await tx.crmDealDetails.create({
+            data: {
+              deal_id: deal.id,
+              closed_revenue: 0,
+              created_at: now,
+              updated_at: now,
+            },
+          });
+
+          await tx.crmPipelineRecords.create({
+            data: {
+              deal_id: deal.id,
+              stage_code: deal.pipeline_stage_code,
+              owner_id: deal.owner_id,
+              created_at: now,
+              updated_at: now,
+            },
+          });
+
+          await tx.crmActivities.create({
+            data: {
+              customer_id: customer.id,
+              activity_type_code: CRM_ACTIVITY_TYPE.CUSTOMER_CREATED,
+              description: this.buildCustomerCreatedActivityDescription({
+                source,
+                productPackage: params.productPackage,
+                assigneeId: params.assigneeId ?? null,
+                note,
+              }),
+              author_user_id: actor.id,
+              author_name: toUserDisplayName(actor),
+              occurred_at: now,
+              created_at: now,
+            },
+          });
+
+          return {
+            customerId: String(customer.id),
+            dealId: String(deal.id),
+            pipelineStage: deal.pipeline_stage_code,
+            status: deal.status ?? activePipelineStage.mapped_status_code,
+            productPackage: deal.product_package_code ?? params.productPackage,
+            assigneeId: deal.owner_id === null ? null : String(deal.owner_id),
+            createdAt: now.toISOString(),
+          };
+        },
+        {
+          maxWait: CRM_CUSTOMERS_TRANSACTION.MAX_WAIT_MS,
+          timeout: CRM_CUSTOMERS_TRANSACTION.TIMEOUT_MS,
+          isolationLevel: Prisma.TransactionIsolationLevel.ReadCommitted,
+        },
+      );
+    } catch (error: unknown) {
+      this.logger.error({
+        message: 'Failed to create CRM customer',
+        context: CrmCustomersWriteRepository.name,
+        module: CRM_CUSTOMERS_LOG.MODULE,
+        action: CRM_CUSTOMERS_LOG.ACTIONS.CREATE_CUSTOMER,
+        entityType: CRM_CUSTOMERS_LOG.ENTITIES.CUSTOMER,
+        meta: {
+          params: {
+            source,
+            assigneeId: params.assigneeId ?? null,
+            productPackage: params.productPackage,
+            dealValue,
+            actorUserId: params.actorUserId,
+            actorEmail: params.actorEmail ?? null,
+            actorRoleName: params.actorRoleName ?? null,
+            hasPhone: Boolean(contact.phone),
+            hasEmail: Boolean(contact.email),
+            hasTiktokLink: Boolean(contact.tiktokLink),
+          },
+          error: toErrorMeta(error),
+        },
+      });
+
+      throw error;
+    }
+  }
 
   async updateAssignment(
     params: UpdateAssignmentParams,
@@ -992,6 +1233,49 @@ export class CrmCustomersWriteRepository {
     }
   }
 
+  private async findActiveSource(
+    source: string,
+  ): Promise<LookupCodeSnapshot | null> {
+    return this.prisma.crmSources.findFirst({
+      where: {
+        code: source,
+        is_active: true,
+      },
+      select: {
+        code: true,
+      },
+    });
+  }
+
+  private async findActiveProductPackage(
+    productPackage: string,
+  ): Promise<LookupCodeSnapshot | null> {
+    return this.prisma.crmProductPackages.findFirst({
+      where: {
+        code: productPackage,
+        is_active: true,
+      },
+      select: {
+        code: true,
+      },
+    });
+  }
+
+  private async findActivePipelineStage(
+    pipelineStage: string,
+  ): Promise<PipelineStageSnapshot | null> {
+    return this.prisma.crmPipelineStages.findFirst({
+      where: {
+        code: pipelineStage,
+        is_active: true,
+      },
+      select: {
+        code: true,
+        mapped_status_code: true,
+      },
+    });
+  }
+
   private async findEligibleAssignee(
     assigneeId: number,
   ): Promise<UserSnapshot | null> {
@@ -1198,6 +1482,41 @@ export class CrmCustomersWriteRepository {
       parts.push(
         `Deal value changed from "${params.previousDealValue ?? 0}" to "${params.dealValue ?? 0}".`,
       );
+    }
+
+    if (params.note) {
+      parts.push(`Note: ${params.note}`);
+    }
+
+    return parts.join(' ');
+  }
+
+  private deriveTier(gmvMonthly: number | null): string | null {
+    if (gmvMonthly === null) return null;
+
+    if (gmvMonthly >= CRM_CUSTOMER_TIER_GMV_THRESHOLDS.WHALE) {
+      return 'whale';
+    }
+
+    if (gmvMonthly >= CRM_CUSTOMER_TIER_GMV_THRESHOLDS.POTENTIAL) {
+      return 'potential';
+    }
+
+    return 'tiny';
+  }
+
+  private buildCustomerCreatedActivityDescription(params: {
+    source: string;
+    productPackage: string;
+    assigneeId: number | null;
+    note?: string;
+  }): string {
+    const parts = [
+      `Customer created from source "${params.source}" with product package "${params.productPackage}".`,
+    ];
+
+    if (params.assigneeId !== null) {
+      parts.push(`Assigned to user #${params.assigneeId}.`);
     }
 
     if (params.note) {

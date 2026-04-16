@@ -3,11 +3,11 @@
 model CrmCustomerBusinessProfiles {
   id            Int       @id @default(autoincrement())
   customer_id   Int       @unique
-  shop_name     String
+  shop_name     String?
   tiktok_link   String?
-  phone         String
-  email         String
-  gmv_monthly   Decimal   @default(0) @db.Decimal(18, 2)
+  phone         String?
+  email         String?
+  gmv_monthly   Decimal?  @db.Decimal(18, 2)
   industry      String?
   job_title     String?
   province      String?

@@ -1,6 +1,7 @@
 export const CRM_CUSTOMERS_LOG = {
   MODULE: 'crm-customers',
   ACTIONS: {
+    CREATE_CUSTOMER: 'CRM_CUSTOMERS_CREATE_CUSTOMER',
     CREATE_INTERACTION: 'CRM_CUSTOMERS_CREATE_INTERACTION',
     GET_CUSTOMER_DETAIL: 'CRM_CUSTOMERS_GET_DETAIL',
     LIST_CUSTOMERS: 'CRM_CUSTOMERS_LIST',
@@ -19,6 +20,7 @@ export const CRM_CUSTOMERS_LOG = {
 export const CRM_ACTIVITY_TYPE = {
   ASSIGNMENT_CHANGED: 'assignment_changed',
   CALL_LOGGED: 'call_logged',
+  CUSTOMER_CREATED: 'customer_created',
   MESSAGE_LOGGED: 'message_logged',
   NOTE_ADDED: 'note_added',
   PIPELINE_STAGE_CHANGED: 'pipeline_stage_changed',
@@ -82,3 +84,16 @@ export const CRM_FAILURE_PIPELINE_STAGES = [
 export const CRM_PRODUCT_PACKAGE_CODES = ['trial', '399', '699'] as const;
 
 export type CrmProductPackageCode = (typeof CRM_PRODUCT_PACKAGE_CODES)[number];
+
+export const CRM_CUSTOMER_CREATE_DEFAULTS = {
+  SOURCE_CODE: 'manual',
+  PIPELINE_STAGE_CODE: 'new_lead',
+  PRODUCT_PACKAGE_CODE: 'trial',
+  DEAL_VALUE: 0,
+  PROBABILITY: 0,
+} as const;
+
+export const CRM_CUSTOMER_TIER_GMV_THRESHOLDS = {
+  POTENTIAL: 100_000_000,
+  WHALE: 1_000_000_000,
+} as const;

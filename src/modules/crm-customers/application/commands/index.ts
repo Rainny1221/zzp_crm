@@ -1,3 +1,5 @@
+export * from './create-crm-customer.command';
+export * from './create-crm-customer.handler';
 export * from './create-crm-customer-interaction.command';
 export * from './create-crm-customer-interaction.handler';
 export * from './create-crm-customer-note.command';

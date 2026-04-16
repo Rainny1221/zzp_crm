@@ -1661,10 +1661,12 @@ export type UserCreateNestedOneWithoutOwnedCrmCustomerProfilesInput = {
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutCrmCustomerProfileNestedInput = {
+export type UserUpdateOneWithoutCrmCustomerProfileNestedInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutCrmCustomerProfileInput, Prisma.UserUncheckedCreateWithoutCrmCustomerProfileInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutCrmCustomerProfileInput
   upsert?: Prisma.UserUpsertWithoutCrmCustomerProfileInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCrmCustomerProfileInput, Prisma.UserUpdateWithoutCrmCustomerProfileInput>, Prisma.UserUncheckedUpdateWithoutCrmCustomerProfileInput>
 }

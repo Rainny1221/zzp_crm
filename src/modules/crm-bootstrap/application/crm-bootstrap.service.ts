@@ -33,6 +33,7 @@ const CRM_PERMISSION_FLAGS = {
   canViewPipeline: 'CRM_PIPELINE_VIEW',
   canManagePipeline: 'CRM_PIPELINE_MANAGE',
   canViewCustomers: 'CRM_CUSTOMER_VIEW',
+  canCreateCustomers: 'CRM_CUSTOMER_CREATE',
   canManageCustomers: 'CRM_CUSTOMER_MANAGE',
   canAssignLead: 'CRM_LEAD_ASSIGN',
   canViewSync: 'CRM_SYNC_VIEW',

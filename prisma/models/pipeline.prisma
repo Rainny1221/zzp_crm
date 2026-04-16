@@ -25,14 +25,14 @@ model CrmSources {
 
 model CrmCustomerProfiles {
   id                 Int      @id @default(autoincrement())
-  user_id            Int      @unique
+  user_id            Int?     @unique
   source_code        String
   gmv_monthly        Decimal? @db.Decimal(18, 2)
   customer_tier_code String?
   owner_id           Int?
   created_at         DateTime @default(now()) @db.Timestamptz(6)
 
-  user   User       @relation(fields: [user_id], references: [id])
+  user   User?      @relation(fields: [user_id], references: [id])
   source CrmSources @relation(fields: [source_code], references: [code])
   owner  User?      @relation("crm_owner", fields: [owner_id], references: [id])
 

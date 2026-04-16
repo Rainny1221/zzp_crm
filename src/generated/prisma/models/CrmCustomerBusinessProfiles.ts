@@ -251,11 +251,11 @@ export type CrmCustomerBusinessProfilesGroupByArgs<ExtArgs extends runtime.Types
 export type CrmCustomerBusinessProfilesGroupByOutputType = {
   id: number
   customer_id: number
-  shop_name: string
+  shop_name: string | null
   tiktok_link: string | null
-  phone: string
-  email: string
-  gmv_monthly: runtime.Decimal
+  phone: string | null
+  email: string | null
+  gmv_monthly: runtime.Decimal | null
   industry: string | null
   job_title: string | null
   province: string | null
@@ -292,11 +292,11 @@ export type CrmCustomerBusinessProfilesWhereInput = {
   NOT?: Prisma.CrmCustomerBusinessProfilesWhereInput | Prisma.CrmCustomerBusinessProfilesWhereInput[]
   id?: Prisma.IntFilter<"CrmCustomerBusinessProfiles"> | number
   customer_id?: Prisma.IntFilter<"CrmCustomerBusinessProfiles"> | number
-  shop_name?: Prisma.StringFilter<"CrmCustomerBusinessProfiles"> | string
+  shop_name?: Prisma.StringNullableFilter<"CrmCustomerBusinessProfiles"> | string | null
   tiktok_link?: Prisma.StringNullableFilter<"CrmCustomerBusinessProfiles"> | string | null
-  phone?: Prisma.StringFilter<"CrmCustomerBusinessProfiles"> | string
-  email?: Prisma.StringFilter<"CrmCustomerBusinessProfiles"> | string
-  gmv_monthly?: Prisma.DecimalFilter<"CrmCustomerBusinessProfiles"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  phone?: Prisma.StringNullableFilter<"CrmCustomerBusinessProfiles"> | string | null
+  email?: Prisma.StringNullableFilter<"CrmCustomerBusinessProfiles"> | string | null
+  gmv_monthly?: Prisma.DecimalNullableFilter<"CrmCustomerBusinessProfiles"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   industry?: Prisma.StringNullableFilter<"CrmCustomerBusinessProfiles"> | string | null
   job_title?: Prisma.StringNullableFilter<"CrmCustomerBusinessProfiles"> | string | null
   province?: Prisma.StringNullableFilter<"CrmCustomerBusinessProfiles"> | string | null
@@ -310,11 +310,11 @@ export type CrmCustomerBusinessProfilesWhereInput = {
 export type CrmCustomerBusinessProfilesOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   customer_id?: Prisma.SortOrder
-  shop_name?: Prisma.SortOrder
+  shop_name?: Prisma.SortOrderInput | Prisma.SortOrder
   tiktok_link?: Prisma.SortOrderInput | Prisma.SortOrder
-  phone?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  gmv_monthly?: Prisma.SortOrder
+  phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
+  gmv_monthly?: Prisma.SortOrderInput | Prisma.SortOrder
   industry?: Prisma.SortOrderInput | Prisma.SortOrder
   job_title?: Prisma.SortOrderInput | Prisma.SortOrder
   province?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -331,11 +331,11 @@ export type CrmCustomerBusinessProfilesWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.CrmCustomerBusinessProfilesWhereInput | Prisma.CrmCustomerBusinessProfilesWhereInput[]
   OR?: Prisma.CrmCustomerBusinessProfilesWhereInput[]
   NOT?: Prisma.CrmCustomerBusinessProfilesWhereInput | Prisma.CrmCustomerBusinessProfilesWhereInput[]
-  shop_name?: Prisma.StringFilter<"CrmCustomerBusinessProfiles"> | string
+  shop_name?: Prisma.StringNullableFilter<"CrmCustomerBusinessProfiles"> | string | null
   tiktok_link?: Prisma.StringNullableFilter<"CrmCustomerBusinessProfiles"> | string | null
-  phone?: Prisma.StringFilter<"CrmCustomerBusinessProfiles"> | string
-  email?: Prisma.StringFilter<"CrmCustomerBusinessProfiles"> | string
-  gmv_monthly?: Prisma.DecimalFilter<"CrmCustomerBusinessProfiles"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  phone?: Prisma.StringNullableFilter<"CrmCustomerBusinessProfiles"> | string | null
+  email?: Prisma.StringNullableFilter<"CrmCustomerBusinessProfiles"> | string | null
+  gmv_monthly?: Prisma.DecimalNullableFilter<"CrmCustomerBusinessProfiles"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   industry?: Prisma.StringNullableFilter<"CrmCustomerBusinessProfiles"> | string | null
   job_title?: Prisma.StringNullableFilter<"CrmCustomerBusinessProfiles"> | string | null
   province?: Prisma.StringNullableFilter<"CrmCustomerBusinessProfiles"> | string | null
@@ -349,11 +349,11 @@ export type CrmCustomerBusinessProfilesWhereUniqueInput = Prisma.AtLeast<{
 export type CrmCustomerBusinessProfilesOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   customer_id?: Prisma.SortOrder
-  shop_name?: Prisma.SortOrder
+  shop_name?: Prisma.SortOrderInput | Prisma.SortOrder
   tiktok_link?: Prisma.SortOrderInput | Prisma.SortOrder
-  phone?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  gmv_monthly?: Prisma.SortOrder
+  phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
+  gmv_monthly?: Prisma.SortOrderInput | Prisma.SortOrder
   industry?: Prisma.SortOrderInput | Prisma.SortOrder
   job_title?: Prisma.SortOrderInput | Prisma.SortOrder
   province?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -375,11 +375,11 @@ export type CrmCustomerBusinessProfilesScalarWhereWithAggregatesInput = {
   NOT?: Prisma.CrmCustomerBusinessProfilesScalarWhereWithAggregatesInput | Prisma.CrmCustomerBusinessProfilesScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"CrmCustomerBusinessProfiles"> | number
   customer_id?: Prisma.IntWithAggregatesFilter<"CrmCustomerBusinessProfiles"> | number
-  shop_name?: Prisma.StringWithAggregatesFilter<"CrmCustomerBusinessProfiles"> | string
+  shop_name?: Prisma.StringNullableWithAggregatesFilter<"CrmCustomerBusinessProfiles"> | string | null
   tiktok_link?: Prisma.StringNullableWithAggregatesFilter<"CrmCustomerBusinessProfiles"> | string | null
-  phone?: Prisma.StringWithAggregatesFilter<"CrmCustomerBusinessProfiles"> | string
-  email?: Prisma.StringWithAggregatesFilter<"CrmCustomerBusinessProfiles"> | string
-  gmv_monthly?: Prisma.DecimalWithAggregatesFilter<"CrmCustomerBusinessProfiles"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  phone?: Prisma.StringNullableWithAggregatesFilter<"CrmCustomerBusinessProfiles"> | string | null
+  email?: Prisma.StringNullableWithAggregatesFilter<"CrmCustomerBusinessProfiles"> | string | null
+  gmv_monthly?: Prisma.DecimalNullableWithAggregatesFilter<"CrmCustomerBusinessProfiles"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   industry?: Prisma.StringNullableWithAggregatesFilter<"CrmCustomerBusinessProfiles"> | string | null
   job_title?: Prisma.StringNullableWithAggregatesFilter<"CrmCustomerBusinessProfiles"> | string | null
   province?: Prisma.StringNullableWithAggregatesFilter<"CrmCustomerBusinessProfiles"> | string | null
@@ -392,11 +392,11 @@ export type CrmCustomerBusinessProfilesScalarWhereWithAggregatesInput = {
 
 export type CrmCustomerBusinessProfilesCreateInput = {
   customer_id: number
-  shop_name: string
+  shop_name?: string | null
   tiktok_link?: string | null
-  phone: string
-  email: string
-  gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  phone?: string | null
+  email?: string | null
+  gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   industry?: string | null
   job_title?: string | null
   province?: string | null
@@ -410,11 +410,11 @@ export type CrmCustomerBusinessProfilesCreateInput = {
 export type CrmCustomerBusinessProfilesUncheckedCreateInput = {
   id?: number
   customer_id: number
-  shop_name: string
+  shop_name?: string | null
   tiktok_link?: string | null
-  phone: string
-  email: string
-  gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  phone?: string | null
+  email?: string | null
+  gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   industry?: string | null
   job_title?: string | null
   province?: string | null
@@ -427,11 +427,11 @@ export type CrmCustomerBusinessProfilesUncheckedCreateInput = {
 
 export type CrmCustomerBusinessProfilesUpdateInput = {
   customer_id?: Prisma.IntFieldUpdateOperationsInput | number
-  shop_name?: Prisma.StringFieldUpdateOperationsInput | string
+  shop_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tiktok_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  gmv_monthly?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   job_title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -445,11 +445,11 @@ export type CrmCustomerBusinessProfilesUpdateInput = {
 export type CrmCustomerBusinessProfilesUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   customer_id?: Prisma.IntFieldUpdateOperationsInput | number
-  shop_name?: Prisma.StringFieldUpdateOperationsInput | string
+  shop_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tiktok_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  gmv_monthly?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   job_title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -463,11 +463,11 @@ export type CrmCustomerBusinessProfilesUncheckedUpdateInput = {
 export type CrmCustomerBusinessProfilesCreateManyInput = {
   id?: number
   customer_id: number
-  shop_name: string
+  shop_name?: string | null
   tiktok_link?: string | null
-  phone: string
-  email: string
-  gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  phone?: string | null
+  email?: string | null
+  gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   industry?: string | null
   job_title?: string | null
   province?: string | null
@@ -480,11 +480,11 @@ export type CrmCustomerBusinessProfilesCreateManyInput = {
 
 export type CrmCustomerBusinessProfilesUpdateManyMutationInput = {
   customer_id?: Prisma.IntFieldUpdateOperationsInput | number
-  shop_name?: Prisma.StringFieldUpdateOperationsInput | string
+  shop_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tiktok_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  gmv_monthly?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   job_title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -498,11 +498,11 @@ export type CrmCustomerBusinessProfilesUpdateManyMutationInput = {
 export type CrmCustomerBusinessProfilesUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   customer_id?: Prisma.IntFieldUpdateOperationsInput | number
-  shop_name?: Prisma.StringFieldUpdateOperationsInput | string
+  shop_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tiktok_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  gmv_monthly?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   job_title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -661,11 +661,11 @@ export type $CrmCustomerBusinessProfilesPayload<ExtArgs extends runtime.Types.Ex
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     customer_id: number
-    shop_name: string
+    shop_name: string | null
     tiktok_link: string | null
-    phone: string
-    email: string
-    gmv_monthly: runtime.Decimal
+    phone: string | null
+    email: string | null
+    gmv_monthly: runtime.Decimal | null
     industry: string | null
     job_title: string | null
     province: string | null

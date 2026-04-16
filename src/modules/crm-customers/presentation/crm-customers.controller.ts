@@ -18,12 +18,15 @@ import {
   GetCrmCustomersQuery,
 } from '../application/queries';
 import {
+  CreateCrmCustomerCommand,
   CreateCrmCustomerInteractionCommand,
   CreateCrmCustomerNoteCommand,
   UpdateCrmCustomerAssignmentCommand,
   UpdateCrmCustomerPipelineStageCommand,
   UpdateCrmCustomerProductPackageCommand,
 } from '../application/commands';
+import { CRM_CUSTOMER_CREATE_DEFAULTS } from '../domain/crm-customers.constants';
+import { CreateCrmCustomerDto } from './dto/create-crm-customer.dto';
 import { CreateCrmCustomerInteractionDto } from './dto/create-crm-customer-interaction.dto';
 import { CreateCrmCustomerNoteDto } from './dto/create-crm-customer-note.dto';
 import { GetCrmCustomersDto } from './dto/get-crm-customers.dto';
@@ -39,6 +42,37 @@ export class CrmCustomersController {
     private readonly queryBus: QueryBus,
     private readonly commandBus: CommandBus,
   ) {}
+
+  @Post()
+  @ApiOperation({ summary: 'Create CRM customer' })
+  @RequirePermissions('CRM_CUSTOMER_CREATE')
+  async createCustomer(
+    @Body() dto: CreateCrmCustomerDto,
+    @Req() req: AuthenticatedRequest,
+  ) {
+    return this.commandBus.execute(
+      new CreateCrmCustomerCommand({
+        shopName: dto.shopName,
+        phone: dto.phone,
+        email: dto.email,
+        tiktokLink: dto.tiktokLink,
+        gmvMonthly: dto.gmvMonthly ?? null,
+        industry: dto.industry,
+        jobTitle: dto.jobTitle,
+        province: dto.province,
+        source: dto.source,
+        partnerName: dto.partnerName,
+        sourceNote: dto.sourceNote,
+        assigneeId: dto.assigneeId ?? null,
+        productPackage: dto.productPackage,
+        dealValue: dto.dealValue ?? CRM_CUSTOMER_CREATE_DEFAULTS.DEAL_VALUE,
+        note: dto.note,
+        actorUserId: req.user.id,
+        actorEmail: req.user.email ?? null,
+        actorRoleName: req.user.roleName ?? null,
+      }),
+    );
+  }
 
   @Get()
   @ApiOperation({ summary: 'Get CRM customers list' })
