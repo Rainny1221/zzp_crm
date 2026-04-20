@@ -11,6 +11,7 @@ const optionalText = (max: number) =>
     .string()
     .trim()
     .max(max)
+    .nullable()
     .optional()
     .transform((value) => (value ? value : undefined));
 
@@ -23,6 +24,7 @@ export const CreateCrmCustomerSchema = z
       .trim()
       .email()
       .max(255)
+      .nullable()
       .optional()
       .transform((value) => (value ? value : undefined)),
     tiktokLink: z
@@ -30,6 +32,7 @@ export const CreateCrmCustomerSchema = z
       .trim()
       .url()
       .max(500)
+      .nullable()
       .optional()
       .transform((value) => (value ? value : undefined)),
     gmvMonthly: z.coerce.number().min(0).nullable().optional(),
