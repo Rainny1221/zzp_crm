@@ -208,6 +208,7 @@ export type CrmFeedbackCategoriesWhereInput = {
   label?: Prisma.StringFilter<"CrmFeedbackCategories"> | string
   sort_order?: Prisma.IntFilter<"CrmFeedbackCategories"> | number
   is_active?: Prisma.BoolFilter<"CrmFeedbackCategories"> | boolean
+  feedback?: Prisma.CrmFeedbackListRelationFilter
 }
 
 export type CrmFeedbackCategoriesOrderByWithRelationInput = {
@@ -215,6 +216,7 @@ export type CrmFeedbackCategoriesOrderByWithRelationInput = {
   label?: Prisma.SortOrder
   sort_order?: Prisma.SortOrder
   is_active?: Prisma.SortOrder
+  feedback?: Prisma.CrmFeedbackOrderByRelationAggregateInput
 }
 
 export type CrmFeedbackCategoriesWhereUniqueInput = Prisma.AtLeast<{
@@ -225,6 +227,7 @@ export type CrmFeedbackCategoriesWhereUniqueInput = Prisma.AtLeast<{
   label?: Prisma.StringFilter<"CrmFeedbackCategories"> | string
   sort_order?: Prisma.IntFilter<"CrmFeedbackCategories"> | number
   is_active?: Prisma.BoolFilter<"CrmFeedbackCategories"> | boolean
+  feedback?: Prisma.CrmFeedbackListRelationFilter
 }, "code">
 
 export type CrmFeedbackCategoriesOrderByWithAggregationInput = {
@@ -254,6 +257,7 @@ export type CrmFeedbackCategoriesCreateInput = {
   label: string
   sort_order: number
   is_active?: boolean
+  feedback?: Prisma.CrmFeedbackCreateNestedManyWithoutCategoryInput
 }
 
 export type CrmFeedbackCategoriesUncheckedCreateInput = {
@@ -261,6 +265,7 @@ export type CrmFeedbackCategoriesUncheckedCreateInput = {
   label: string
   sort_order: number
   is_active?: boolean
+  feedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutCategoryInput
 }
 
 export type CrmFeedbackCategoriesUpdateInput = {
@@ -268,6 +273,7 @@ export type CrmFeedbackCategoriesUpdateInput = {
   label?: Prisma.StringFieldUpdateOperationsInput | string
   sort_order?: Prisma.IntFieldUpdateOperationsInput | number
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  feedback?: Prisma.CrmFeedbackUpdateManyWithoutCategoryNestedInput
 }
 
 export type CrmFeedbackCategoriesUncheckedUpdateInput = {
@@ -275,6 +281,7 @@ export type CrmFeedbackCategoriesUncheckedUpdateInput = {
   label?: Prisma.StringFieldUpdateOperationsInput | string
   sort_order?: Prisma.IntFieldUpdateOperationsInput | number
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  feedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutCategoryNestedInput
 }
 
 export type CrmFeedbackCategoriesCreateManyInput = {
@@ -296,6 +303,11 @@ export type CrmFeedbackCategoriesUncheckedUpdateManyInput = {
   label?: Prisma.StringFieldUpdateOperationsInput | string
   sort_order?: Prisma.IntFieldUpdateOperationsInput | number
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+}
+
+export type CrmFeedbackCategoriesScalarRelationFilter = {
+  is?: Prisma.CrmFeedbackCategoriesWhereInput
+  isNot?: Prisma.CrmFeedbackCategoriesWhereInput
 }
 
 export type CrmFeedbackCategoriesCountOrderByAggregateInput = {
@@ -327,6 +339,93 @@ export type CrmFeedbackCategoriesSumOrderByAggregateInput = {
   sort_order?: Prisma.SortOrder
 }
 
+export type CrmFeedbackCategoriesCreateNestedOneWithoutFeedbackInput = {
+  create?: Prisma.XOR<Prisma.CrmFeedbackCategoriesCreateWithoutFeedbackInput, Prisma.CrmFeedbackCategoriesUncheckedCreateWithoutFeedbackInput>
+  connectOrCreate?: Prisma.CrmFeedbackCategoriesCreateOrConnectWithoutFeedbackInput
+  connect?: Prisma.CrmFeedbackCategoriesWhereUniqueInput
+}
+
+export type CrmFeedbackCategoriesUpdateOneRequiredWithoutFeedbackNestedInput = {
+  create?: Prisma.XOR<Prisma.CrmFeedbackCategoriesCreateWithoutFeedbackInput, Prisma.CrmFeedbackCategoriesUncheckedCreateWithoutFeedbackInput>
+  connectOrCreate?: Prisma.CrmFeedbackCategoriesCreateOrConnectWithoutFeedbackInput
+  upsert?: Prisma.CrmFeedbackCategoriesUpsertWithoutFeedbackInput
+  connect?: Prisma.CrmFeedbackCategoriesWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CrmFeedbackCategoriesUpdateToOneWithWhereWithoutFeedbackInput, Prisma.CrmFeedbackCategoriesUpdateWithoutFeedbackInput>, Prisma.CrmFeedbackCategoriesUncheckedUpdateWithoutFeedbackInput>
+}
+
+export type CrmFeedbackCategoriesCreateWithoutFeedbackInput = {
+  code: string
+  label: string
+  sort_order: number
+  is_active?: boolean
+}
+
+export type CrmFeedbackCategoriesUncheckedCreateWithoutFeedbackInput = {
+  code: string
+  label: string
+  sort_order: number
+  is_active?: boolean
+}
+
+export type CrmFeedbackCategoriesCreateOrConnectWithoutFeedbackInput = {
+  where: Prisma.CrmFeedbackCategoriesWhereUniqueInput
+  create: Prisma.XOR<Prisma.CrmFeedbackCategoriesCreateWithoutFeedbackInput, Prisma.CrmFeedbackCategoriesUncheckedCreateWithoutFeedbackInput>
+}
+
+export type CrmFeedbackCategoriesUpsertWithoutFeedbackInput = {
+  update: Prisma.XOR<Prisma.CrmFeedbackCategoriesUpdateWithoutFeedbackInput, Prisma.CrmFeedbackCategoriesUncheckedUpdateWithoutFeedbackInput>
+  create: Prisma.XOR<Prisma.CrmFeedbackCategoriesCreateWithoutFeedbackInput, Prisma.CrmFeedbackCategoriesUncheckedCreateWithoutFeedbackInput>
+  where?: Prisma.CrmFeedbackCategoriesWhereInput
+}
+
+export type CrmFeedbackCategoriesUpdateToOneWithWhereWithoutFeedbackInput = {
+  where?: Prisma.CrmFeedbackCategoriesWhereInput
+  data: Prisma.XOR<Prisma.CrmFeedbackCategoriesUpdateWithoutFeedbackInput, Prisma.CrmFeedbackCategoriesUncheckedUpdateWithoutFeedbackInput>
+}
+
+export type CrmFeedbackCategoriesUpdateWithoutFeedbackInput = {
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  label?: Prisma.StringFieldUpdateOperationsInput | string
+  sort_order?: Prisma.IntFieldUpdateOperationsInput | number
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+}
+
+export type CrmFeedbackCategoriesUncheckedUpdateWithoutFeedbackInput = {
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  label?: Prisma.StringFieldUpdateOperationsInput | string
+  sort_order?: Prisma.IntFieldUpdateOperationsInput | number
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+}
+
+
+/**
+ * Count Type CrmFeedbackCategoriesCountOutputType
+ */
+
+export type CrmFeedbackCategoriesCountOutputType = {
+  feedback: number
+}
+
+export type CrmFeedbackCategoriesCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  feedback?: boolean | CrmFeedbackCategoriesCountOutputTypeCountFeedbackArgs
+}
+
+/**
+ * CrmFeedbackCategoriesCountOutputType without action
+ */
+export type CrmFeedbackCategoriesCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CrmFeedbackCategoriesCountOutputType
+   */
+  select?: Prisma.CrmFeedbackCategoriesCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * CrmFeedbackCategoriesCountOutputType without action
+ */
+export type CrmFeedbackCategoriesCountOutputTypeCountFeedbackArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CrmFeedbackWhereInput
+}
 
 
 export type CrmFeedbackCategoriesSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -334,6 +433,8 @@ export type CrmFeedbackCategoriesSelect<ExtArgs extends runtime.Types.Extensions
   label?: boolean
   sort_order?: boolean
   is_active?: boolean
+  feedback?: boolean | Prisma.CrmFeedbackCategories$feedbackArgs<ExtArgs>
+  _count?: boolean | Prisma.CrmFeedbackCategoriesCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["crmFeedbackCategories"]>
 
 export type CrmFeedbackCategoriesSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -358,10 +459,18 @@ export type CrmFeedbackCategoriesSelectScalar = {
 }
 
 export type CrmFeedbackCategoriesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"code" | "label" | "sort_order" | "is_active", ExtArgs["result"]["crmFeedbackCategories"]>
+export type CrmFeedbackCategoriesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  feedback?: boolean | Prisma.CrmFeedbackCategories$feedbackArgs<ExtArgs>
+  _count?: boolean | Prisma.CrmFeedbackCategoriesCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type CrmFeedbackCategoriesIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type CrmFeedbackCategoriesIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $CrmFeedbackCategoriesPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "CrmFeedbackCategories"
-  objects: {}
+  objects: {
+    feedback: Prisma.$CrmFeedbackPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     code: string
     label: string
@@ -761,6 +870,7 @@ readonly fields: CrmFeedbackCategoriesFieldRefs;
  */
 export interface Prisma__CrmFeedbackCategoriesClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  feedback<T extends Prisma.CrmFeedbackCategories$feedbackArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CrmFeedbackCategories$feedbackArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CrmFeedbackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -811,6 +921,10 @@ export type CrmFeedbackCategoriesFindUniqueArgs<ExtArgs extends runtime.Types.Ex
    */
   omit?: Prisma.CrmFeedbackCategoriesOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmFeedbackCategoriesInclude<ExtArgs> | null
+  /**
    * Filter, which CrmFeedbackCategories to fetch.
    */
   where: Prisma.CrmFeedbackCategoriesWhereUniqueInput
@@ -829,6 +943,10 @@ export type CrmFeedbackCategoriesFindUniqueOrThrowArgs<ExtArgs extends runtime.T
    */
   omit?: Prisma.CrmFeedbackCategoriesOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmFeedbackCategoriesInclude<ExtArgs> | null
+  /**
    * Filter, which CrmFeedbackCategories to fetch.
    */
   where: Prisma.CrmFeedbackCategoriesWhereUniqueInput
@@ -846,6 +964,10 @@ export type CrmFeedbackCategoriesFindFirstArgs<ExtArgs extends runtime.Types.Ext
    * Omit specific fields from the CrmFeedbackCategories
    */
   omit?: Prisma.CrmFeedbackCategoriesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmFeedbackCategoriesInclude<ExtArgs> | null
   /**
    * Filter, which CrmFeedbackCategories to fetch.
    */
@@ -895,6 +1017,10 @@ export type CrmFeedbackCategoriesFindFirstOrThrowArgs<ExtArgs extends runtime.Ty
    */
   omit?: Prisma.CrmFeedbackCategoriesOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmFeedbackCategoriesInclude<ExtArgs> | null
+  /**
    * Filter, which CrmFeedbackCategories to fetch.
    */
   where?: Prisma.CrmFeedbackCategoriesWhereInput
@@ -943,6 +1069,10 @@ export type CrmFeedbackCategoriesFindManyArgs<ExtArgs extends runtime.Types.Exte
    */
   omit?: Prisma.CrmFeedbackCategoriesOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmFeedbackCategoriesInclude<ExtArgs> | null
+  /**
    * Filter, which CrmFeedbackCategories to fetch.
    */
   where?: Prisma.CrmFeedbackCategoriesWhereInput
@@ -985,6 +1115,10 @@ export type CrmFeedbackCategoriesCreateArgs<ExtArgs extends runtime.Types.Extens
    * Omit specific fields from the CrmFeedbackCategories
    */
   omit?: Prisma.CrmFeedbackCategoriesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmFeedbackCategoriesInclude<ExtArgs> | null
   /**
    * The data needed to create a CrmFeedbackCategories.
    */
@@ -1033,6 +1167,10 @@ export type CrmFeedbackCategoriesUpdateArgs<ExtArgs extends runtime.Types.Extens
    * Omit specific fields from the CrmFeedbackCategories
    */
   omit?: Prisma.CrmFeedbackCategoriesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmFeedbackCategoriesInclude<ExtArgs> | null
   /**
    * The data needed to update a CrmFeedbackCategories.
    */
@@ -1100,6 +1238,10 @@ export type CrmFeedbackCategoriesUpsertArgs<ExtArgs extends runtime.Types.Extens
    */
   omit?: Prisma.CrmFeedbackCategoriesOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmFeedbackCategoriesInclude<ExtArgs> | null
+  /**
    * The filter to search for the CrmFeedbackCategories to update in case it exists.
    */
   where: Prisma.CrmFeedbackCategoriesWhereUniqueInput
@@ -1126,6 +1268,10 @@ export type CrmFeedbackCategoriesDeleteArgs<ExtArgs extends runtime.Types.Extens
    */
   omit?: Prisma.CrmFeedbackCategoriesOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmFeedbackCategoriesInclude<ExtArgs> | null
+  /**
    * Filter which CrmFeedbackCategories to delete.
    */
   where: Prisma.CrmFeedbackCategoriesWhereUniqueInput
@@ -1146,6 +1292,30 @@ export type CrmFeedbackCategoriesDeleteManyArgs<ExtArgs extends runtime.Types.Ex
 }
 
 /**
+ * CrmFeedbackCategories.feedback
+ */
+export type CrmFeedbackCategories$feedbackArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CrmFeedback
+   */
+  select?: Prisma.CrmFeedbackSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CrmFeedback
+   */
+  omit?: Prisma.CrmFeedbackOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmFeedbackInclude<ExtArgs> | null
+  where?: Prisma.CrmFeedbackWhereInput
+  orderBy?: Prisma.CrmFeedbackOrderByWithRelationInput | Prisma.CrmFeedbackOrderByWithRelationInput[]
+  cursor?: Prisma.CrmFeedbackWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CrmFeedbackScalarFieldEnum | Prisma.CrmFeedbackScalarFieldEnum[]
+}
+
+/**
  * CrmFeedbackCategories without action
  */
 export type CrmFeedbackCategoriesDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1157,4 +1327,8 @@ export type CrmFeedbackCategoriesDefaultArgs<ExtArgs extends runtime.Types.Exten
    * Omit specific fields from the CrmFeedbackCategories
    */
   omit?: Prisma.CrmFeedbackCategoriesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmFeedbackCategoriesInclude<ExtArgs> | null
 }

@@ -38,6 +38,8 @@ model CrmFeedbackCategories {
   sort_order Int
   is_active  Boolean @default(true)
 
+  feedback CrmFeedback[]
+
   @@index([sort_order])
   @@map("crm_feedback_categories")
 }

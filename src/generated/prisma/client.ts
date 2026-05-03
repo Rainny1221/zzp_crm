@@ -552,15 +552,10 @@ export type CrmActivities = Prisma.CrmActivitiesModel
  */
 export type CrmTasks = Prisma.CrmTasksModel
 /**
- * Model CrmFeedbacks
+ * Model CrmFeedback
  * 
  */
-export type CrmFeedbacks = Prisma.CrmFeedbacksModel
-/**
- * Model CrmFeedbackReads
- * 
- */
-export type CrmFeedbackReads = Prisma.CrmFeedbackReadsModel
+export type CrmFeedback = Prisma.CrmFeedbackModel
 /**
  * Model CrmNotifications
  * 

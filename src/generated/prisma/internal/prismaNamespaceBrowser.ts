@@ -153,8 +153,7 @@ export const ModelName = {
   CrmDealPayments: 'CrmDealPayments',
   CrmActivities: 'CrmActivities',
   CrmTasks: 'CrmTasks',
-  CrmFeedbacks: 'CrmFeedbacks',
-  CrmFeedbackReads: 'CrmFeedbackReads',
+  CrmFeedback: 'CrmFeedback',
   CrmNotifications: 'CrmNotifications',
   CrmSalesKpiQuotas: 'CrmSalesKpiQuotas',
   CrmStatuses: 'CrmStatuses',
@@ -2225,27 +2224,22 @@ export const CrmTasksScalarFieldEnum = {
 export type CrmTasksScalarFieldEnum = (typeof CrmTasksScalarFieldEnum)[keyof typeof CrmTasksScalarFieldEnum]
 
 
-export const CrmFeedbacksScalarFieldEnum = {
+export const CrmFeedbackScalarFieldEnum = {
   id: 'id',
-  customer_id: 'customer_id',
   category_code: 'category_code',
-  content: 'content',
-  sales_user_id: 'sales_user_id',
-  sales_name: 'sales_name',
+  customer_id: 'customer_id',
+  deal_id: 'deal_id',
+  actor_user_id: 'actor_user_id',
+  receiver_user_id: 'receiver_user_id',
+  title: 'title',
+  message: 'message',
+  payload: 'payload',
+  is_read: 'is_read',
+  read_at: 'read_at',
   created_at: 'created_at'
 } as const
 
-export type CrmFeedbacksScalarFieldEnum = (typeof CrmFeedbacksScalarFieldEnum)[keyof typeof CrmFeedbacksScalarFieldEnum]
-
-
-export const CrmFeedbackReadsScalarFieldEnum = {
-  id: 'id',
-  feedback_id: 'feedback_id',
-  user_id: 'user_id',
-  read_at: 'read_at'
-} as const
-
-export type CrmFeedbackReadsScalarFieldEnum = (typeof CrmFeedbackReadsScalarFieldEnum)[keyof typeof CrmFeedbackReadsScalarFieldEnum]
+export type CrmFeedbackScalarFieldEnum = (typeof CrmFeedbackScalarFieldEnum)[keyof typeof CrmFeedbackScalarFieldEnum]
 
 
 export const CrmNotificationsScalarFieldEnum = {

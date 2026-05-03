@@ -1,32 +1,28 @@
-model CrmFeedbacks {
-  id             Int      @id @default(autoincrement())
-  customer_id    Int
-  category_code  String
-  content        String
-  sales_user_id  Int?
-  sales_name     String?
-  created_at     DateTime @default(now()) @db.Timestamptz(6)
+model CrmFeedback {
+  id               Int       @id @default(autoincrement())
+  category_code    String
+  customer_id      Int?
+  deal_id          Int?
+  actor_user_id    Int?
+  receiver_user_id Int?
+  title            String
+  message          String
+  payload          Json?
+  is_read          Boolean   @default(false)
+  read_at          DateTime? @db.Timestamptz(6)
+  created_at       DateTime  @default(now()) @db.Timestamptz(6)
 
-  reads CrmFeedbackReads[]
+  category CrmFeedbackCategories @relation(fields: [category_code], references: [code])
+  customer CrmCustomerProfiles?  @relation(fields: [customer_id], references: [id])
+  deal     CrmDeals?             @relation(fields: [deal_id], references: [id])
+  actor    User?                 @relation("crm_feedback_actor", fields: [actor_user_id], references: [id])
+  receiver User?                 @relation("crm_feedback_receiver", fields: [receiver_user_id], references: [id])
 
+  @@index([receiver_user_id, is_read, created_at])
+  @@index([category_code, created_at])
   @@index([customer_id])
-  @@index([category_code])
-  @@index([sales_user_id])
-  @@index([created_at])
-  @@map("crm_feedbacks")
-}
-
-model CrmFeedbackReads {
-  id          Int      @id @default(autoincrement())
-  feedback_id Int
-  user_id     Int
-  read_at     DateTime @default(now()) @db.Timestamptz(6)
-
-  feedback CrmFeedbacks @relation(fields: [feedback_id], references: [id], onDelete: Cascade)
-
-  @@unique([feedback_id, user_id])
-  @@index([user_id])
-  @@map("crm_feedback_reads")
+  @@index([deal_id])
+  @@map("crm_feedback")
 }
 
 model CrmNotifications {

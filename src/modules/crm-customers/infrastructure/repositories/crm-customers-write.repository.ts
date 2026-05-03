@@ -11,6 +11,7 @@ import {
   CRM_CUSTOMER_CREATE_DEFAULTS,
   CRM_CUSTOMER_TIER_GMV_THRESHOLDS,
   CRM_CUSTOMERS_LOG,
+  CRM_FEEDBACK_CATEGORY,
   CRM_FAILURE_PIPELINE_STAGES,
   CRM_INTERACTION_CHANNEL_CODES,
   CRM_NOTIFICATION_TYPE,
@@ -968,6 +969,29 @@ export class CrmCustomersWriteRepository {
             },
             createdAt: now,
           });
+
+          if (
+            isFailurePipelineStage(params.pipelineStage) &&
+            (failureReason || failureNote)
+          ) {
+            await tx.crmFeedback.create({
+              data: {
+                category_code: CRM_FEEDBACK_CATEGORY.FAILURE,
+                customer_id: customer.id,
+                deal_id: deal.id,
+                actor_user_id: actor.id,
+                receiver_user_id: deal.owner_id,
+                title: 'Customer feedback captured',
+                message: failureNote ?? `Failure reason: ${failureReason}`,
+                payload: {
+                  pipelineStage: params.pipelineStage,
+                  failureReason,
+                },
+                is_read: false,
+                created_at: now,
+              },
+            });
+          }
 
           return {
             customerId: String(customer.id),

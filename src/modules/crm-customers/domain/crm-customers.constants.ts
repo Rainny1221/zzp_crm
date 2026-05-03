@@ -36,6 +36,10 @@ export const CRM_NOTIFICATION_TYPE = {
   PRODUCT_PACKAGE_CHANGED: 'product_package_changed',
 } as const;
 
+export const CRM_FEEDBACK_CATEGORY = {
+  FAILURE: 'failure',
+} as const;
+
 export const CRM_INTERACTION_CHANNEL_CODES = ['call', 'message'] as const;
 
 export type CrmInteractionChannelCode =

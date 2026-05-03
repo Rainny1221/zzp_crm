@@ -486,8 +486,7 @@ export const ModelName = {
   CrmDealPayments: 'CrmDealPayments',
   CrmActivities: 'CrmActivities',
   CrmTasks: 'CrmTasks',
-  CrmFeedbacks: 'CrmFeedbacks',
-  CrmFeedbackReads: 'CrmFeedbackReads',
+  CrmFeedback: 'CrmFeedback',
   CrmNotifications: 'CrmNotifications',
   CrmSalesKpiQuotas: 'CrmSalesKpiQuotas',
   CrmStatuses: 'CrmStatuses',
@@ -529,7 +528,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "address" | "admin_notification_inbox" | "aff_campaigns" | "ai_chats" | "apps" | "blogs" | "brand_subscriptions" | "brand_taps" | "brands" | "brands_info" | "campaign_inspiration" | "campaign_tasks" | "campaigns" | "categories" | "chat_messages" | "cheating_login" | "comment_galleries" | "comments" | "contacts" | "content_performance_daily" | "conversation_members" | "conversations" | "cost_per_view_campaigns" | "creator_content" | "creator_profile_snapshot" | "districts" | "draft_galleries" | "drafts" | "features" | "file_imports" | "hide_skus" | "interacts" | "invite_receive_sample_reminders" | "kol_brand_taps" | "kol_pricing" | "kol_submissions" | "node_paths" | "nodes" | "notification_campaigns" | "notification_customs" | "notifications" | "order_creator_content" | "order_logistics" | "order_packages" | "order_payments" | "order_recipients" | "order_skus" | "order_transactions" | "orders" | "orders_tap" | "otp_types" | "permission_users" | "plan_features" | "plans" | "platforms" | "platforms_campaigns" | "potentials" | "product_counts" | "product_creator_content" | "product_detail_reviews" | "product_statistics" | "products" | "products_campaigns" | "profiles" | "protest_overdues" | "provinces" | "questions_and_answers" | "referral_commissions" | "request_product_samples" | "review_items" | "sample_applications" | "sellers" | "shop_gmv_breakdown_daily" | "shop_performance_daily" | "shopplus_tokens" | "sku_transactions" | "skus" | "subscriptions" | "tasks" | "tiktok" | "tiktok_external" | "tiktok_shop_authorizations" | "tracking_views" | "user_activities" | "user_categories" | "user_categories_tap" | "user_galleries" | "user_interacts" | "user_notification_watermarks" | "user_otp_sessions" | "user_platforms" | "user_referrals" | "user_relationships" | "user_reports" | "user_sessions" | "wards" | "youtube" | "crmCustomerBusinessProfiles" | "crmDealDetails" | "crmDealPayments" | "crmActivities" | "crmTasks" | "crmFeedbacks" | "crmFeedbackReads" | "crmNotifications" | "crmSalesKpiQuotas" | "crmStatuses" | "crmProductPackages" | "crmFailureReasons" | "crmFeedbackCategories" | "crmNotificationTypes" | "crmInteractionChannels" | "crmCallOutcomes" | "crmMessageOutcomes" | "crmTaskTypes" | "crmPriorities" | "crmPipelineStageNotes" | "crmSalesMembers" | "crmPipelineStages" | "crmSources" | "crmCustomerProfiles" | "crmDeals" | "crmDealAssignments" | "crmPipelineRecords" | "crmPipelineEvents" | "crmSyncJobs" | "user" | "role" | "permission" | "permissionRole"
+    modelProps: "address" | "admin_notification_inbox" | "aff_campaigns" | "ai_chats" | "apps" | "blogs" | "brand_subscriptions" | "brand_taps" | "brands" | "brands_info" | "campaign_inspiration" | "campaign_tasks" | "campaigns" | "categories" | "chat_messages" | "cheating_login" | "comment_galleries" | "comments" | "contacts" | "content_performance_daily" | "conversation_members" | "conversations" | "cost_per_view_campaigns" | "creator_content" | "creator_profile_snapshot" | "districts" | "draft_galleries" | "drafts" | "features" | "file_imports" | "hide_skus" | "interacts" | "invite_receive_sample_reminders" | "kol_brand_taps" | "kol_pricing" | "kol_submissions" | "node_paths" | "nodes" | "notification_campaigns" | "notification_customs" | "notifications" | "order_creator_content" | "order_logistics" | "order_packages" | "order_payments" | "order_recipients" | "order_skus" | "order_transactions" | "orders" | "orders_tap" | "otp_types" | "permission_users" | "plan_features" | "plans" | "platforms" | "platforms_campaigns" | "potentials" | "product_counts" | "product_creator_content" | "product_detail_reviews" | "product_statistics" | "products" | "products_campaigns" | "profiles" | "protest_overdues" | "provinces" | "questions_and_answers" | "referral_commissions" | "request_product_samples" | "review_items" | "sample_applications" | "sellers" | "shop_gmv_breakdown_daily" | "shop_performance_daily" | "shopplus_tokens" | "sku_transactions" | "skus" | "subscriptions" | "tasks" | "tiktok" | "tiktok_external" | "tiktok_shop_authorizations" | "tracking_views" | "user_activities" | "user_categories" | "user_categories_tap" | "user_galleries" | "user_interacts" | "user_notification_watermarks" | "user_otp_sessions" | "user_platforms" | "user_referrals" | "user_relationships" | "user_reports" | "user_sessions" | "wards" | "youtube" | "crmCustomerBusinessProfiles" | "crmDealDetails" | "crmDealPayments" | "crmActivities" | "crmTasks" | "crmFeedback" | "crmNotifications" | "crmSalesKpiQuotas" | "crmStatuses" | "crmProductPackages" | "crmFailureReasons" | "crmFeedbackCategories" | "crmNotificationTypes" | "crmInteractionChannels" | "crmCallOutcomes" | "crmMessageOutcomes" | "crmTaskTypes" | "crmPriorities" | "crmPipelineStageNotes" | "crmSalesMembers" | "crmPipelineStages" | "crmSources" | "crmCustomerProfiles" | "crmDeals" | "crmDealAssignments" | "crmPipelineRecords" | "crmPipelineEvents" | "crmSyncJobs" | "user" | "role" | "permission" | "permissionRole"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -8081,151 +8080,77 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    CrmFeedbacks: {
-      payload: Prisma.$CrmFeedbacksPayload<ExtArgs>
-      fields: Prisma.CrmFeedbacksFieldRefs
+    CrmFeedback: {
+      payload: Prisma.$CrmFeedbackPayload<ExtArgs>
+      fields: Prisma.CrmFeedbackFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.CrmFeedbacksFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbacksPayload> | null
+          args: Prisma.CrmFeedbackFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbackPayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.CrmFeedbacksFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbacksPayload>
+          args: Prisma.CrmFeedbackFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbackPayload>
         }
         findFirst: {
-          args: Prisma.CrmFeedbacksFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbacksPayload> | null
+          args: Prisma.CrmFeedbackFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbackPayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.CrmFeedbacksFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbacksPayload>
+          args: Prisma.CrmFeedbackFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbackPayload>
         }
         findMany: {
-          args: Prisma.CrmFeedbacksFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbacksPayload>[]
+          args: Prisma.CrmFeedbackFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbackPayload>[]
         }
         create: {
-          args: Prisma.CrmFeedbacksCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbacksPayload>
+          args: Prisma.CrmFeedbackCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbackPayload>
         }
         createMany: {
-          args: Prisma.CrmFeedbacksCreateManyArgs<ExtArgs>
+          args: Prisma.CrmFeedbackCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.CrmFeedbacksCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbacksPayload>[]
+          args: Prisma.CrmFeedbackCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbackPayload>[]
         }
         delete: {
-          args: Prisma.CrmFeedbacksDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbacksPayload>
+          args: Prisma.CrmFeedbackDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbackPayload>
         }
         update: {
-          args: Prisma.CrmFeedbacksUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbacksPayload>
+          args: Prisma.CrmFeedbackUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbackPayload>
         }
         deleteMany: {
-          args: Prisma.CrmFeedbacksDeleteManyArgs<ExtArgs>
+          args: Prisma.CrmFeedbackDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.CrmFeedbacksUpdateManyArgs<ExtArgs>
+          args: Prisma.CrmFeedbackUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.CrmFeedbacksUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbacksPayload>[]
+          args: Prisma.CrmFeedbackUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbackPayload>[]
         }
         upsert: {
-          args: Prisma.CrmFeedbacksUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbacksPayload>
+          args: Prisma.CrmFeedbackUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbackPayload>
         }
         aggregate: {
-          args: Prisma.CrmFeedbacksAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateCrmFeedbacks>
+          args: Prisma.CrmFeedbackAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCrmFeedback>
         }
         groupBy: {
-          args: Prisma.CrmFeedbacksGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.CrmFeedbacksGroupByOutputType>[]
+          args: Prisma.CrmFeedbackGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CrmFeedbackGroupByOutputType>[]
         }
         count: {
-          args: Prisma.CrmFeedbacksCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.CrmFeedbacksCountAggregateOutputType> | number
-        }
-      }
-    }
-    CrmFeedbackReads: {
-      payload: Prisma.$CrmFeedbackReadsPayload<ExtArgs>
-      fields: Prisma.CrmFeedbackReadsFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.CrmFeedbackReadsFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbackReadsPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.CrmFeedbackReadsFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbackReadsPayload>
-        }
-        findFirst: {
-          args: Prisma.CrmFeedbackReadsFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbackReadsPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.CrmFeedbackReadsFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbackReadsPayload>
-        }
-        findMany: {
-          args: Prisma.CrmFeedbackReadsFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbackReadsPayload>[]
-        }
-        create: {
-          args: Prisma.CrmFeedbackReadsCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbackReadsPayload>
-        }
-        createMany: {
-          args: Prisma.CrmFeedbackReadsCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.CrmFeedbackReadsCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbackReadsPayload>[]
-        }
-        delete: {
-          args: Prisma.CrmFeedbackReadsDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbackReadsPayload>
-        }
-        update: {
-          args: Prisma.CrmFeedbackReadsUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbackReadsPayload>
-        }
-        deleteMany: {
-          args: Prisma.CrmFeedbackReadsDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.CrmFeedbackReadsUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.CrmFeedbackReadsUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbackReadsPayload>[]
-        }
-        upsert: {
-          args: Prisma.CrmFeedbackReadsUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmFeedbackReadsPayload>
-        }
-        aggregate: {
-          args: Prisma.CrmFeedbackReadsAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateCrmFeedbackReads>
-        }
-        groupBy: {
-          args: Prisma.CrmFeedbackReadsGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.CrmFeedbackReadsGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.CrmFeedbackReadsCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.CrmFeedbackReadsCountAggregateOutputType> | number
+          args: Prisma.CrmFeedbackCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CrmFeedbackCountAggregateOutputType> | number
         }
       }
     }
@@ -12218,27 +12143,22 @@ export const CrmTasksScalarFieldEnum = {
 export type CrmTasksScalarFieldEnum = (typeof CrmTasksScalarFieldEnum)[keyof typeof CrmTasksScalarFieldEnum]
 
 
-export const CrmFeedbacksScalarFieldEnum = {
+export const CrmFeedbackScalarFieldEnum = {
   id: 'id',
-  customer_id: 'customer_id',
   category_code: 'category_code',
-  content: 'content',
-  sales_user_id: 'sales_user_id',
-  sales_name: 'sales_name',
+  customer_id: 'customer_id',
+  deal_id: 'deal_id',
+  actor_user_id: 'actor_user_id',
+  receiver_user_id: 'receiver_user_id',
+  title: 'title',
+  message: 'message',
+  payload: 'payload',
+  is_read: 'is_read',
+  read_at: 'read_at',
   created_at: 'created_at'
 } as const
 
-export type CrmFeedbacksScalarFieldEnum = (typeof CrmFeedbacksScalarFieldEnum)[keyof typeof CrmFeedbacksScalarFieldEnum]
-
-
-export const CrmFeedbackReadsScalarFieldEnum = {
-  id: 'id',
-  feedback_id: 'feedback_id',
-  user_id: 'user_id',
-  read_at: 'read_at'
-} as const
-
-export type CrmFeedbackReadsScalarFieldEnum = (typeof CrmFeedbackReadsScalarFieldEnum)[keyof typeof CrmFeedbackReadsScalarFieldEnum]
+export type CrmFeedbackScalarFieldEnum = (typeof CrmFeedbackScalarFieldEnum)[keyof typeof CrmFeedbackScalarFieldEnum]
 
 
 export const CrmNotificationsScalarFieldEnum = {
@@ -13027,8 +12947,7 @@ export type GlobalOmitConfig = {
   crmDealPayments?: Prisma.CrmDealPaymentsOmit
   crmActivities?: Prisma.CrmActivitiesOmit
   crmTasks?: Prisma.CrmTasksOmit
-  crmFeedbacks?: Prisma.CrmFeedbacksOmit
-  crmFeedbackReads?: Prisma.CrmFeedbackReadsOmit
+  crmFeedback?: Prisma.CrmFeedbackOmit
   crmNotifications?: Prisma.CrmNotificationsOmit
   crmSalesKpiQuotas?: Prisma.CrmSalesKpiQuotasOmit
   crmStatuses?: Prisma.CrmStatusesOmit

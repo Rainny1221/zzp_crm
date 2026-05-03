@@ -39,6 +39,7 @@ model CrmCustomerProfiles {
   deal        CrmDeals?
   assignments CrmDealAssignments[]
   notifications CrmNotifications[]
+  feedback    CrmFeedback[]
 
   @@index([owner_id])
   @@index([source_code])
@@ -67,6 +68,7 @@ model CrmDeals {
   pipelineRecords CrmPipelineRecords[]
   assignments     CrmDealAssignments[]
   notifications   CrmNotifications[]
+  feedback        CrmFeedback[]
 
   @@index([pipeline_stage_code])
   @@index([owner_id])
