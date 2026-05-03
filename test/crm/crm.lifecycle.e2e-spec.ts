@@ -239,14 +239,35 @@ describe('CRM lifecycle regression (e2e)', () => {
       .expect(200)
       .expect((response) => {
         const data = unwrap<{
-          kpiStrip: { totalCustomers: number };
+          kpiStrip: {
+            totalCustomers: number;
+            activeTrialCount: number;
+            averageOrderValue: number;
+          };
           leadDistribution: Array<{ stage: string; count: number }>;
+          statusPanel: Array<{ status: string; count: number }>;
+          leadSources: Array<{
+            source: string;
+            converted: number;
+            conversionRate: number;
+          }>;
         }>(response.body);
         expect(data.kpiStrip.totalCustomers).toBeGreaterThanOrEqual(1);
+        expect(data.kpiStrip.activeTrialCount).toBeGreaterThanOrEqual(1);
+        expect(typeof data.kpiStrip.averageOrderValue).toBe('number');
         expect(
           data.leadDistribution.find((item) => item.stage === 'qualified')
             ?.count,
         ).toBeGreaterThanOrEqual(1);
+        expect(
+          data.statusPanel.find((item) => item.status === 'trial')?.count,
+        ).toBeGreaterThanOrEqual(1);
+        const manualSource = data.leadSources.find(
+          (item) => item.source === 'manual',
+        );
+        expect(manualSource).toBeDefined();
+        expect(typeof manualSource?.converted).toBe('number');
+        expect(typeof manualSource?.conversionRate).toBe('number');
       });
 
     await request(context.httpServer)

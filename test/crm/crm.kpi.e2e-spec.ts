@@ -95,6 +95,50 @@ describe('CRM KPI regression (e2e)', () => {
         expect(typeof data.attainment.leadsPct).toBe('number');
         expect(typeof data.attainment.pipelineValuePct).toBe('number');
       });
+
+    await request(context.httpServer)
+      .get(`/crm/dashboard/sales/${context.fixtures.users.sales.id}`)
+      .query({
+        from: periodStart,
+        to: '2026-05-31',
+      })
+      .set(authHeader(context.tokens.manager))
+      .expect(200)
+      .expect((response) => {
+        const data = unwrap<{
+          kpiStrip: {
+            monthlyClosedDeals: number;
+            averageOrderValue: number;
+          };
+          targets: {
+            wonValueTarget: number;
+            wonDealsTarget: number;
+            qualifiedTarget: number;
+            pipelineValueTarget: number;
+          } | null;
+          targetProgress: number;
+          attainment: {
+            wonValuePct: number;
+            wonDealsPct: number;
+            qualifiedPct: number;
+            pipelineValuePct: number;
+          } | null;
+        }>(response.body);
+
+        expect(data.kpiStrip.monthlyClosedDeals).toBeGreaterThanOrEqual(0);
+        expect(typeof data.kpiStrip.averageOrderValue).toBe('number');
+        expect(data.targets).toMatchObject({
+          wonValueTarget: 20000000,
+          wonDealsTarget: 5,
+          qualifiedTarget: 15,
+          pipelineValueTarget: 50000000,
+        });
+        expect(typeof data.targetProgress).toBe('number');
+        expect(typeof data.attainment?.wonValuePct).toBe('number');
+        expect(typeof data.attainment?.wonDealsPct).toBe('number');
+        expect(typeof data.attainment?.qualifiedPct).toBe('number');
+        expect(typeof data.attainment?.pipelineValuePct).toBe('number');
+      });
   });
 
   it('enforces KPI target scope and validates target payloads', async () => {

@@ -12,9 +12,11 @@ export interface GetCrmDashboardAdminQueryFilters {
 export interface CrmDashboardKpiStripResponse {
   totalCustomers: number;
   activeDeals: number;
+  activeTrialCount: number;
   pipelineValue: number;
   wonValue: number;
   lostDeals: number;
+  averageOrderValue: number;
   conversionRate: number;
 }
 
@@ -45,9 +47,16 @@ export interface CrmDashboardLeadDistributionResponse {
   value: number;
 }
 
+export interface CrmDashboardStatusPanelItemResponse {
+  status: 'new' | 'trial' | 'failed' | 'success';
+  count: number;
+}
+
 export interface CrmDashboardLeadSourceResponse {
   source: string;
   count: number;
+  converted: number;
+  conversionRate: number;
   value: number;
 }
 
@@ -69,6 +78,7 @@ export interface GetCrmDashboardAdminQueryResult {
   salesPerformance: CrmDashboardSalesPerformanceResponse[];
   teamPerformance: CrmDashboardTeamPerformanceResponse[];
   leadDistribution: CrmDashboardLeadDistributionResponse[];
+  statusPanel: CrmDashboardStatusPanelItemResponse[];
   leadSources: CrmDashboardLeadSourceResponse[];
   failureAnalysis: CrmDashboardFailureAnalysisResponse[];
   quickActions: CrmDashboardQuickActionsResponse;

@@ -11,9 +11,12 @@ import type {
   CrmDashboardLeadDistributionResponse,
   CrmDashboardLeadSourceResponse,
   CrmDashboardQuickActionsResponse,
+  CrmDashboardSalesAttainmentResponse,
   CrmDashboardSalesPerformanceResponse,
   CrmDashboardSalesKpiStripResponse,
   CrmDashboardSalesRepResponse,
+  CrmDashboardSalesTargetsResponse,
+  CrmDashboardStatusPanelItemResponse,
   CrmDashboardTeamPerformanceResponse,
   GetCrmDashboardAdminQueryFilters,
   GetCrmDashboardAdminQueryResult,
@@ -33,6 +36,17 @@ type QuickActionsRow = CrmDashboardQuickActionsResponse;
 type CountRow = {
   count: number;
 };
+type StatusPanelRow = {
+  status: string | null;
+  count: number;
+};
+type SalesTargetSnapshot = {
+  leadsTarget: number;
+  qualifiedTarget: number;
+  wonDealsTarget: number;
+  pipelineValueTarget: number;
+  wonValueTarget: number;
+};
 
 type CrmDashboardBaseFilters = Pick<
   GetCrmDashboardAdminQueryFilters,
@@ -42,6 +56,9 @@ type CrmDashboardBaseFilters = Pick<
 export type GetCrmDashboardSalesReadResult = {
   salesRep: CrmDashboardSalesRepResponse;
   kpiStrip: CrmDashboardSalesKpiStripResponse;
+  targets: CrmDashboardSalesTargetsResponse;
+  targetProgress: number;
+  attainment: CrmDashboardSalesAttainmentResponse;
   leadDistribution: CrmDashboardLeadDistributionResponse[];
   leadSources: CrmDashboardLeadSourceResponse[];
   failureAnalysis: CrmDashboardFailureAnalysisResponse[];
@@ -71,6 +88,7 @@ export class CrmDashboardReadRepository {
         salesPerformance,
         teamPerformance,
         leadDistribution,
+        statusPanel,
         leadSources,
         failureAnalysis,
         quickActions,
@@ -79,6 +97,7 @@ export class CrmDashboardReadRepository {
         this.getSalesPerformance(baseSql),
         this.getTeamPerformance(baseSql),
         this.getLeadDistribution(baseSql),
+        this.getStatusPanel(baseSql),
         this.getLeadSources(baseSql),
         this.getFailureAnalysis(baseSql),
         this.getQuickActions(baseSql),
@@ -102,6 +121,7 @@ export class CrmDashboardReadRepository {
         salesPerformance,
         teamPerformance,
         leadDistribution,
+        statusPanel,
         leadSources,
         failureAnalysis,
         quickActions,
@@ -153,6 +173,7 @@ export class CrmDashboardReadRepository {
         quickActions,
         personalPipelineRows,
         personalPipelineTotal,
+        targetSnapshot,
       ] = await Promise.all([
         this.getSalesRep(params.salesRepId),
         this.getSalesKpiStrip(baseSql),
@@ -162,7 +183,12 @@ export class CrmDashboardReadRepository {
         this.getQuickActions(baseSql),
         this.getPersonalPipelineRows(personalPipelineBaseSql),
         this.getPersonalPipelineTotal(personalPipelineBaseSql),
+        this.getSalesTargetSnapshot({
+          salesRepId: params.salesRepId,
+          from: params.from,
+        }),
       ]);
+      const targets = this.toSalesTargetsResponse(targetSnapshot);
 
       this.logger.debug({
         message: 'CRM sales dashboard loaded',
@@ -182,6 +208,20 @@ export class CrmDashboardReadRepository {
       return {
         salesRep,
         kpiStrip,
+        targets,
+        targetProgress:
+          targetSnapshot && targetSnapshot.wonValueTarget > 0
+            ? kpiStrip.wonValue / targetSnapshot.wonValueTarget
+            : 0,
+        attainment: this.buildTargetAttainment(
+          {
+            qualifiedLeads: kpiStrip.qualifiedLeads,
+            wonDeals: kpiStrip.wonDeals,
+            pipelineValue: kpiStrip.pipelineValue,
+            wonValue: kpiStrip.wonValue,
+          },
+          targetSnapshot,
+        ),
         leadDistribution,
         leadSources,
         failureAnalysis,
@@ -256,7 +296,13 @@ export class CrmDashboardReadRepository {
   private async getKpiStrip(
     baseSql: Prisma.Sql,
   ): Promise<CrmDashboardKpiStripResponse> {
-    const rows = await this.prisma.$queryRaw<KpiRow[]>(Prisma.sql`
+    const rows = await this.prisma.$queryRaw<
+      Array<
+        KpiRow & {
+          wonDeals: number;
+        }
+      >
+    >(Prisma.sql`
       WITH base AS (
         ${baseSql}
       )
@@ -265,11 +311,17 @@ export class CrmDashboardReadRepository {
         COUNT(*) FILTER (
           WHERE COALESCE("statusCode", 'new') NOT IN ('success', 'failed')
         )::int AS "activeDeals",
+        COUNT(*) FILTER (
+          WHERE COALESCE("statusCode", 'new') = 'trial'
+        )::int AS "activeTrialCount",
         COALESCE(SUM(COALESCE("dealValue", 0)), 0)::double precision
           AS "pipelineValue",
         COALESCE(SUM(COALESCE("dealValue", 0)) FILTER (
           WHERE "statusCode" = 'success'
         ), 0)::double precision AS "wonValue",
+        COUNT(*) FILTER (
+          WHERE "statusCode" = 'success'
+        )::int AS "wonDeals",
         COUNT(*) FILTER (
           WHERE "statusCode" = 'failed'
         )::int AS "lostDeals",
@@ -286,7 +338,22 @@ export class CrmDashboardReadRepository {
       FROM base
     `);
 
-    return rows[0] ?? this.getEmptyKpiStrip();
+    const row = rows[0];
+    if (!row) {
+      return this.getEmptyKpiStrip();
+    }
+
+    return {
+      totalCustomers: row.totalCustomers ?? 0,
+      activeDeals: row.activeDeals ?? 0,
+      activeTrialCount: row.activeTrialCount ?? 0,
+      pipelineValue: row.pipelineValue ?? 0,
+      wonValue: row.wonValue ?? 0,
+      lostDeals: row.lostDeals ?? 0,
+      averageOrderValue:
+        (row.wonDeals ?? 0) > 0 ? (row.wonValue ?? 0) / row.wonDeals : 0,
+      conversionRate: row.conversionRate ?? 0,
+    };
   }
 
   private async getSalesKpiStrip(
@@ -301,6 +368,19 @@ export class CrmDashboardReadRepository {
         COUNT(*) FILTER (
           WHERE COALESCE("statusCode", 'new') NOT IN ('success', 'failed')
         )::int AS "activeDeals",
+        COUNT(*) FILTER (
+          WHERE "stage" IN (
+            'qualified',
+            'booking_demo',
+            'demo',
+            'proposal',
+            'negotiation',
+            'close_deal'
+          )
+        )::int AS "qualifiedLeads",
+        COUNT(*) FILTER (
+          WHERE "statusCode" = 'success'
+        )::int AS "wonDeals",
         COALESCE(SUM(COALESCE("dealValue", 0)), 0)::double precision
           AS "pipelineValue",
         COALESCE(SUM(COALESCE("dealValue", 0)) FILTER (
@@ -322,7 +402,27 @@ export class CrmDashboardReadRepository {
       FROM base
     `);
 
-    return rows[0] ?? this.getEmptySalesKpiStrip();
+    const row = rows[0];
+    if (!row) {
+      return this.getEmptySalesKpiStrip();
+    }
+
+    return {
+      assignedCustomers: row.assignedCustomers ?? 0,
+      activeDeals: row.activeDeals ?? 0,
+      qualifiedLeads: row.qualifiedLeads ?? 0,
+      wonDeals: row.wonDeals ?? 0,
+      pipelineValue: row.pipelineValue ?? 0,
+      wonValue: row.wonValue ?? 0,
+      lostDeals: row.lostDeals ?? 0,
+      monthlyClosedDeals: row.wonDeals ?? 0,
+      averageOrderValue:
+        (row.wonDeals ?? 0) > 0 ? (row.wonValue ?? 0) / row.wonDeals : 0,
+      conversionRate:
+        (row.assignedCustomers ?? 0) > 0
+          ? ((row.wonDeals ?? 0) / row.assignedCustomers) * 100
+          : 0,
+    };
   }
 
   private async getSalesPerformance(
@@ -410,22 +510,60 @@ export class CrmDashboardReadRepository {
     `);
   }
 
+  private async getStatusPanel(
+    baseSql: Prisma.Sql,
+  ): Promise<CrmDashboardStatusPanelItemResponse[]> {
+    const rows = await this.prisma.$queryRaw<StatusPanelRow[]>(Prisma.sql`
+      WITH base AS (
+        ${baseSql}
+      )
+      SELECT
+        COALESCE("statusCode", 'new') AS "status",
+        COUNT(*)::int AS "count"
+      FROM base
+      GROUP BY COALESCE("statusCode", 'new')
+    `);
+
+    const byStatus = new Map(
+      rows.map((row) => [row.status ?? 'new', row.count ?? 0]),
+    );
+
+    return [
+      { status: 'new', count: byStatus.get('new') ?? 0 },
+      { status: 'trial', count: byStatus.get('trial') ?? 0 },
+      { status: 'failed', count: byStatus.get('failed') ?? 0 },
+      { status: 'success', count: byStatus.get('success') ?? 0 },
+    ];
+  }
+
   private async getLeadSources(
     baseSql: Prisma.Sql,
   ): Promise<CrmDashboardLeadSourceResponse[]> {
-    return this.prisma.$queryRaw<LeadSourceRow[]>(Prisma.sql`
+    const rows = await this.prisma.$queryRaw<LeadSourceRow[]>(Prisma.sql`
       WITH base AS (
         ${baseSql}
       )
       SELECT
         COALESCE("source", 'unknown') AS "source",
         COUNT(*)::int AS "count",
+        COUNT(*) FILTER (
+          WHERE "statusCode" = 'success'
+        )::int AS "converted",
         COALESCE(SUM(COALESCE("dealValue", 0)), 0)::double precision
           AS "value"
       FROM base
       GROUP BY COALESCE("source", 'unknown')
       ORDER BY "count" DESC, "value" DESC, "source" ASC
     `);
+
+    return rows.map((row) => ({
+      source: row.source,
+      count: row.count ?? 0,
+      converted: row.converted ?? 0,
+      conversionRate:
+        (row.count ?? 0) > 0 ? ((row.converted ?? 0) / row.count) * 100 : 0,
+      value: row.value ?? 0,
+    }));
   }
 
   private async getFailureAnalysis(
@@ -509,6 +647,77 @@ export class CrmDashboardReadRepository {
     `);
 
     return rows[0]?.count ?? 0;
+  }
+
+  private async getSalesTargetSnapshot(params: {
+    salesRepId: number;
+    from?: string;
+  }): Promise<SalesTargetSnapshot | null> {
+    if (!params.from) {
+      return null;
+    }
+
+    const periodStart = this.toPeriodStart(params.from);
+
+    const target = await this.prisma.crmKpiTargets.findFirst({
+      where: {
+        scope_type: 'sales',
+        owner_user_id: params.salesRepId,
+        period_type: 'monthly',
+        period_start: periodStart,
+      },
+    });
+
+    if (!target) {
+      return null;
+    }
+
+    return {
+      leadsTarget: target.leads_target,
+      qualifiedTarget: target.qualified_target,
+      wonDealsTarget: target.won_deals_target,
+      pipelineValueTarget: Number(target.pipeline_value_target),
+      wonValueTarget: Number(target.won_value_target),
+    };
+  }
+
+  private toSalesTargetsResponse(
+    target: SalesTargetSnapshot | null,
+  ): CrmDashboardSalesTargetsResponse {
+    if (!target) {
+      return null;
+    }
+
+    return {
+      wonValueTarget: target.wonValueTarget,
+      wonDealsTarget: target.wonDealsTarget,
+      qualifiedTarget: target.qualifiedTarget,
+      pipelineValueTarget: target.pipelineValueTarget,
+    };
+  }
+
+  private buildTargetAttainment(
+    summary: {
+      qualifiedLeads: number;
+      wonDeals: number;
+      pipelineValue: number;
+      wonValue: number;
+    },
+    target: SalesTargetSnapshot | null,
+  ): CrmDashboardSalesAttainmentResponse {
+    if (!target) {
+      return null;
+    }
+
+    const pct = (actual: number, targetValue: number) =>
+      targetValue > 0 ? actual / targetValue : 0;
+
+    return {
+      qualifiedPct: pct(summary.qualifiedLeads, target.qualifiedTarget),
+      wonDealsPct: pct(summary.wonDeals, target.wonDealsTarget),
+      pipelineValuePct: pct(summary.pipelineValue, target.pipelineValueTarget),
+      wonValuePct: pct(summary.wonValue, target.wonValueTarget),
+    };
   }
 
   private buildBaseSql(whereSql: Prisma.Sql): Prisma.Sql {
@@ -683,13 +892,19 @@ export class CrmDashboardReadRepository {
     return new Date(`${value}${suffix}`);
   }
 
+  private toPeriodStart(value: string): Date {
+    return new Date(`${value.slice(0, 10)}T00:00:00.000Z`);
+  }
+
   private getEmptyKpiStrip(): CrmDashboardKpiStripResponse {
     return {
       totalCustomers: 0,
       activeDeals: 0,
+      activeTrialCount: 0,
       pipelineValue: 0,
       wonValue: 0,
       lostDeals: 0,
+      averageOrderValue: 0,
       conversionRate: 0,
     };
   }
@@ -698,9 +913,13 @@ export class CrmDashboardReadRepository {
     return {
       assignedCustomers: 0,
       activeDeals: 0,
+      qualifiedLeads: 0,
+      wonDeals: 0,
       pipelineValue: 0,
       wonValue: 0,
       lostDeals: 0,
+      monthlyClosedDeals: 0,
+      averageOrderValue: 0,
       conversionRate: 0,
     };
   }

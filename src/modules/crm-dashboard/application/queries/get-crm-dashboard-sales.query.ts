@@ -27,11 +27,29 @@ export interface CrmDashboardSalesRepResponse {
 export interface CrmDashboardSalesKpiStripResponse {
   assignedCustomers: number;
   activeDeals: number;
+  qualifiedLeads: number;
+  wonDeals: number;
   pipelineValue: number;
   wonValue: number;
   lostDeals: number;
+  monthlyClosedDeals: number;
+  averageOrderValue: number;
   conversionRate: number;
 }
+
+export type CrmDashboardSalesTargetsResponse = {
+  wonValueTarget: number;
+  wonDealsTarget: number;
+  qualifiedTarget: number;
+  pipelineValueTarget: number;
+} | null;
+
+export type CrmDashboardSalesAttainmentResponse = {
+  wonValuePct: number;
+  wonDealsPct: number;
+  qualifiedPct: number;
+  pipelineValuePct: number;
+} | null;
 
 export interface CrmDashboardPersonalPipelineResponse {
   rows: PipelineDealRecordResponse[];
@@ -41,6 +59,9 @@ export interface CrmDashboardPersonalPipelineResponse {
 export interface GetCrmDashboardSalesQueryResult {
   salesRep: CrmDashboardSalesRepResponse;
   kpiStrip: CrmDashboardSalesKpiStripResponse;
+  targets: CrmDashboardSalesTargetsResponse;
+  targetProgress: number;
+  attainment: CrmDashboardSalesAttainmentResponse;
   leadDistribution: CrmDashboardLeadDistributionResponse[];
   leadSources: CrmDashboardLeadSourceResponse[];
   failureAnalysis: CrmDashboardFailureAnalysisResponse[];
