@@ -156,6 +156,7 @@ export const ModelName = {
   CrmFeedback: 'CrmFeedback',
   CrmNotifications: 'CrmNotifications',
   CrmSalesKpiQuotas: 'CrmSalesKpiQuotas',
+  CrmKpiTargets: 'CrmKpiTargets',
   CrmStatuses: 'CrmStatuses',
   CrmProductPackages: 'CrmProductPackages',
   CrmFailureReasons: 'CrmFailureReasons',
@@ -2272,6 +2273,26 @@ export const CrmSalesKpiQuotasScalarFieldEnum = {
 } as const
 
 export type CrmSalesKpiQuotasScalarFieldEnum = (typeof CrmSalesKpiQuotasScalarFieldEnum)[keyof typeof CrmSalesKpiQuotasScalarFieldEnum]
+
+
+export const CrmKpiTargetsScalarFieldEnum = {
+  id: 'id',
+  scope_type: 'scope_type',
+  owner_user_id: 'owner_user_id',
+  period_type: 'period_type',
+  period_start: 'period_start',
+  period_end: 'period_end',
+  leads_target: 'leads_target',
+  qualified_target: 'qualified_target',
+  won_deals_target: 'won_deals_target',
+  pipeline_value_target: 'pipeline_value_target',
+  won_value_target: 'won_value_target',
+  created_by: 'created_by',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type CrmKpiTargetsScalarFieldEnum = (typeof CrmKpiTargetsScalarFieldEnum)[keyof typeof CrmKpiTargetsScalarFieldEnum]
 
 
 export const CrmStatusesScalarFieldEnum = {

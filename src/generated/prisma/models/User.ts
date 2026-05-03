@@ -642,6 +642,8 @@ export type UserWhereInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsListRelationFilter
   receivedCrmFeedback?: Prisma.CrmFeedbackListRelationFilter
   actedCrmFeedback?: Prisma.CrmFeedbackListRelationFilter
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsListRelationFilter
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsListRelationFilter
   crmSyncJobs?: Prisma.CrmSyncJobsListRelationFilter
 }
 
@@ -715,6 +717,8 @@ export type UserOrderByWithRelationInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsOrderByRelationAggregateInput
   receivedCrmFeedback?: Prisma.CrmFeedbackOrderByRelationAggregateInput
   actedCrmFeedback?: Prisma.CrmFeedbackOrderByRelationAggregateInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsOrderByRelationAggregateInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsOrderByRelationAggregateInput
   crmSyncJobs?: Prisma.CrmSyncJobsOrderByRelationAggregateInput
 }
 
@@ -791,6 +795,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   actedCrmNotifications?: Prisma.CrmNotificationsListRelationFilter
   receivedCrmFeedback?: Prisma.CrmFeedbackListRelationFilter
   actedCrmFeedback?: Prisma.CrmFeedbackListRelationFilter
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsListRelationFilter
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsListRelationFilter
   crmSyncJobs?: Prisma.CrmSyncJobsListRelationFilter
 }, "id">
 
@@ -977,6 +983,8 @@ export type UserCreateInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
 }
 
@@ -1048,6 +1056,8 @@ export type UserUncheckedCreateInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -1118,6 +1128,8 @@ export type UserUpdateInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
 }
 
@@ -1189,6 +1201,8 @@ export type UserUncheckedUpdateInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -1739,6 +1753,38 @@ export type UserUpdateOneWithoutActedCrmNotificationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutActedCrmNotificationsInput, Prisma.UserUpdateWithoutActedCrmNotificationsInput>, Prisma.UserUncheckedUpdateWithoutActedCrmNotificationsInput>
 }
 
+export type UserCreateNestedOneWithoutOwnedCrmKpiTargetsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOwnedCrmKpiTargetsInput, Prisma.UserUncheckedCreateWithoutOwnedCrmKpiTargetsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOwnedCrmKpiTargetsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutCreatedCrmKpiTargetsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedCrmKpiTargetsInput, Prisma.UserUncheckedCreateWithoutCreatedCrmKpiTargetsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedCrmKpiTargetsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutOwnedCrmKpiTargetsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOwnedCrmKpiTargetsInput, Prisma.UserUncheckedCreateWithoutOwnedCrmKpiTargetsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOwnedCrmKpiTargetsInput
+  upsert?: Prisma.UserUpsertWithoutOwnedCrmKpiTargetsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOwnedCrmKpiTargetsInput, Prisma.UserUpdateWithoutOwnedCrmKpiTargetsInput>, Prisma.UserUncheckedUpdateWithoutOwnedCrmKpiTargetsInput>
+}
+
+export type UserUpdateOneWithoutCreatedCrmKpiTargetsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedCrmKpiTargetsInput, Prisma.UserUncheckedCreateWithoutCreatedCrmKpiTargetsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedCrmKpiTargetsInput
+  upsert?: Prisma.UserUpsertWithoutCreatedCrmKpiTargetsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedCrmKpiTargetsInput, Prisma.UserUpdateWithoutCreatedCrmKpiTargetsInput>, Prisma.UserUncheckedUpdateWithoutCreatedCrmKpiTargetsInput>
+}
+
 export type UserCreateNestedOneWithoutCrmCustomerProfileInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutCrmCustomerProfileInput, Prisma.UserUncheckedCreateWithoutCrmCustomerProfileInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutCrmCustomerProfileInput
@@ -1991,6 +2037,8 @@ export type UserCreateWithoutBrands_infosInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
 }
 
@@ -2061,6 +2109,8 @@ export type UserUncheckedCreateWithoutBrands_infosInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -2146,6 +2196,8 @@ export type UserUpdateWithoutBrands_infosInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
 }
 
@@ -2216,6 +2268,8 @@ export type UserUncheckedUpdateWithoutBrands_infosInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -2285,6 +2339,8 @@ export type UserCreateWithoutFile_importsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
 }
 
@@ -2355,6 +2411,8 @@ export type UserUncheckedCreateWithoutFile_importsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -2440,6 +2498,8 @@ export type UserUpdateWithoutFile_importsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
 }
 
@@ -2510,6 +2570,8 @@ export type UserUncheckedUpdateWithoutFile_importsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -2579,6 +2641,8 @@ export type UserCreateWithoutNodesInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
 }
 
@@ -2649,6 +2713,8 @@ export type UserUncheckedCreateWithoutNodesInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -2734,6 +2800,8 @@ export type UserUpdateWithoutNodesInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
 }
 
@@ -2804,6 +2872,8 @@ export type UserUncheckedUpdateWithoutNodesInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -2873,6 +2943,8 @@ export type UserCreateWithoutPlatformInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
 }
 
@@ -2943,6 +3015,8 @@ export type UserUncheckedCreateWithoutPlatformInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -3095,6 +3169,8 @@ export type UserCreateWithoutUser_interactsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
 }
 
@@ -3165,6 +3241,8 @@ export type UserUncheckedCreateWithoutUser_interactsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -3250,6 +3328,8 @@ export type UserUpdateWithoutUser_interactsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
 }
 
@@ -3320,6 +3400,8 @@ export type UserUncheckedUpdateWithoutUser_interactsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -3389,6 +3471,8 @@ export type UserCreateWithoutUser_otp_sessionsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
 }
 
@@ -3459,6 +3543,8 @@ export type UserUncheckedCreateWithoutUser_otp_sessionsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -3544,6 +3630,8 @@ export type UserUpdateWithoutUser_otp_sessionsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
 }
 
@@ -3614,6 +3702,8 @@ export type UserUncheckedUpdateWithoutUser_otp_sessionsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -3683,6 +3773,8 @@ export type UserCreateWithoutActedCrmFeedbackInput = {
   receivedCrmNotifications?: Prisma.CrmNotificationsCreateNestedManyWithoutReceiverInput
   actedCrmNotifications?: Prisma.CrmNotificationsCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutReceiverInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
 }
 
@@ -3753,6 +3845,8 @@ export type UserUncheckedCreateWithoutActedCrmFeedbackInput = {
   receivedCrmNotifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutReceiverInput
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutReceiverInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -3827,6 +3921,8 @@ export type UserCreateWithoutReceivedCrmFeedbackInput = {
   receivedCrmNotifications?: Prisma.CrmNotificationsCreateNestedManyWithoutReceiverInput
   actedCrmNotifications?: Prisma.CrmNotificationsCreateNestedManyWithoutActorInput
   actedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
 }
 
@@ -3897,6 +3993,8 @@ export type UserUncheckedCreateWithoutReceivedCrmFeedbackInput = {
   receivedCrmNotifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutReceiverInput
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutActorInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -3982,6 +4080,8 @@ export type UserUpdateWithoutActedCrmFeedbackInput = {
   receivedCrmNotifications?: Prisma.CrmNotificationsUpdateManyWithoutReceiverNestedInput
   actedCrmNotifications?: Prisma.CrmNotificationsUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutReceiverNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
 }
 
@@ -4052,6 +4152,8 @@ export type UserUncheckedUpdateWithoutActedCrmFeedbackInput = {
   receivedCrmNotifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutReceiverNestedInput
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutReceiverNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -4132,6 +4234,8 @@ export type UserUpdateWithoutReceivedCrmFeedbackInput = {
   receivedCrmNotifications?: Prisma.CrmNotificationsUpdateManyWithoutReceiverNestedInput
   actedCrmNotifications?: Prisma.CrmNotificationsUpdateManyWithoutActorNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
 }
 
@@ -4202,6 +4306,8 @@ export type UserUncheckedUpdateWithoutReceivedCrmFeedbackInput = {
   receivedCrmNotifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutReceiverNestedInput
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutActorNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -4271,6 +4377,8 @@ export type UserCreateWithoutReceivedCrmNotificationsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
 }
 
@@ -4341,6 +4449,8 @@ export type UserUncheckedCreateWithoutReceivedCrmNotificationsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -4415,6 +4525,8 @@ export type UserCreateWithoutActedCrmNotificationsInput = {
   receivedCrmNotifications?: Prisma.CrmNotificationsCreateNestedManyWithoutReceiverInput
   receivedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
 }
 
@@ -4485,6 +4597,8 @@ export type UserUncheckedCreateWithoutActedCrmNotificationsInput = {
   receivedCrmNotifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutReceiverInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -4570,6 +4684,8 @@ export type UserUpdateWithoutReceivedCrmNotificationsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
 }
 
@@ -4640,6 +4756,8 @@ export type UserUncheckedUpdateWithoutReceivedCrmNotificationsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -4720,6 +4838,8 @@ export type UserUpdateWithoutActedCrmNotificationsInput = {
   receivedCrmNotifications?: Prisma.CrmNotificationsUpdateManyWithoutReceiverNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
 }
 
@@ -4790,6 +4910,612 @@ export type UserUncheckedUpdateWithoutActedCrmNotificationsInput = {
   receivedCrmNotifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutReceiverNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutCreatorNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutOwnedCrmKpiTargetsInput = {
+  email?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
+  password?: string | null
+  avatar_name?: string | null
+  background_name?: string | null
+  created_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
+  deleted_at?: Date | string | null
+  deleted_by?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoCreateNestedManyWithoutUsersInput
+  file_imports?: Prisma.file_importsCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesCreateNestedManyWithoutUsersInput
+  platform?: Prisma.platformsCreateNestedOneWithoutUsersInput
+  role?: Prisma.RoleCreateNestedOneWithoutUsersInput
+  user_interacts?: Prisma.user_interactsCreateNestedManyWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesCreateNestedOneWithoutUserInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesCreateNestedManyWithoutOwnerInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsCreateNestedManyWithoutOwnerInput
+  crmAssignmentFrom?: Prisma.CrmDealAssignmentsCreateNestedManyWithoutFromUserInput
+  crmAssignmentTo?: Prisma.CrmDealAssignmentsCreateNestedManyWithoutToUserInput
+  crmAssignmentCreatedBy?: Prisma.CrmDealAssignmentsCreateNestedManyWithoutCreatedByInput
+  receivedCrmNotifications?: Prisma.CrmNotificationsCreateNestedManyWithoutReceiverInput
+  actedCrmNotifications?: Prisma.CrmNotificationsCreateNestedManyWithoutActorInput
+  receivedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutReceiverInput
+  actedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutActorInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutCreatorInput
+  crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutOwnedCrmKpiTargetsInput = {
+  id?: number
+  email?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
+  password?: string | null
+  avatar_name?: string | null
+  background_name?: string | null
+  created_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
+  deleted_at?: Date | string | null
+  deleted_by?: number | null
+  role_id?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  platform_id?: number | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedCreateNestedManyWithoutUsersInput
+  file_imports?: Prisma.file_importsUncheckedCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesUncheckedCreateNestedManyWithoutUsersInput
+  user_interacts?: Prisma.user_interactsUncheckedCreateNestedManyWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedCreateNestedOneWithoutUserInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedCreateNestedManyWithoutOwnerInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedCreateNestedManyWithoutOwnerInput
+  crmAssignmentFrom?: Prisma.CrmDealAssignmentsUncheckedCreateNestedManyWithoutFromUserInput
+  crmAssignmentTo?: Prisma.CrmDealAssignmentsUncheckedCreateNestedManyWithoutToUserInput
+  crmAssignmentCreatedBy?: Prisma.CrmDealAssignmentsUncheckedCreateNestedManyWithoutCreatedByInput
+  receivedCrmNotifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutReceiverInput
+  actedCrmNotifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutActorInput
+  receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutReceiverInput
+  actedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutActorInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutCreatorInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutOwnedCrmKpiTargetsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutOwnedCrmKpiTargetsInput, Prisma.UserUncheckedCreateWithoutOwnedCrmKpiTargetsInput>
+}
+
+export type UserCreateWithoutCreatedCrmKpiTargetsInput = {
+  email?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
+  password?: string | null
+  avatar_name?: string | null
+  background_name?: string | null
+  created_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
+  deleted_at?: Date | string | null
+  deleted_by?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoCreateNestedManyWithoutUsersInput
+  file_imports?: Prisma.file_importsCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesCreateNestedManyWithoutUsersInput
+  platform?: Prisma.platformsCreateNestedOneWithoutUsersInput
+  role?: Prisma.RoleCreateNestedOneWithoutUsersInput
+  user_interacts?: Prisma.user_interactsCreateNestedManyWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesCreateNestedOneWithoutUserInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesCreateNestedManyWithoutOwnerInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsCreateNestedManyWithoutOwnerInput
+  crmAssignmentFrom?: Prisma.CrmDealAssignmentsCreateNestedManyWithoutFromUserInput
+  crmAssignmentTo?: Prisma.CrmDealAssignmentsCreateNestedManyWithoutToUserInput
+  crmAssignmentCreatedBy?: Prisma.CrmDealAssignmentsCreateNestedManyWithoutCreatedByInput
+  receivedCrmNotifications?: Prisma.CrmNotificationsCreateNestedManyWithoutReceiverInput
+  actedCrmNotifications?: Prisma.CrmNotificationsCreateNestedManyWithoutActorInput
+  receivedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutReceiverInput
+  actedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutOwnerInput
+  crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutCreatedCrmKpiTargetsInput = {
+  id?: number
+  email?: string | null
+  username?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  is_verify_email?: boolean | null
+  password?: string | null
+  avatar_name?: string | null
+  background_name?: string | null
+  created_at?: Date | string
+  created_by?: number | null
+  updated_at?: Date | string | null
+  updated_by?: number | null
+  deleted_at?: Date | string | null
+  deleted_by?: number | null
+  role_id?: number | null
+  bio?: string | null
+  total_spent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: string | null
+  platform_id?: number | null
+  profile_id?: number | null
+  contract_id?: number | null
+  tiktok_id?: number | null
+  notification_token?: string | null
+  gender?: string | null
+  is_block?: boolean | null
+  apple_id?: string | null
+  youtube_id?: number | null
+  phone_number?: string | null
+  is_new_user?: boolean | null
+  is_auth_creator_tap?: boolean | null
+  is_restricted?: boolean | null
+  have_showcase?: boolean | null
+  categories_tap?: string | null
+  last_active_at?: Date | string | null
+  channel_orientation?: Prisma.UserCreatechannel_orientationInput | string[]
+  is_koc_core?: boolean | null
+  is_pinned?: boolean | null
+  is_created_external?: boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: boolean | null
+  is_high_gmv?: boolean | null
+  brand_name?: string | null
+  parent_id?: number | null
+  is_phone_verified?: boolean | null
+  is_show_page_identity?: boolean | null
+  shop_codes?: Prisma.UserCreateshop_codesInput | string[]
+  is_active?: boolean | null
+  current_parent_user_id?: number | null
+  blocked_at?: Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedCreateNestedManyWithoutUsersInput
+  file_imports?: Prisma.file_importsUncheckedCreateNestedManyWithoutUsersInput
+  nodes?: Prisma.nodesUncheckedCreateNestedManyWithoutUsersInput
+  user_interacts?: Prisma.user_interactsUncheckedCreateNestedManyWithoutUsersInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedCreateNestedManyWithoutUsersInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedCreateNestedOneWithoutUserInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedCreateNestedManyWithoutOwnerInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedCreateNestedManyWithoutOwnerInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedCreateNestedManyWithoutOwnerInput
+  crmAssignmentFrom?: Prisma.CrmDealAssignmentsUncheckedCreateNestedManyWithoutFromUserInput
+  crmAssignmentTo?: Prisma.CrmDealAssignmentsUncheckedCreateNestedManyWithoutToUserInput
+  crmAssignmentCreatedBy?: Prisma.CrmDealAssignmentsUncheckedCreateNestedManyWithoutCreatedByInput
+  receivedCrmNotifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutReceiverInput
+  actedCrmNotifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutActorInput
+  receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutReceiverInput
+  actedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutOwnerInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutCreatedCrmKpiTargetsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedCrmKpiTargetsInput, Prisma.UserUncheckedCreateWithoutCreatedCrmKpiTargetsInput>
+}
+
+export type UserUpsertWithoutOwnedCrmKpiTargetsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutOwnedCrmKpiTargetsInput, Prisma.UserUncheckedUpdateWithoutOwnedCrmKpiTargetsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutOwnedCrmKpiTargetsInput, Prisma.UserUncheckedCreateWithoutOwnedCrmKpiTargetsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutOwnedCrmKpiTargetsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutOwnedCrmKpiTargetsInput, Prisma.UserUncheckedUpdateWithoutOwnedCrmKpiTargetsInput>
+}
+
+export type UserUpdateWithoutOwnedCrmKpiTargetsInput = {
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUpdateManyWithoutUsersNestedInput
+  file_imports?: Prisma.file_importsUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUpdateManyWithoutUsersNestedInput
+  platform?: Prisma.platformsUpdateOneWithoutUsersNestedInput
+  role?: Prisma.RoleUpdateOneWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUpdateManyWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUpdateOneWithoutUserNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUpdateManyWithoutOwnerNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUpdateManyWithoutOwnerNestedInput
+  crmAssignmentFrom?: Prisma.CrmDealAssignmentsUpdateManyWithoutFromUserNestedInput
+  crmAssignmentTo?: Prisma.CrmDealAssignmentsUpdateManyWithoutToUserNestedInput
+  crmAssignmentCreatedBy?: Prisma.CrmDealAssignmentsUpdateManyWithoutCreatedByNestedInput
+  receivedCrmNotifications?: Prisma.CrmNotificationsUpdateManyWithoutReceiverNestedInput
+  actedCrmNotifications?: Prisma.CrmNotificationsUpdateManyWithoutActorNestedInput
+  receivedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutReceiverNestedInput
+  actedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutActorNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutCreatorNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutOwnedCrmKpiTargetsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  role_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platform_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedUpdateManyWithoutUsersNestedInput
+  file_imports?: Prisma.file_importsUncheckedUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUncheckedUpdateManyWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUncheckedUpdateManyWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedUpdateOneWithoutUserNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedUpdateManyWithoutOwnerNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedUpdateManyWithoutOwnerNestedInput
+  crmAssignmentFrom?: Prisma.CrmDealAssignmentsUncheckedUpdateManyWithoutFromUserNestedInput
+  crmAssignmentTo?: Prisma.CrmDealAssignmentsUncheckedUpdateManyWithoutToUserNestedInput
+  crmAssignmentCreatedBy?: Prisma.CrmDealAssignmentsUncheckedUpdateManyWithoutCreatedByNestedInput
+  receivedCrmNotifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutReceiverNestedInput
+  actedCrmNotifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutActorNestedInput
+  receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutReceiverNestedInput
+  actedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutActorNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutCreatorNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserUpsertWithoutCreatedCrmKpiTargetsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedCrmKpiTargetsInput, Prisma.UserUncheckedUpdateWithoutCreatedCrmKpiTargetsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedCrmKpiTargetsInput, Prisma.UserUncheckedCreateWithoutCreatedCrmKpiTargetsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCreatedCrmKpiTargetsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedCrmKpiTargetsInput, Prisma.UserUncheckedUpdateWithoutCreatedCrmKpiTargetsInput>
+}
+
+export type UserUpdateWithoutCreatedCrmKpiTargetsInput = {
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUpdateManyWithoutUsersNestedInput
+  file_imports?: Prisma.file_importsUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUpdateManyWithoutUsersNestedInput
+  platform?: Prisma.platformsUpdateOneWithoutUsersNestedInput
+  role?: Prisma.RoleUpdateOneWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUpdateManyWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUpdateOneWithoutUserNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUpdateManyWithoutOwnerNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUpdateManyWithoutOwnerNestedInput
+  crmAssignmentFrom?: Prisma.CrmDealAssignmentsUpdateManyWithoutFromUserNestedInput
+  crmAssignmentTo?: Prisma.CrmDealAssignmentsUpdateManyWithoutToUserNestedInput
+  crmAssignmentCreatedBy?: Prisma.CrmDealAssignmentsUpdateManyWithoutCreatedByNestedInput
+  receivedCrmNotifications?: Prisma.CrmNotificationsUpdateManyWithoutReceiverNestedInput
+  actedCrmNotifications?: Prisma.CrmNotificationsUpdateManyWithoutActorNestedInput
+  receivedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutReceiverNestedInput
+  actedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutOwnerNestedInput
+  crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCreatedCrmKpiTargetsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_verify_email?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  background_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleted_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  role_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total_spent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  rating?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platform_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  profile_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contract_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tiktok_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notification_token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_block?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  apple_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtube_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_new_user?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_auth_creator_tap?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_restricted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  have_showcase?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  categories_tap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_active_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  channel_orientation?: Prisma.UserUpdatechannel_orientationInput | string[]
+  is_koc_core?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_pinned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_created_external?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_active_ai?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_high_gmv?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  brand_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parent_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_phone_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_show_page_identity?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  shop_codes?: Prisma.UserUpdateshop_codesInput | string[]
+  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  current_parent_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  blocked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  brands_infos?: Prisma.brands_infoUncheckedUpdateManyWithoutUsersNestedInput
+  file_imports?: Prisma.file_importsUncheckedUpdateManyWithoutUsersNestedInput
+  nodes?: Prisma.nodesUncheckedUpdateManyWithoutUsersNestedInput
+  user_interacts?: Prisma.user_interactsUncheckedUpdateManyWithoutUsersNestedInput
+  user_otp_sessions?: Prisma.user_otp_sessionsUncheckedUpdateManyWithoutUsersNestedInput
+  crmCustomerProfile?: Prisma.CrmCustomerProfilesUncheckedUpdateOneWithoutUserNestedInput
+  ownedCrmCustomerProfiles?: Prisma.CrmCustomerProfilesUncheckedUpdateManyWithoutOwnerNestedInput
+  ownedPipelineRecords?: Prisma.CrmPipelineRecordsUncheckedUpdateManyWithoutOwnerNestedInput
+  ownedCrmDeals?: Prisma.CrmDealsUncheckedUpdateManyWithoutOwnerNestedInput
+  crmAssignmentFrom?: Prisma.CrmDealAssignmentsUncheckedUpdateManyWithoutFromUserNestedInput
+  crmAssignmentTo?: Prisma.CrmDealAssignmentsUncheckedUpdateManyWithoutToUserNestedInput
+  crmAssignmentCreatedBy?: Prisma.CrmDealAssignmentsUncheckedUpdateManyWithoutCreatedByNestedInput
+  receivedCrmNotifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutReceiverNestedInput
+  actedCrmNotifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutActorNestedInput
+  receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutReceiverNestedInput
+  actedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutOwnerNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -4859,6 +5585,8 @@ export type UserCreateWithoutCrmCustomerProfileInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
 }
 
@@ -4929,6 +5657,8 @@ export type UserUncheckedCreateWithoutCrmCustomerProfileInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -5003,6 +5733,8 @@ export type UserCreateWithoutOwnedCrmCustomerProfilesInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
 }
 
@@ -5073,6 +5805,8 @@ export type UserUncheckedCreateWithoutOwnedCrmCustomerProfilesInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -5158,6 +5892,8 @@ export type UserUpdateWithoutCrmCustomerProfileInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
 }
 
@@ -5228,6 +5964,8 @@ export type UserUncheckedUpdateWithoutCrmCustomerProfileInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -5308,6 +6046,8 @@ export type UserUpdateWithoutOwnedCrmCustomerProfilesInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
 }
 
@@ -5378,6 +6118,8 @@ export type UserUncheckedUpdateWithoutOwnedCrmCustomerProfilesInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -5447,6 +6189,8 @@ export type UserCreateWithoutOwnedCrmDealsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
 }
 
@@ -5517,6 +6261,8 @@ export type UserUncheckedCreateWithoutOwnedCrmDealsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -5602,6 +6348,8 @@ export type UserUpdateWithoutOwnedCrmDealsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
 }
 
@@ -5672,6 +6420,8 @@ export type UserUncheckedUpdateWithoutOwnedCrmDealsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -5741,6 +6491,8 @@ export type UserCreateWithoutCrmAssignmentFromInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
 }
 
@@ -5811,6 +6563,8 @@ export type UserUncheckedCreateWithoutCrmAssignmentFromInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -5885,6 +6639,8 @@ export type UserCreateWithoutCrmAssignmentToInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
 }
 
@@ -5955,6 +6711,8 @@ export type UserUncheckedCreateWithoutCrmAssignmentToInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -6029,6 +6787,8 @@ export type UserCreateWithoutCrmAssignmentCreatedByInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
 }
 
@@ -6099,6 +6859,8 @@ export type UserUncheckedCreateWithoutCrmAssignmentCreatedByInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -6184,6 +6946,8 @@ export type UserUpdateWithoutCrmAssignmentFromInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
 }
 
@@ -6254,6 +7018,8 @@ export type UserUncheckedUpdateWithoutCrmAssignmentFromInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -6334,6 +7100,8 @@ export type UserUpdateWithoutCrmAssignmentToInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
 }
 
@@ -6404,6 +7172,8 @@ export type UserUncheckedUpdateWithoutCrmAssignmentToInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -6484,6 +7254,8 @@ export type UserUpdateWithoutCrmAssignmentCreatedByInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
 }
 
@@ -6554,6 +7326,8 @@ export type UserUncheckedUpdateWithoutCrmAssignmentCreatedByInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -6623,6 +7397,8 @@ export type UserCreateWithoutOwnedPipelineRecordsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
 }
 
@@ -6693,6 +7469,8 @@ export type UserUncheckedCreateWithoutOwnedPipelineRecordsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -6778,6 +7556,8 @@ export type UserUpdateWithoutOwnedPipelineRecordsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
 }
 
@@ -6848,6 +7628,8 @@ export type UserUncheckedUpdateWithoutOwnedPipelineRecordsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -6918,6 +7700,8 @@ export type UserCreateWithoutCrmSyncJobsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutCrmSyncJobsInput = {
@@ -6988,6 +7772,8 @@ export type UserUncheckedCreateWithoutCrmSyncJobsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutCrmSyncJobsInput = {
@@ -7073,6 +7859,8 @@ export type UserUpdateWithoutCrmSyncJobsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCrmSyncJobsInput = {
@@ -7143,6 +7931,8 @@ export type UserUncheckedUpdateWithoutCrmSyncJobsInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutRoleInput = {
@@ -7211,6 +8001,8 @@ export type UserCreateWithoutRoleInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsCreateNestedManyWithoutUserInput
 }
 
@@ -7281,6 +8073,8 @@ export type UserUncheckedCreateWithoutRoleInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutActorInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutReceiverInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedCreateNestedManyWithoutActorInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutOwnerInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedCreateNestedManyWithoutCreatorInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -7429,6 +8223,8 @@ export type UserUpdateWithoutPlatformInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
 }
 
@@ -7499,6 +8295,8 @@ export type UserUncheckedUpdateWithoutPlatformInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -7674,6 +8472,8 @@ export type UserUpdateWithoutRoleInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUpdateManyWithoutUserNestedInput
 }
 
@@ -7744,6 +8544,8 @@ export type UserUncheckedUpdateWithoutRoleInput = {
   actedCrmNotifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutActorNestedInput
   receivedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutReceiverNestedInput
   actedCrmFeedback?: Prisma.CrmFeedbackUncheckedUpdateManyWithoutActorNestedInput
+  ownedCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutOwnerNestedInput
+  createdCrmKpiTargets?: Prisma.CrmKpiTargetsUncheckedUpdateManyWithoutCreatorNestedInput
   crmSyncJobs?: Prisma.CrmSyncJobsUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -7821,6 +8623,8 @@ export type UserCountOutputType = {
   actedCrmNotifications: number
   receivedCrmFeedback: number
   actedCrmFeedback: number
+  ownedCrmKpiTargets: number
+  createdCrmKpiTargets: number
   crmSyncJobs: number
 }
 
@@ -7840,6 +8644,8 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   actedCrmNotifications?: boolean | UserCountOutputTypeCountActedCrmNotificationsArgs
   receivedCrmFeedback?: boolean | UserCountOutputTypeCountReceivedCrmFeedbackArgs
   actedCrmFeedback?: boolean | UserCountOutputTypeCountActedCrmFeedbackArgs
+  ownedCrmKpiTargets?: boolean | UserCountOutputTypeCountOwnedCrmKpiTargetsArgs
+  createdCrmKpiTargets?: boolean | UserCountOutputTypeCountCreatedCrmKpiTargetsArgs
   crmSyncJobs?: boolean | UserCountOutputTypeCountCrmSyncJobsArgs
 }
 
@@ -7961,6 +8767,20 @@ export type UserCountOutputTypeCountActedCrmFeedbackArgs<ExtArgs extends runtime
 /**
  * UserCountOutputType without action
  */
+export type UserCountOutputTypeCountOwnedCrmKpiTargetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CrmKpiTargetsWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCreatedCrmKpiTargetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CrmKpiTargetsWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
 export type UserCountOutputTypeCountCrmSyncJobsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.CrmSyncJobsWhereInput
 }
@@ -8036,6 +8856,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   actedCrmNotifications?: boolean | Prisma.User$actedCrmNotificationsArgs<ExtArgs>
   receivedCrmFeedback?: boolean | Prisma.User$receivedCrmFeedbackArgs<ExtArgs>
   actedCrmFeedback?: boolean | Prisma.User$actedCrmFeedbackArgs<ExtArgs>
+  ownedCrmKpiTargets?: boolean | Prisma.User$ownedCrmKpiTargetsArgs<ExtArgs>
+  createdCrmKpiTargets?: boolean | Prisma.User$createdCrmKpiTargetsArgs<ExtArgs>
   crmSyncJobs?: boolean | Prisma.User$crmSyncJobsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
@@ -8226,6 +9048,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   actedCrmNotifications?: boolean | Prisma.User$actedCrmNotificationsArgs<ExtArgs>
   receivedCrmFeedback?: boolean | Prisma.User$receivedCrmFeedbackArgs<ExtArgs>
   actedCrmFeedback?: boolean | Prisma.User$actedCrmFeedbackArgs<ExtArgs>
+  ownedCrmKpiTargets?: boolean | Prisma.User$ownedCrmKpiTargetsArgs<ExtArgs>
+  createdCrmKpiTargets?: boolean | Prisma.User$createdCrmKpiTargetsArgs<ExtArgs>
   crmSyncJobs?: boolean | Prisma.User$crmSyncJobsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -8259,6 +9083,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     actedCrmNotifications: Prisma.$CrmNotificationsPayload<ExtArgs>[]
     receivedCrmFeedback: Prisma.$CrmFeedbackPayload<ExtArgs>[]
     actedCrmFeedback: Prisma.$CrmFeedbackPayload<ExtArgs>[]
+    ownedCrmKpiTargets: Prisma.$CrmKpiTargetsPayload<ExtArgs>[]
+    createdCrmKpiTargets: Prisma.$CrmKpiTargetsPayload<ExtArgs>[]
     crmSyncJobs: Prisma.$CrmSyncJobsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -8725,6 +9551,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   actedCrmNotifications<T extends Prisma.User$actedCrmNotificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$actedCrmNotificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CrmNotificationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   receivedCrmFeedback<T extends Prisma.User$receivedCrmFeedbackArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$receivedCrmFeedbackArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CrmFeedbackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   actedCrmFeedback<T extends Prisma.User$actedCrmFeedbackArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$actedCrmFeedbackArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CrmFeedbackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ownedCrmKpiTargets<T extends Prisma.User$ownedCrmKpiTargetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ownedCrmKpiTargetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CrmKpiTargetsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdCrmKpiTargets<T extends Prisma.User$createdCrmKpiTargetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdCrmKpiTargetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CrmKpiTargetsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   crmSyncJobs<T extends Prisma.User$crmSyncJobsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$crmSyncJobsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CrmSyncJobsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -9616,6 +10444,54 @@ export type User$actedCrmFeedbackArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.CrmFeedbackScalarFieldEnum | Prisma.CrmFeedbackScalarFieldEnum[]
+}
+
+/**
+ * User.ownedCrmKpiTargets
+ */
+export type User$ownedCrmKpiTargetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CrmKpiTargets
+   */
+  select?: Prisma.CrmKpiTargetsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CrmKpiTargets
+   */
+  omit?: Prisma.CrmKpiTargetsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmKpiTargetsInclude<ExtArgs> | null
+  where?: Prisma.CrmKpiTargetsWhereInput
+  orderBy?: Prisma.CrmKpiTargetsOrderByWithRelationInput | Prisma.CrmKpiTargetsOrderByWithRelationInput[]
+  cursor?: Prisma.CrmKpiTargetsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CrmKpiTargetsScalarFieldEnum | Prisma.CrmKpiTargetsScalarFieldEnum[]
+}
+
+/**
+ * User.createdCrmKpiTargets
+ */
+export type User$createdCrmKpiTargetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CrmKpiTargets
+   */
+  select?: Prisma.CrmKpiTargetsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CrmKpiTargets
+   */
+  omit?: Prisma.CrmKpiTargetsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmKpiTargetsInclude<ExtArgs> | null
+  where?: Prisma.CrmKpiTargetsWhereInput
+  orderBy?: Prisma.CrmKpiTargetsOrderByWithRelationInput | Prisma.CrmKpiTargetsOrderByWithRelationInput[]
+  cursor?: Prisma.CrmKpiTargetsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CrmKpiTargetsScalarFieldEnum | Prisma.CrmKpiTargetsScalarFieldEnum[]
 }
 
 /**

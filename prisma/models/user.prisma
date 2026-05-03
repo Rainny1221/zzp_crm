@@ -70,6 +70,8 @@ model User {
   actedCrmNotifications     CrmNotifications[]    @relation("crm_notification_actor")
   receivedCrmFeedback       CrmFeedback[]         @relation("crm_feedback_receiver")
   actedCrmFeedback          CrmFeedback[]         @relation("crm_feedback_actor")
+  ownedCrmKpiTargets        CrmKpiTargets[]       @relation("crm_kpi_target_owner")
+  createdCrmKpiTargets      CrmKpiTargets[]       @relation("crm_kpi_target_creator")
   crmSyncJobs              CrmSyncJobs[]
 
   @@map("users")

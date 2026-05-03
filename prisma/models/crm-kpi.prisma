@@ -15,3 +15,28 @@ model CrmSalesKpiQuotas {
   @@index([period_start, period_end])
   @@map("crm_sales_kpi_quotas")
 }
+
+model CrmKpiTargets {
+  id                    Int      @id @default(autoincrement())
+  scope_type            String
+  owner_user_id         Int?
+  period_type           String
+  period_start          DateTime @db.Date
+  period_end            DateTime @db.Date
+  leads_target          Int      @default(0)
+  qualified_target      Int      @default(0)
+  won_deals_target      Int      @default(0)
+  pipeline_value_target Decimal  @default(0) @db.Decimal(14, 2)
+  won_value_target      Decimal  @default(0) @db.Decimal(14, 2)
+  created_by            Int?
+  created_at            DateTime @default(now()) @db.Timestamptz(6)
+  updated_at            DateTime @updatedAt @db.Timestamptz(6)
+
+  owner   User? @relation("crm_kpi_target_owner", fields: [owner_user_id], references: [id])
+  creator User? @relation("crm_kpi_target_creator", fields: [created_by], references: [id])
+
+  @@index([scope_type, period_start, period_end])
+  @@index([owner_user_id, period_start, period_end])
+  @@unique([scope_type, owner_user_id, period_start], map: "crm_kpi_targets_scope_owner_period_un")
+  @@map("crm_kpi_targets")
+}

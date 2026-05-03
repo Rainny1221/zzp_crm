@@ -16,6 +16,24 @@ type KpiWhereParams = {
   salesRepId: number | null;
 };
 
+type SalesSummary = {
+  assignedLeads: number;
+  qualifiedLeads: number;
+  wonDeals: number;
+  lostDeals: number;
+  pipelineValue: number;
+  wonValue: number;
+  conversionRate: number;
+};
+
+type SalesTargetSnapshot = {
+  leadsTarget: number;
+  qualifiedTarget: number;
+  wonDealsTarget: number;
+  pipelineValueTarget: number;
+  wonValueTarget: number;
+};
+
 @Injectable()
 export class CrmKpiReadRepository {
   constructor(private readonly prisma: PrismaService) {}
@@ -68,13 +86,17 @@ export class CrmKpiReadRepository {
       salesRepId: filters.salesRepId,
     });
 
-    const [salesRep, summary, funnel, packages, recentDeals] =
+    const [salesRep, summary, funnel, packages, recentDeals, targets] =
       await Promise.all([
         this.getSalesRepInfo(filters.salesRepId),
         this.getSalesSummary(where),
         this.getFunnel(where),
         this.getPackageBreakdown(where),
         this.getRecentDeals(where),
+        this.getSalesTargetSnapshot({
+          salesRepId: filters.salesRepId,
+          from: filters.from,
+        }),
       ]);
 
     return {
@@ -84,9 +106,45 @@ export class CrmKpiReadRepository {
         to: filters.to ?? null,
       },
       summary,
+      targets,
+      attainment: this.buildAttainment(summary, targets),
       funnel,
       packages,
       recentDeals,
+    };
+  }
+
+  async getSalesTarget(params: {
+    salesRepId: number;
+    periodType: 'monthly';
+    periodStart: string;
+  }) {
+    const periodStart = this.toPeriodStart(params.periodStart);
+
+    const target = await this.prisma.crmKpiTargets.findFirst({
+      where: {
+        scope_type: 'sales',
+        owner_user_id: params.salesRepId,
+        period_type: params.periodType,
+        period_start: periodStart,
+      },
+    });
+
+    return {
+      target: target
+        ? {
+            id: String(target.id),
+            salesRepId: String(params.salesRepId),
+            periodType: target.period_type as 'monthly',
+            periodStart: this.toDateOnly(target.period_start),
+            periodEnd: this.toDateOnly(target.period_end),
+            leadsTarget: target.leads_target,
+            qualifiedTarget: target.qualified_target,
+            wonDealsTarget: target.won_deals_target,
+            pipelineValueTarget: Number(target.pipeline_value_target),
+            wonValueTarget: Number(target.won_value_target),
+          }
+        : null,
     };
   }
 
@@ -174,7 +232,7 @@ export class CrmKpiReadRepository {
     };
   }
 
-  private async getSalesSummary(where: Prisma.Sql) {
+  private async getSalesSummary(where: Prisma.Sql): Promise<SalesSummary> {
     const rows = await this.prisma.$queryRaw<
       Array<{
         assignedLeads: bigint;
@@ -427,5 +485,72 @@ export class CrmKpiReadRepository {
       })),
       total: rows.length,
     };
+  }
+
+  private async getSalesTargetSnapshot(params: {
+    salesRepId: number;
+    from?: string;
+  }): Promise<SalesTargetSnapshot | null> {
+    if (!params.from) {
+      return null;
+    }
+
+    const periodStart = this.toPeriodStart(params.from);
+
+    const target = await this.prisma.crmKpiTargets.findFirst({
+      where: {
+        scope_type: 'sales',
+        owner_user_id: params.salesRepId,
+        period_type: 'monthly',
+        period_start: periodStart,
+      },
+    });
+
+    if (!target) {
+      return null;
+    }
+
+    return {
+      leadsTarget: target.leads_target,
+      qualifiedTarget: target.qualified_target,
+      wonDealsTarget: target.won_deals_target,
+      pipelineValueTarget: Number(target.pipeline_value_target),
+      wonValueTarget: Number(target.won_value_target),
+    };
+  }
+
+  private buildAttainment(
+    summary: Pick<
+      SalesSummary,
+      | 'assignedLeads'
+      | 'qualifiedLeads'
+      | 'wonDeals'
+      | 'pipelineValue'
+      | 'wonValue'
+    >,
+    targets: SalesTargetSnapshot | null,
+  ) {
+    if (!targets) {
+      return null;
+    }
+
+    const pct = (actual: number, target: number) =>
+      target > 0 ? actual / target : 0;
+
+    return {
+      leadsPct: pct(summary.assignedLeads, targets.leadsTarget),
+      qualifiedPct: pct(summary.qualifiedLeads, targets.qualifiedTarget),
+      wonDealsPct: pct(summary.wonDeals, targets.wonDealsTarget),
+      pipelineValuePct: pct(summary.pipelineValue, targets.pipelineValueTarget),
+      wonValuePct: pct(summary.wonValue, targets.wonValueTarget),
+    };
+  }
+
+  private toPeriodStart(periodStart: string): Date {
+    return new Date(`${periodStart.slice(0, 10)}T00:00:00.000Z`);
+  }
+
+  private toDateOnly(value: Date): string {
+    return value.toISOString().slice(0, 10);
   }
 }

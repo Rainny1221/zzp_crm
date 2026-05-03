@@ -489,6 +489,7 @@ export const ModelName = {
   CrmFeedback: 'CrmFeedback',
   CrmNotifications: 'CrmNotifications',
   CrmSalesKpiQuotas: 'CrmSalesKpiQuotas',
+  CrmKpiTargets: 'CrmKpiTargets',
   CrmStatuses: 'CrmStatuses',
   CrmProductPackages: 'CrmProductPackages',
   CrmFailureReasons: 'CrmFailureReasons',
@@ -528,7 +529,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "address" | "admin_notification_inbox" | "aff_campaigns" | "ai_chats" | "apps" | "blogs" | "brand_subscriptions" | "brand_taps" | "brands" | "brands_info" | "campaign_inspiration" | "campaign_tasks" | "campaigns" | "categories" | "chat_messages" | "cheating_login" | "comment_galleries" | "comments" | "contacts" | "content_performance_daily" | "conversation_members" | "conversations" | "cost_per_view_campaigns" | "creator_content" | "creator_profile_snapshot" | "districts" | "draft_galleries" | "drafts" | "features" | "file_imports" | "hide_skus" | "interacts" | "invite_receive_sample_reminders" | "kol_brand_taps" | "kol_pricing" | "kol_submissions" | "node_paths" | "nodes" | "notification_campaigns" | "notification_customs" | "notifications" | "order_creator_content" | "order_logistics" | "order_packages" | "order_payments" | "order_recipients" | "order_skus" | "order_transactions" | "orders" | "orders_tap" | "otp_types" | "permission_users" | "plan_features" | "plans" | "platforms" | "platforms_campaigns" | "potentials" | "product_counts" | "product_creator_content" | "product_detail_reviews" | "product_statistics" | "products" | "products_campaigns" | "profiles" | "protest_overdues" | "provinces" | "questions_and_answers" | "referral_commissions" | "request_product_samples" | "review_items" | "sample_applications" | "sellers" | "shop_gmv_breakdown_daily" | "shop_performance_daily" | "shopplus_tokens" | "sku_transactions" | "skus" | "subscriptions" | "tasks" | "tiktok" | "tiktok_external" | "tiktok_shop_authorizations" | "tracking_views" | "user_activities" | "user_categories" | "user_categories_tap" | "user_galleries" | "user_interacts" | "user_notification_watermarks" | "user_otp_sessions" | "user_platforms" | "user_referrals" | "user_relationships" | "user_reports" | "user_sessions" | "wards" | "youtube" | "crmCustomerBusinessProfiles" | "crmDealDetails" | "crmDealPayments" | "crmActivities" | "crmTasks" | "crmFeedback" | "crmNotifications" | "crmSalesKpiQuotas" | "crmStatuses" | "crmProductPackages" | "crmFailureReasons" | "crmFeedbackCategories" | "crmNotificationTypes" | "crmInteractionChannels" | "crmCallOutcomes" | "crmMessageOutcomes" | "crmTaskTypes" | "crmPriorities" | "crmPipelineStageNotes" | "crmSalesMembers" | "crmPipelineStages" | "crmSources" | "crmCustomerProfiles" | "crmDeals" | "crmDealAssignments" | "crmPipelineRecords" | "crmPipelineEvents" | "crmSyncJobs" | "user" | "role" | "permission" | "permissionRole"
+    modelProps: "address" | "admin_notification_inbox" | "aff_campaigns" | "ai_chats" | "apps" | "blogs" | "brand_subscriptions" | "brand_taps" | "brands" | "brands_info" | "campaign_inspiration" | "campaign_tasks" | "campaigns" | "categories" | "chat_messages" | "cheating_login" | "comment_galleries" | "comments" | "contacts" | "content_performance_daily" | "conversation_members" | "conversations" | "cost_per_view_campaigns" | "creator_content" | "creator_profile_snapshot" | "districts" | "draft_galleries" | "drafts" | "features" | "file_imports" | "hide_skus" | "interacts" | "invite_receive_sample_reminders" | "kol_brand_taps" | "kol_pricing" | "kol_submissions" | "node_paths" | "nodes" | "notification_campaigns" | "notification_customs" | "notifications" | "order_creator_content" | "order_logistics" | "order_packages" | "order_payments" | "order_recipients" | "order_skus" | "order_transactions" | "orders" | "orders_tap" | "otp_types" | "permission_users" | "plan_features" | "plans" | "platforms" | "platforms_campaigns" | "potentials" | "product_counts" | "product_creator_content" | "product_detail_reviews" | "product_statistics" | "products" | "products_campaigns" | "profiles" | "protest_overdues" | "provinces" | "questions_and_answers" | "referral_commissions" | "request_product_samples" | "review_items" | "sample_applications" | "sellers" | "shop_gmv_breakdown_daily" | "shop_performance_daily" | "shopplus_tokens" | "sku_transactions" | "skus" | "subscriptions" | "tasks" | "tiktok" | "tiktok_external" | "tiktok_shop_authorizations" | "tracking_views" | "user_activities" | "user_categories" | "user_categories_tap" | "user_galleries" | "user_interacts" | "user_notification_watermarks" | "user_otp_sessions" | "user_platforms" | "user_referrals" | "user_relationships" | "user_reports" | "user_sessions" | "wards" | "youtube" | "crmCustomerBusinessProfiles" | "crmDealDetails" | "crmDealPayments" | "crmActivities" | "crmTasks" | "crmFeedback" | "crmNotifications" | "crmSalesKpiQuotas" | "crmKpiTargets" | "crmStatuses" | "crmProductPackages" | "crmFailureReasons" | "crmFeedbackCategories" | "crmNotificationTypes" | "crmInteractionChannels" | "crmCallOutcomes" | "crmMessageOutcomes" | "crmTaskTypes" | "crmPriorities" | "crmPipelineStageNotes" | "crmSalesMembers" | "crmPipelineStages" | "crmSources" | "crmCustomerProfiles" | "crmDeals" | "crmDealAssignments" | "crmPipelineRecords" | "crmPipelineEvents" | "crmSyncJobs" | "user" | "role" | "permission" | "permissionRole"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -8302,6 +8303,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    CrmKpiTargets: {
+      payload: Prisma.$CrmKpiTargetsPayload<ExtArgs>
+      fields: Prisma.CrmKpiTargetsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CrmKpiTargetsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmKpiTargetsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CrmKpiTargetsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmKpiTargetsPayload>
+        }
+        findFirst: {
+          args: Prisma.CrmKpiTargetsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmKpiTargetsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CrmKpiTargetsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmKpiTargetsPayload>
+        }
+        findMany: {
+          args: Prisma.CrmKpiTargetsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmKpiTargetsPayload>[]
+        }
+        create: {
+          args: Prisma.CrmKpiTargetsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmKpiTargetsPayload>
+        }
+        createMany: {
+          args: Prisma.CrmKpiTargetsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CrmKpiTargetsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmKpiTargetsPayload>[]
+        }
+        delete: {
+          args: Prisma.CrmKpiTargetsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmKpiTargetsPayload>
+        }
+        update: {
+          args: Prisma.CrmKpiTargetsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmKpiTargetsPayload>
+        }
+        deleteMany: {
+          args: Prisma.CrmKpiTargetsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CrmKpiTargetsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CrmKpiTargetsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmKpiTargetsPayload>[]
+        }
+        upsert: {
+          args: Prisma.CrmKpiTargetsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmKpiTargetsPayload>
+        }
+        aggregate: {
+          args: Prisma.CrmKpiTargetsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCrmKpiTargets>
+        }
+        groupBy: {
+          args: Prisma.CrmKpiTargetsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CrmKpiTargetsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CrmKpiTargetsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CrmKpiTargetsCountAggregateOutputType> | number
+        }
+      }
+    }
     CrmStatuses: {
       payload: Prisma.$CrmStatusesPayload<ExtArgs>
       fields: Prisma.CrmStatusesFieldRefs
@@ -12193,6 +12268,26 @@ export const CrmSalesKpiQuotasScalarFieldEnum = {
 export type CrmSalesKpiQuotasScalarFieldEnum = (typeof CrmSalesKpiQuotasScalarFieldEnum)[keyof typeof CrmSalesKpiQuotasScalarFieldEnum]
 
 
+export const CrmKpiTargetsScalarFieldEnum = {
+  id: 'id',
+  scope_type: 'scope_type',
+  owner_user_id: 'owner_user_id',
+  period_type: 'period_type',
+  period_start: 'period_start',
+  period_end: 'period_end',
+  leads_target: 'leads_target',
+  qualified_target: 'qualified_target',
+  won_deals_target: 'won_deals_target',
+  pipeline_value_target: 'pipeline_value_target',
+  won_value_target: 'won_value_target',
+  created_by: 'created_by',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type CrmKpiTargetsScalarFieldEnum = (typeof CrmKpiTargetsScalarFieldEnum)[keyof typeof CrmKpiTargetsScalarFieldEnum]
+
+
 export const CrmStatusesScalarFieldEnum = {
   code: 'code',
   label: 'label',
@@ -12950,6 +13045,7 @@ export type GlobalOmitConfig = {
   crmFeedback?: Prisma.CrmFeedbackOmit
   crmNotifications?: Prisma.CrmNotificationsOmit
   crmSalesKpiQuotas?: Prisma.CrmSalesKpiQuotasOmit
+  crmKpiTargets?: Prisma.CrmKpiTargetsOmit
   crmStatuses?: Prisma.CrmStatusesOmit
   crmProductPackages?: Prisma.CrmProductPackagesOmit
   crmFailureReasons?: Prisma.CrmFailureReasonsOmit
