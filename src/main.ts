@@ -14,6 +14,13 @@ async function bootstrap() {
     bufferLogs: true,
   });
 
+  app.enableCors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+    allowedHeaders: ['Authorization', 'Content-Type', 'Accept'],
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  });
+
   app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
 
   app.use(createRequestContextMiddleware(app.get(RequestContextService)));
