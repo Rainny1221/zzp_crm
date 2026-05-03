@@ -25,6 +25,7 @@ export const GetCrmDashboardAdminSchema = z.object({
       },
     ),
   source: z.string().trim().min(1).default('all'),
+  granularity: z.enum(['daily', 'weekly', 'monthly']).default('daily'),
 });
 
 export class GetCrmDashboardAdminDto extends createZodDto(
@@ -34,4 +35,5 @@ export class GetCrmDashboardAdminDto extends createZodDto(
   declare to: string | undefined;
   declare assignee: string;
   declare source: string;
+  declare granularity: 'daily' | 'weekly' | 'monthly';
 }

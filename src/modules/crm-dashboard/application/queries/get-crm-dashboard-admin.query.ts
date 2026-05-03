@@ -5,6 +5,7 @@ export interface GetCrmDashboardAdminQueryFilters {
   to?: string;
   assignee: string;
   source: string;
+  granularity: CrmDashboardSalesPerformanceGranularity;
   currentUserId: number;
   currentUserRoleName?: string | null;
 }
@@ -33,12 +34,36 @@ export interface CrmDashboardSalesPerformanceResponse {
   conversionRate: number;
 }
 
+export type CrmDashboardSalesPerformanceGranularity =
+  | 'daily'
+  | 'weekly'
+  | 'monthly';
+
+export interface CrmDashboardSalesPerformanceSeriesPointResponse {
+  bucket: string;
+  revenue: number;
+  wonDeals: number;
+}
+
+export interface CrmDashboardSalesPerformanceSeriesResponse {
+  granularity: CrmDashboardSalesPerformanceGranularity;
+  points: CrmDashboardSalesPerformanceSeriesPointResponse[];
+}
+
 export interface CrmDashboardTeamPerformanceResponse {
   teamId: string | null;
   teamName: string;
   openDeals: number;
   pipelineValue: number;
   wonValue: number;
+  paidCustomers: number;
+  wonDeals: number;
+  managedCustomers: number;
+  totalCustomers: number;
+  commission: number;
+  averageOrderValue: number;
+  quota: number;
+  target: number;
 }
 
 export interface CrmDashboardLeadDistributionResponse {
@@ -76,6 +101,7 @@ export interface CrmDashboardQuickActionsResponse {
 export interface GetCrmDashboardAdminQueryResult {
   kpiStrip: CrmDashboardKpiStripResponse;
   salesPerformance: CrmDashboardSalesPerformanceResponse[];
+  salesPerformanceSeries: CrmDashboardSalesPerformanceSeriesResponse;
   teamPerformance: CrmDashboardTeamPerformanceResponse[];
   leadDistribution: CrmDashboardLeadDistributionResponse[];
   statusPanel: CrmDashboardStatusPanelItemResponse[];

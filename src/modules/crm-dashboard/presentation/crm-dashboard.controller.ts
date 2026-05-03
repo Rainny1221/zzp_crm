@@ -36,6 +36,7 @@ export class CrmDashboardController {
         to: query.to,
         assignee: query.assignee,
         source: query.source,
+        granularity: query.granularity,
         currentUserId: req.user.id,
         currentUserRoleName: req.user.roleName ?? null,
       }),

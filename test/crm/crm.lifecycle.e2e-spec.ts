@@ -244,6 +244,25 @@ describe('CRM lifecycle regression (e2e)', () => {
             activeTrialCount: number;
             averageOrderValue: number;
           };
+          salesPerformanceSeries: {
+            granularity: string;
+            points: Array<{
+              bucket: string;
+              revenue: number;
+              wonDeals: number;
+            }>;
+          };
+          teamPerformance: Array<{
+            teamId: string | null;
+            paidCustomers: number;
+            wonDeals: number;
+            managedCustomers: number;
+            totalCustomers: number;
+            commission: number;
+            averageOrderValue: number;
+            quota: number;
+            target: number;
+          }>;
           leadDistribution: Array<{ stage: string; count: number }>;
           statusPanel: Array<{ status: string; count: number }>;
           leadSources: Array<{
@@ -262,6 +281,20 @@ describe('CRM lifecycle regression (e2e)', () => {
         expect(
           data.statusPanel.find((item) => item.status === 'trial')?.count,
         ).toBeGreaterThanOrEqual(1);
+        expect(data.salesPerformanceSeries.granularity).toBe('daily');
+        expect(Array.isArray(data.salesPerformanceSeries.points)).toBe(true);
+        const managerTeam = data.teamPerformance.find(
+          (item) => item.teamId === String(context.fixtures.users.manager.id),
+        );
+        expect(managerTeam).toBeDefined();
+        expect(typeof managerTeam?.paidCustomers).toBe('number');
+        expect(typeof managerTeam?.wonDeals).toBe('number');
+        expect(typeof managerTeam?.managedCustomers).toBe('number');
+        expect(typeof managerTeam?.totalCustomers).toBe('number');
+        expect(typeof managerTeam?.commission).toBe('number');
+        expect(typeof managerTeam?.averageOrderValue).toBe('number');
+        expect(typeof managerTeam?.quota).toBe('number');
+        expect(typeof managerTeam?.target).toBe('number');
         const manualSource = data.leadSources.find(
           (item) => item.source === 'manual',
         );
@@ -292,6 +325,63 @@ describe('CRM lifecycle regression (e2e)', () => {
           data.breakdowns.packages.find((item) => item.productPackage === '399')
             ?.count,
         ).toBeGreaterThanOrEqual(1);
+      });
+
+    await request(context.httpServer)
+      .patch(`/crm/customers/${created.customerId}/pipeline-stage`)
+      .set(authHeader(context.tokens.manager))
+      .send({
+        pipelineStage: 'close_deal',
+        note: 'Closed by E2E',
+      })
+      .expect(200)
+      .expect((response) => {
+        expect(unwrap<PipelineStageResponse>(response.body)).toMatchObject({
+          pipelineStage: 'close_deal',
+          status: 'success',
+          changed: true,
+        });
+      });
+
+    await request(context.httpServer)
+      .get('/crm/dashboard/admin')
+      .query({ source: 'manual', granularity: 'daily' })
+      .set(authHeader(context.tokens.admin))
+      .expect(200)
+      .expect((response) => {
+        const data = unwrap<{
+          kpiStrip: {
+            averageOrderValue: number;
+          };
+          salesPerformanceSeries: {
+            points: Array<{ revenue: number; wonDeals: number }>;
+          };
+          statusPanel: Array<{ status: string; count: number }>;
+          teamPerformance: Array<{
+            teamId: string | null;
+            wonDeals: number;
+            averageOrderValue: number;
+          }>;
+        }>(response.body);
+        const seriesTotals = data.salesPerformanceSeries.points.reduce(
+          (totals, point) => ({
+            revenue: totals.revenue + point.revenue,
+            wonDeals: totals.wonDeals + point.wonDeals,
+          }),
+          { revenue: 0, wonDeals: 0 },
+        );
+        const managerTeam = data.teamPerformance.find(
+          (item) => item.teamId === String(context.fixtures.users.manager.id),
+        );
+
+        expect(data.kpiStrip.averageOrderValue).toBeGreaterThanOrEqual(399000);
+        expect(seriesTotals.revenue).toBeGreaterThanOrEqual(399000);
+        expect(seriesTotals.wonDeals).toBeGreaterThanOrEqual(1);
+        expect(
+          data.statusPanel.find((item) => item.status === 'success')?.count,
+        ).toBeGreaterThanOrEqual(1);
+        expect(managerTeam?.wonDeals).toBeGreaterThanOrEqual(1);
+        expect(managerTeam?.averageOrderValue).toBeGreaterThanOrEqual(399000);
       });
   });
 
@@ -474,7 +564,7 @@ async function createCustomer(
     .set(authHeader(context.tokens.manager))
     .send({
       shopName: 'CRM E2E Lifecycle',
-      phone: '0901234567',
+      phone: uniquePhoneNumber(),
       email: params.email,
       source: 'manual',
       assigneeId: params.assigneeId,
@@ -507,4 +597,10 @@ function uniqueCrmEmail(label: string): string {
   return `crm-e2e-${label}-${Date.now()}-${Math.floor(
     Math.random() * 1_000_000,
   )}${CRM_E2E_EMAIL_DOMAIN}`;
+}
+
+function uniquePhoneNumber(): string {
+  return `09${Math.floor(Math.random() * 100_000_000)
+    .toString()
+    .padStart(8, '0')}`;
 }

@@ -60,6 +60,7 @@ export interface GetCrmDashboardSalesQueryResult {
   salesRep: CrmDashboardSalesRepResponse;
   kpiStrip: CrmDashboardSalesKpiStripResponse;
   targets: CrmDashboardSalesTargetsResponse;
+  quota: number;
   targetProgress: number;
   attainment: CrmDashboardSalesAttainmentResponse;
   leadDistribution: CrmDashboardLeadDistributionResponse[];

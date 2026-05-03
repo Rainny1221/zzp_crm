@@ -48,6 +48,7 @@ export class GetCrmDashboardSalesHandler implements IQueryHandler<
         salesRep: result.salesRep,
         kpiStrip: result.kpiStrip,
         targets: result.targets,
+        quota: result.quota,
         targetProgress: result.targetProgress,
         attainment: result.attainment,
         leadDistribution: result.leadDistribution,

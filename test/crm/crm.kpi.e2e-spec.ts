@@ -116,6 +116,7 @@ describe('CRM KPI regression (e2e)', () => {
             qualifiedTarget: number;
             pipelineValueTarget: number;
           } | null;
+          quota: number;
           targetProgress: number;
           attainment: {
             wonValuePct: number;
@@ -133,6 +134,7 @@ describe('CRM KPI regression (e2e)', () => {
           qualifiedTarget: 15,
           pipelineValueTarget: 50000000,
         });
+        expect(data.quota).toBe(20000000);
         expect(typeof data.targetProgress).toBe('number');
         expect(typeof data.attainment?.wonValuePct).toBe('number');
         expect(typeof data.attainment?.wonDealsPct).toBe('number');

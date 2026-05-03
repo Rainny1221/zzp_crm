@@ -12,7 +12,9 @@ import type {
   CrmDashboardLeadSourceResponse,
   CrmDashboardQuickActionsResponse,
   CrmDashboardSalesAttainmentResponse,
+  CrmDashboardSalesPerformanceGranularity,
   CrmDashboardSalesPerformanceResponse,
+  CrmDashboardSalesPerformanceSeriesResponse,
   CrmDashboardSalesKpiStripResponse,
   CrmDashboardSalesRepResponse,
   CrmDashboardSalesTargetsResponse,
@@ -29,6 +31,11 @@ type KpiRow = CrmDashboardKpiStripResponse;
 type SalesKpiRow = CrmDashboardSalesKpiStripResponse;
 type SalesPerformanceRow = CrmDashboardSalesPerformanceResponse;
 type TeamPerformanceRow = CrmDashboardTeamPerformanceResponse;
+type SalesPerformanceSeriesRow = {
+  bucket: Date;
+  revenue: number;
+  wonDeals: number;
+};
 type LeadDistributionRow = CrmDashboardLeadDistributionResponse;
 type LeadSourceRow = CrmDashboardLeadSourceResponse;
 type FailureAnalysisRow = CrmDashboardFailureAnalysisResponse;
@@ -57,6 +64,7 @@ export type GetCrmDashboardSalesReadResult = {
   salesRep: CrmDashboardSalesRepResponse;
   kpiStrip: CrmDashboardSalesKpiStripResponse;
   targets: CrmDashboardSalesTargetsResponse;
+  quota: number;
   targetProgress: number;
   attainment: CrmDashboardSalesAttainmentResponse;
   leadDistribution: CrmDashboardLeadDistributionResponse[];
@@ -86,6 +94,7 @@ export class CrmDashboardReadRepository {
       const [
         kpiStrip,
         salesPerformance,
+        salesPerformanceSeries,
         teamPerformance,
         leadDistribution,
         statusPanel,
@@ -95,7 +104,8 @@ export class CrmDashboardReadRepository {
       ] = await Promise.all([
         this.getKpiStrip(baseSql),
         this.getSalesPerformance(baseSql),
-        this.getTeamPerformance(baseSql),
+        this.getSalesPerformanceSeries(baseSql, params),
+        this.getTeamPerformance(baseSql, params.from),
         this.getLeadDistribution(baseSql),
         this.getStatusPanel(baseSql),
         this.getLeadSources(baseSql),
@@ -119,6 +129,7 @@ export class CrmDashboardReadRepository {
       return {
         kpiStrip,
         salesPerformance,
+        salesPerformanceSeries,
         teamPerformance,
         leadDistribution,
         statusPanel,
@@ -209,6 +220,7 @@ export class CrmDashboardReadRepository {
         salesRep,
         kpiStrip,
         targets,
+        quota: targets?.wonValueTarget ?? 0,
         targetProgress:
           targetSnapshot && targetSnapshot.wonValueTarget > 0
             ? kpiStrip.wonValue / targetSnapshot.wonValueTarget
@@ -466,27 +478,114 @@ export class CrmDashboardReadRepository {
     `);
   }
 
+  private async getSalesPerformanceSeries(
+    baseSql: Prisma.Sql,
+    params: Pick<
+      GetCrmDashboardAdminQueryFilters,
+      'from' | 'to' | 'granularity'
+    >,
+  ): Promise<CrmDashboardSalesPerformanceSeriesResponse> {
+    const bucketExpression = this.buildSalesPerformanceBucketSql(
+      params.granularity,
+    );
+    const rows = await this.prisma.$queryRaw<SalesPerformanceSeriesRow[]>(
+      Prisma.sql`
+        WITH base AS (
+          ${baseSql}
+        )
+        SELECT
+          (${bucketExpression})::date AS "bucket",
+          COALESCE(
+            SUM(
+              COALESCE(NULLIF("revenue", 0), "dealValue", 0)
+            ),
+            0
+          )::double precision AS "revenue",
+          COUNT(*)::int AS "wonDeals"
+        FROM base
+        WHERE "statusCode" = 'success'
+        GROUP BY "bucket"
+        ORDER BY "bucket" ASC
+      `,
+    );
+
+    return {
+      granularity: params.granularity,
+      points: this.fillSalesPerformancePoints({
+        rows,
+        granularity: params.granularity,
+        from: params.from,
+        to: params.to,
+      }),
+    };
+  }
+
   private async getTeamPerformance(
     baseSql: Prisma.Sql,
+    from?: string,
   ): Promise<CrmDashboardTeamPerformanceResponse[]> {
-    return this.prisma.$queryRaw<TeamPerformanceRow[]>(Prisma.sql`
+    const rows = await this.prisma.$queryRaw<
+      Array<TeamPerformanceRow & { ownerId: number | null }>
+    >(Prisma.sql`
       WITH base AS (
         ${baseSql}
       )
       SELECT
-        NULL::text AS "teamId",
-        'Unassigned team' AS "teamName",
+        "ownerId",
+        "ownerId"::text AS "teamId",
+        COALESCE("ownerName", "ownerEmail", 'Unassigned team') AS "teamName",
         COUNT(*) FILTER (
           WHERE COALESCE("statusCode", 'new') NOT IN ('success', 'failed')
         )::int AS "openDeals",
+        COUNT(DISTINCT "customerId") FILTER (
+          WHERE COALESCE("paymentCount", 0) > 0
+        )::int AS "paidCustomers",
+        COUNT(*) FILTER (
+          WHERE "statusCode" = 'success'
+        )::int AS "wonDeals",
+        COUNT(DISTINCT "customerId")::int AS "managedCustomers",
+        COUNT(DISTINCT "customerId")::int AS "totalCustomers",
         COALESCE(SUM(COALESCE("dealValue", 0)), 0)::double precision
           AS "pipelineValue",
         COALESCE(SUM(COALESCE("dealValue", 0)) FILTER (
           WHERE "statusCode" = 'success'
-        ), 0)::double precision AS "wonValue"
+        ), 0)::double precision AS "wonValue",
+        COALESCE(SUM(COALESCE("commission", 0)), 0)::double precision
+          AS "commission"
       FROM base
+      GROUP BY "ownerId", "ownerName", "ownerEmail"
       HAVING COUNT(*) > 0
+      ORDER BY "wonValue" DESC, "pipelineValue" DESC, "teamName" ASC
     `);
+
+    const targetByOwner = await this.getSalesTargetMap({
+      ownerIds: rows
+        .map((row) => row.ownerId)
+        .filter((ownerId): ownerId is number => ownerId !== null),
+      from,
+    });
+
+    return rows.map((row) => {
+      const quota = row.ownerId ? (targetByOwner.get(row.ownerId) ?? 0) : 0;
+      const wonDeals = row.wonDeals ?? 0;
+      const wonValue = row.wonValue ?? 0;
+
+      return {
+        teamId: row.teamId,
+        teamName: row.teamName,
+        openDeals: row.openDeals ?? 0,
+        pipelineValue: row.pipelineValue ?? 0,
+        wonValue,
+        paidCustomers: row.paidCustomers ?? 0,
+        wonDeals,
+        managedCustomers: row.managedCustomers ?? 0,
+        totalCustomers: row.totalCustomers ?? 0,
+        commission: row.commission ?? 0,
+        averageOrderValue: wonDeals > 0 ? wonValue / wonDeals : 0,
+        quota,
+        target: quota,
+      };
+    });
   }
 
   private async getLeadDistribution(
@@ -649,6 +748,112 @@ export class CrmDashboardReadRepository {
     return rows[0]?.count ?? 0;
   }
 
+  private buildSalesPerformanceBucketSql(
+    granularity: CrmDashboardSalesPerformanceGranularity,
+  ): Prisma.Sql {
+    const occurredAtSql = Prisma.sql`COALESCE(
+      "stageTransitionAt",
+      "dealUpdatedAt",
+      "customerCreatedAt"
+    )`;
+
+    if (granularity === 'weekly') {
+      return Prisma.sql`date_trunc('week', ${occurredAtSql})`;
+    }
+
+    if (granularity === 'monthly') {
+      return Prisma.sql`date_trunc('month', ${occurredAtSql})`;
+    }
+
+    return Prisma.sql`date_trunc('day', ${occurredAtSql})`;
+  }
+
+  private fillSalesPerformancePoints(params: {
+    rows: SalesPerformanceSeriesRow[];
+    granularity: CrmDashboardSalesPerformanceGranularity;
+    from?: string;
+    to?: string;
+  }): CrmDashboardSalesPerformanceSeriesResponse['points'] {
+    const rows = [...params.rows].sort(
+      (left, right) => left.bucket.getTime() - right.bucket.getTime(),
+    );
+    const firstBucket = rows[0]?.bucket;
+    const lastBucket = rows.at(-1)?.bucket;
+    const rangeStart = params.from
+      ? this.toDateBoundary(params.from, false)
+      : firstBucket;
+    const rangeEnd = params.to
+      ? this.toDateBoundary(params.to, true)
+      : lastBucket;
+
+    if (!rangeStart || !rangeEnd) {
+      return [];
+    }
+
+    const byBucket = new Map(
+      rows.map((row) => [
+        this.toBucketKey(row.bucket, params.granularity),
+        {
+          revenue: row.revenue ?? 0,
+          wonDeals: row.wonDeals ?? 0,
+        },
+      ]),
+    );
+    const points: CrmDashboardSalesPerformanceSeriesResponse['points'] = [];
+    let cursor = this.startOfBucket(rangeStart, params.granularity);
+    const end = this.startOfBucket(rangeEnd, params.granularity);
+
+    while (cursor.getTime() <= end.getTime()) {
+      const bucket = this.toBucketKey(cursor, params.granularity);
+      const value = byBucket.get(bucket);
+
+      points.push({
+        bucket,
+        revenue: value?.revenue ?? 0,
+        wonDeals: value?.wonDeals ?? 0,
+      });
+
+      cursor = this.addBucket(cursor, params.granularity);
+    }
+
+    return points;
+  }
+
+  private async getSalesTargetMap(params: {
+    ownerIds: number[];
+    from?: string;
+  }): Promise<Map<number, number>> {
+    if (!params.from || params.ownerIds.length === 0) {
+      return new Map();
+    }
+
+    const periodStart = this.toPeriodStart(params.from);
+    const targets = await this.prisma.crmKpiTargets.findMany({
+      where: {
+        scope_type: 'sales',
+        owner_user_id: { in: [...new Set(params.ownerIds)] },
+        period_type: 'monthly',
+        period_start: periodStart,
+      },
+      select: {
+        owner_user_id: true,
+        won_value_target: true,
+      },
+    });
+
+    return new Map(
+      targets
+        .filter(
+          (target): target is typeof target & { owner_user_id: number } =>
+            target.owner_user_id !== null,
+        )
+        .map((target) => [
+          target.owner_user_id,
+          Number(target.won_value_target),
+        ]),
+    );
+  }
+
   private async getSalesTargetSnapshot(params: {
     salesRepId: number;
     from?: string;
@@ -729,6 +934,7 @@ export class CrmDashboardReadRepository {
         d.pipeline_stage_code AS "stage",
         d.status AS "statusCode",
         d.deal_value::double precision AS "dealValue",
+        d.updated_at AS "dealUpdatedAt",
         dd.closed_revenue::double precision AS "revenue",
         dd.failure_reason_code AS "failureReason",
         dd.trial_end_date AS "trialEndAt",
@@ -743,6 +949,9 @@ export class CrmDashboardReadRepository {
         owner.avatar_name AS "ownerAvatar",
         owner_role.name AS "ownerRole",
         last_activity.last_activity_at AS "lastActivityAt",
+        stage_transition.stage_transition_at AS "stageTransitionAt",
+        COALESCE(payment_summary.payment_count, 0)::int AS "paymentCount",
+        COALESCE(payment_summary.commission, 0)::double precision AS "commission",
         c.created_at AS "customerCreatedAt"
       ${this.buildFromSql()}
       ${whereSql}
@@ -848,6 +1057,22 @@ export class CrmDashboardReadRepository {
         FROM crm_activities activity
         WHERE activity.customer_id = c.id
       ) last_activity ON true
+      LEFT JOIN LATERAL (
+        SELECT MAX(record.created_at) AS stage_transition_at
+        FROM crm_pipeline_records record
+        WHERE record.deal_id = d.id
+          AND record.stage_code = d.pipeline_stage_code
+      ) stage_transition ON true
+      LEFT JOIN LATERAL (
+        SELECT
+          COUNT(payment.id)::int AS payment_count,
+          COALESCE(SUM(payment.sales_commission), 0)::double precision
+            AS commission
+        FROM crm_deal_details detail_for_payment
+        JOIN crm_deal_payments payment
+          ON payment.deal_detail_id = detail_for_payment.id
+        WHERE detail_for_payment.deal_id = d.id
+      ) payment_summary ON true
     `;
   }
 
@@ -894,6 +1119,50 @@ export class CrmDashboardReadRepository {
 
   private toPeriodStart(value: string): Date {
     return new Date(`${value.slice(0, 10)}T00:00:00.000Z`);
+  }
+
+  private startOfBucket(
+    value: Date,
+    granularity: CrmDashboardSalesPerformanceGranularity,
+  ): Date {
+    const bucket = new Date(
+      Date.UTC(value.getUTCFullYear(), value.getUTCMonth(), value.getUTCDate()),
+    );
+
+    if (granularity === 'monthly') {
+      bucket.setUTCDate(1);
+      return bucket;
+    }
+
+    if (granularity === 'weekly') {
+      const day = bucket.getUTCDay();
+      const diffToMonday = day === 0 ? -6 : 1 - day;
+      bucket.setUTCDate(bucket.getUTCDate() + diffToMonday);
+    }
+
+    return bucket;
+  }
+
+  private addBucket(
+    value: Date,
+    granularity: CrmDashboardSalesPerformanceGranularity,
+  ): Date {
+    const next = new Date(value);
+
+    if (granularity === 'monthly') {
+      next.setUTCMonth(next.getUTCMonth() + 1);
+      return next;
+    }
+
+    next.setUTCDate(next.getUTCDate() + (granularity === 'weekly' ? 7 : 1));
+    return next;
+  }
+
+  private toBucketKey(
+    value: Date,
+    granularity: CrmDashboardSalesPerformanceGranularity,
+  ): string {
+    return this.startOfBucket(value, granularity).toISOString().slice(0, 10);
   }
 
   private getEmptyKpiStrip(): CrmDashboardKpiStripResponse {
