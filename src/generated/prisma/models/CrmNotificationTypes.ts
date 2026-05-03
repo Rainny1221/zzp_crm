@@ -208,6 +208,7 @@ export type CrmNotificationTypesWhereInput = {
   label?: Prisma.StringFilter<"CrmNotificationTypes"> | string
   sort_order?: Prisma.IntFilter<"CrmNotificationTypes"> | number
   is_active?: Prisma.BoolFilter<"CrmNotificationTypes"> | boolean
+  notifications?: Prisma.CrmNotificationsListRelationFilter
 }
 
 export type CrmNotificationTypesOrderByWithRelationInput = {
@@ -215,6 +216,7 @@ export type CrmNotificationTypesOrderByWithRelationInput = {
   label?: Prisma.SortOrder
   sort_order?: Prisma.SortOrder
   is_active?: Prisma.SortOrder
+  notifications?: Prisma.CrmNotificationsOrderByRelationAggregateInput
 }
 
 export type CrmNotificationTypesWhereUniqueInput = Prisma.AtLeast<{
@@ -225,6 +227,7 @@ export type CrmNotificationTypesWhereUniqueInput = Prisma.AtLeast<{
   label?: Prisma.StringFilter<"CrmNotificationTypes"> | string
   sort_order?: Prisma.IntFilter<"CrmNotificationTypes"> | number
   is_active?: Prisma.BoolFilter<"CrmNotificationTypes"> | boolean
+  notifications?: Prisma.CrmNotificationsListRelationFilter
 }, "code">
 
 export type CrmNotificationTypesOrderByWithAggregationInput = {
@@ -254,6 +257,7 @@ export type CrmNotificationTypesCreateInput = {
   label: string
   sort_order: number
   is_active?: boolean
+  notifications?: Prisma.CrmNotificationsCreateNestedManyWithoutTypeInput
 }
 
 export type CrmNotificationTypesUncheckedCreateInput = {
@@ -261,6 +265,7 @@ export type CrmNotificationTypesUncheckedCreateInput = {
   label: string
   sort_order: number
   is_active?: boolean
+  notifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutTypeInput
 }
 
 export type CrmNotificationTypesUpdateInput = {
@@ -268,6 +273,7 @@ export type CrmNotificationTypesUpdateInput = {
   label?: Prisma.StringFieldUpdateOperationsInput | string
   sort_order?: Prisma.IntFieldUpdateOperationsInput | number
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notifications?: Prisma.CrmNotificationsUpdateManyWithoutTypeNestedInput
 }
 
 export type CrmNotificationTypesUncheckedUpdateInput = {
@@ -275,6 +281,7 @@ export type CrmNotificationTypesUncheckedUpdateInput = {
   label?: Prisma.StringFieldUpdateOperationsInput | string
   sort_order?: Prisma.IntFieldUpdateOperationsInput | number
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutTypeNestedInput
 }
 
 export type CrmNotificationTypesCreateManyInput = {
@@ -296,6 +303,11 @@ export type CrmNotificationTypesUncheckedUpdateManyInput = {
   label?: Prisma.StringFieldUpdateOperationsInput | string
   sort_order?: Prisma.IntFieldUpdateOperationsInput | number
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+}
+
+export type CrmNotificationTypesScalarRelationFilter = {
+  is?: Prisma.CrmNotificationTypesWhereInput
+  isNot?: Prisma.CrmNotificationTypesWhereInput
 }
 
 export type CrmNotificationTypesCountOrderByAggregateInput = {
@@ -327,6 +339,93 @@ export type CrmNotificationTypesSumOrderByAggregateInput = {
   sort_order?: Prisma.SortOrder
 }
 
+export type CrmNotificationTypesCreateNestedOneWithoutNotificationsInput = {
+  create?: Prisma.XOR<Prisma.CrmNotificationTypesCreateWithoutNotificationsInput, Prisma.CrmNotificationTypesUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.CrmNotificationTypesCreateOrConnectWithoutNotificationsInput
+  connect?: Prisma.CrmNotificationTypesWhereUniqueInput
+}
+
+export type CrmNotificationTypesUpdateOneRequiredWithoutNotificationsNestedInput = {
+  create?: Prisma.XOR<Prisma.CrmNotificationTypesCreateWithoutNotificationsInput, Prisma.CrmNotificationTypesUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.CrmNotificationTypesCreateOrConnectWithoutNotificationsInput
+  upsert?: Prisma.CrmNotificationTypesUpsertWithoutNotificationsInput
+  connect?: Prisma.CrmNotificationTypesWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CrmNotificationTypesUpdateToOneWithWhereWithoutNotificationsInput, Prisma.CrmNotificationTypesUpdateWithoutNotificationsInput>, Prisma.CrmNotificationTypesUncheckedUpdateWithoutNotificationsInput>
+}
+
+export type CrmNotificationTypesCreateWithoutNotificationsInput = {
+  code: string
+  label: string
+  sort_order: number
+  is_active?: boolean
+}
+
+export type CrmNotificationTypesUncheckedCreateWithoutNotificationsInput = {
+  code: string
+  label: string
+  sort_order: number
+  is_active?: boolean
+}
+
+export type CrmNotificationTypesCreateOrConnectWithoutNotificationsInput = {
+  where: Prisma.CrmNotificationTypesWhereUniqueInput
+  create: Prisma.XOR<Prisma.CrmNotificationTypesCreateWithoutNotificationsInput, Prisma.CrmNotificationTypesUncheckedCreateWithoutNotificationsInput>
+}
+
+export type CrmNotificationTypesUpsertWithoutNotificationsInput = {
+  update: Prisma.XOR<Prisma.CrmNotificationTypesUpdateWithoutNotificationsInput, Prisma.CrmNotificationTypesUncheckedUpdateWithoutNotificationsInput>
+  create: Prisma.XOR<Prisma.CrmNotificationTypesCreateWithoutNotificationsInput, Prisma.CrmNotificationTypesUncheckedCreateWithoutNotificationsInput>
+  where?: Prisma.CrmNotificationTypesWhereInput
+}
+
+export type CrmNotificationTypesUpdateToOneWithWhereWithoutNotificationsInput = {
+  where?: Prisma.CrmNotificationTypesWhereInput
+  data: Prisma.XOR<Prisma.CrmNotificationTypesUpdateWithoutNotificationsInput, Prisma.CrmNotificationTypesUncheckedUpdateWithoutNotificationsInput>
+}
+
+export type CrmNotificationTypesUpdateWithoutNotificationsInput = {
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  label?: Prisma.StringFieldUpdateOperationsInput | string
+  sort_order?: Prisma.IntFieldUpdateOperationsInput | number
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+}
+
+export type CrmNotificationTypesUncheckedUpdateWithoutNotificationsInput = {
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  label?: Prisma.StringFieldUpdateOperationsInput | string
+  sort_order?: Prisma.IntFieldUpdateOperationsInput | number
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+}
+
+
+/**
+ * Count Type CrmNotificationTypesCountOutputType
+ */
+
+export type CrmNotificationTypesCountOutputType = {
+  notifications: number
+}
+
+export type CrmNotificationTypesCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  notifications?: boolean | CrmNotificationTypesCountOutputTypeCountNotificationsArgs
+}
+
+/**
+ * CrmNotificationTypesCountOutputType without action
+ */
+export type CrmNotificationTypesCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CrmNotificationTypesCountOutputType
+   */
+  select?: Prisma.CrmNotificationTypesCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * CrmNotificationTypesCountOutputType without action
+ */
+export type CrmNotificationTypesCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CrmNotificationsWhereInput
+}
 
 
 export type CrmNotificationTypesSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -334,6 +433,8 @@ export type CrmNotificationTypesSelect<ExtArgs extends runtime.Types.Extensions.
   label?: boolean
   sort_order?: boolean
   is_active?: boolean
+  notifications?: boolean | Prisma.CrmNotificationTypes$notificationsArgs<ExtArgs>
+  _count?: boolean | Prisma.CrmNotificationTypesCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["crmNotificationTypes"]>
 
 export type CrmNotificationTypesSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -358,10 +459,18 @@ export type CrmNotificationTypesSelectScalar = {
 }
 
 export type CrmNotificationTypesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"code" | "label" | "sort_order" | "is_active", ExtArgs["result"]["crmNotificationTypes"]>
+export type CrmNotificationTypesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  notifications?: boolean | Prisma.CrmNotificationTypes$notificationsArgs<ExtArgs>
+  _count?: boolean | Prisma.CrmNotificationTypesCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type CrmNotificationTypesIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type CrmNotificationTypesIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $CrmNotificationTypesPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "CrmNotificationTypes"
-  objects: {}
+  objects: {
+    notifications: Prisma.$CrmNotificationsPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     code: string
     label: string
@@ -761,6 +870,7 @@ readonly fields: CrmNotificationTypesFieldRefs;
  */
 export interface Prisma__CrmNotificationTypesClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  notifications<T extends Prisma.CrmNotificationTypes$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CrmNotificationTypes$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CrmNotificationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -811,6 +921,10 @@ export type CrmNotificationTypesFindUniqueArgs<ExtArgs extends runtime.Types.Ext
    */
   omit?: Prisma.CrmNotificationTypesOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmNotificationTypesInclude<ExtArgs> | null
+  /**
    * Filter, which CrmNotificationTypes to fetch.
    */
   where: Prisma.CrmNotificationTypesWhereUniqueInput
@@ -829,6 +943,10 @@ export type CrmNotificationTypesFindUniqueOrThrowArgs<ExtArgs extends runtime.Ty
    */
   omit?: Prisma.CrmNotificationTypesOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmNotificationTypesInclude<ExtArgs> | null
+  /**
    * Filter, which CrmNotificationTypes to fetch.
    */
   where: Prisma.CrmNotificationTypesWhereUniqueInput
@@ -846,6 +964,10 @@ export type CrmNotificationTypesFindFirstArgs<ExtArgs extends runtime.Types.Exte
    * Omit specific fields from the CrmNotificationTypes
    */
   omit?: Prisma.CrmNotificationTypesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmNotificationTypesInclude<ExtArgs> | null
   /**
    * Filter, which CrmNotificationTypes to fetch.
    */
@@ -895,6 +1017,10 @@ export type CrmNotificationTypesFindFirstOrThrowArgs<ExtArgs extends runtime.Typ
    */
   omit?: Prisma.CrmNotificationTypesOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmNotificationTypesInclude<ExtArgs> | null
+  /**
    * Filter, which CrmNotificationTypes to fetch.
    */
   where?: Prisma.CrmNotificationTypesWhereInput
@@ -943,6 +1069,10 @@ export type CrmNotificationTypesFindManyArgs<ExtArgs extends runtime.Types.Exten
    */
   omit?: Prisma.CrmNotificationTypesOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmNotificationTypesInclude<ExtArgs> | null
+  /**
    * Filter, which CrmNotificationTypes to fetch.
    */
   where?: Prisma.CrmNotificationTypesWhereInput
@@ -985,6 +1115,10 @@ export type CrmNotificationTypesCreateArgs<ExtArgs extends runtime.Types.Extensi
    * Omit specific fields from the CrmNotificationTypes
    */
   omit?: Prisma.CrmNotificationTypesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmNotificationTypesInclude<ExtArgs> | null
   /**
    * The data needed to create a CrmNotificationTypes.
    */
@@ -1033,6 +1167,10 @@ export type CrmNotificationTypesUpdateArgs<ExtArgs extends runtime.Types.Extensi
    * Omit specific fields from the CrmNotificationTypes
    */
   omit?: Prisma.CrmNotificationTypesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmNotificationTypesInclude<ExtArgs> | null
   /**
    * The data needed to update a CrmNotificationTypes.
    */
@@ -1100,6 +1238,10 @@ export type CrmNotificationTypesUpsertArgs<ExtArgs extends runtime.Types.Extensi
    */
   omit?: Prisma.CrmNotificationTypesOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmNotificationTypesInclude<ExtArgs> | null
+  /**
    * The filter to search for the CrmNotificationTypes to update in case it exists.
    */
   where: Prisma.CrmNotificationTypesWhereUniqueInput
@@ -1126,6 +1268,10 @@ export type CrmNotificationTypesDeleteArgs<ExtArgs extends runtime.Types.Extensi
    */
   omit?: Prisma.CrmNotificationTypesOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmNotificationTypesInclude<ExtArgs> | null
+  /**
    * Filter which CrmNotificationTypes to delete.
    */
   where: Prisma.CrmNotificationTypesWhereUniqueInput
@@ -1146,6 +1292,30 @@ export type CrmNotificationTypesDeleteManyArgs<ExtArgs extends runtime.Types.Ext
 }
 
 /**
+ * CrmNotificationTypes.notifications
+ */
+export type CrmNotificationTypes$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CrmNotifications
+   */
+  select?: Prisma.CrmNotificationsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CrmNotifications
+   */
+  omit?: Prisma.CrmNotificationsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmNotificationsInclude<ExtArgs> | null
+  where?: Prisma.CrmNotificationsWhereInput
+  orderBy?: Prisma.CrmNotificationsOrderByWithRelationInput | Prisma.CrmNotificationsOrderByWithRelationInput[]
+  cursor?: Prisma.CrmNotificationsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CrmNotificationsScalarFieldEnum | Prisma.CrmNotificationsScalarFieldEnum[]
+}
+
+/**
  * CrmNotificationTypes without action
  */
 export type CrmNotificationTypesDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1157,4 +1327,8 @@ export type CrmNotificationTypesDefaultArgs<ExtArgs extends runtime.Types.Extens
    * Omit specific fields from the CrmNotificationTypes
    */
   omit?: Prisma.CrmNotificationTypesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmNotificationTypesInclude<ExtArgs> | null
 }

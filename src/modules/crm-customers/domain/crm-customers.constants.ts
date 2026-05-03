@@ -28,6 +28,14 @@ export const CRM_ACTIVITY_TYPE = {
   UNASSIGNED: 'unassigned',
 } as const;
 
+export const CRM_NOTIFICATION_TYPE = {
+  ASSIGNMENT_CHANGED: 'assignment_changed',
+  CUSTOMER_CREATED: 'customer_created',
+  INTERACTION_LOGGED: 'interaction_logged',
+  PIPELINE_STAGE_CHANGED: 'pipeline_stage_changed',
+  PRODUCT_PACKAGE_CHANGED: 'product_package_changed',
+} as const;
+
 export const CRM_INTERACTION_CHANNEL_CODES = ['call', 'message'] as const;
 
 export type CrmInteractionChannelCode =

@@ -489,7 +489,6 @@ export const ModelName = {
   CrmFeedbacks: 'CrmFeedbacks',
   CrmFeedbackReads: 'CrmFeedbackReads',
   CrmNotifications: 'CrmNotifications',
-  CrmNotificationReads: 'CrmNotificationReads',
   CrmSalesKpiQuotas: 'CrmSalesKpiQuotas',
   CrmStatuses: 'CrmStatuses',
   CrmProductPackages: 'CrmProductPackages',
@@ -530,7 +529,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "address" | "admin_notification_inbox" | "aff_campaigns" | "ai_chats" | "apps" | "blogs" | "brand_subscriptions" | "brand_taps" | "brands" | "brands_info" | "campaign_inspiration" | "campaign_tasks" | "campaigns" | "categories" | "chat_messages" | "cheating_login" | "comment_galleries" | "comments" | "contacts" | "content_performance_daily" | "conversation_members" | "conversations" | "cost_per_view_campaigns" | "creator_content" | "creator_profile_snapshot" | "districts" | "draft_galleries" | "drafts" | "features" | "file_imports" | "hide_skus" | "interacts" | "invite_receive_sample_reminders" | "kol_brand_taps" | "kol_pricing" | "kol_submissions" | "node_paths" | "nodes" | "notification_campaigns" | "notification_customs" | "notifications" | "order_creator_content" | "order_logistics" | "order_packages" | "order_payments" | "order_recipients" | "order_skus" | "order_transactions" | "orders" | "orders_tap" | "otp_types" | "permission_users" | "plan_features" | "plans" | "platforms" | "platforms_campaigns" | "potentials" | "product_counts" | "product_creator_content" | "product_detail_reviews" | "product_statistics" | "products" | "products_campaigns" | "profiles" | "protest_overdues" | "provinces" | "questions_and_answers" | "referral_commissions" | "request_product_samples" | "review_items" | "sample_applications" | "sellers" | "shop_gmv_breakdown_daily" | "shop_performance_daily" | "shopplus_tokens" | "sku_transactions" | "skus" | "subscriptions" | "tasks" | "tiktok" | "tiktok_external" | "tiktok_shop_authorizations" | "tracking_views" | "user_activities" | "user_categories" | "user_categories_tap" | "user_galleries" | "user_interacts" | "user_notification_watermarks" | "user_otp_sessions" | "user_platforms" | "user_referrals" | "user_relationships" | "user_reports" | "user_sessions" | "wards" | "youtube" | "crmCustomerBusinessProfiles" | "crmDealDetails" | "crmDealPayments" | "crmActivities" | "crmTasks" | "crmFeedbacks" | "crmFeedbackReads" | "crmNotifications" | "crmNotificationReads" | "crmSalesKpiQuotas" | "crmStatuses" | "crmProductPackages" | "crmFailureReasons" | "crmFeedbackCategories" | "crmNotificationTypes" | "crmInteractionChannels" | "crmCallOutcomes" | "crmMessageOutcomes" | "crmTaskTypes" | "crmPriorities" | "crmPipelineStageNotes" | "crmSalesMembers" | "crmPipelineStages" | "crmSources" | "crmCustomerProfiles" | "crmDeals" | "crmDealAssignments" | "crmPipelineRecords" | "crmPipelineEvents" | "crmSyncJobs" | "user" | "role" | "permission" | "permissionRole"
+    modelProps: "address" | "admin_notification_inbox" | "aff_campaigns" | "ai_chats" | "apps" | "blogs" | "brand_subscriptions" | "brand_taps" | "brands" | "brands_info" | "campaign_inspiration" | "campaign_tasks" | "campaigns" | "categories" | "chat_messages" | "cheating_login" | "comment_galleries" | "comments" | "contacts" | "content_performance_daily" | "conversation_members" | "conversations" | "cost_per_view_campaigns" | "creator_content" | "creator_profile_snapshot" | "districts" | "draft_galleries" | "drafts" | "features" | "file_imports" | "hide_skus" | "interacts" | "invite_receive_sample_reminders" | "kol_brand_taps" | "kol_pricing" | "kol_submissions" | "node_paths" | "nodes" | "notification_campaigns" | "notification_customs" | "notifications" | "order_creator_content" | "order_logistics" | "order_packages" | "order_payments" | "order_recipients" | "order_skus" | "order_transactions" | "orders" | "orders_tap" | "otp_types" | "permission_users" | "plan_features" | "plans" | "platforms" | "platforms_campaigns" | "potentials" | "product_counts" | "product_creator_content" | "product_detail_reviews" | "product_statistics" | "products" | "products_campaigns" | "profiles" | "protest_overdues" | "provinces" | "questions_and_answers" | "referral_commissions" | "request_product_samples" | "review_items" | "sample_applications" | "sellers" | "shop_gmv_breakdown_daily" | "shop_performance_daily" | "shopplus_tokens" | "sku_transactions" | "skus" | "subscriptions" | "tasks" | "tiktok" | "tiktok_external" | "tiktok_shop_authorizations" | "tracking_views" | "user_activities" | "user_categories" | "user_categories_tap" | "user_galleries" | "user_interacts" | "user_notification_watermarks" | "user_otp_sessions" | "user_platforms" | "user_referrals" | "user_relationships" | "user_reports" | "user_sessions" | "wards" | "youtube" | "crmCustomerBusinessProfiles" | "crmDealDetails" | "crmDealPayments" | "crmActivities" | "crmTasks" | "crmFeedbacks" | "crmFeedbackReads" | "crmNotifications" | "crmSalesKpiQuotas" | "crmStatuses" | "crmProductPackages" | "crmFailureReasons" | "crmFeedbackCategories" | "crmNotificationTypes" | "crmInteractionChannels" | "crmCallOutcomes" | "crmMessageOutcomes" | "crmTaskTypes" | "crmPriorities" | "crmPipelineStageNotes" | "crmSalesMembers" | "crmPipelineStages" | "crmSources" | "crmCustomerProfiles" | "crmDeals" | "crmDealAssignments" | "crmPipelineRecords" | "crmPipelineEvents" | "crmSyncJobs" | "user" | "role" | "permission" | "permissionRole"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -8304,80 +8303,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    CrmNotificationReads: {
-      payload: Prisma.$CrmNotificationReadsPayload<ExtArgs>
-      fields: Prisma.CrmNotificationReadsFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.CrmNotificationReadsFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmNotificationReadsPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.CrmNotificationReadsFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmNotificationReadsPayload>
-        }
-        findFirst: {
-          args: Prisma.CrmNotificationReadsFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmNotificationReadsPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.CrmNotificationReadsFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmNotificationReadsPayload>
-        }
-        findMany: {
-          args: Prisma.CrmNotificationReadsFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmNotificationReadsPayload>[]
-        }
-        create: {
-          args: Prisma.CrmNotificationReadsCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmNotificationReadsPayload>
-        }
-        createMany: {
-          args: Prisma.CrmNotificationReadsCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.CrmNotificationReadsCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmNotificationReadsPayload>[]
-        }
-        delete: {
-          args: Prisma.CrmNotificationReadsDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmNotificationReadsPayload>
-        }
-        update: {
-          args: Prisma.CrmNotificationReadsUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmNotificationReadsPayload>
-        }
-        deleteMany: {
-          args: Prisma.CrmNotificationReadsDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.CrmNotificationReadsUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.CrmNotificationReadsUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmNotificationReadsPayload>[]
-        }
-        upsert: {
-          args: Prisma.CrmNotificationReadsUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CrmNotificationReadsPayload>
-        }
-        aggregate: {
-          args: Prisma.CrmNotificationReadsAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateCrmNotificationReads>
-        }
-        groupBy: {
-          args: Prisma.CrmNotificationReadsGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.CrmNotificationReadsGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.CrmNotificationReadsCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.CrmNotificationReadsCountAggregateOutputType> | number
-        }
-      }
-    }
     CrmSalesKpiQuotas: {
       payload: Prisma.$CrmSalesKpiQuotasPayload<ExtArgs>
       fields: Prisma.CrmSalesKpiQuotasFieldRefs
@@ -12319,23 +12244,19 @@ export type CrmFeedbackReadsScalarFieldEnum = (typeof CrmFeedbackReadsScalarFiel
 export const CrmNotificationsScalarFieldEnum = {
   id: 'id',
   type_code: 'type_code',
-  title: 'title',
-  description: 'description',
+  receiver_user_id: 'receiver_user_id',
   customer_id: 'customer_id',
+  deal_id: 'deal_id',
+  actor_user_id: 'actor_user_id',
+  title: 'title',
+  message: 'message',
+  payload: 'payload',
+  is_read: 'is_read',
+  read_at: 'read_at',
   created_at: 'created_at'
 } as const
 
 export type CrmNotificationsScalarFieldEnum = (typeof CrmNotificationsScalarFieldEnum)[keyof typeof CrmNotificationsScalarFieldEnum]
-
-
-export const CrmNotificationReadsScalarFieldEnum = {
-  id: 'id',
-  notification_id: 'notification_id',
-  user_id: 'user_id',
-  read_at: 'read_at'
-} as const
-
-export type CrmNotificationReadsScalarFieldEnum = (typeof CrmNotificationReadsScalarFieldEnum)[keyof typeof CrmNotificationReadsScalarFieldEnum]
 
 
 export const CrmSalesKpiQuotasScalarFieldEnum = {
@@ -13109,7 +13030,6 @@ export type GlobalOmitConfig = {
   crmFeedbacks?: Prisma.CrmFeedbacksOmit
   crmFeedbackReads?: Prisma.CrmFeedbackReadsOmit
   crmNotifications?: Prisma.CrmNotificationsOmit
-  crmNotificationReads?: Prisma.CrmNotificationReadsOmit
   crmSalesKpiQuotas?: Prisma.CrmSalesKpiQuotasOmit
   crmStatuses?: Prisma.CrmStatusesOmit
   crmProductPackages?: Prisma.CrmProductPackagesOmit

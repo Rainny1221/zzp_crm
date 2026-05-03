@@ -48,6 +48,8 @@ model CrmNotificationTypes {
   sort_order Int
   is_active  Boolean @default(true)
 
+  notifications CrmNotifications[]
+
   @@index([sort_order])
   @@map("crm_notification_types")
 }

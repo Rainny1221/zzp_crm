@@ -567,11 +567,6 @@ export type CrmFeedbackReads = Prisma.CrmFeedbackReadsModel
  */
 export type CrmNotifications = Prisma.CrmNotificationsModel
 /**
- * Model CrmNotificationReads
- * 
- */
-export type CrmNotificationReads = Prisma.CrmNotificationReadsModel
-/**
  * Model CrmSalesKpiQuotas
  * 
  */

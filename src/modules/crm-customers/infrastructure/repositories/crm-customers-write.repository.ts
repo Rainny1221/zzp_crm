@@ -13,6 +13,7 @@ import {
   CRM_CUSTOMERS_LOG,
   CRM_FAILURE_PIPELINE_STAGES,
   CRM_INTERACTION_CHANNEL_CODES,
+  CRM_NOTIFICATION_TYPE,
   CRM_PIPELINE_STAGE_TO_STATUS,
 } from '../../domain/crm-customers.constants';
 import type {
@@ -61,6 +62,18 @@ type LookupCodeSnapshot = {
 
 type PipelineStageSnapshot = LookupCodeSnapshot & {
   mapped_status_code: string;
+};
+
+type CreateNotificationsParams = {
+  receiverUserIds: Array<number | null | undefined>;
+  typeCode: string;
+  title: string;
+  message: string;
+  customerId?: number | null;
+  dealId?: number | null;
+  actorUserId?: number | null;
+  payload?: Prisma.InputJsonValue | null;
+  createdAt?: Date;
 };
 
 const CRM_CUSTOMERS_TRANSACTION = {
@@ -295,6 +308,21 @@ export class CrmCustomersWriteRepository {
             },
           });
 
+          await this.createNotifications(tx, {
+            receiverUserIds: [params.assigneeId],
+            typeCode: CRM_NOTIFICATION_TYPE.CUSTOMER_CREATED,
+            title: 'Customer created',
+            message: `Customer #${customer.id} was created and assigned to you.`,
+            customerId: customer.id,
+            dealId: deal.id,
+            actorUserId: actor.id,
+            payload: {
+              source,
+              productPackage: params.productPackage,
+            },
+            createdAt: now,
+          });
+
           return {
             customerId: String(customer.id),
             dealId: String(deal.id),
@@ -447,6 +475,21 @@ export class CrmCustomersWriteRepository {
                 created_at: now,
               },
             });
+
+            await this.createNotifications(tx, {
+              receiverUserIds: [previousAssigneeId, params.assigneeId],
+              typeCode: CRM_NOTIFICATION_TYPE.ASSIGNMENT_CHANGED,
+              title: 'Assignment changed',
+              message: `Customer #${customer.id} assignment changed.`,
+              customerId: customer.id,
+              dealId: deal.id,
+              actorUserId: actor.id,
+              payload: {
+                from: previousAssigneeId,
+                to: params.assigneeId,
+              },
+              createdAt: now,
+            });
           }
 
           return {
@@ -580,6 +623,7 @@ export class CrmCustomersWriteRepository {
               deal: {
                 select: {
                   id: true,
+                  owner_id: true,
                 },
               },
             },
@@ -654,6 +698,21 @@ export class CrmCustomersWriteRepository {
 
           const lastContactedAt =
             lastContactRows[0]?.last_contacted_at ?? occurredAt;
+
+          await this.createNotifications(tx, {
+            receiverUserIds: [customer.deal.owner_id],
+            typeCode: CRM_NOTIFICATION_TYPE.INTERACTION_LOGGED,
+            title: 'Interaction logged',
+            message: `A ${params.channel} interaction was logged for customer #${customer.id}.`,
+            customerId: customer.id,
+            dealId: customer.deal.id,
+            actorUserId: actor.id,
+            payload: {
+              channel: params.channel,
+              outcomeCode,
+            },
+            createdAt: now,
+          });
 
           return {
             customerId: String(customer.id),
@@ -893,6 +952,23 @@ export class CrmCustomersWriteRepository {
             },
           });
 
+          await this.createNotifications(tx, {
+            receiverUserIds: [deal.owner_id],
+            typeCode: CRM_NOTIFICATION_TYPE.PIPELINE_STAGE_CHANGED,
+            title: 'Pipeline stage changed',
+            message: `Customer #${customer.id} moved from ${previousPipelineStage} to ${params.pipelineStage}.`,
+            customerId: customer.id,
+            dealId: deal.id,
+            actorUserId: actor.id,
+            payload: {
+              previousPipelineStage,
+              pipelineStage: params.pipelineStage,
+              previousStatus,
+              status: nextStatus,
+            },
+            createdAt: now,
+          });
+
           return {
             customerId: String(customer.id),
             dealId: String(deal.id),
@@ -1061,6 +1137,23 @@ export class CrmCustomersWriteRepository {
                 occurred_at: now,
                 created_at: now,
               },
+            });
+
+            await this.createNotifications(tx, {
+              receiverUserIds: [deal.owner_id],
+              typeCode: CRM_NOTIFICATION_TYPE.PRODUCT_PACKAGE_CHANGED,
+              title: 'Product package changed',
+              message: `Customer #${customer.id} package changed to ${params.productPackage}.`,
+              customerId: customer.id,
+              dealId: deal.id,
+              actorUserId: actor.id,
+              payload: {
+                previousProductPackage,
+                productPackage: params.productPackage,
+                previousDealValue,
+                dealValue: nextDealValue,
+              },
+              createdAt: now,
             });
           }
 
@@ -1231,6 +1324,39 @@ export class CrmCustomersWriteRepository {
 
       throw error;
     }
+  }
+
+  private async createNotifications(
+    tx: Prisma.TransactionClient,
+    params: CreateNotificationsParams,
+  ): Promise<void> {
+    const receiverUserIds = [
+      ...new Set(
+        params.receiverUserIds.filter(
+          (receiverUserId): receiverUserId is number =>
+            typeof receiverUserId === 'number' && receiverUserId > 0,
+        ),
+      ),
+    ];
+
+    if (!receiverUserIds.length) return;
+
+    const createdAt = params.createdAt ?? new Date();
+
+    await tx.crmNotifications.createMany({
+      data: receiverUserIds.map((receiverUserId) => ({
+        type_code: params.typeCode,
+        receiver_user_id: receiverUserId,
+        customer_id: params.customerId ?? null,
+        deal_id: params.dealId ?? null,
+        actor_user_id: params.actorUserId ?? null,
+        title: params.title,
+        message: params.message,
+        payload: params.payload ?? Prisma.JsonNull,
+        is_read: false,
+        created_at: createdAt,
+      })),
+    });
   }
 
   private async findActiveSource(

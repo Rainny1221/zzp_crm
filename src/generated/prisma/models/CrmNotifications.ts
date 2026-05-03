@@ -28,38 +28,60 @@ export type AggregateCrmNotifications = {
 
 export type CrmNotificationsAvgAggregateOutputType = {
   id: number | null
+  receiver_user_id: number | null
   customer_id: number | null
+  deal_id: number | null
+  actor_user_id: number | null
 }
 
 export type CrmNotificationsSumAggregateOutputType = {
   id: number | null
+  receiver_user_id: number | null
   customer_id: number | null
+  deal_id: number | null
+  actor_user_id: number | null
 }
 
 export type CrmNotificationsMinAggregateOutputType = {
   id: number | null
   type_code: string | null
-  title: string | null
-  description: string | null
+  receiver_user_id: number | null
   customer_id: number | null
+  deal_id: number | null
+  actor_user_id: number | null
+  title: string | null
+  message: string | null
+  is_read: boolean | null
+  read_at: Date | null
   created_at: Date | null
 }
 
 export type CrmNotificationsMaxAggregateOutputType = {
   id: number | null
   type_code: string | null
-  title: string | null
-  description: string | null
+  receiver_user_id: number | null
   customer_id: number | null
+  deal_id: number | null
+  actor_user_id: number | null
+  title: string | null
+  message: string | null
+  is_read: boolean | null
+  read_at: Date | null
   created_at: Date | null
 }
 
 export type CrmNotificationsCountAggregateOutputType = {
   id: number
   type_code: number
-  title: number
-  description: number
+  receiver_user_id: number
   customer_id: number
+  deal_id: number
+  actor_user_id: number
+  title: number
+  message: number
+  payload: number
+  is_read: number
+  read_at: number
   created_at: number
   _all: number
 }
@@ -67,38 +89,60 @@ export type CrmNotificationsCountAggregateOutputType = {
 
 export type CrmNotificationsAvgAggregateInputType = {
   id?: true
+  receiver_user_id?: true
   customer_id?: true
+  deal_id?: true
+  actor_user_id?: true
 }
 
 export type CrmNotificationsSumAggregateInputType = {
   id?: true
+  receiver_user_id?: true
   customer_id?: true
+  deal_id?: true
+  actor_user_id?: true
 }
 
 export type CrmNotificationsMinAggregateInputType = {
   id?: true
   type_code?: true
-  title?: true
-  description?: true
+  receiver_user_id?: true
   customer_id?: true
+  deal_id?: true
+  actor_user_id?: true
+  title?: true
+  message?: true
+  is_read?: true
+  read_at?: true
   created_at?: true
 }
 
 export type CrmNotificationsMaxAggregateInputType = {
   id?: true
   type_code?: true
-  title?: true
-  description?: true
+  receiver_user_id?: true
   customer_id?: true
+  deal_id?: true
+  actor_user_id?: true
+  title?: true
+  message?: true
+  is_read?: true
+  read_at?: true
   created_at?: true
 }
 
 export type CrmNotificationsCountAggregateInputType = {
   id?: true
   type_code?: true
-  title?: true
-  description?: true
+  receiver_user_id?: true
   customer_id?: true
+  deal_id?: true
+  actor_user_id?: true
+  title?: true
+  message?: true
+  payload?: true
+  is_read?: true
+  read_at?: true
   created_at?: true
   _all?: true
 }
@@ -192,9 +236,15 @@ export type CrmNotificationsGroupByArgs<ExtArgs extends runtime.Types.Extensions
 export type CrmNotificationsGroupByOutputType = {
   id: number
   type_code: string
-  title: string
-  description: string
+  receiver_user_id: number
   customer_id: number | null
+  deal_id: number | null
+  actor_user_id: number | null
+  title: string
+  message: string
+  payload: runtime.JsonValue | null
+  is_read: boolean
+  read_at: Date | null
   created_at: Date
   _count: CrmNotificationsCountAggregateOutputType | null
   _avg: CrmNotificationsAvgAggregateOutputType | null
@@ -224,21 +274,41 @@ export type CrmNotificationsWhereInput = {
   NOT?: Prisma.CrmNotificationsWhereInput | Prisma.CrmNotificationsWhereInput[]
   id?: Prisma.IntFilter<"CrmNotifications"> | number
   type_code?: Prisma.StringFilter<"CrmNotifications"> | string
-  title?: Prisma.StringFilter<"CrmNotifications"> | string
-  description?: Prisma.StringFilter<"CrmNotifications"> | string
+  receiver_user_id?: Prisma.IntFilter<"CrmNotifications"> | number
   customer_id?: Prisma.IntNullableFilter<"CrmNotifications"> | number | null
+  deal_id?: Prisma.IntNullableFilter<"CrmNotifications"> | number | null
+  actor_user_id?: Prisma.IntNullableFilter<"CrmNotifications"> | number | null
+  title?: Prisma.StringFilter<"CrmNotifications"> | string
+  message?: Prisma.StringFilter<"CrmNotifications"> | string
+  payload?: Prisma.JsonNullableFilter<"CrmNotifications">
+  is_read?: Prisma.BoolFilter<"CrmNotifications"> | boolean
+  read_at?: Prisma.DateTimeNullableFilter<"CrmNotifications"> | Date | string | null
   created_at?: Prisma.DateTimeFilter<"CrmNotifications"> | Date | string
-  reads?: Prisma.CrmNotificationReadsListRelationFilter
+  type?: Prisma.XOR<Prisma.CrmNotificationTypesScalarRelationFilter, Prisma.CrmNotificationTypesWhereInput>
+  receiver?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  actor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  customer?: Prisma.XOR<Prisma.CrmCustomerProfilesNullableScalarRelationFilter, Prisma.CrmCustomerProfilesWhereInput> | null
+  deal?: Prisma.XOR<Prisma.CrmDealsNullableScalarRelationFilter, Prisma.CrmDealsWhereInput> | null
 }
 
 export type CrmNotificationsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   type_code?: Prisma.SortOrder
-  title?: Prisma.SortOrder
-  description?: Prisma.SortOrder
+  receiver_user_id?: Prisma.SortOrder
   customer_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  deal_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  actor_user_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  title?: Prisma.SortOrder
+  message?: Prisma.SortOrder
+  payload?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_read?: Prisma.SortOrder
+  read_at?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
-  reads?: Prisma.CrmNotificationReadsOrderByRelationAggregateInput
+  type?: Prisma.CrmNotificationTypesOrderByWithRelationInput
+  receiver?: Prisma.UserOrderByWithRelationInput
+  actor?: Prisma.UserOrderByWithRelationInput
+  customer?: Prisma.CrmCustomerProfilesOrderByWithRelationInput
+  deal?: Prisma.CrmDealsOrderByWithRelationInput
 }
 
 export type CrmNotificationsWhereUniqueInput = Prisma.AtLeast<{
@@ -247,19 +317,35 @@ export type CrmNotificationsWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.CrmNotificationsWhereInput[]
   NOT?: Prisma.CrmNotificationsWhereInput | Prisma.CrmNotificationsWhereInput[]
   type_code?: Prisma.StringFilter<"CrmNotifications"> | string
-  title?: Prisma.StringFilter<"CrmNotifications"> | string
-  description?: Prisma.StringFilter<"CrmNotifications"> | string
+  receiver_user_id?: Prisma.IntFilter<"CrmNotifications"> | number
   customer_id?: Prisma.IntNullableFilter<"CrmNotifications"> | number | null
+  deal_id?: Prisma.IntNullableFilter<"CrmNotifications"> | number | null
+  actor_user_id?: Prisma.IntNullableFilter<"CrmNotifications"> | number | null
+  title?: Prisma.StringFilter<"CrmNotifications"> | string
+  message?: Prisma.StringFilter<"CrmNotifications"> | string
+  payload?: Prisma.JsonNullableFilter<"CrmNotifications">
+  is_read?: Prisma.BoolFilter<"CrmNotifications"> | boolean
+  read_at?: Prisma.DateTimeNullableFilter<"CrmNotifications"> | Date | string | null
   created_at?: Prisma.DateTimeFilter<"CrmNotifications"> | Date | string
-  reads?: Prisma.CrmNotificationReadsListRelationFilter
+  type?: Prisma.XOR<Prisma.CrmNotificationTypesScalarRelationFilter, Prisma.CrmNotificationTypesWhereInput>
+  receiver?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  actor?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  customer?: Prisma.XOR<Prisma.CrmCustomerProfilesNullableScalarRelationFilter, Prisma.CrmCustomerProfilesWhereInput> | null
+  deal?: Prisma.XOR<Prisma.CrmDealsNullableScalarRelationFilter, Prisma.CrmDealsWhereInput> | null
 }, "id">
 
 export type CrmNotificationsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   type_code?: Prisma.SortOrder
-  title?: Prisma.SortOrder
-  description?: Prisma.SortOrder
+  receiver_user_id?: Prisma.SortOrder
   customer_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  deal_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  actor_user_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  title?: Prisma.SortOrder
+  message?: Prisma.SortOrder
+  payload?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_read?: Prisma.SortOrder
+  read_at?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   _count?: Prisma.CrmNotificationsCountOrderByAggregateInput
   _avg?: Prisma.CrmNotificationsAvgOrderByAggregateInput
@@ -274,270 +360,1073 @@ export type CrmNotificationsScalarWhereWithAggregatesInput = {
   NOT?: Prisma.CrmNotificationsScalarWhereWithAggregatesInput | Prisma.CrmNotificationsScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"CrmNotifications"> | number
   type_code?: Prisma.StringWithAggregatesFilter<"CrmNotifications"> | string
-  title?: Prisma.StringWithAggregatesFilter<"CrmNotifications"> | string
-  description?: Prisma.StringWithAggregatesFilter<"CrmNotifications"> | string
+  receiver_user_id?: Prisma.IntWithAggregatesFilter<"CrmNotifications"> | number
   customer_id?: Prisma.IntNullableWithAggregatesFilter<"CrmNotifications"> | number | null
+  deal_id?: Prisma.IntNullableWithAggregatesFilter<"CrmNotifications"> | number | null
+  actor_user_id?: Prisma.IntNullableWithAggregatesFilter<"CrmNotifications"> | number | null
+  title?: Prisma.StringWithAggregatesFilter<"CrmNotifications"> | string
+  message?: Prisma.StringWithAggregatesFilter<"CrmNotifications"> | string
+  payload?: Prisma.JsonNullableWithAggregatesFilter<"CrmNotifications">
+  is_read?: Prisma.BoolWithAggregatesFilter<"CrmNotifications"> | boolean
+  read_at?: Prisma.DateTimeNullableWithAggregatesFilter<"CrmNotifications"> | Date | string | null
   created_at?: Prisma.DateTimeWithAggregatesFilter<"CrmNotifications"> | Date | string
 }
 
 export type CrmNotificationsCreateInput = {
-  type_code: string
   title: string
-  description: string
-  customer_id?: number | null
+  message: string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: boolean
+  read_at?: Date | string | null
   created_at?: Date | string
-  reads?: Prisma.CrmNotificationReadsCreateNestedManyWithoutNotificationInput
+  type: Prisma.CrmNotificationTypesCreateNestedOneWithoutNotificationsInput
+  receiver: Prisma.UserCreateNestedOneWithoutReceivedCrmNotificationsInput
+  actor?: Prisma.UserCreateNestedOneWithoutActedCrmNotificationsInput
+  customer?: Prisma.CrmCustomerProfilesCreateNestedOneWithoutNotificationsInput
+  deal?: Prisma.CrmDealsCreateNestedOneWithoutNotificationsInput
 }
 
 export type CrmNotificationsUncheckedCreateInput = {
   id?: number
   type_code: string
-  title: string
-  description: string
+  receiver_user_id: number
   customer_id?: number | null
+  deal_id?: number | null
+  actor_user_id?: number | null
+  title: string
+  message: string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: boolean
+  read_at?: Date | string | null
   created_at?: Date | string
-  reads?: Prisma.CrmNotificationReadsUncheckedCreateNestedManyWithoutNotificationInput
 }
 
 export type CrmNotificationsUpdateInput = {
-  type_code?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  customer_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  message?: Prisma.StringFieldUpdateOperationsInput | string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  reads?: Prisma.CrmNotificationReadsUpdateManyWithoutNotificationNestedInput
+  type?: Prisma.CrmNotificationTypesUpdateOneRequiredWithoutNotificationsNestedInput
+  receiver?: Prisma.UserUpdateOneRequiredWithoutReceivedCrmNotificationsNestedInput
+  actor?: Prisma.UserUpdateOneWithoutActedCrmNotificationsNestedInput
+  customer?: Prisma.CrmCustomerProfilesUpdateOneWithoutNotificationsNestedInput
+  deal?: Prisma.CrmDealsUpdateOneWithoutNotificationsNestedInput
 }
 
 export type CrmNotificationsUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   type_code?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
+  receiver_user_id?: Prisma.IntFieldUpdateOperationsInput | number
   customer_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deal_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  actor_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  message?: Prisma.StringFieldUpdateOperationsInput | string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  reads?: Prisma.CrmNotificationReadsUncheckedUpdateManyWithoutNotificationNestedInput
 }
 
 export type CrmNotificationsCreateManyInput = {
   id?: number
   type_code: string
-  title: string
-  description: string
+  receiver_user_id: number
   customer_id?: number | null
+  deal_id?: number | null
+  actor_user_id?: number | null
+  title: string
+  message: string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: boolean
+  read_at?: Date | string | null
   created_at?: Date | string
 }
 
 export type CrmNotificationsUpdateManyMutationInput = {
-  type_code?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  customer_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  message?: Prisma.StringFieldUpdateOperationsInput | string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CrmNotificationsUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   type_code?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
+  receiver_user_id?: Prisma.IntFieldUpdateOperationsInput | number
   customer_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deal_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  actor_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  message?: Prisma.StringFieldUpdateOperationsInput | string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CrmNotificationsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   type_code?: Prisma.SortOrder
-  title?: Prisma.SortOrder
-  description?: Prisma.SortOrder
+  receiver_user_id?: Prisma.SortOrder
   customer_id?: Prisma.SortOrder
+  deal_id?: Prisma.SortOrder
+  actor_user_id?: Prisma.SortOrder
+  title?: Prisma.SortOrder
+  message?: Prisma.SortOrder
+  payload?: Prisma.SortOrder
+  is_read?: Prisma.SortOrder
+  read_at?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
 }
 
 export type CrmNotificationsAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  receiver_user_id?: Prisma.SortOrder
   customer_id?: Prisma.SortOrder
+  deal_id?: Prisma.SortOrder
+  actor_user_id?: Prisma.SortOrder
 }
 
 export type CrmNotificationsMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   type_code?: Prisma.SortOrder
-  title?: Prisma.SortOrder
-  description?: Prisma.SortOrder
+  receiver_user_id?: Prisma.SortOrder
   customer_id?: Prisma.SortOrder
+  deal_id?: Prisma.SortOrder
+  actor_user_id?: Prisma.SortOrder
+  title?: Prisma.SortOrder
+  message?: Prisma.SortOrder
+  is_read?: Prisma.SortOrder
+  read_at?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
 }
 
 export type CrmNotificationsMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   type_code?: Prisma.SortOrder
-  title?: Prisma.SortOrder
-  description?: Prisma.SortOrder
+  receiver_user_id?: Prisma.SortOrder
   customer_id?: Prisma.SortOrder
+  deal_id?: Prisma.SortOrder
+  actor_user_id?: Prisma.SortOrder
+  title?: Prisma.SortOrder
+  message?: Prisma.SortOrder
+  is_read?: Prisma.SortOrder
+  read_at?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
 }
 
 export type CrmNotificationsSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  receiver_user_id?: Prisma.SortOrder
   customer_id?: Prisma.SortOrder
+  deal_id?: Prisma.SortOrder
+  actor_user_id?: Prisma.SortOrder
 }
 
-export type CrmNotificationsScalarRelationFilter = {
-  is?: Prisma.CrmNotificationsWhereInput
-  isNot?: Prisma.CrmNotificationsWhereInput
+export type CrmNotificationsListRelationFilter = {
+  every?: Prisma.CrmNotificationsWhereInput
+  some?: Prisma.CrmNotificationsWhereInput
+  none?: Prisma.CrmNotificationsWhereInput
 }
 
-export type CrmNotificationsCreateNestedOneWithoutReadsInput = {
-  create?: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutReadsInput, Prisma.CrmNotificationsUncheckedCreateWithoutReadsInput>
-  connectOrCreate?: Prisma.CrmNotificationsCreateOrConnectWithoutReadsInput
-  connect?: Prisma.CrmNotificationsWhereUniqueInput
+export type CrmNotificationsOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
-export type CrmNotificationsUpdateOneRequiredWithoutReadsNestedInput = {
-  create?: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutReadsInput, Prisma.CrmNotificationsUncheckedCreateWithoutReadsInput>
-  connectOrCreate?: Prisma.CrmNotificationsCreateOrConnectWithoutReadsInput
-  upsert?: Prisma.CrmNotificationsUpsertWithoutReadsInput
-  connect?: Prisma.CrmNotificationsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CrmNotificationsUpdateToOneWithWhereWithoutReadsInput, Prisma.CrmNotificationsUpdateWithoutReadsInput>, Prisma.CrmNotificationsUncheckedUpdateWithoutReadsInput>
+export type CrmNotificationsCreateNestedManyWithoutTypeInput = {
+  create?: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutTypeInput, Prisma.CrmNotificationsUncheckedCreateWithoutTypeInput> | Prisma.CrmNotificationsCreateWithoutTypeInput[] | Prisma.CrmNotificationsUncheckedCreateWithoutTypeInput[]
+  connectOrCreate?: Prisma.CrmNotificationsCreateOrConnectWithoutTypeInput | Prisma.CrmNotificationsCreateOrConnectWithoutTypeInput[]
+  createMany?: Prisma.CrmNotificationsCreateManyTypeInputEnvelope
+  connect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
 }
 
-export type CrmNotificationsCreateWithoutReadsInput = {
-  type_code: string
+export type CrmNotificationsUncheckedCreateNestedManyWithoutTypeInput = {
+  create?: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutTypeInput, Prisma.CrmNotificationsUncheckedCreateWithoutTypeInput> | Prisma.CrmNotificationsCreateWithoutTypeInput[] | Prisma.CrmNotificationsUncheckedCreateWithoutTypeInput[]
+  connectOrCreate?: Prisma.CrmNotificationsCreateOrConnectWithoutTypeInput | Prisma.CrmNotificationsCreateOrConnectWithoutTypeInput[]
+  createMany?: Prisma.CrmNotificationsCreateManyTypeInputEnvelope
+  connect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+}
+
+export type CrmNotificationsUpdateManyWithoutTypeNestedInput = {
+  create?: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutTypeInput, Prisma.CrmNotificationsUncheckedCreateWithoutTypeInput> | Prisma.CrmNotificationsCreateWithoutTypeInput[] | Prisma.CrmNotificationsUncheckedCreateWithoutTypeInput[]
+  connectOrCreate?: Prisma.CrmNotificationsCreateOrConnectWithoutTypeInput | Prisma.CrmNotificationsCreateOrConnectWithoutTypeInput[]
+  upsert?: Prisma.CrmNotificationsUpsertWithWhereUniqueWithoutTypeInput | Prisma.CrmNotificationsUpsertWithWhereUniqueWithoutTypeInput[]
+  createMany?: Prisma.CrmNotificationsCreateManyTypeInputEnvelope
+  set?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  disconnect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  delete?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  connect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  update?: Prisma.CrmNotificationsUpdateWithWhereUniqueWithoutTypeInput | Prisma.CrmNotificationsUpdateWithWhereUniqueWithoutTypeInput[]
+  updateMany?: Prisma.CrmNotificationsUpdateManyWithWhereWithoutTypeInput | Prisma.CrmNotificationsUpdateManyWithWhereWithoutTypeInput[]
+  deleteMany?: Prisma.CrmNotificationsScalarWhereInput | Prisma.CrmNotificationsScalarWhereInput[]
+}
+
+export type CrmNotificationsUncheckedUpdateManyWithoutTypeNestedInput = {
+  create?: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutTypeInput, Prisma.CrmNotificationsUncheckedCreateWithoutTypeInput> | Prisma.CrmNotificationsCreateWithoutTypeInput[] | Prisma.CrmNotificationsUncheckedCreateWithoutTypeInput[]
+  connectOrCreate?: Prisma.CrmNotificationsCreateOrConnectWithoutTypeInput | Prisma.CrmNotificationsCreateOrConnectWithoutTypeInput[]
+  upsert?: Prisma.CrmNotificationsUpsertWithWhereUniqueWithoutTypeInput | Prisma.CrmNotificationsUpsertWithWhereUniqueWithoutTypeInput[]
+  createMany?: Prisma.CrmNotificationsCreateManyTypeInputEnvelope
+  set?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  disconnect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  delete?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  connect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  update?: Prisma.CrmNotificationsUpdateWithWhereUniqueWithoutTypeInput | Prisma.CrmNotificationsUpdateWithWhereUniqueWithoutTypeInput[]
+  updateMany?: Prisma.CrmNotificationsUpdateManyWithWhereWithoutTypeInput | Prisma.CrmNotificationsUpdateManyWithWhereWithoutTypeInput[]
+  deleteMany?: Prisma.CrmNotificationsScalarWhereInput | Prisma.CrmNotificationsScalarWhereInput[]
+}
+
+export type CrmNotificationsCreateNestedManyWithoutCustomerInput = {
+  create?: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutCustomerInput, Prisma.CrmNotificationsUncheckedCreateWithoutCustomerInput> | Prisma.CrmNotificationsCreateWithoutCustomerInput[] | Prisma.CrmNotificationsUncheckedCreateWithoutCustomerInput[]
+  connectOrCreate?: Prisma.CrmNotificationsCreateOrConnectWithoutCustomerInput | Prisma.CrmNotificationsCreateOrConnectWithoutCustomerInput[]
+  createMany?: Prisma.CrmNotificationsCreateManyCustomerInputEnvelope
+  connect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+}
+
+export type CrmNotificationsUncheckedCreateNestedManyWithoutCustomerInput = {
+  create?: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutCustomerInput, Prisma.CrmNotificationsUncheckedCreateWithoutCustomerInput> | Prisma.CrmNotificationsCreateWithoutCustomerInput[] | Prisma.CrmNotificationsUncheckedCreateWithoutCustomerInput[]
+  connectOrCreate?: Prisma.CrmNotificationsCreateOrConnectWithoutCustomerInput | Prisma.CrmNotificationsCreateOrConnectWithoutCustomerInput[]
+  createMany?: Prisma.CrmNotificationsCreateManyCustomerInputEnvelope
+  connect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+}
+
+export type CrmNotificationsUpdateManyWithoutCustomerNestedInput = {
+  create?: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutCustomerInput, Prisma.CrmNotificationsUncheckedCreateWithoutCustomerInput> | Prisma.CrmNotificationsCreateWithoutCustomerInput[] | Prisma.CrmNotificationsUncheckedCreateWithoutCustomerInput[]
+  connectOrCreate?: Prisma.CrmNotificationsCreateOrConnectWithoutCustomerInput | Prisma.CrmNotificationsCreateOrConnectWithoutCustomerInput[]
+  upsert?: Prisma.CrmNotificationsUpsertWithWhereUniqueWithoutCustomerInput | Prisma.CrmNotificationsUpsertWithWhereUniqueWithoutCustomerInput[]
+  createMany?: Prisma.CrmNotificationsCreateManyCustomerInputEnvelope
+  set?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  disconnect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  delete?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  connect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  update?: Prisma.CrmNotificationsUpdateWithWhereUniqueWithoutCustomerInput | Prisma.CrmNotificationsUpdateWithWhereUniqueWithoutCustomerInput[]
+  updateMany?: Prisma.CrmNotificationsUpdateManyWithWhereWithoutCustomerInput | Prisma.CrmNotificationsUpdateManyWithWhereWithoutCustomerInput[]
+  deleteMany?: Prisma.CrmNotificationsScalarWhereInput | Prisma.CrmNotificationsScalarWhereInput[]
+}
+
+export type CrmNotificationsUncheckedUpdateManyWithoutCustomerNestedInput = {
+  create?: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutCustomerInput, Prisma.CrmNotificationsUncheckedCreateWithoutCustomerInput> | Prisma.CrmNotificationsCreateWithoutCustomerInput[] | Prisma.CrmNotificationsUncheckedCreateWithoutCustomerInput[]
+  connectOrCreate?: Prisma.CrmNotificationsCreateOrConnectWithoutCustomerInput | Prisma.CrmNotificationsCreateOrConnectWithoutCustomerInput[]
+  upsert?: Prisma.CrmNotificationsUpsertWithWhereUniqueWithoutCustomerInput | Prisma.CrmNotificationsUpsertWithWhereUniqueWithoutCustomerInput[]
+  createMany?: Prisma.CrmNotificationsCreateManyCustomerInputEnvelope
+  set?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  disconnect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  delete?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  connect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  update?: Prisma.CrmNotificationsUpdateWithWhereUniqueWithoutCustomerInput | Prisma.CrmNotificationsUpdateWithWhereUniqueWithoutCustomerInput[]
+  updateMany?: Prisma.CrmNotificationsUpdateManyWithWhereWithoutCustomerInput | Prisma.CrmNotificationsUpdateManyWithWhereWithoutCustomerInput[]
+  deleteMany?: Prisma.CrmNotificationsScalarWhereInput | Prisma.CrmNotificationsScalarWhereInput[]
+}
+
+export type CrmNotificationsCreateNestedManyWithoutDealInput = {
+  create?: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutDealInput, Prisma.CrmNotificationsUncheckedCreateWithoutDealInput> | Prisma.CrmNotificationsCreateWithoutDealInput[] | Prisma.CrmNotificationsUncheckedCreateWithoutDealInput[]
+  connectOrCreate?: Prisma.CrmNotificationsCreateOrConnectWithoutDealInput | Prisma.CrmNotificationsCreateOrConnectWithoutDealInput[]
+  createMany?: Prisma.CrmNotificationsCreateManyDealInputEnvelope
+  connect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+}
+
+export type CrmNotificationsUncheckedCreateNestedManyWithoutDealInput = {
+  create?: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutDealInput, Prisma.CrmNotificationsUncheckedCreateWithoutDealInput> | Prisma.CrmNotificationsCreateWithoutDealInput[] | Prisma.CrmNotificationsUncheckedCreateWithoutDealInput[]
+  connectOrCreate?: Prisma.CrmNotificationsCreateOrConnectWithoutDealInput | Prisma.CrmNotificationsCreateOrConnectWithoutDealInput[]
+  createMany?: Prisma.CrmNotificationsCreateManyDealInputEnvelope
+  connect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+}
+
+export type CrmNotificationsUpdateManyWithoutDealNestedInput = {
+  create?: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutDealInput, Prisma.CrmNotificationsUncheckedCreateWithoutDealInput> | Prisma.CrmNotificationsCreateWithoutDealInput[] | Prisma.CrmNotificationsUncheckedCreateWithoutDealInput[]
+  connectOrCreate?: Prisma.CrmNotificationsCreateOrConnectWithoutDealInput | Prisma.CrmNotificationsCreateOrConnectWithoutDealInput[]
+  upsert?: Prisma.CrmNotificationsUpsertWithWhereUniqueWithoutDealInput | Prisma.CrmNotificationsUpsertWithWhereUniqueWithoutDealInput[]
+  createMany?: Prisma.CrmNotificationsCreateManyDealInputEnvelope
+  set?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  disconnect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  delete?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  connect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  update?: Prisma.CrmNotificationsUpdateWithWhereUniqueWithoutDealInput | Prisma.CrmNotificationsUpdateWithWhereUniqueWithoutDealInput[]
+  updateMany?: Prisma.CrmNotificationsUpdateManyWithWhereWithoutDealInput | Prisma.CrmNotificationsUpdateManyWithWhereWithoutDealInput[]
+  deleteMany?: Prisma.CrmNotificationsScalarWhereInput | Prisma.CrmNotificationsScalarWhereInput[]
+}
+
+export type CrmNotificationsUncheckedUpdateManyWithoutDealNestedInput = {
+  create?: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutDealInput, Prisma.CrmNotificationsUncheckedCreateWithoutDealInput> | Prisma.CrmNotificationsCreateWithoutDealInput[] | Prisma.CrmNotificationsUncheckedCreateWithoutDealInput[]
+  connectOrCreate?: Prisma.CrmNotificationsCreateOrConnectWithoutDealInput | Prisma.CrmNotificationsCreateOrConnectWithoutDealInput[]
+  upsert?: Prisma.CrmNotificationsUpsertWithWhereUniqueWithoutDealInput | Prisma.CrmNotificationsUpsertWithWhereUniqueWithoutDealInput[]
+  createMany?: Prisma.CrmNotificationsCreateManyDealInputEnvelope
+  set?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  disconnect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  delete?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  connect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  update?: Prisma.CrmNotificationsUpdateWithWhereUniqueWithoutDealInput | Prisma.CrmNotificationsUpdateWithWhereUniqueWithoutDealInput[]
+  updateMany?: Prisma.CrmNotificationsUpdateManyWithWhereWithoutDealInput | Prisma.CrmNotificationsUpdateManyWithWhereWithoutDealInput[]
+  deleteMany?: Prisma.CrmNotificationsScalarWhereInput | Prisma.CrmNotificationsScalarWhereInput[]
+}
+
+export type CrmNotificationsCreateNestedManyWithoutReceiverInput = {
+  create?: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutReceiverInput, Prisma.CrmNotificationsUncheckedCreateWithoutReceiverInput> | Prisma.CrmNotificationsCreateWithoutReceiverInput[] | Prisma.CrmNotificationsUncheckedCreateWithoutReceiverInput[]
+  connectOrCreate?: Prisma.CrmNotificationsCreateOrConnectWithoutReceiverInput | Prisma.CrmNotificationsCreateOrConnectWithoutReceiverInput[]
+  createMany?: Prisma.CrmNotificationsCreateManyReceiverInputEnvelope
+  connect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+}
+
+export type CrmNotificationsCreateNestedManyWithoutActorInput = {
+  create?: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutActorInput, Prisma.CrmNotificationsUncheckedCreateWithoutActorInput> | Prisma.CrmNotificationsCreateWithoutActorInput[] | Prisma.CrmNotificationsUncheckedCreateWithoutActorInput[]
+  connectOrCreate?: Prisma.CrmNotificationsCreateOrConnectWithoutActorInput | Prisma.CrmNotificationsCreateOrConnectWithoutActorInput[]
+  createMany?: Prisma.CrmNotificationsCreateManyActorInputEnvelope
+  connect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+}
+
+export type CrmNotificationsUncheckedCreateNestedManyWithoutReceiverInput = {
+  create?: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutReceiverInput, Prisma.CrmNotificationsUncheckedCreateWithoutReceiverInput> | Prisma.CrmNotificationsCreateWithoutReceiverInput[] | Prisma.CrmNotificationsUncheckedCreateWithoutReceiverInput[]
+  connectOrCreate?: Prisma.CrmNotificationsCreateOrConnectWithoutReceiverInput | Prisma.CrmNotificationsCreateOrConnectWithoutReceiverInput[]
+  createMany?: Prisma.CrmNotificationsCreateManyReceiverInputEnvelope
+  connect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+}
+
+export type CrmNotificationsUncheckedCreateNestedManyWithoutActorInput = {
+  create?: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutActorInput, Prisma.CrmNotificationsUncheckedCreateWithoutActorInput> | Prisma.CrmNotificationsCreateWithoutActorInput[] | Prisma.CrmNotificationsUncheckedCreateWithoutActorInput[]
+  connectOrCreate?: Prisma.CrmNotificationsCreateOrConnectWithoutActorInput | Prisma.CrmNotificationsCreateOrConnectWithoutActorInput[]
+  createMany?: Prisma.CrmNotificationsCreateManyActorInputEnvelope
+  connect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+}
+
+export type CrmNotificationsUpdateManyWithoutReceiverNestedInput = {
+  create?: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutReceiverInput, Prisma.CrmNotificationsUncheckedCreateWithoutReceiverInput> | Prisma.CrmNotificationsCreateWithoutReceiverInput[] | Prisma.CrmNotificationsUncheckedCreateWithoutReceiverInput[]
+  connectOrCreate?: Prisma.CrmNotificationsCreateOrConnectWithoutReceiverInput | Prisma.CrmNotificationsCreateOrConnectWithoutReceiverInput[]
+  upsert?: Prisma.CrmNotificationsUpsertWithWhereUniqueWithoutReceiverInput | Prisma.CrmNotificationsUpsertWithWhereUniqueWithoutReceiverInput[]
+  createMany?: Prisma.CrmNotificationsCreateManyReceiverInputEnvelope
+  set?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  disconnect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  delete?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  connect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  update?: Prisma.CrmNotificationsUpdateWithWhereUniqueWithoutReceiverInput | Prisma.CrmNotificationsUpdateWithWhereUniqueWithoutReceiverInput[]
+  updateMany?: Prisma.CrmNotificationsUpdateManyWithWhereWithoutReceiverInput | Prisma.CrmNotificationsUpdateManyWithWhereWithoutReceiverInput[]
+  deleteMany?: Prisma.CrmNotificationsScalarWhereInput | Prisma.CrmNotificationsScalarWhereInput[]
+}
+
+export type CrmNotificationsUpdateManyWithoutActorNestedInput = {
+  create?: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutActorInput, Prisma.CrmNotificationsUncheckedCreateWithoutActorInput> | Prisma.CrmNotificationsCreateWithoutActorInput[] | Prisma.CrmNotificationsUncheckedCreateWithoutActorInput[]
+  connectOrCreate?: Prisma.CrmNotificationsCreateOrConnectWithoutActorInput | Prisma.CrmNotificationsCreateOrConnectWithoutActorInput[]
+  upsert?: Prisma.CrmNotificationsUpsertWithWhereUniqueWithoutActorInput | Prisma.CrmNotificationsUpsertWithWhereUniqueWithoutActorInput[]
+  createMany?: Prisma.CrmNotificationsCreateManyActorInputEnvelope
+  set?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  disconnect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  delete?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  connect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  update?: Prisma.CrmNotificationsUpdateWithWhereUniqueWithoutActorInput | Prisma.CrmNotificationsUpdateWithWhereUniqueWithoutActorInput[]
+  updateMany?: Prisma.CrmNotificationsUpdateManyWithWhereWithoutActorInput | Prisma.CrmNotificationsUpdateManyWithWhereWithoutActorInput[]
+  deleteMany?: Prisma.CrmNotificationsScalarWhereInput | Prisma.CrmNotificationsScalarWhereInput[]
+}
+
+export type CrmNotificationsUncheckedUpdateManyWithoutReceiverNestedInput = {
+  create?: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutReceiverInput, Prisma.CrmNotificationsUncheckedCreateWithoutReceiverInput> | Prisma.CrmNotificationsCreateWithoutReceiverInput[] | Prisma.CrmNotificationsUncheckedCreateWithoutReceiverInput[]
+  connectOrCreate?: Prisma.CrmNotificationsCreateOrConnectWithoutReceiverInput | Prisma.CrmNotificationsCreateOrConnectWithoutReceiverInput[]
+  upsert?: Prisma.CrmNotificationsUpsertWithWhereUniqueWithoutReceiverInput | Prisma.CrmNotificationsUpsertWithWhereUniqueWithoutReceiverInput[]
+  createMany?: Prisma.CrmNotificationsCreateManyReceiverInputEnvelope
+  set?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  disconnect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  delete?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  connect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  update?: Prisma.CrmNotificationsUpdateWithWhereUniqueWithoutReceiverInput | Prisma.CrmNotificationsUpdateWithWhereUniqueWithoutReceiverInput[]
+  updateMany?: Prisma.CrmNotificationsUpdateManyWithWhereWithoutReceiverInput | Prisma.CrmNotificationsUpdateManyWithWhereWithoutReceiverInput[]
+  deleteMany?: Prisma.CrmNotificationsScalarWhereInput | Prisma.CrmNotificationsScalarWhereInput[]
+}
+
+export type CrmNotificationsUncheckedUpdateManyWithoutActorNestedInput = {
+  create?: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutActorInput, Prisma.CrmNotificationsUncheckedCreateWithoutActorInput> | Prisma.CrmNotificationsCreateWithoutActorInput[] | Prisma.CrmNotificationsUncheckedCreateWithoutActorInput[]
+  connectOrCreate?: Prisma.CrmNotificationsCreateOrConnectWithoutActorInput | Prisma.CrmNotificationsCreateOrConnectWithoutActorInput[]
+  upsert?: Prisma.CrmNotificationsUpsertWithWhereUniqueWithoutActorInput | Prisma.CrmNotificationsUpsertWithWhereUniqueWithoutActorInput[]
+  createMany?: Prisma.CrmNotificationsCreateManyActorInputEnvelope
+  set?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  disconnect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  delete?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  connect?: Prisma.CrmNotificationsWhereUniqueInput | Prisma.CrmNotificationsWhereUniqueInput[]
+  update?: Prisma.CrmNotificationsUpdateWithWhereUniqueWithoutActorInput | Prisma.CrmNotificationsUpdateWithWhereUniqueWithoutActorInput[]
+  updateMany?: Prisma.CrmNotificationsUpdateManyWithWhereWithoutActorInput | Prisma.CrmNotificationsUpdateManyWithWhereWithoutActorInput[]
+  deleteMany?: Prisma.CrmNotificationsScalarWhereInput | Prisma.CrmNotificationsScalarWhereInput[]
+}
+
+export type CrmNotificationsCreateWithoutTypeInput = {
   title: string
-  description: string
+  message: string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: boolean
+  read_at?: Date | string | null
+  created_at?: Date | string
+  receiver: Prisma.UserCreateNestedOneWithoutReceivedCrmNotificationsInput
+  actor?: Prisma.UserCreateNestedOneWithoutActedCrmNotificationsInput
+  customer?: Prisma.CrmCustomerProfilesCreateNestedOneWithoutNotificationsInput
+  deal?: Prisma.CrmDealsCreateNestedOneWithoutNotificationsInput
+}
+
+export type CrmNotificationsUncheckedCreateWithoutTypeInput = {
+  id?: number
+  receiver_user_id: number
   customer_id?: number | null
+  deal_id?: number | null
+  actor_user_id?: number | null
+  title: string
+  message: string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: boolean
+  read_at?: Date | string | null
   created_at?: Date | string
 }
 
-export type CrmNotificationsUncheckedCreateWithoutReadsInput = {
+export type CrmNotificationsCreateOrConnectWithoutTypeInput = {
+  where: Prisma.CrmNotificationsWhereUniqueInput
+  create: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutTypeInput, Prisma.CrmNotificationsUncheckedCreateWithoutTypeInput>
+}
+
+export type CrmNotificationsCreateManyTypeInputEnvelope = {
+  data: Prisma.CrmNotificationsCreateManyTypeInput | Prisma.CrmNotificationsCreateManyTypeInput[]
+  skipDuplicates?: boolean
+}
+
+export type CrmNotificationsUpsertWithWhereUniqueWithoutTypeInput = {
+  where: Prisma.CrmNotificationsWhereUniqueInput
+  update: Prisma.XOR<Prisma.CrmNotificationsUpdateWithoutTypeInput, Prisma.CrmNotificationsUncheckedUpdateWithoutTypeInput>
+  create: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutTypeInput, Prisma.CrmNotificationsUncheckedCreateWithoutTypeInput>
+}
+
+export type CrmNotificationsUpdateWithWhereUniqueWithoutTypeInput = {
+  where: Prisma.CrmNotificationsWhereUniqueInput
+  data: Prisma.XOR<Prisma.CrmNotificationsUpdateWithoutTypeInput, Prisma.CrmNotificationsUncheckedUpdateWithoutTypeInput>
+}
+
+export type CrmNotificationsUpdateManyWithWhereWithoutTypeInput = {
+  where: Prisma.CrmNotificationsScalarWhereInput
+  data: Prisma.XOR<Prisma.CrmNotificationsUpdateManyMutationInput, Prisma.CrmNotificationsUncheckedUpdateManyWithoutTypeInput>
+}
+
+export type CrmNotificationsScalarWhereInput = {
+  AND?: Prisma.CrmNotificationsScalarWhereInput | Prisma.CrmNotificationsScalarWhereInput[]
+  OR?: Prisma.CrmNotificationsScalarWhereInput[]
+  NOT?: Prisma.CrmNotificationsScalarWhereInput | Prisma.CrmNotificationsScalarWhereInput[]
+  id?: Prisma.IntFilter<"CrmNotifications"> | number
+  type_code?: Prisma.StringFilter<"CrmNotifications"> | string
+  receiver_user_id?: Prisma.IntFilter<"CrmNotifications"> | number
+  customer_id?: Prisma.IntNullableFilter<"CrmNotifications"> | number | null
+  deal_id?: Prisma.IntNullableFilter<"CrmNotifications"> | number | null
+  actor_user_id?: Prisma.IntNullableFilter<"CrmNotifications"> | number | null
+  title?: Prisma.StringFilter<"CrmNotifications"> | string
+  message?: Prisma.StringFilter<"CrmNotifications"> | string
+  payload?: Prisma.JsonNullableFilter<"CrmNotifications">
+  is_read?: Prisma.BoolFilter<"CrmNotifications"> | boolean
+  read_at?: Prisma.DateTimeNullableFilter<"CrmNotifications"> | Date | string | null
+  created_at?: Prisma.DateTimeFilter<"CrmNotifications"> | Date | string
+}
+
+export type CrmNotificationsCreateWithoutCustomerInput = {
+  title: string
+  message: string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: boolean
+  read_at?: Date | string | null
+  created_at?: Date | string
+  type: Prisma.CrmNotificationTypesCreateNestedOneWithoutNotificationsInput
+  receiver: Prisma.UserCreateNestedOneWithoutReceivedCrmNotificationsInput
+  actor?: Prisma.UserCreateNestedOneWithoutActedCrmNotificationsInput
+  deal?: Prisma.CrmDealsCreateNestedOneWithoutNotificationsInput
+}
+
+export type CrmNotificationsUncheckedCreateWithoutCustomerInput = {
   id?: number
   type_code: string
+  receiver_user_id: number
+  deal_id?: number | null
+  actor_user_id?: number | null
   title: string
-  description: string
-  customer_id?: number | null
+  message: string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: boolean
+  read_at?: Date | string | null
   created_at?: Date | string
 }
 
-export type CrmNotificationsCreateOrConnectWithoutReadsInput = {
+export type CrmNotificationsCreateOrConnectWithoutCustomerInput = {
   where: Prisma.CrmNotificationsWhereUniqueInput
-  create: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutReadsInput, Prisma.CrmNotificationsUncheckedCreateWithoutReadsInput>
+  create: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutCustomerInput, Prisma.CrmNotificationsUncheckedCreateWithoutCustomerInput>
 }
 
-export type CrmNotificationsUpsertWithoutReadsInput = {
-  update: Prisma.XOR<Prisma.CrmNotificationsUpdateWithoutReadsInput, Prisma.CrmNotificationsUncheckedUpdateWithoutReadsInput>
-  create: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutReadsInput, Prisma.CrmNotificationsUncheckedCreateWithoutReadsInput>
-  where?: Prisma.CrmNotificationsWhereInput
+export type CrmNotificationsCreateManyCustomerInputEnvelope = {
+  data: Prisma.CrmNotificationsCreateManyCustomerInput | Prisma.CrmNotificationsCreateManyCustomerInput[]
+  skipDuplicates?: boolean
 }
 
-export type CrmNotificationsUpdateToOneWithWhereWithoutReadsInput = {
-  where?: Prisma.CrmNotificationsWhereInput
-  data: Prisma.XOR<Prisma.CrmNotificationsUpdateWithoutReadsInput, Prisma.CrmNotificationsUncheckedUpdateWithoutReadsInput>
+export type CrmNotificationsUpsertWithWhereUniqueWithoutCustomerInput = {
+  where: Prisma.CrmNotificationsWhereUniqueInput
+  update: Prisma.XOR<Prisma.CrmNotificationsUpdateWithoutCustomerInput, Prisma.CrmNotificationsUncheckedUpdateWithoutCustomerInput>
+  create: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutCustomerInput, Prisma.CrmNotificationsUncheckedCreateWithoutCustomerInput>
 }
 
-export type CrmNotificationsUpdateWithoutReadsInput = {
-  type_code?: Prisma.StringFieldUpdateOperationsInput | string
+export type CrmNotificationsUpdateWithWhereUniqueWithoutCustomerInput = {
+  where: Prisma.CrmNotificationsWhereUniqueInput
+  data: Prisma.XOR<Prisma.CrmNotificationsUpdateWithoutCustomerInput, Prisma.CrmNotificationsUncheckedUpdateWithoutCustomerInput>
+}
+
+export type CrmNotificationsUpdateManyWithWhereWithoutCustomerInput = {
+  where: Prisma.CrmNotificationsScalarWhereInput
+  data: Prisma.XOR<Prisma.CrmNotificationsUpdateManyMutationInput, Prisma.CrmNotificationsUncheckedUpdateManyWithoutCustomerInput>
+}
+
+export type CrmNotificationsCreateWithoutDealInput = {
+  title: string
+  message: string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: boolean
+  read_at?: Date | string | null
+  created_at?: Date | string
+  type: Prisma.CrmNotificationTypesCreateNestedOneWithoutNotificationsInput
+  receiver: Prisma.UserCreateNestedOneWithoutReceivedCrmNotificationsInput
+  actor?: Prisma.UserCreateNestedOneWithoutActedCrmNotificationsInput
+  customer?: Prisma.CrmCustomerProfilesCreateNestedOneWithoutNotificationsInput
+}
+
+export type CrmNotificationsUncheckedCreateWithoutDealInput = {
+  id?: number
+  type_code: string
+  receiver_user_id: number
+  customer_id?: number | null
+  actor_user_id?: number | null
+  title: string
+  message: string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: boolean
+  read_at?: Date | string | null
+  created_at?: Date | string
+}
+
+export type CrmNotificationsCreateOrConnectWithoutDealInput = {
+  where: Prisma.CrmNotificationsWhereUniqueInput
+  create: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutDealInput, Prisma.CrmNotificationsUncheckedCreateWithoutDealInput>
+}
+
+export type CrmNotificationsCreateManyDealInputEnvelope = {
+  data: Prisma.CrmNotificationsCreateManyDealInput | Prisma.CrmNotificationsCreateManyDealInput[]
+  skipDuplicates?: boolean
+}
+
+export type CrmNotificationsUpsertWithWhereUniqueWithoutDealInput = {
+  where: Prisma.CrmNotificationsWhereUniqueInput
+  update: Prisma.XOR<Prisma.CrmNotificationsUpdateWithoutDealInput, Prisma.CrmNotificationsUncheckedUpdateWithoutDealInput>
+  create: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutDealInput, Prisma.CrmNotificationsUncheckedCreateWithoutDealInput>
+}
+
+export type CrmNotificationsUpdateWithWhereUniqueWithoutDealInput = {
+  where: Prisma.CrmNotificationsWhereUniqueInput
+  data: Prisma.XOR<Prisma.CrmNotificationsUpdateWithoutDealInput, Prisma.CrmNotificationsUncheckedUpdateWithoutDealInput>
+}
+
+export type CrmNotificationsUpdateManyWithWhereWithoutDealInput = {
+  where: Prisma.CrmNotificationsScalarWhereInput
+  data: Prisma.XOR<Prisma.CrmNotificationsUpdateManyMutationInput, Prisma.CrmNotificationsUncheckedUpdateManyWithoutDealInput>
+}
+
+export type CrmNotificationsCreateWithoutReceiverInput = {
+  title: string
+  message: string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: boolean
+  read_at?: Date | string | null
+  created_at?: Date | string
+  type: Prisma.CrmNotificationTypesCreateNestedOneWithoutNotificationsInput
+  actor?: Prisma.UserCreateNestedOneWithoutActedCrmNotificationsInput
+  customer?: Prisma.CrmCustomerProfilesCreateNestedOneWithoutNotificationsInput
+  deal?: Prisma.CrmDealsCreateNestedOneWithoutNotificationsInput
+}
+
+export type CrmNotificationsUncheckedCreateWithoutReceiverInput = {
+  id?: number
+  type_code: string
+  customer_id?: number | null
+  deal_id?: number | null
+  actor_user_id?: number | null
+  title: string
+  message: string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: boolean
+  read_at?: Date | string | null
+  created_at?: Date | string
+}
+
+export type CrmNotificationsCreateOrConnectWithoutReceiverInput = {
+  where: Prisma.CrmNotificationsWhereUniqueInput
+  create: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutReceiverInput, Prisma.CrmNotificationsUncheckedCreateWithoutReceiverInput>
+}
+
+export type CrmNotificationsCreateManyReceiverInputEnvelope = {
+  data: Prisma.CrmNotificationsCreateManyReceiverInput | Prisma.CrmNotificationsCreateManyReceiverInput[]
+  skipDuplicates?: boolean
+}
+
+export type CrmNotificationsCreateWithoutActorInput = {
+  title: string
+  message: string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: boolean
+  read_at?: Date | string | null
+  created_at?: Date | string
+  type: Prisma.CrmNotificationTypesCreateNestedOneWithoutNotificationsInput
+  receiver: Prisma.UserCreateNestedOneWithoutReceivedCrmNotificationsInput
+  customer?: Prisma.CrmCustomerProfilesCreateNestedOneWithoutNotificationsInput
+  deal?: Prisma.CrmDealsCreateNestedOneWithoutNotificationsInput
+}
+
+export type CrmNotificationsUncheckedCreateWithoutActorInput = {
+  id?: number
+  type_code: string
+  receiver_user_id: number
+  customer_id?: number | null
+  deal_id?: number | null
+  title: string
+  message: string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: boolean
+  read_at?: Date | string | null
+  created_at?: Date | string
+}
+
+export type CrmNotificationsCreateOrConnectWithoutActorInput = {
+  where: Prisma.CrmNotificationsWhereUniqueInput
+  create: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutActorInput, Prisma.CrmNotificationsUncheckedCreateWithoutActorInput>
+}
+
+export type CrmNotificationsCreateManyActorInputEnvelope = {
+  data: Prisma.CrmNotificationsCreateManyActorInput | Prisma.CrmNotificationsCreateManyActorInput[]
+  skipDuplicates?: boolean
+}
+
+export type CrmNotificationsUpsertWithWhereUniqueWithoutReceiverInput = {
+  where: Prisma.CrmNotificationsWhereUniqueInput
+  update: Prisma.XOR<Prisma.CrmNotificationsUpdateWithoutReceiverInput, Prisma.CrmNotificationsUncheckedUpdateWithoutReceiverInput>
+  create: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutReceiverInput, Prisma.CrmNotificationsUncheckedCreateWithoutReceiverInput>
+}
+
+export type CrmNotificationsUpdateWithWhereUniqueWithoutReceiverInput = {
+  where: Prisma.CrmNotificationsWhereUniqueInput
+  data: Prisma.XOR<Prisma.CrmNotificationsUpdateWithoutReceiverInput, Prisma.CrmNotificationsUncheckedUpdateWithoutReceiverInput>
+}
+
+export type CrmNotificationsUpdateManyWithWhereWithoutReceiverInput = {
+  where: Prisma.CrmNotificationsScalarWhereInput
+  data: Prisma.XOR<Prisma.CrmNotificationsUpdateManyMutationInput, Prisma.CrmNotificationsUncheckedUpdateManyWithoutReceiverInput>
+}
+
+export type CrmNotificationsUpsertWithWhereUniqueWithoutActorInput = {
+  where: Prisma.CrmNotificationsWhereUniqueInput
+  update: Prisma.XOR<Prisma.CrmNotificationsUpdateWithoutActorInput, Prisma.CrmNotificationsUncheckedUpdateWithoutActorInput>
+  create: Prisma.XOR<Prisma.CrmNotificationsCreateWithoutActorInput, Prisma.CrmNotificationsUncheckedCreateWithoutActorInput>
+}
+
+export type CrmNotificationsUpdateWithWhereUniqueWithoutActorInput = {
+  where: Prisma.CrmNotificationsWhereUniqueInput
+  data: Prisma.XOR<Prisma.CrmNotificationsUpdateWithoutActorInput, Prisma.CrmNotificationsUncheckedUpdateWithoutActorInput>
+}
+
+export type CrmNotificationsUpdateManyWithWhereWithoutActorInput = {
+  where: Prisma.CrmNotificationsScalarWhereInput
+  data: Prisma.XOR<Prisma.CrmNotificationsUpdateManyMutationInput, Prisma.CrmNotificationsUncheckedUpdateManyWithoutActorInput>
+}
+
+export type CrmNotificationsCreateManyTypeInput = {
+  id?: number
+  receiver_user_id: number
+  customer_id?: number | null
+  deal_id?: number | null
+  actor_user_id?: number | null
+  title: string
+  message: string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: boolean
+  read_at?: Date | string | null
+  created_at?: Date | string
+}
+
+export type CrmNotificationsUpdateWithoutTypeInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
+  message?: Prisma.StringFieldUpdateOperationsInput | string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  receiver?: Prisma.UserUpdateOneRequiredWithoutReceivedCrmNotificationsNestedInput
+  actor?: Prisma.UserUpdateOneWithoutActedCrmNotificationsNestedInput
+  customer?: Prisma.CrmCustomerProfilesUpdateOneWithoutNotificationsNestedInput
+  deal?: Prisma.CrmDealsUpdateOneWithoutNotificationsNestedInput
+}
+
+export type CrmNotificationsUncheckedUpdateWithoutTypeInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  receiver_user_id?: Prisma.IntFieldUpdateOperationsInput | number
   customer_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deal_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  actor_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  message?: Prisma.StringFieldUpdateOperationsInput | string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type CrmNotificationsUncheckedUpdateWithoutReadsInput = {
+export type CrmNotificationsUncheckedUpdateManyWithoutTypeInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  receiver_user_id?: Prisma.IntFieldUpdateOperationsInput | number
+  customer_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deal_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  actor_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  message?: Prisma.StringFieldUpdateOperationsInput | string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type CrmNotificationsCreateManyCustomerInput = {
+  id?: number
+  type_code: string
+  receiver_user_id: number
+  deal_id?: number | null
+  actor_user_id?: number | null
+  title: string
+  message: string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: boolean
+  read_at?: Date | string | null
+  created_at?: Date | string
+}
+
+export type CrmNotificationsUpdateWithoutCustomerInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  message?: Prisma.StringFieldUpdateOperationsInput | string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  type?: Prisma.CrmNotificationTypesUpdateOneRequiredWithoutNotificationsNestedInput
+  receiver?: Prisma.UserUpdateOneRequiredWithoutReceivedCrmNotificationsNestedInput
+  actor?: Prisma.UserUpdateOneWithoutActedCrmNotificationsNestedInput
+  deal?: Prisma.CrmDealsUpdateOneWithoutNotificationsNestedInput
+}
+
+export type CrmNotificationsUncheckedUpdateWithoutCustomerInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   type_code?: Prisma.StringFieldUpdateOperationsInput | string
+  receiver_user_id?: Prisma.IntFieldUpdateOperationsInput | number
+  deal_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  actor_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  customer_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  message?: Prisma.StringFieldUpdateOperationsInput | string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-
-/**
- * Count Type CrmNotificationsCountOutputType
- */
-
-export type CrmNotificationsCountOutputType = {
-  reads: number
+export type CrmNotificationsUncheckedUpdateManyWithoutCustomerInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  type_code?: Prisma.StringFieldUpdateOperationsInput | string
+  receiver_user_id?: Prisma.IntFieldUpdateOperationsInput | number
+  deal_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  actor_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  message?: Prisma.StringFieldUpdateOperationsInput | string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type CrmNotificationsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  reads?: boolean | CrmNotificationsCountOutputTypeCountReadsArgs
+export type CrmNotificationsCreateManyDealInput = {
+  id?: number
+  type_code: string
+  receiver_user_id: number
+  customer_id?: number | null
+  actor_user_id?: number | null
+  title: string
+  message: string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: boolean
+  read_at?: Date | string | null
+  created_at?: Date | string
 }
 
-/**
- * CrmNotificationsCountOutputType without action
- */
-export type CrmNotificationsCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the CrmNotificationsCountOutputType
-   */
-  select?: Prisma.CrmNotificationsCountOutputTypeSelect<ExtArgs> | null
+export type CrmNotificationsUpdateWithoutDealInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  message?: Prisma.StringFieldUpdateOperationsInput | string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  type?: Prisma.CrmNotificationTypesUpdateOneRequiredWithoutNotificationsNestedInput
+  receiver?: Prisma.UserUpdateOneRequiredWithoutReceivedCrmNotificationsNestedInput
+  actor?: Prisma.UserUpdateOneWithoutActedCrmNotificationsNestedInput
+  customer?: Prisma.CrmCustomerProfilesUpdateOneWithoutNotificationsNestedInput
 }
 
-/**
- * CrmNotificationsCountOutputType without action
- */
-export type CrmNotificationsCountOutputTypeCountReadsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CrmNotificationReadsWhereInput
+export type CrmNotificationsUncheckedUpdateWithoutDealInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  type_code?: Prisma.StringFieldUpdateOperationsInput | string
+  receiver_user_id?: Prisma.IntFieldUpdateOperationsInput | number
+  customer_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  actor_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  message?: Prisma.StringFieldUpdateOperationsInput | string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
+
+export type CrmNotificationsUncheckedUpdateManyWithoutDealInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  type_code?: Prisma.StringFieldUpdateOperationsInput | string
+  receiver_user_id?: Prisma.IntFieldUpdateOperationsInput | number
+  customer_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  actor_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  message?: Prisma.StringFieldUpdateOperationsInput | string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type CrmNotificationsCreateManyReceiverInput = {
+  id?: number
+  type_code: string
+  customer_id?: number | null
+  deal_id?: number | null
+  actor_user_id?: number | null
+  title: string
+  message: string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: boolean
+  read_at?: Date | string | null
+  created_at?: Date | string
+}
+
+export type CrmNotificationsCreateManyActorInput = {
+  id?: number
+  type_code: string
+  receiver_user_id: number
+  customer_id?: number | null
+  deal_id?: number | null
+  title: string
+  message: string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: boolean
+  read_at?: Date | string | null
+  created_at?: Date | string
+}
+
+export type CrmNotificationsUpdateWithoutReceiverInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  message?: Prisma.StringFieldUpdateOperationsInput | string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  type?: Prisma.CrmNotificationTypesUpdateOneRequiredWithoutNotificationsNestedInput
+  actor?: Prisma.UserUpdateOneWithoutActedCrmNotificationsNestedInput
+  customer?: Prisma.CrmCustomerProfilesUpdateOneWithoutNotificationsNestedInput
+  deal?: Prisma.CrmDealsUpdateOneWithoutNotificationsNestedInput
+}
+
+export type CrmNotificationsUncheckedUpdateWithoutReceiverInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  type_code?: Prisma.StringFieldUpdateOperationsInput | string
+  customer_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deal_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  actor_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  message?: Prisma.StringFieldUpdateOperationsInput | string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type CrmNotificationsUncheckedUpdateManyWithoutReceiverInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  type_code?: Prisma.StringFieldUpdateOperationsInput | string
+  customer_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deal_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  actor_user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  message?: Prisma.StringFieldUpdateOperationsInput | string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type CrmNotificationsUpdateWithoutActorInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  message?: Prisma.StringFieldUpdateOperationsInput | string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  type?: Prisma.CrmNotificationTypesUpdateOneRequiredWithoutNotificationsNestedInput
+  receiver?: Prisma.UserUpdateOneRequiredWithoutReceivedCrmNotificationsNestedInput
+  customer?: Prisma.CrmCustomerProfilesUpdateOneWithoutNotificationsNestedInput
+  deal?: Prisma.CrmDealsUpdateOneWithoutNotificationsNestedInput
+}
+
+export type CrmNotificationsUncheckedUpdateWithoutActorInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  type_code?: Prisma.StringFieldUpdateOperationsInput | string
+  receiver_user_id?: Prisma.IntFieldUpdateOperationsInput | number
+  customer_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deal_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  message?: Prisma.StringFieldUpdateOperationsInput | string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type CrmNotificationsUncheckedUpdateManyWithoutActorInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  type_code?: Prisma.StringFieldUpdateOperationsInput | string
+  receiver_user_id?: Prisma.IntFieldUpdateOperationsInput | number
+  customer_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deal_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  message?: Prisma.StringFieldUpdateOperationsInput | string
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 
 
 export type CrmNotificationsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   type_code?: boolean
-  title?: boolean
-  description?: boolean
+  receiver_user_id?: boolean
   customer_id?: boolean
+  deal_id?: boolean
+  actor_user_id?: boolean
+  title?: boolean
+  message?: boolean
+  payload?: boolean
+  is_read?: boolean
+  read_at?: boolean
   created_at?: boolean
-  reads?: boolean | Prisma.CrmNotifications$readsArgs<ExtArgs>
-  _count?: boolean | Prisma.CrmNotificationsCountOutputTypeDefaultArgs<ExtArgs>
+  type?: boolean | Prisma.CrmNotificationTypesDefaultArgs<ExtArgs>
+  receiver?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  actor?: boolean | Prisma.CrmNotifications$actorArgs<ExtArgs>
+  customer?: boolean | Prisma.CrmNotifications$customerArgs<ExtArgs>
+  deal?: boolean | Prisma.CrmNotifications$dealArgs<ExtArgs>
 }, ExtArgs["result"]["crmNotifications"]>
 
 export type CrmNotificationsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   type_code?: boolean
-  title?: boolean
-  description?: boolean
+  receiver_user_id?: boolean
   customer_id?: boolean
+  deal_id?: boolean
+  actor_user_id?: boolean
+  title?: boolean
+  message?: boolean
+  payload?: boolean
+  is_read?: boolean
+  read_at?: boolean
   created_at?: boolean
+  type?: boolean | Prisma.CrmNotificationTypesDefaultArgs<ExtArgs>
+  receiver?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  actor?: boolean | Prisma.CrmNotifications$actorArgs<ExtArgs>
+  customer?: boolean | Prisma.CrmNotifications$customerArgs<ExtArgs>
+  deal?: boolean | Prisma.CrmNotifications$dealArgs<ExtArgs>
 }, ExtArgs["result"]["crmNotifications"]>
 
 export type CrmNotificationsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   type_code?: boolean
-  title?: boolean
-  description?: boolean
+  receiver_user_id?: boolean
   customer_id?: boolean
+  deal_id?: boolean
+  actor_user_id?: boolean
+  title?: boolean
+  message?: boolean
+  payload?: boolean
+  is_read?: boolean
+  read_at?: boolean
   created_at?: boolean
+  type?: boolean | Prisma.CrmNotificationTypesDefaultArgs<ExtArgs>
+  receiver?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  actor?: boolean | Prisma.CrmNotifications$actorArgs<ExtArgs>
+  customer?: boolean | Prisma.CrmNotifications$customerArgs<ExtArgs>
+  deal?: boolean | Prisma.CrmNotifications$dealArgs<ExtArgs>
 }, ExtArgs["result"]["crmNotifications"]>
 
 export type CrmNotificationsSelectScalar = {
   id?: boolean
   type_code?: boolean
-  title?: boolean
-  description?: boolean
+  receiver_user_id?: boolean
   customer_id?: boolean
+  deal_id?: boolean
+  actor_user_id?: boolean
+  title?: boolean
+  message?: boolean
+  payload?: boolean
+  is_read?: boolean
+  read_at?: boolean
   created_at?: boolean
 }
 
-export type CrmNotificationsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "type_code" | "title" | "description" | "customer_id" | "created_at", ExtArgs["result"]["crmNotifications"]>
+export type CrmNotificationsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "type_code" | "receiver_user_id" | "customer_id" | "deal_id" | "actor_user_id" | "title" | "message" | "payload" | "is_read" | "read_at" | "created_at", ExtArgs["result"]["crmNotifications"]>
 export type CrmNotificationsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  reads?: boolean | Prisma.CrmNotifications$readsArgs<ExtArgs>
-  _count?: boolean | Prisma.CrmNotificationsCountOutputTypeDefaultArgs<ExtArgs>
+  type?: boolean | Prisma.CrmNotificationTypesDefaultArgs<ExtArgs>
+  receiver?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  actor?: boolean | Prisma.CrmNotifications$actorArgs<ExtArgs>
+  customer?: boolean | Prisma.CrmNotifications$customerArgs<ExtArgs>
+  deal?: boolean | Prisma.CrmNotifications$dealArgs<ExtArgs>
 }
-export type CrmNotificationsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type CrmNotificationsIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type CrmNotificationsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  type?: boolean | Prisma.CrmNotificationTypesDefaultArgs<ExtArgs>
+  receiver?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  actor?: boolean | Prisma.CrmNotifications$actorArgs<ExtArgs>
+  customer?: boolean | Prisma.CrmNotifications$customerArgs<ExtArgs>
+  deal?: boolean | Prisma.CrmNotifications$dealArgs<ExtArgs>
+}
+export type CrmNotificationsIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  type?: boolean | Prisma.CrmNotificationTypesDefaultArgs<ExtArgs>
+  receiver?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  actor?: boolean | Prisma.CrmNotifications$actorArgs<ExtArgs>
+  customer?: boolean | Prisma.CrmNotifications$customerArgs<ExtArgs>
+  deal?: boolean | Prisma.CrmNotifications$dealArgs<ExtArgs>
+}
 
 export type $CrmNotificationsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "CrmNotifications"
   objects: {
-    reads: Prisma.$CrmNotificationReadsPayload<ExtArgs>[]
+    type: Prisma.$CrmNotificationTypesPayload<ExtArgs>
+    receiver: Prisma.$UserPayload<ExtArgs>
+    actor: Prisma.$UserPayload<ExtArgs> | null
+    customer: Prisma.$CrmCustomerProfilesPayload<ExtArgs> | null
+    deal: Prisma.$CrmDealsPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     type_code: string
-    title: string
-    description: string
+    receiver_user_id: number
     customer_id: number | null
+    deal_id: number | null
+    actor_user_id: number | null
+    title: string
+    message: string
+    payload: runtime.JsonValue | null
+    is_read: boolean
+    read_at: Date | null
     created_at: Date
   }, ExtArgs["result"]["crmNotifications"]>
   composites: {}
@@ -933,7 +1822,11 @@ readonly fields: CrmNotificationsFieldRefs;
  */
 export interface Prisma__CrmNotificationsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  reads<T extends Prisma.CrmNotifications$readsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CrmNotifications$readsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CrmNotificationReadsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  type<T extends Prisma.CrmNotificationTypesDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CrmNotificationTypesDefaultArgs<ExtArgs>>): Prisma.Prisma__CrmNotificationTypesClient<runtime.Types.Result.GetResult<Prisma.$CrmNotificationTypesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  receiver<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  actor<T extends Prisma.CrmNotifications$actorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CrmNotifications$actorArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  customer<T extends Prisma.CrmNotifications$customerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CrmNotifications$customerArgs<ExtArgs>>): Prisma.Prisma__CrmCustomerProfilesClient<runtime.Types.Result.GetResult<Prisma.$CrmCustomerProfilesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  deal<T extends Prisma.CrmNotifications$dealArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CrmNotifications$dealArgs<ExtArgs>>): Prisma.Prisma__CrmDealsClient<runtime.Types.Result.GetResult<Prisma.$CrmDealsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -965,9 +1858,15 @@ export interface Prisma__CrmNotificationsClient<T, Null = never, ExtArgs extends
 export interface CrmNotificationsFieldRefs {
   readonly id: Prisma.FieldRef<"CrmNotifications", 'Int'>
   readonly type_code: Prisma.FieldRef<"CrmNotifications", 'String'>
-  readonly title: Prisma.FieldRef<"CrmNotifications", 'String'>
-  readonly description: Prisma.FieldRef<"CrmNotifications", 'String'>
+  readonly receiver_user_id: Prisma.FieldRef<"CrmNotifications", 'Int'>
   readonly customer_id: Prisma.FieldRef<"CrmNotifications", 'Int'>
+  readonly deal_id: Prisma.FieldRef<"CrmNotifications", 'Int'>
+  readonly actor_user_id: Prisma.FieldRef<"CrmNotifications", 'Int'>
+  readonly title: Prisma.FieldRef<"CrmNotifications", 'String'>
+  readonly message: Prisma.FieldRef<"CrmNotifications", 'String'>
+  readonly payload: Prisma.FieldRef<"CrmNotifications", 'Json'>
+  readonly is_read: Prisma.FieldRef<"CrmNotifications", 'Boolean'>
+  readonly read_at: Prisma.FieldRef<"CrmNotifications", 'DateTime'>
   readonly created_at: Prisma.FieldRef<"CrmNotifications", 'DateTime'>
 }
     
@@ -1218,6 +2117,10 @@ export type CrmNotificationsCreateManyAndReturnArgs<ExtArgs extends runtime.Type
    */
   data: Prisma.CrmNotificationsCreateManyInput | Prisma.CrmNotificationsCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmNotificationsIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1288,6 +2191,10 @@ export type CrmNotificationsUpdateManyAndReturnArgs<ExtArgs extends runtime.Type
    * Limit how many CrmNotifications to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmNotificationsIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1357,27 +2264,60 @@ export type CrmNotificationsDeleteManyArgs<ExtArgs extends runtime.Types.Extensi
 }
 
 /**
- * CrmNotifications.reads
+ * CrmNotifications.actor
  */
-export type CrmNotifications$readsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type CrmNotifications$actorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the CrmNotificationReads
+   * Select specific fields to fetch from the User
    */
-  select?: Prisma.CrmNotificationReadsSelect<ExtArgs> | null
+  select?: Prisma.UserSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the CrmNotificationReads
+   * Omit specific fields from the User
    */
-  omit?: Prisma.CrmNotificationReadsOmit<ExtArgs> | null
+  omit?: Prisma.UserOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.CrmNotificationReadsInclude<ExtArgs> | null
-  where?: Prisma.CrmNotificationReadsWhereInput
-  orderBy?: Prisma.CrmNotificationReadsOrderByWithRelationInput | Prisma.CrmNotificationReadsOrderByWithRelationInput[]
-  cursor?: Prisma.CrmNotificationReadsWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.CrmNotificationReadsScalarFieldEnum | Prisma.CrmNotificationReadsScalarFieldEnum[]
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
+}
+
+/**
+ * CrmNotifications.customer
+ */
+export type CrmNotifications$customerArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CrmCustomerProfiles
+   */
+  select?: Prisma.CrmCustomerProfilesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CrmCustomerProfiles
+   */
+  omit?: Prisma.CrmCustomerProfilesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmCustomerProfilesInclude<ExtArgs> | null
+  where?: Prisma.CrmCustomerProfilesWhereInput
+}
+
+/**
+ * CrmNotifications.deal
+ */
+export type CrmNotifications$dealArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CrmDeals
+   */
+  select?: Prisma.CrmDealsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CrmDeals
+   */
+  omit?: Prisma.CrmDealsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmDealsInclude<ExtArgs> | null
+  where?: Prisma.CrmDealsWhereInput
 }
 
 /**

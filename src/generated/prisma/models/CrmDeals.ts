@@ -278,6 +278,7 @@ export type CrmDealsWhereInput = {
   productPackage?: Prisma.XOR<Prisma.CrmProductPackagesNullableScalarRelationFilter, Prisma.CrmProductPackagesWhereInput> | null
   pipelineRecords?: Prisma.CrmPipelineRecordsListRelationFilter
   assignments?: Prisma.CrmDealAssignmentsListRelationFilter
+  notifications?: Prisma.CrmNotificationsListRelationFilter
 }
 
 export type CrmDealsOrderByWithRelationInput = {
@@ -297,6 +298,7 @@ export type CrmDealsOrderByWithRelationInput = {
   productPackage?: Prisma.CrmProductPackagesOrderByWithRelationInput
   pipelineRecords?: Prisma.CrmPipelineRecordsOrderByRelationAggregateInput
   assignments?: Prisma.CrmDealAssignmentsOrderByRelationAggregateInput
+  notifications?: Prisma.CrmNotificationsOrderByRelationAggregateInput
 }
 
 export type CrmDealsWhereUniqueInput = Prisma.AtLeast<{
@@ -319,6 +321,7 @@ export type CrmDealsWhereUniqueInput = Prisma.AtLeast<{
   productPackage?: Prisma.XOR<Prisma.CrmProductPackagesNullableScalarRelationFilter, Prisma.CrmProductPackagesWhereInput> | null
   pipelineRecords?: Prisma.CrmPipelineRecordsListRelationFilter
   assignments?: Prisma.CrmDealAssignmentsListRelationFilter
+  notifications?: Prisma.CrmNotificationsListRelationFilter
 }, "id" | "customer_id">
 
 export type CrmDealsOrderByWithAggregationInput = {
@@ -367,6 +370,7 @@ export type CrmDealsCreateInput = {
   productPackage?: Prisma.CrmProductPackagesCreateNestedOneWithoutDealsInput
   pipelineRecords?: Prisma.CrmPipelineRecordsCreateNestedManyWithoutDealInput
   assignments?: Prisma.CrmDealAssignmentsCreateNestedManyWithoutDealInput
+  notifications?: Prisma.CrmNotificationsCreateNestedManyWithoutDealInput
 }
 
 export type CrmDealsUncheckedCreateInput = {
@@ -382,6 +386,7 @@ export type CrmDealsUncheckedCreateInput = {
   updated_at?: Date | string
   pipelineRecords?: Prisma.CrmPipelineRecordsUncheckedCreateNestedManyWithoutDealInput
   assignments?: Prisma.CrmDealAssignmentsUncheckedCreateNestedManyWithoutDealInput
+  notifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutDealInput
 }
 
 export type CrmDealsUpdateInput = {
@@ -396,6 +401,7 @@ export type CrmDealsUpdateInput = {
   productPackage?: Prisma.CrmProductPackagesUpdateOneWithoutDealsNestedInput
   pipelineRecords?: Prisma.CrmPipelineRecordsUpdateManyWithoutDealNestedInput
   assignments?: Prisma.CrmDealAssignmentsUpdateManyWithoutDealNestedInput
+  notifications?: Prisma.CrmNotificationsUpdateManyWithoutDealNestedInput
 }
 
 export type CrmDealsUncheckedUpdateInput = {
@@ -411,6 +417,7 @@ export type CrmDealsUncheckedUpdateInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pipelineRecords?: Prisma.CrmPipelineRecordsUncheckedUpdateManyWithoutDealNestedInput
   assignments?: Prisma.CrmDealAssignmentsUncheckedUpdateManyWithoutDealNestedInput
+  notifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutDealNestedInput
 }
 
 export type CrmDealsCreateManyInput = {
@@ -447,6 +454,11 @@ export type CrmDealsUncheckedUpdateManyInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type CrmDealsNullableScalarRelationFilter = {
+  is?: Prisma.CrmDealsWhereInput | null
+  isNot?: Prisma.CrmDealsWhereInput | null
+}
+
 export type CrmDealsListRelationFilter = {
   every?: Prisma.CrmDealsWhereInput
   some?: Prisma.CrmDealsWhereInput
@@ -455,11 +467,6 @@ export type CrmDealsListRelationFilter = {
 
 export type CrmDealsOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
-}
-
-export type CrmDealsNullableScalarRelationFilter = {
-  is?: Prisma.CrmDealsWhereInput | null
-  isNot?: Prisma.CrmDealsWhereInput | null
 }
 
 export type CrmDealsCountOrderByAggregateInput = {
@@ -520,6 +527,22 @@ export type CrmDealsSumOrderByAggregateInput = {
 export type CrmDealsScalarRelationFilter = {
   is?: Prisma.CrmDealsWhereInput
   isNot?: Prisma.CrmDealsWhereInput
+}
+
+export type CrmDealsCreateNestedOneWithoutNotificationsInput = {
+  create?: Prisma.XOR<Prisma.CrmDealsCreateWithoutNotificationsInput, Prisma.CrmDealsUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.CrmDealsCreateOrConnectWithoutNotificationsInput
+  connect?: Prisma.CrmDealsWhereUniqueInput
+}
+
+export type CrmDealsUpdateOneWithoutNotificationsNestedInput = {
+  create?: Prisma.XOR<Prisma.CrmDealsCreateWithoutNotificationsInput, Prisma.CrmDealsUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.CrmDealsCreateOrConnectWithoutNotificationsInput
+  upsert?: Prisma.CrmDealsUpsertWithoutNotificationsInput
+  disconnect?: Prisma.CrmDealsWhereInput | boolean
+  delete?: Prisma.CrmDealsWhereInput | boolean
+  connect?: Prisma.CrmDealsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CrmDealsUpdateToOneWithWhereWithoutNotificationsInput, Prisma.CrmDealsUpdateWithoutNotificationsInput>, Prisma.CrmDealsUncheckedUpdateWithoutNotificationsInput>
 }
 
 export type CrmDealsCreateNestedManyWithoutProductPackageInput = {
@@ -708,6 +731,80 @@ export type CrmDealsUncheckedUpdateManyWithoutOwnerNestedInput = {
   deleteMany?: Prisma.CrmDealsScalarWhereInput | Prisma.CrmDealsScalarWhereInput[]
 }
 
+export type CrmDealsCreateWithoutNotificationsInput = {
+  deal_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  probability?: number
+  status?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  customer: Prisma.CrmCustomerProfilesCreateNestedOneWithoutDealInput
+  stage: Prisma.CrmPipelineStagesCreateNestedOneWithoutDealsInput
+  owner?: Prisma.UserCreateNestedOneWithoutOwnedCrmDealsInput
+  productPackage?: Prisma.CrmProductPackagesCreateNestedOneWithoutDealsInput
+  pipelineRecords?: Prisma.CrmPipelineRecordsCreateNestedManyWithoutDealInput
+  assignments?: Prisma.CrmDealAssignmentsCreateNestedManyWithoutDealInput
+}
+
+export type CrmDealsUncheckedCreateWithoutNotificationsInput = {
+  id?: number
+  customer_id: number
+  pipeline_stage_code: string
+  owner_id?: number | null
+  product_package_code?: string | null
+  deal_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  probability?: number
+  status?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  pipelineRecords?: Prisma.CrmPipelineRecordsUncheckedCreateNestedManyWithoutDealInput
+  assignments?: Prisma.CrmDealAssignmentsUncheckedCreateNestedManyWithoutDealInput
+}
+
+export type CrmDealsCreateOrConnectWithoutNotificationsInput = {
+  where: Prisma.CrmDealsWhereUniqueInput
+  create: Prisma.XOR<Prisma.CrmDealsCreateWithoutNotificationsInput, Prisma.CrmDealsUncheckedCreateWithoutNotificationsInput>
+}
+
+export type CrmDealsUpsertWithoutNotificationsInput = {
+  update: Prisma.XOR<Prisma.CrmDealsUpdateWithoutNotificationsInput, Prisma.CrmDealsUncheckedUpdateWithoutNotificationsInput>
+  create: Prisma.XOR<Prisma.CrmDealsCreateWithoutNotificationsInput, Prisma.CrmDealsUncheckedCreateWithoutNotificationsInput>
+  where?: Prisma.CrmDealsWhereInput
+}
+
+export type CrmDealsUpdateToOneWithWhereWithoutNotificationsInput = {
+  where?: Prisma.CrmDealsWhereInput
+  data: Prisma.XOR<Prisma.CrmDealsUpdateWithoutNotificationsInput, Prisma.CrmDealsUncheckedUpdateWithoutNotificationsInput>
+}
+
+export type CrmDealsUpdateWithoutNotificationsInput = {
+  deal_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  probability?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customer?: Prisma.CrmCustomerProfilesUpdateOneRequiredWithoutDealNestedInput
+  stage?: Prisma.CrmPipelineStagesUpdateOneRequiredWithoutDealsNestedInput
+  owner?: Prisma.UserUpdateOneWithoutOwnedCrmDealsNestedInput
+  productPackage?: Prisma.CrmProductPackagesUpdateOneWithoutDealsNestedInput
+  pipelineRecords?: Prisma.CrmPipelineRecordsUpdateManyWithoutDealNestedInput
+  assignments?: Prisma.CrmDealAssignmentsUpdateManyWithoutDealNestedInput
+}
+
+export type CrmDealsUncheckedUpdateWithoutNotificationsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  customer_id?: Prisma.IntFieldUpdateOperationsInput | number
+  pipeline_stage_code?: Prisma.StringFieldUpdateOperationsInput | string
+  owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  product_package_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deal_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  probability?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pipelineRecords?: Prisma.CrmPipelineRecordsUncheckedUpdateManyWithoutDealNestedInput
+  assignments?: Prisma.CrmDealAssignmentsUncheckedUpdateManyWithoutDealNestedInput
+}
+
 export type CrmDealsCreateWithoutProductPackageInput = {
   deal_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   probability?: number
@@ -719,6 +816,7 @@ export type CrmDealsCreateWithoutProductPackageInput = {
   owner?: Prisma.UserCreateNestedOneWithoutOwnedCrmDealsInput
   pipelineRecords?: Prisma.CrmPipelineRecordsCreateNestedManyWithoutDealInput
   assignments?: Prisma.CrmDealAssignmentsCreateNestedManyWithoutDealInput
+  notifications?: Prisma.CrmNotificationsCreateNestedManyWithoutDealInput
 }
 
 export type CrmDealsUncheckedCreateWithoutProductPackageInput = {
@@ -733,6 +831,7 @@ export type CrmDealsUncheckedCreateWithoutProductPackageInput = {
   updated_at?: Date | string
   pipelineRecords?: Prisma.CrmPipelineRecordsUncheckedCreateNestedManyWithoutDealInput
   assignments?: Prisma.CrmDealAssignmentsUncheckedCreateNestedManyWithoutDealInput
+  notifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutDealInput
 }
 
 export type CrmDealsCreateOrConnectWithoutProductPackageInput = {
@@ -788,6 +887,7 @@ export type CrmDealsCreateWithoutStageInput = {
   productPackage?: Prisma.CrmProductPackagesCreateNestedOneWithoutDealsInput
   pipelineRecords?: Prisma.CrmPipelineRecordsCreateNestedManyWithoutDealInput
   assignments?: Prisma.CrmDealAssignmentsCreateNestedManyWithoutDealInput
+  notifications?: Prisma.CrmNotificationsCreateNestedManyWithoutDealInput
 }
 
 export type CrmDealsUncheckedCreateWithoutStageInput = {
@@ -802,6 +902,7 @@ export type CrmDealsUncheckedCreateWithoutStageInput = {
   updated_at?: Date | string
   pipelineRecords?: Prisma.CrmPipelineRecordsUncheckedCreateNestedManyWithoutDealInput
   assignments?: Prisma.CrmDealAssignmentsUncheckedCreateNestedManyWithoutDealInput
+  notifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutDealInput
 }
 
 export type CrmDealsCreateOrConnectWithoutStageInput = {
@@ -841,6 +942,7 @@ export type CrmDealsCreateWithoutCustomerInput = {
   productPackage?: Prisma.CrmProductPackagesCreateNestedOneWithoutDealsInput
   pipelineRecords?: Prisma.CrmPipelineRecordsCreateNestedManyWithoutDealInput
   assignments?: Prisma.CrmDealAssignmentsCreateNestedManyWithoutDealInput
+  notifications?: Prisma.CrmNotificationsCreateNestedManyWithoutDealInput
 }
 
 export type CrmDealsUncheckedCreateWithoutCustomerInput = {
@@ -855,6 +957,7 @@ export type CrmDealsUncheckedCreateWithoutCustomerInput = {
   updated_at?: Date | string
   pipelineRecords?: Prisma.CrmPipelineRecordsUncheckedCreateNestedManyWithoutDealInput
   assignments?: Prisma.CrmDealAssignmentsUncheckedCreateNestedManyWithoutDealInput
+  notifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutDealInput
 }
 
 export type CrmDealsCreateOrConnectWithoutCustomerInput = {
@@ -884,6 +987,7 @@ export type CrmDealsUpdateWithoutCustomerInput = {
   productPackage?: Prisma.CrmProductPackagesUpdateOneWithoutDealsNestedInput
   pipelineRecords?: Prisma.CrmPipelineRecordsUpdateManyWithoutDealNestedInput
   assignments?: Prisma.CrmDealAssignmentsUpdateManyWithoutDealNestedInput
+  notifications?: Prisma.CrmNotificationsUpdateManyWithoutDealNestedInput
 }
 
 export type CrmDealsUncheckedUpdateWithoutCustomerInput = {
@@ -898,6 +1002,7 @@ export type CrmDealsUncheckedUpdateWithoutCustomerInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pipelineRecords?: Prisma.CrmPipelineRecordsUncheckedUpdateManyWithoutDealNestedInput
   assignments?: Prisma.CrmDealAssignmentsUncheckedUpdateManyWithoutDealNestedInput
+  notifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutDealNestedInput
 }
 
 export type CrmDealsCreateWithoutAssignmentsInput = {
@@ -911,6 +1016,7 @@ export type CrmDealsCreateWithoutAssignmentsInput = {
   owner?: Prisma.UserCreateNestedOneWithoutOwnedCrmDealsInput
   productPackage?: Prisma.CrmProductPackagesCreateNestedOneWithoutDealsInput
   pipelineRecords?: Prisma.CrmPipelineRecordsCreateNestedManyWithoutDealInput
+  notifications?: Prisma.CrmNotificationsCreateNestedManyWithoutDealInput
 }
 
 export type CrmDealsUncheckedCreateWithoutAssignmentsInput = {
@@ -925,6 +1031,7 @@ export type CrmDealsUncheckedCreateWithoutAssignmentsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   pipelineRecords?: Prisma.CrmPipelineRecordsUncheckedCreateNestedManyWithoutDealInput
+  notifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutDealInput
 }
 
 export type CrmDealsCreateOrConnectWithoutAssignmentsInput = {
@@ -954,6 +1061,7 @@ export type CrmDealsUpdateWithoutAssignmentsInput = {
   owner?: Prisma.UserUpdateOneWithoutOwnedCrmDealsNestedInput
   productPackage?: Prisma.CrmProductPackagesUpdateOneWithoutDealsNestedInput
   pipelineRecords?: Prisma.CrmPipelineRecordsUpdateManyWithoutDealNestedInput
+  notifications?: Prisma.CrmNotificationsUpdateManyWithoutDealNestedInput
 }
 
 export type CrmDealsUncheckedUpdateWithoutAssignmentsInput = {
@@ -968,6 +1076,7 @@ export type CrmDealsUncheckedUpdateWithoutAssignmentsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pipelineRecords?: Prisma.CrmPipelineRecordsUncheckedUpdateManyWithoutDealNestedInput
+  notifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutDealNestedInput
 }
 
 export type CrmDealsCreateWithoutPipelineRecordsInput = {
@@ -981,6 +1090,7 @@ export type CrmDealsCreateWithoutPipelineRecordsInput = {
   owner?: Prisma.UserCreateNestedOneWithoutOwnedCrmDealsInput
   productPackage?: Prisma.CrmProductPackagesCreateNestedOneWithoutDealsInput
   assignments?: Prisma.CrmDealAssignmentsCreateNestedManyWithoutDealInput
+  notifications?: Prisma.CrmNotificationsCreateNestedManyWithoutDealInput
 }
 
 export type CrmDealsUncheckedCreateWithoutPipelineRecordsInput = {
@@ -995,6 +1105,7 @@ export type CrmDealsUncheckedCreateWithoutPipelineRecordsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   assignments?: Prisma.CrmDealAssignmentsUncheckedCreateNestedManyWithoutDealInput
+  notifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutDealInput
 }
 
 export type CrmDealsCreateOrConnectWithoutPipelineRecordsInput = {
@@ -1024,6 +1135,7 @@ export type CrmDealsUpdateWithoutPipelineRecordsInput = {
   owner?: Prisma.UserUpdateOneWithoutOwnedCrmDealsNestedInput
   productPackage?: Prisma.CrmProductPackagesUpdateOneWithoutDealsNestedInput
   assignments?: Prisma.CrmDealAssignmentsUpdateManyWithoutDealNestedInput
+  notifications?: Prisma.CrmNotificationsUpdateManyWithoutDealNestedInput
 }
 
 export type CrmDealsUncheckedUpdateWithoutPipelineRecordsInput = {
@@ -1038,6 +1150,7 @@ export type CrmDealsUncheckedUpdateWithoutPipelineRecordsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignments?: Prisma.CrmDealAssignmentsUncheckedUpdateManyWithoutDealNestedInput
+  notifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutDealNestedInput
 }
 
 export type CrmDealsCreateWithoutOwnerInput = {
@@ -1051,6 +1164,7 @@ export type CrmDealsCreateWithoutOwnerInput = {
   productPackage?: Prisma.CrmProductPackagesCreateNestedOneWithoutDealsInput
   pipelineRecords?: Prisma.CrmPipelineRecordsCreateNestedManyWithoutDealInput
   assignments?: Prisma.CrmDealAssignmentsCreateNestedManyWithoutDealInput
+  notifications?: Prisma.CrmNotificationsCreateNestedManyWithoutDealInput
 }
 
 export type CrmDealsUncheckedCreateWithoutOwnerInput = {
@@ -1065,6 +1179,7 @@ export type CrmDealsUncheckedCreateWithoutOwnerInput = {
   updated_at?: Date | string
   pipelineRecords?: Prisma.CrmPipelineRecordsUncheckedCreateNestedManyWithoutDealInput
   assignments?: Prisma.CrmDealAssignmentsUncheckedCreateNestedManyWithoutDealInput
+  notifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutDealInput
 }
 
 export type CrmDealsCreateOrConnectWithoutOwnerInput = {
@@ -1116,6 +1231,7 @@ export type CrmDealsUpdateWithoutProductPackageInput = {
   owner?: Prisma.UserUpdateOneWithoutOwnedCrmDealsNestedInput
   pipelineRecords?: Prisma.CrmPipelineRecordsUpdateManyWithoutDealNestedInput
   assignments?: Prisma.CrmDealAssignmentsUpdateManyWithoutDealNestedInput
+  notifications?: Prisma.CrmNotificationsUpdateManyWithoutDealNestedInput
 }
 
 export type CrmDealsUncheckedUpdateWithoutProductPackageInput = {
@@ -1130,6 +1246,7 @@ export type CrmDealsUncheckedUpdateWithoutProductPackageInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pipelineRecords?: Prisma.CrmPipelineRecordsUncheckedUpdateManyWithoutDealNestedInput
   assignments?: Prisma.CrmDealAssignmentsUncheckedUpdateManyWithoutDealNestedInput
+  notifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutDealNestedInput
 }
 
 export type CrmDealsUncheckedUpdateManyWithoutProductPackageInput = {
@@ -1167,6 +1284,7 @@ export type CrmDealsUpdateWithoutStageInput = {
   productPackage?: Prisma.CrmProductPackagesUpdateOneWithoutDealsNestedInput
   pipelineRecords?: Prisma.CrmPipelineRecordsUpdateManyWithoutDealNestedInput
   assignments?: Prisma.CrmDealAssignmentsUpdateManyWithoutDealNestedInput
+  notifications?: Prisma.CrmNotificationsUpdateManyWithoutDealNestedInput
 }
 
 export type CrmDealsUncheckedUpdateWithoutStageInput = {
@@ -1181,6 +1299,7 @@ export type CrmDealsUncheckedUpdateWithoutStageInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pipelineRecords?: Prisma.CrmPipelineRecordsUncheckedUpdateManyWithoutDealNestedInput
   assignments?: Prisma.CrmDealAssignmentsUncheckedUpdateManyWithoutDealNestedInput
+  notifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutDealNestedInput
 }
 
 export type CrmDealsUncheckedUpdateManyWithoutStageInput = {
@@ -1218,6 +1337,7 @@ export type CrmDealsUpdateWithoutOwnerInput = {
   productPackage?: Prisma.CrmProductPackagesUpdateOneWithoutDealsNestedInput
   pipelineRecords?: Prisma.CrmPipelineRecordsUpdateManyWithoutDealNestedInput
   assignments?: Prisma.CrmDealAssignmentsUpdateManyWithoutDealNestedInput
+  notifications?: Prisma.CrmNotificationsUpdateManyWithoutDealNestedInput
 }
 
 export type CrmDealsUncheckedUpdateWithoutOwnerInput = {
@@ -1232,6 +1352,7 @@ export type CrmDealsUncheckedUpdateWithoutOwnerInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pipelineRecords?: Prisma.CrmPipelineRecordsUncheckedUpdateManyWithoutDealNestedInput
   assignments?: Prisma.CrmDealAssignmentsUncheckedUpdateManyWithoutDealNestedInput
+  notifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutDealNestedInput
 }
 
 export type CrmDealsUncheckedUpdateManyWithoutOwnerInput = {
@@ -1254,11 +1375,13 @@ export type CrmDealsUncheckedUpdateManyWithoutOwnerInput = {
 export type CrmDealsCountOutputType = {
   pipelineRecords: number
   assignments: number
+  notifications: number
 }
 
 export type CrmDealsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   pipelineRecords?: boolean | CrmDealsCountOutputTypeCountPipelineRecordsArgs
   assignments?: boolean | CrmDealsCountOutputTypeCountAssignmentsArgs
+  notifications?: boolean | CrmDealsCountOutputTypeCountNotificationsArgs
 }
 
 /**
@@ -1285,6 +1408,13 @@ export type CrmDealsCountOutputTypeCountAssignmentsArgs<ExtArgs extends runtime.
   where?: Prisma.CrmDealAssignmentsWhereInput
 }
 
+/**
+ * CrmDealsCountOutputType without action
+ */
+export type CrmDealsCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CrmNotificationsWhereInput
+}
+
 
 export type CrmDealsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1303,6 +1433,7 @@ export type CrmDealsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   productPackage?: boolean | Prisma.CrmDeals$productPackageArgs<ExtArgs>
   pipelineRecords?: boolean | Prisma.CrmDeals$pipelineRecordsArgs<ExtArgs>
   assignments?: boolean | Prisma.CrmDeals$assignmentsArgs<ExtArgs>
+  notifications?: boolean | Prisma.CrmDeals$notificationsArgs<ExtArgs>
   _count?: boolean | Prisma.CrmDealsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["crmDeals"]>
 
@@ -1361,6 +1492,7 @@ export type CrmDealsInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   productPackage?: boolean | Prisma.CrmDeals$productPackageArgs<ExtArgs>
   pipelineRecords?: boolean | Prisma.CrmDeals$pipelineRecordsArgs<ExtArgs>
   assignments?: boolean | Prisma.CrmDeals$assignmentsArgs<ExtArgs>
+  notifications?: boolean | Prisma.CrmDeals$notificationsArgs<ExtArgs>
   _count?: boolean | Prisma.CrmDealsCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CrmDealsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1385,6 +1517,7 @@ export type $CrmDealsPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     productPackage: Prisma.$CrmProductPackagesPayload<ExtArgs> | null
     pipelineRecords: Prisma.$CrmPipelineRecordsPayload<ExtArgs>[]
     assignments: Prisma.$CrmDealAssignmentsPayload<ExtArgs>[]
+    notifications: Prisma.$CrmNotificationsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1797,6 +1930,7 @@ export interface Prisma__CrmDealsClient<T, Null = never, ExtArgs extends runtime
   productPackage<T extends Prisma.CrmDeals$productPackageArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CrmDeals$productPackageArgs<ExtArgs>>): Prisma.Prisma__CrmProductPackagesClient<runtime.Types.Result.GetResult<Prisma.$CrmProductPackagesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   pipelineRecords<T extends Prisma.CrmDeals$pipelineRecordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CrmDeals$pipelineRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CrmPipelineRecordsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   assignments<T extends Prisma.CrmDeals$assignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CrmDeals$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CrmDealAssignmentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notifications<T extends Prisma.CrmDeals$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CrmDeals$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CrmNotificationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2315,6 +2449,30 @@ export type CrmDeals$assignmentsArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.CrmDealAssignmentsScalarFieldEnum | Prisma.CrmDealAssignmentsScalarFieldEnum[]
+}
+
+/**
+ * CrmDeals.notifications
+ */
+export type CrmDeals$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CrmNotifications
+   */
+  select?: Prisma.CrmNotificationsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CrmNotifications
+   */
+  omit?: Prisma.CrmNotificationsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CrmNotificationsInclude<ExtArgs> | null
+  where?: Prisma.CrmNotificationsWhereInput
+  orderBy?: Prisma.CrmNotificationsOrderByWithRelationInput | Prisma.CrmNotificationsOrderByWithRelationInput[]
+  cursor?: Prisma.CrmNotificationsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CrmNotificationsScalarFieldEnum | Prisma.CrmNotificationsScalarFieldEnum[]
 }
 
 /**

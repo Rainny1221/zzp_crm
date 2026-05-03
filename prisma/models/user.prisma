@@ -66,6 +66,8 @@ model User {
   crmAssignmentFrom         CrmDealAssignments[]  @relation("crm_assignment_from_user")
   crmAssignmentTo           CrmDealAssignments[]  @relation("crm_assignment_to_user")
   crmAssignmentCreatedBy    CrmDealAssignments[]  @relation("crm_assignment_created_by")
+  receivedCrmNotifications  CrmNotifications[]    @relation("crm_notification_receiver")
+  actedCrmNotifications     CrmNotifications[]    @relation("crm_notification_actor")
   crmSyncJobs              CrmSyncJobs[]
 
   @@map("users")

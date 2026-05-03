@@ -39,6 +39,8 @@ const CRM_PERMISSION_FLAGS = {
   canViewSync: 'CRM_SYNC_VIEW',
   canManageSync: 'CRM_SYNC_MANAGE',
   canViewReports: 'CRM_REPORT_VIEW',
+  canViewNotifications: 'CRM_NOTIFICATION_VIEW',
+  canManageNotifications: 'CRM_NOTIFICATION_MANAGE',
 } as const;
 
 const CRM_ASSIGNABLE_ROLE_NAMES = ['ADMIN', 'SALE_MANAGER', 'SALE'] as const;
