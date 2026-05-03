@@ -1,0 +1,66 @@
+name: CRM E2E
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - develop
+      - 'feat/**'
+
+jobs:
+  crm-e2e:
+    runs-on: ubuntu-latest
+    name: CRM E2E (${{ matrix.suite }})
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - suite: lifecycle
+            spec: crm/crm.lifecycle.e2e-spec.ts
+          - suite: kpi
+            spec: crm/crm.kpi.e2e-spec.ts
+          - suite: permissions
+            spec: crm/crm.permissions.e2e-spec.ts
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: zzp_crm_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5433:5432
+        options: >-
+          --health-cmd="pg_isready -U postgres -d zzp_crm_test"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5433/zzp_crm_test?schema=public
+      JWT_SECRET: crm-e2e-jwt-secret
+      JWT_ACCESS_SECRET: crm-e2e-access-secret
+      NODE_ENV: test
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm prisma generate
+
+      - run: pnpm prisma migrate deploy
+
+      - run: pnpm test:e2e -- ${{ matrix.spec }} --runInBand
