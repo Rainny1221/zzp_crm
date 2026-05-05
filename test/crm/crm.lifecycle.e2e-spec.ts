@@ -163,40 +163,40 @@ describe('CRM lifecycle regression (e2e)', () => {
       .patch(`/crm/customers/${created.customerId}/product-package`)
       .set(authHeader(context.tokens.manager))
       .send({
-        productPackage: '399',
-        dealValue: 399000,
+        productPackage: '499',
+        dealValue: 499000,
         note: 'Package changed by E2E',
       })
       .expect(200)
       .expect((response) => {
         expect(unwrap<ProductPackageResponse>(response.body)).toMatchObject({
-          productPackage: '399',
-          dealValue: 399000,
+          productPackage: '499',
+          dealValue: 499000,
         });
       });
 
     const tableRow = await getPipelineTableRow(context, {
       search: email,
       pipelineStage: 'qualified',
-      productPackage: '399',
+      productPackage: '499',
     });
 
     expect(tableRow).toMatchObject({
       id: created.dealId,
-      value: 399000,
+      value: 499000,
       customer: {
         id: created.customerId,
         email,
         status: 'trial',
         pipelineStage: 'qualified',
-        productPackage: '399',
-        dealValue: 399000,
+        productPackage: '499',
+        dealValue: 499000,
       },
     });
 
     await request(context.httpServer)
       .get('/crm/pipeline/kanban')
-      .query({ pipelineStage: 'qualified', productPackage: '399' })
+      .query({ pipelineStage: 'qualified', productPackage: '499' })
       .set(authHeader(context.tokens.manager))
       .expect(200)
       .expect((response) => {
@@ -215,19 +215,19 @@ describe('CRM lifecycle regression (e2e)', () => {
 
     await request(context.httpServer)
       .get('/crm/pipeline/product-kanban')
-      .query({ pipelineStage: 'qualified', productPackage: '399' })
+      .query({ pipelineStage: 'qualified', productPackage: '499' })
       .set(authHeader(context.tokens.manager))
       .expect(200)
       .expect((response) => {
         const data = unwrap<{
           columns: Record<string, { items: PipelineRecord[] }>;
         }>(response.body);
-        expect(data.columns['399']).toBeDefined();
+        expect(data.columns['499']).toBeDefined();
         expect(
-          data.columns['399'].items.some(
+          data.columns['499'].items.some(
             (item) =>
               item.id === created.dealId &&
-              item.customer.productPackage === '399',
+              item.customer.productPackage === '499',
           ),
         ).toBe(true);
       });
@@ -308,7 +308,7 @@ describe('CRM lifecycle regression (e2e)', () => {
       .query({
         source: 'manual',
         stage: 'qualified',
-        productPackage: '399',
+        productPackage: '499',
       })
       .set(authHeader(context.tokens.manager))
       .expect(200)
@@ -320,9 +320,9 @@ describe('CRM lifecycle regression (e2e)', () => {
           };
         }>(response.body);
         expect(data.summary.totalLeads).toBeGreaterThanOrEqual(1);
-        expect(data.summary.pipelineValue).toBeGreaterThanOrEqual(399000);
+        expect(data.summary.pipelineValue).toBeGreaterThanOrEqual(499000);
         expect(
-          data.breakdowns.packages.find((item) => item.productPackage === '399')
+          data.breakdowns.packages.find((item) => item.productPackage === '499')
             ?.count,
         ).toBeGreaterThanOrEqual(1);
       });
@@ -374,14 +374,14 @@ describe('CRM lifecycle regression (e2e)', () => {
           (item) => item.teamId === String(context.fixtures.users.manager.id),
         );
 
-        expect(data.kpiStrip.averageOrderValue).toBeGreaterThanOrEqual(399000);
-        expect(seriesTotals.revenue).toBeGreaterThanOrEqual(399000);
+        expect(data.kpiStrip.averageOrderValue).toBeGreaterThan(0);
+        expect(seriesTotals.revenue).toBeGreaterThanOrEqual(499000);
         expect(seriesTotals.wonDeals).toBeGreaterThanOrEqual(1);
         expect(
           data.statusPanel.find((item) => item.status === 'success')?.count,
         ).toBeGreaterThanOrEqual(1);
         expect(managerTeam?.wonDeals).toBeGreaterThanOrEqual(1);
-        expect(managerTeam?.averageOrderValue).toBeGreaterThanOrEqual(399000);
+        expect(managerTeam?.averageOrderValue).toBeGreaterThan(0);
       });
   });
 

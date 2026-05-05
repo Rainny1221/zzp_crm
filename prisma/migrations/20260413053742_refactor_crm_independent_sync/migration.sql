@@ -139,7 +139,7 @@ VALUES
 
 INSERT INTO crm_tiers (code, label)
 VALUES
-    ('399', 'Gói 399k'),
+    ('499', 'Gói 499k'),
     ('699', 'Gói 699k'),
     ('trial', 'Trial')
     ON CONFLICT (code) DO NOTHING;

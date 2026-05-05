@@ -48,7 +48,7 @@ export const buildCrmSyncProcessQueueJobId = (jobId: number): string =>
 
 export const CRM_PRODUCT_PACKAGE_CODE = {
   TRIAL: 'trial',
-  PACKAGE_399: '399',
+  PACKAGE_499: '499',
   PACKAGE_699: '699',
 } as const;
 
@@ -63,8 +63,8 @@ export const CRM_PRODUCT_PACKAGE_OPTIONS = [
     isActive: true,
   },
   {
-    code: CRM_PRODUCT_PACKAGE_CODE.PACKAGE_399,
-    label: 'Gói 399k',
+    code: CRM_PRODUCT_PACKAGE_CODE.PACKAGE_499,
+    label: 'Gói 499k',
     sortOrder: 2,
     isActive: true,
   },

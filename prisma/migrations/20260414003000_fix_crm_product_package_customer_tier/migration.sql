@@ -1,5 +1,5 @@
 -- Separate product package from customer tier/segment.
--- 399/699/trial are product packages; tiny/potential/whale are customer tiers.
+-- 499/699/trial are product packages; tiny/potential/whale are customer tiers.
 
 CREATE TABLE IF NOT EXISTS "crm_product_packages" (
     "code" TEXT NOT NULL,
@@ -15,7 +15,7 @@ CREATE INDEX IF NOT EXISTS "crm_product_packages_sort_order_idx"
 INSERT INTO "crm_product_packages" ("code", "label", "sort_order", "is_active")
 VALUES
     ('trial', 'Trial', 1, true),
-    ('399', 'Gói 399k', 2, true),
+    ('499', 'Gói 499k', 2, true),
     ('699', 'Gói 699k', 3, true)
 ON CONFLICT ("code") DO UPDATE SET
     "label" = EXCLUDED."label",
@@ -42,11 +42,11 @@ ALTER TABLE "crm_deals"
 UPDATE "crm_deals" AS "deal"
 SET "product_package_code" = COALESCE(
     CASE
-        WHEN "deal"."product_package" IN ('trial', '399', '699')
+        WHEN "deal"."product_package" IN ('trial', '499', '699')
             THEN "deal"."product_package"
     END,
     CASE
-        WHEN "profile"."tier_code" IN ('trial', '399', '699')
+        WHEN "profile"."tier_code" IN ('trial', '499', '699')
             THEN "profile"."tier_code"
     END,
     'trial'

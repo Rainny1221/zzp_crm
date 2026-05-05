@@ -93,7 +93,7 @@ export const CRM_FAILURE_PIPELINE_STAGES = [
   'lost_unqualified',
 ] as const satisfies readonly CrmPipelineStageCode[];
 
-export const CRM_PRODUCT_PACKAGE_CODES = ['trial', '399', '699'] as const;
+export const CRM_PRODUCT_PACKAGE_CODES = ['trial', '499', '699'] as const;
 
 export type CrmProductPackageCode = (typeof CRM_PRODUCT_PACKAGE_CODES)[number];
 

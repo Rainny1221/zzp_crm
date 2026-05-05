@@ -272,7 +272,7 @@ async function seedCrmLookups(prisma: PrismaService): Promise<void> {
 
   for (const productPackage of [
     ['trial', 'Trial', 1],
-    ['399', 'Gói 399k', 2],
+    ['499', 'Gói 499k', 2],
     ['699', 'Gói 699k', 3],
   ] as const) {
     await prisma.crmProductPackages.upsert({
