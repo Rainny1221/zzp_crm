@@ -58,6 +58,10 @@ export interface CrmDashboardPersonalPipelineResponse {
 
 export interface GetCrmDashboardSalesQueryResult {
   salesRep: CrmDashboardSalesRepResponse;
+  period: {
+    from: string;
+    to: string;
+  };
   kpiStrip: CrmDashboardSalesKpiStripResponse;
   targets: CrmDashboardSalesTargetsResponse;
   quota: number;

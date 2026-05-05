@@ -62,6 +62,10 @@ type CrmDashboardBaseFilters = Pick<
 
 export type GetCrmDashboardSalesReadResult = {
   salesRep: CrmDashboardSalesRepResponse;
+  period: {
+    from: string;
+    to: string;
+  };
   kpiStrip: CrmDashboardSalesKpiStripResponse;
   targets: CrmDashboardSalesTargetsResponse;
   quota: number;
@@ -164,9 +168,10 @@ export class CrmDashboardReadRepository {
   async getSalesDashboard(
     params: GetCrmDashboardSalesQueryFilters,
   ): Promise<GetCrmDashboardSalesReadResult> {
+    const period = this.resolvePeriod(params.from, params.to);
     const baseFilters: CrmDashboardBaseFilters = {
-      from: params.from,
-      to: params.to,
+      from: period.from,
+      to: period.to,
       source: params.source,
       assignee: String(params.salesRepId),
     };
@@ -196,7 +201,7 @@ export class CrmDashboardReadRepository {
         this.getPersonalPipelineTotal(personalPipelineBaseSql),
         this.getSalesTargetSnapshot({
           salesRepId: params.salesRepId,
-          from: params.from,
+          from: period.from,
         }),
       ]);
       const targets = this.toSalesTargetsResponse(targetSnapshot);
@@ -218,12 +223,16 @@ export class CrmDashboardReadRepository {
 
       return {
         salesRep,
+        period: {
+          from: period.from,
+          to: period.to,
+        },
         kpiStrip,
         targets,
         quota: targets?.wonValueTarget ?? 0,
         targetProgress:
           targetSnapshot && targetSnapshot.wonValueTarget > 0
-            ? kpiStrip.wonValue / targetSnapshot.wonValueTarget
+            ? (kpiStrip.wonValue / targetSnapshot.wonValueTarget) * 100
             : 0,
         attainment: this.buildTargetAttainment(
           {
@@ -915,7 +924,7 @@ export class CrmDashboardReadRepository {
     }
 
     const pct = (actual: number, targetValue: number) =>
-      targetValue > 0 ? actual / targetValue : 0;
+      targetValue > 0 ? (actual / targetValue) * 100 : 0;
 
     return {
       qualifiedPct: pct(summary.qualifiedLeads, target.qualifiedTarget),
@@ -1081,13 +1090,13 @@ export class CrmDashboardReadRepository {
 
     if (params.from) {
       where.push(
-        Prisma.sql`c.created_at >= ${this.toDateBoundary(params.from, false)}`,
+        Prisma.sql`d.created_at >= ${this.toDateBoundary(params.from, false)}`,
       );
     }
 
     if (params.to) {
       where.push(
-        Prisma.sql`c.created_at <= ${this.toDateBoundary(params.to, true)}`,
+        Prisma.sql`d.created_at <= ${this.toDateBoundary(params.to, true)}`,
       );
     }
 
@@ -1119,6 +1128,29 @@ export class CrmDashboardReadRepository {
 
   private toPeriodStart(value: string): Date {
     return new Date(`${value.slice(0, 10)}T00:00:00.000Z`);
+  }
+
+  private resolvePeriod(
+    from?: string,
+    to?: string,
+  ): { from: string; to: string } {
+    if (from && to) {
+      return {
+        from,
+        to,
+      };
+    }
+
+    const now = new Date();
+    const year = now.getUTCFullYear();
+    const month = now.getUTCMonth();
+    const firstDay = new Date(Date.UTC(year, month, 1, 0, 0, 0, 0));
+    const lastDay = new Date(Date.UTC(year, month + 1, 0, 23, 59, 59, 999));
+
+    return {
+      from: from ?? firstDay.toISOString(),
+      to: to ?? lastDay.toISOString(),
+    };
   }
 
   private startOfBucket(

@@ -76,9 +76,10 @@ export class CrmKpiReadRepository {
   }
 
   async getSalesKpi(filters: GetCrmKpiSalesFilters) {
+    const period = this.resolvePeriod(filters.from, filters.to);
     const where = this.buildBaseWhere({
-      from: filters.from,
-      to: filters.to,
+      from: period.from,
+      to: period.to,
       source: filters.source,
       assignee: 'all',
       stage: 'all',
@@ -95,15 +96,15 @@ export class CrmKpiReadRepository {
         this.getRecentDeals(where),
         this.getSalesTargetSnapshot({
           salesRepId: filters.salesRepId,
-          from: filters.from,
+          from: period.from,
         }),
       ]);
 
     return {
       salesRep,
       period: {
-        from: filters.from ?? null,
-        to: filters.to ?? null,
+        from: period.from,
+        to: period.to,
       },
       summary,
       targets,
@@ -535,7 +536,7 @@ export class CrmKpiReadRepository {
     }
 
     const pct = (actual: number, target: number) =>
-      target > 0 ? actual / target : 0;
+      target > 0 ? (actual / target) * 100 : 0;
 
     return {
       leadsPct: pct(summary.assignedLeads, targets.leadsTarget),
@@ -548,6 +549,29 @@ export class CrmKpiReadRepository {
 
   private toPeriodStart(periodStart: string): Date {
     return new Date(`${periodStart.slice(0, 10)}T00:00:00.000Z`);
+  }
+
+  private resolvePeriod(
+    from?: string,
+    to?: string,
+  ): { from: string; to: string } {
+    if (from && to) {
+      return {
+        from,
+        to,
+      };
+    }
+
+    const now = new Date();
+    const year = now.getUTCFullYear();
+    const month = now.getUTCMonth();
+    const firstDay = new Date(Date.UTC(year, month, 1, 0, 0, 0, 0));
+    const lastDay = new Date(Date.UTC(year, month + 1, 0, 23, 59, 59, 999));
+
+    return {
+      from: from ?? firstDay.toISOString(),
+      to: to ?? lastDay.toISOString(),
+    };
   }
 
   private toDateOnly(value: Date): string {
