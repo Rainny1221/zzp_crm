@@ -810,9 +810,12 @@ export class CrmCustomersWriteRepository {
     params: UpdatePipelineStageParams,
   ): Promise<UpdateCrmCustomerPipelineStageResult> {
     const note = params.note?.trim() || undefined;
+    const requestedProductPackage = params.productPackage;
+    const requestedFinalContractValue = params.finalContractValue ?? null;
     const requestedFailureReason = params.failureReason?.trim() || null;
     const requestedFailureNote = params.failureNote?.trim() || null;
     const isFailureStage = isFailurePipelineStage(params.pipelineStage);
+    const isCloseDealStage = params.pipelineStage === 'close_deal';
     const nextStatus = CRM_PIPELINE_STAGE_TO_STATUS[params.pipelineStage];
     const failureReason = isFailureStage ? requestedFailureReason : null;
     const failureNote = isFailureStage ? requestedFailureNote : null;
@@ -821,6 +824,28 @@ export class CrmCustomersWriteRepository {
       throw ErrorFactory.create(
         ErrorCode.VALIDATION_ERROR,
         'Failure reason is required for failed/lost pipeline stages',
+        {
+          customerId: params.customerId,
+          pipelineStage: params.pipelineStage,
+        },
+      );
+    }
+
+    if (isCloseDealStage && !requestedProductPackage) {
+      throw ErrorFactory.create(
+        ErrorCode.VALIDATION_ERROR,
+        'Cần chọn gói sản phẩm khi chuyển sang close_deal',
+        {
+          customerId: params.customerId,
+          pipelineStage: params.pipelineStage,
+        },
+      );
+    }
+
+    if (isCloseDealStage && requestedFinalContractValue === null) {
+      throw ErrorFactory.create(
+        ErrorCode.VALIDATION_ERROR,
+        'Cần truyền finalContractValue khi chuyển sang close_deal',
         {
           customerId: params.customerId,
           pipelineStage: params.pipelineStage,
@@ -914,7 +939,10 @@ export class CrmCustomersWriteRepository {
           const deal = customer.deal;
           const previousPipelineStage = deal.pipeline_stage_code;
           const previousStatus = deal.status;
-          const changed = previousPipelineStage !== params.pipelineStage;
+          const pipelineStageChanged =
+            previousPipelineStage !== params.pipelineStage;
+          const statusChanged = previousStatus !== nextStatus;
+          const changed = pipelineStageChanged || statusChanged;
           const now = new Date();
           const customerDisplayName = await this.getCustomerDisplayName(
             tx,
@@ -927,6 +955,7 @@ export class CrmCustomersWriteRepository {
                 deal_id: deal.id,
               },
               select: {
+                closed_revenue: true,
                 failure_reason_code: true,
                 failure_note: true,
               },
@@ -939,6 +968,12 @@ export class CrmCustomersWriteRepository {
               pipelineStage: params.pipelineStage,
               previousStatus,
               status: nextStatus,
+              productPackage: deal.product_package_code,
+              finalContractValue:
+                currentDealDetail?.closed_revenue === null ||
+                currentDealDetail?.closed_revenue == null
+                  ? null
+                  : Number(currentDealDetail.closed_revenue),
               failureReason: currentDealDetail?.failure_reason_code ?? null,
               failureNote: currentDealDetail?.failure_note ?? null,
               changed,
@@ -949,23 +984,72 @@ export class CrmCustomersWriteRepository {
           await tx.crmDeals.update({
             where: { id: deal.id },
             data: {
-              pipeline_stage_code: params.pipelineStage,
+              ...(pipelineStageChanged
+                ? { pipeline_stage_code: params.pipelineStage }
+                : {}),
+              ...(isCloseDealStage && requestedProductPackage
+                ? { product_package_code: requestedProductPackage }
+                : {}),
+              ...(isCloseDealStage && requestedFinalContractValue !== null
+                ? { deal_value: requestedFinalContractValue }
+                : {}),
               status: nextStatus,
               updated_at: now,
             },
           });
+
+          if (!pipelineStageChanged) {
+            const currentDealDetail = await tx.crmDealDetails.findUnique({
+              where: {
+                deal_id: deal.id,
+              },
+              select: {
+                closed_revenue: true,
+                failure_reason_code: true,
+                failure_note: true,
+              },
+            });
+
+            return {
+              customerId: String(customer.id),
+              dealId: String(deal.id),
+              previousPipelineStage,
+              pipelineStage: params.pipelineStage,
+              previousStatus,
+              status: nextStatus,
+              productPackage:
+                isCloseDealStage && requestedProductPackage
+                  ? requestedProductPackage
+                  : deal.product_package_code,
+              finalContractValue:
+                currentDealDetail?.closed_revenue === null ||
+                currentDealDetail?.closed_revenue == null
+                  ? null
+                  : Number(currentDealDetail.closed_revenue),
+              failureReason: currentDealDetail?.failure_reason_code ?? null,
+              failureNote: currentDealDetail?.failure_note ?? null,
+              changed,
+              changedAt: now.toISOString(),
+            };
+          }
 
           await tx.crmDealDetails.upsert({
             where: {
               deal_id: deal.id,
             },
             update: {
+              ...(isCloseDealStage
+                ? { closed_revenue: requestedFinalContractValue ?? 0 }
+                : {}),
               failure_reason_code: failureReason,
               failure_note: failureNote,
               updated_at: now,
             },
             create: {
               deal_id: deal.id,
+              closed_revenue: isCloseDealStage
+                ? (requestedFinalContractValue ?? 0)
+                : 0,
               failure_reason_code: failureReason,
               failure_note: failureNote,
               created_at: now,
@@ -1055,6 +1139,13 @@ export class CrmCustomersWriteRepository {
             pipelineStage: params.pipelineStage,
             previousStatus,
             status: nextStatus,
+            productPackage:
+              isCloseDealStage && requestedProductPackage
+                ? requestedProductPackage
+                : deal.product_package_code,
+            finalContractValue: isCloseDealStage
+              ? (requestedFinalContractValue ?? 0)
+              : null,
             failureReason,
             failureNote,
             changed,

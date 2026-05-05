@@ -61,6 +61,7 @@ export const CRM_PIPELINE_STAGE_CODES = [
   'negotiation',
   'close_deal',
   'fail',
+  'lost',
   'lost_unqualified',
 ] as const;
 
@@ -85,11 +86,13 @@ export const CRM_PIPELINE_STAGE_TO_STATUS = {
   negotiation: 'trial',
   close_deal: 'success',
   fail: 'failed',
+  lost: 'failed',
   lost_unqualified: 'failed',
 } as const satisfies Record<CrmPipelineStageCode, CrmDealStatusCode>;
 
 export const CRM_FAILURE_PIPELINE_STAGES = [
   'fail',
+  'lost',
   'lost_unqualified',
 ] as const satisfies readonly CrmPipelineStageCode[];
 

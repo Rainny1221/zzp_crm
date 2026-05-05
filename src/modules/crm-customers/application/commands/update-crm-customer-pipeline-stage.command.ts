@@ -2,6 +2,7 @@ import { Command } from '@nestjs/cqrs';
 import type {
   CrmDealStatusCode,
   CrmPipelineStageCode,
+  CrmProductPackageCode,
 } from '../../domain/crm-customers.constants';
 
 export type UpdateCrmCustomerPipelineStageResult = {
@@ -11,6 +12,8 @@ export type UpdateCrmCustomerPipelineStageResult = {
   pipelineStage: CrmPipelineStageCode;
   previousStatus: string | null;
   status: CrmDealStatusCode;
+  productPackage: string | null;
+  finalContractValue: number | null;
   failureReason: string | null;
   failureNote: string | null;
   changed: boolean;
@@ -25,6 +28,8 @@ export class UpdateCrmCustomerPipelineStageCommand extends Command<UpdateCrmCust
       note?: string;
       failureReason?: string | null;
       failureNote?: string | null;
+      productPackage?: CrmProductPackageCode;
+      finalContractValue?: number;
       actorUserId: number;
       actorEmail?: string | null;
       actorRoleName?: string | null;

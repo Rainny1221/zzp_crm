@@ -343,6 +343,44 @@ describe('CRM lifecycle regression (e2e)', () => {
         });
       });
 
+    await context.testApp.prisma.crmDeals.update({
+      where: { id: Number(created.dealId) },
+      data: { status: 'trial' },
+    });
+
+    await request(context.httpServer)
+      .patch(`/crm/customers/${created.customerId}/pipeline-stage`)
+      .set(authHeader(context.tokens.manager))
+      .send({
+        pipelineStage: 'close_deal',
+        note: 'Resync closed deal status by E2E',
+      })
+      .expect(200)
+      .expect((response) => {
+        expect(unwrap<PipelineStageResponse>(response.body)).toMatchObject({
+          pipelineStage: 'close_deal',
+          status: 'success',
+          changed: true,
+        });
+      });
+
+    await request(context.httpServer)
+      .get('/crm/kpi/overview')
+      .query({
+        source: 'manual',
+        stage: 'close_deal',
+        productPackage: '499',
+      })
+      .set(authHeader(context.tokens.manager))
+      .expect(200)
+      .expect((response) => {
+        const data = unwrap<{
+          summary: { wonDeals: number; wonValue: number };
+        }>(response.body);
+        expect(data.summary.wonDeals).toBeGreaterThanOrEqual(1);
+        expect(data.summary.wonValue).toBeGreaterThanOrEqual(499000);
+      });
+
     await request(context.httpServer)
       .get('/crm/dashboard/admin')
       .query({ source: 'manual', granularity: 'daily' })

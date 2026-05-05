@@ -182,6 +182,8 @@ export class CrmCustomersController {
         note: dto.note,
         failureReason: dto.failureReason ?? null,
         failureNote: dto.failureNote ?? null,
+        productPackage: dto.productPackage,
+        finalContractValue: dto.finalContractValue,
         actorUserId: req.user.id,
         actorEmail: req.user.email ?? null,
         actorRoleName: req.user.roleName ?? null,
