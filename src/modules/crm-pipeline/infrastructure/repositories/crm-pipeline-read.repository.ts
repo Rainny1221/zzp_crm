@@ -55,6 +55,7 @@ export type CrmPipelineTableRow = {
   assigneeRole: string | null;
   statusCode: string | null;
   pipelineStageCode: string;
+  pipelineStageOrder: number | null;
   trialStartAt: Date | null;
   trialEndAt: Date | null;
   revenue: number | null;
@@ -378,6 +379,7 @@ export class CrmPipelineReadRepository {
         owner_role.name AS "assigneeRole",
         d.status AS "statusCode",
         d.pipeline_stage_code AS "pipelineStageCode",
+        stage_def.stage_order AS "pipelineStageOrder",
         dd.trial_start_date AS "trialStartAt",
         dd.trial_end_date AS "trialEndAt",
         dd.closed_revenue::double precision AS "revenue",
@@ -405,6 +407,8 @@ export class CrmPipelineReadRepository {
       LEFT JOIN users profile_user ON profile_user.id = c.user_id
       LEFT JOIN users owner ON owner.id = d.owner_id
       LEFT JOIN roles owner_role ON owner_role.id = owner.role_id
+      LEFT JOIN crm_pipeline_stages stage_def
+        ON stage_def.code = d.pipeline_stage_code
       LEFT JOIN LATERAL (
         SELECT COUNT(*)::int AS open_task_count
         FROM crm_tasks task_count
@@ -661,9 +665,13 @@ export class CrmPipelineReadRepository {
   private buildOrderBySql(params: GetCrmPipelineTableQueryFilters): Prisma.Sql {
     const direction =
       params.sortDirection === 'asc' ? Prisma.sql`ASC` : Prisma.sql`DESC`;
+    const nulls =
+      params.sortDirection === 'asc'
+        ? Prisma.sql`NULLS FIRST`
+        : Prisma.sql`NULLS LAST`;
     const expression = this.getSortExpressionSql(params.sortKey);
 
-    return Prisma.sql`${expression} ${direction} NULLS LAST, "dealId" ASC`;
+    return Prisma.sql`${expression} ${direction} ${nulls}, "dealId" ASC`;
   }
 
   private getSortExpressionSql(
@@ -671,26 +679,32 @@ export class CrmPipelineReadRepository {
   ): Prisma.Sql {
     switch (sortKey) {
       case 'lastActivityAt':
+      case 'last_activity_at':
         return Prisma.sql`"lastActivityAt"`;
       case 'stageTransitionAt':
         return Prisma.sql`"stageTransitionAt"`;
       case 'createdAt':
+      case 'created_at':
         return Prisma.sql`"customerCreatedAt"`;
       case 'probability':
         return Prisma.sql`"probability"`;
       case 'revenue':
         return Prisma.sql`"revenue"`;
       case 'gmvMonthly':
+      case 'gmv':
         return Prisma.sql`"gmvMonthly"`;
       case 'shopName':
         return Prisma.sql`"shopName"`;
       case 'status':
         return Prisma.sql`"statusCode"`;
       case 'pipelineStage':
-        return Prisma.sql`"pipelineStageCode"`;
+      case 'pipeline_stage':
+        return Prisma.sql`"pipelineStageOrder"`;
       case 'productPackage':
+      case 'product_package':
         return Prisma.sql`"productPackageCode"`;
       case 'owner':
+      case 'assignee':
         return Prisma.sql`"assigneeName"`;
       case 'openTaskCount':
         return Prisma.sql`"openTaskCount"`;
@@ -702,6 +716,8 @@ export class CrmPipelineReadRepository {
         return Prisma.sql`"trialEndAt"`;
       case 'value':
         return Prisma.sql`"dealValue"`;
+      case 'synced_at':
+        return Prisma.sql`"syncedAt"`;
     }
   }
 

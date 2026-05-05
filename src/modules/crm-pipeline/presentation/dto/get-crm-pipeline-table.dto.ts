@@ -16,6 +16,13 @@ export const CRM_PIPELINE_TABLE_BOOLEAN_FILTER_VALUES = [
 
 export const CRM_PIPELINE_TABLE_SORT_KEY_VALUES = [
   'value',
+  'gmv',
+  'synced_at',
+  'pipeline_stage',
+  'assignee',
+  'product_package',
+  'created_at',
+  'last_activity_at',
   'lastActivityAt',
   'stageTransitionAt',
   'createdAt',
