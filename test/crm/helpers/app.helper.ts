@@ -1,5 +1,6 @@
 import { Global, INestApplication, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 import { JwtModule } from '@nestjs/jwt';
 import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { Test, TestingModule } from '@nestjs/testing';
@@ -18,6 +19,7 @@ import { CrmFeedbackModule } from '../../../src/modules/crm-feedback/crm-feedbac
 import { CrmKpiModule } from '../../../src/modules/crm-kpi/crm-kpi.module';
 import { CrmNotificationsModule } from '../../../src/modules/crm-notifications/crm-notifications.module';
 import { CrmPipelineModule } from '../../../src/modules/crm-pipeline/crm-pipeline.module';
+import { CrmRealtimeModule } from '../../../src/modules/crm-realtime/crm-realtime.module';
 import { PrismaModule } from '../../../src/prisma/prisma.module';
 import { PrismaService } from '../../../src/prisma/prisma.service';
 
@@ -64,6 +66,7 @@ export async function createCrmTestApp(): Promise<CrmTestApp> {
         global: true,
         secret: process.env.JWT_SECRET,
       }),
+      EventEmitterModule.forRoot(),
       CrmTestLoggerModule,
       PrismaModule,
       CrmBootstrapModule,
@@ -73,6 +76,7 @@ export async function createCrmTestApp(): Promise<CrmTestApp> {
       CrmNotificationsModule,
       CrmFeedbackModule,
       CrmKpiModule,
+      CrmRealtimeModule,
     ],
     providers: [
       {

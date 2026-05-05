@@ -4,6 +4,7 @@ import { ErrorFactory } from 'src/common/error.factory';
 import { toErrorMeta } from 'src/common/logging/application/error-meta.helper';
 import { Prisma } from 'src/generated/prisma/client';
 import { AppLoggerService } from 'src/logger/app-logger.service';
+import { CrmRealtimePublisherService } from 'src/modules/crm-realtime/application/services/crm-realtime-publisher.service';
 import { PrismaService } from 'src/prisma/prisma.service';
 import {
   CRM_ACTIVITY_TYPE,
@@ -119,6 +120,7 @@ export class CrmCustomersWriteRepository {
   constructor(
     private readonly prisma: PrismaService,
     private readonly logger: AppLoggerService,
+    private readonly crmRealtimePublisher: CrmRealtimePublisherService,
   ) {}
 
   async createCustomer(
@@ -208,8 +210,10 @@ export class CrmCustomersWriteRepository {
       );
     }
 
+    const notificationReceiverUserIds: number[] = [];
+
     try {
-      return await this.prisma.$transaction(
+      const result = await this.prisma.$transaction(
         async (tx): Promise<CreateCrmCustomerResult> => {
           await tx.$queryRaw<Array<{ set_config: string }>>`
             SELECT set_config(
@@ -309,20 +313,22 @@ export class CrmCustomersWriteRepository {
             },
           });
 
-          await this.createNotifications(tx, {
-            receiverUserIds: [params.assigneeId],
-            typeCode: CRM_NOTIFICATION_TYPE.CUSTOMER_CREATED,
-            title: 'Customer created',
-            message: `Customer #${customer.id} was created and assigned to you.`,
-            customerId: customer.id,
-            dealId: deal.id,
-            actorUserId: actor.id,
-            payload: {
-              source,
-              productPackage: params.productPackage,
-            },
-            createdAt: now,
-          });
+          notificationReceiverUserIds.push(
+            ...(await this.createNotifications(tx, {
+              receiverUserIds: [params.assigneeId],
+              typeCode: CRM_NOTIFICATION_TYPE.CUSTOMER_CREATED,
+              title: 'Customer created',
+              message: `Customer #${customer.id} was created and assigned to you.`,
+              customerId: customer.id,
+              dealId: deal.id,
+              actorUserId: actor.id,
+              payload: {
+                source,
+                productPackage: params.productPackage,
+              },
+              createdAt: now,
+            })),
+          );
 
           return {
             customerId: String(customer.id),
@@ -340,6 +346,10 @@ export class CrmCustomersWriteRepository {
           isolationLevel: Prisma.TransactionIsolationLevel.ReadCommitted,
         },
       );
+
+      this.publishNotificationCreated(notificationReceiverUserIds);
+
+      return result;
     } catch (error: unknown) {
       this.logger.error({
         message: 'Failed to create CRM customer',
@@ -396,8 +406,10 @@ export class CrmCustomersWriteRepository {
       );
     }
 
+    const notificationReceiverUserIds: number[] = [];
+
     try {
-      return await this.prisma.$transaction(
+      const result = await this.prisma.$transaction(
         async (tx): Promise<UpdateCrmCustomerAssignmentResult> => {
           await tx.$queryRaw<Array<{ set_config: string }>>`
             SELECT set_config(
@@ -477,20 +489,22 @@ export class CrmCustomersWriteRepository {
               },
             });
 
-            await this.createNotifications(tx, {
-              receiverUserIds: [previousAssigneeId, params.assigneeId],
-              typeCode: CRM_NOTIFICATION_TYPE.ASSIGNMENT_CHANGED,
-              title: 'Assignment changed',
-              message: `Customer #${customer.id} assignment changed.`,
-              customerId: customer.id,
-              dealId: deal.id,
-              actorUserId: actor.id,
-              payload: {
-                from: previousAssigneeId,
-                to: params.assigneeId,
-              },
-              createdAt: now,
-            });
+            notificationReceiverUserIds.push(
+              ...(await this.createNotifications(tx, {
+                receiverUserIds: [previousAssigneeId, params.assigneeId],
+                typeCode: CRM_NOTIFICATION_TYPE.ASSIGNMENT_CHANGED,
+                title: 'Assignment changed',
+                message: `Customer #${customer.id} assignment changed.`,
+                customerId: customer.id,
+                dealId: deal.id,
+                actorUserId: actor.id,
+                payload: {
+                  from: previousAssigneeId,
+                  to: params.assigneeId,
+                },
+                createdAt: now,
+              })),
+            );
           }
 
           return {
@@ -511,6 +525,10 @@ export class CrmCustomersWriteRepository {
           isolationLevel: Prisma.TransactionIsolationLevel.ReadCommitted,
         },
       );
+
+      this.publishNotificationCreated(notificationReceiverUserIds);
+
+      return result;
     } catch (error: unknown) {
       this.logger.error({
         message: 'Failed to update CRM customer assignment',
@@ -520,7 +538,14 @@ export class CrmCustomersWriteRepository {
         entityType: CRM_CUSTOMERS_LOG.ENTITIES.CUSTOMER,
         entityId: params.customerId,
         meta: {
-          params,
+          params: {
+            customerId: params.customerId,
+            assigneeId: params.assigneeId,
+            actorUserId: params.actorUserId,
+            actorEmail: params.actorEmail ?? null,
+            actorRoleName: params.actorRoleName ?? null,
+            noteLength: params.note?.length ?? 0,
+          },
           error: toErrorMeta(error),
         },
       });
@@ -606,8 +631,10 @@ export class CrmCustomersWriteRepository {
       );
     }
 
+    const notificationReceiverUserIds: number[] = [];
+
     try {
-      return await this.prisma.$transaction(
+      const result = await this.prisma.$transaction(
         async (tx): Promise<CreateCrmCustomerInteractionResult> => {
           await tx.$queryRaw<Array<{ set_config: string }>>`
             SELECT set_config(
@@ -700,20 +727,22 @@ export class CrmCustomersWriteRepository {
           const lastContactedAt =
             lastContactRows[0]?.last_contacted_at ?? occurredAt;
 
-          await this.createNotifications(tx, {
-            receiverUserIds: [customer.deal.owner_id],
-            typeCode: CRM_NOTIFICATION_TYPE.INTERACTION_LOGGED,
-            title: 'Interaction logged',
-            message: `A ${params.channel} interaction was logged for customer #${customer.id}.`,
-            customerId: customer.id,
-            dealId: customer.deal.id,
-            actorUserId: actor.id,
-            payload: {
-              channel: params.channel,
-              outcomeCode,
-            },
-            createdAt: now,
-          });
+          notificationReceiverUserIds.push(
+            ...(await this.createNotifications(tx, {
+              receiverUserIds: [customer.deal.owner_id],
+              typeCode: CRM_NOTIFICATION_TYPE.INTERACTION_LOGGED,
+              title: 'Interaction logged',
+              message: `A ${params.channel} interaction was logged for customer #${customer.id}.`,
+              customerId: customer.id,
+              dealId: customer.deal.id,
+              actorUserId: actor.id,
+              payload: {
+                channel: params.channel,
+                outcomeCode,
+              },
+              createdAt: now,
+            })),
+          );
 
           return {
             customerId: String(customer.id),
@@ -738,6 +767,10 @@ export class CrmCustomersWriteRepository {
           isolationLevel: Prisma.TransactionIsolationLevel.ReadCommitted,
         },
       );
+
+      this.publishNotificationCreated(notificationReceiverUserIds);
+
+      return result;
     } catch (error: unknown) {
       this.logger.error({
         message: 'Failed to create CRM customer interaction',
@@ -813,8 +846,11 @@ export class CrmCustomersWriteRepository {
       );
     }
 
+    const notificationReceiverUserIds: number[] = [];
+    const feedbackReceiverUserIds: number[] = [];
+
     try {
-      return await this.prisma.$transaction(
+      const result = await this.prisma.$transaction(
         async (tx): Promise<UpdateCrmCustomerPipelineStageResult> => {
           await tx.$queryRaw<Array<{ set_config: string }>>`
             SELECT set_config(
@@ -953,22 +989,24 @@ export class CrmCustomersWriteRepository {
             },
           });
 
-          await this.createNotifications(tx, {
-            receiverUserIds: [deal.owner_id],
-            typeCode: CRM_NOTIFICATION_TYPE.PIPELINE_STAGE_CHANGED,
-            title: 'Pipeline stage changed',
-            message: `Customer #${customer.id} moved from ${previousPipelineStage} to ${params.pipelineStage}.`,
-            customerId: customer.id,
-            dealId: deal.id,
-            actorUserId: actor.id,
-            payload: {
-              previousPipelineStage,
-              pipelineStage: params.pipelineStage,
-              previousStatus,
-              status: nextStatus,
-            },
-            createdAt: now,
-          });
+          notificationReceiverUserIds.push(
+            ...(await this.createNotifications(tx, {
+              receiverUserIds: [deal.owner_id],
+              typeCode: CRM_NOTIFICATION_TYPE.PIPELINE_STAGE_CHANGED,
+              title: 'Pipeline stage changed',
+              message: `Customer #${customer.id} moved from ${previousPipelineStage} to ${params.pipelineStage}.`,
+              customerId: customer.id,
+              dealId: deal.id,
+              actorUserId: actor.id,
+              payload: {
+                previousPipelineStage,
+                pipelineStage: params.pipelineStage,
+                previousStatus,
+                status: nextStatus,
+              },
+              createdAt: now,
+            })),
+          );
 
           if (
             isFailurePipelineStage(params.pipelineStage) &&
@@ -991,6 +1029,9 @@ export class CrmCustomersWriteRepository {
                 created_at: now,
               },
             });
+            feedbackReceiverUserIds.push(
+              ...this.normalizeReceiverUserIds([deal.owner_id]),
+            );
           }
 
           return {
@@ -1012,6 +1053,11 @@ export class CrmCustomersWriteRepository {
           isolationLevel: Prisma.TransactionIsolationLevel.ReadCommitted,
         },
       );
+
+      this.publishNotificationCreated(notificationReceiverUserIds);
+      this.publishFeedbackCreated(feedbackReceiverUserIds);
+
+      return result;
     } catch (error: unknown) {
       this.logger.error({
         message: 'Failed to update CRM customer pipeline stage',
@@ -1069,8 +1115,10 @@ export class CrmCustomersWriteRepository {
       );
     }
 
+    const notificationReceiverUserIds: number[] = [];
+
     try {
-      return await this.prisma.$transaction(
+      const result = await this.prisma.$transaction(
         async (tx): Promise<UpdateCrmCustomerProductPackageResult> => {
           await tx.$queryRaw<Array<{ set_config: string }>>`
             SELECT set_config(
@@ -1163,22 +1211,24 @@ export class CrmCustomersWriteRepository {
               },
             });
 
-            await this.createNotifications(tx, {
-              receiverUserIds: [deal.owner_id],
-              typeCode: CRM_NOTIFICATION_TYPE.PRODUCT_PACKAGE_CHANGED,
-              title: 'Product package changed',
-              message: `Customer #${customer.id} package changed to ${params.productPackage}.`,
-              customerId: customer.id,
-              dealId: deal.id,
-              actorUserId: actor.id,
-              payload: {
-                previousProductPackage,
-                productPackage: params.productPackage,
-                previousDealValue,
-                dealValue: nextDealValue,
-              },
-              createdAt: now,
-            });
+            notificationReceiverUserIds.push(
+              ...(await this.createNotifications(tx, {
+                receiverUserIds: [deal.owner_id],
+                typeCode: CRM_NOTIFICATION_TYPE.PRODUCT_PACKAGE_CHANGED,
+                title: 'Product package changed',
+                message: `Customer #${customer.id} package changed to ${params.productPackage}.`,
+                customerId: customer.id,
+                dealId: deal.id,
+                actorUserId: actor.id,
+                payload: {
+                  previousProductPackage,
+                  productPackage: params.productPackage,
+                  previousDealValue,
+                  dealValue: nextDealValue,
+                },
+                createdAt: now,
+              })),
+            );
           }
 
           return {
@@ -1198,6 +1248,10 @@ export class CrmCustomersWriteRepository {
           isolationLevel: Prisma.TransactionIsolationLevel.ReadCommitted,
         },
       );
+
+      this.publishNotificationCreated(notificationReceiverUserIds);
+
+      return result;
     } catch (error: unknown) {
       this.logger.error({
         message: 'Failed to update CRM customer product package',
@@ -1353,17 +1407,12 @@ export class CrmCustomersWriteRepository {
   private async createNotifications(
     tx: Prisma.TransactionClient,
     params: CreateNotificationsParams,
-  ): Promise<void> {
-    const receiverUserIds = [
-      ...new Set(
-        params.receiverUserIds.filter(
-          (receiverUserId): receiverUserId is number =>
-            typeof receiverUserId === 'number' && receiverUserId > 0,
-        ),
-      ),
-    ];
+  ): Promise<number[]> {
+    const receiverUserIds = this.normalizeReceiverUserIds(
+      params.receiverUserIds,
+    );
 
-    if (!receiverUserIds.length) return;
+    if (!receiverUserIds.length) return [];
 
     const createdAt = params.createdAt ?? new Date();
 
@@ -1381,6 +1430,43 @@ export class CrmCustomersWriteRepository {
         created_at: createdAt,
       })),
     });
+
+    return receiverUserIds;
+  }
+
+  private publishNotificationCreated(receiverUserIds: number[]): void {
+    const uniqueReceiverUserIds =
+      this.normalizeReceiverUserIds(receiverUserIds);
+
+    if (!uniqueReceiverUserIds.length) return;
+
+    this.crmRealtimePublisher.notificationCreated({
+      receiverUserIds: uniqueReceiverUserIds,
+    });
+  }
+
+  private publishFeedbackCreated(receiverUserIds: number[]): void {
+    const uniqueReceiverUserIds =
+      this.normalizeReceiverUserIds(receiverUserIds);
+
+    if (!uniqueReceiverUserIds.length) return;
+
+    this.crmRealtimePublisher.feedbackCreated({
+      receiverUserIds: uniqueReceiverUserIds,
+    });
+  }
+
+  private normalizeReceiverUserIds(
+    receiverUserIds: Array<number | null | undefined>,
+  ): number[] {
+    return [
+      ...new Set(
+        receiverUserIds.filter(
+          (receiverUserId): receiverUserId is number =>
+            typeof receiverUserId === 'number' && receiverUserId > 0,
+        ),
+      ),
+    ];
   }
 
   private async findActiveSource(

@@ -36,6 +36,7 @@ import { CrmDashboardModule } from './modules/crm-dashboard/crm-dashboard.module
 import { CrmNotificationsModule } from './modules/crm-notifications/crm-notifications.module';
 import { CrmFeedbackModule } from './modules/crm-feedback/crm-feedback.module';
 import { CrmKpiModule } from './modules/crm-kpi/crm-kpi.module';
+import { CrmRealtimeModule } from './modules/crm-realtime/crm-realtime.module';
 
 @Module({
   imports: [
@@ -96,6 +97,7 @@ import { CrmKpiModule } from './modules/crm-kpi/crm-kpi.module';
     CrmNotificationsModule,
     CrmFeedbackModule,
     CrmKpiModule,
+    CrmRealtimeModule,
     CrmSyncModule,
   ],
   controllers: [AppController],
