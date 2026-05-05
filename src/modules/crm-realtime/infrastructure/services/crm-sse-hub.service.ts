@@ -9,15 +9,17 @@ export class CrmSseHubService {
   private readonly connections = new Map<number, Set<SseSubject>>();
 
   subscribe(userId: number): Observable<MessageEvent> {
+    const uid = this.normalizeUserId(userId);
+
     return new Observable<MessageEvent>((subscriber) => {
       const subject = new Subject<MessageEvent>();
-      this.add(userId, subject);
+      this.add(uid, subject);
 
       const stream$ = merge(
         of<MessageEvent>({
           type: 'crm.connected',
           data: {
-            userId,
+            userId: uid,
             connectedAt: new Date().toISOString(),
           },
         }),
@@ -36,14 +38,15 @@ export class CrmSseHubService {
 
       return () => {
         sub.unsubscribe();
-        this.remove(userId, subject);
+        this.remove(uid, subject);
         subject.complete();
       };
     });
   }
 
   publishToUser(userId: number, event: MessageEvent): void {
-    const subjects = this.connections.get(userId);
+    const uid = this.normalizeUserId(userId);
+    const subjects = this.connections.get(uid);
     if (!subjects?.size) return;
 
     for (const subject of subjects) {
@@ -55,11 +58,21 @@ export class CrmSseHubService {
     userIds: number[],
     eventFactory: (userId: number) => MessageEvent,
   ): void {
-    const uniqueUserIds = [...new Set(userIds.filter(Boolean))];
+    const uniqueUserIds = [
+      ...new Set(
+        userIds
+          .filter((id) => id != null && Number(id) > 0)
+          .map((id) => this.normalizeUserId(Number(id))),
+      ),
+    ];
 
     for (const userId of uniqueUserIds) {
       this.publishToUser(userId, eventFactory(userId));
     }
+  }
+
+  private normalizeUserId(userId: number): number {
+    return Math.trunc(Number(userId));
   }
 
   private add(userId: number, subject: SseSubject): void {

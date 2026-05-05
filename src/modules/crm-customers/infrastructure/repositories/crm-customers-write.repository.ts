@@ -317,8 +317,8 @@ export class CrmCustomersWriteRepository {
             ...(await this.createNotifications(tx, {
               receiverUserIds: [params.assigneeId],
               typeCode: CRM_NOTIFICATION_TYPE.CUSTOMER_CREATED,
-              title: 'Customer created',
-              message: `Customer #${customer.id} was created and assigned to you.`,
+              title: 'Khách hàng mới',
+              message: `Cửa hàng "${params.shopName?.trim() || 'Không rõ tên'}" vừa được tạo và giao cho bạn.`,
               customerId: customer.id,
               dealId: deal.id,
               actorUserId: actor.id,
@@ -445,6 +445,10 @@ export class CrmCustomersWriteRepository {
           const previousAssigneeId = deal.owner_id;
           const changed = previousAssigneeId !== params.assigneeId;
           const now = new Date();
+          const customerDisplayName = await this.getCustomerDisplayName(
+            tx,
+            customer.id,
+          );
 
           if (changed) {
             await tx.crmDeals.update({
@@ -493,8 +497,8 @@ export class CrmCustomersWriteRepository {
               ...(await this.createNotifications(tx, {
                 receiverUserIds: [previousAssigneeId, params.assigneeId],
                 typeCode: CRM_NOTIFICATION_TYPE.ASSIGNMENT_CHANGED,
-                title: 'Assignment changed',
-                message: `Customer #${customer.id} assignment changed.`,
+                title: 'Cập nhật người phụ trách',
+                message: `Cửa hàng "${customerDisplayName}" vừa được cập nhật người phụ trách.`,
                 customerId: customer.id,
                 dealId: deal.id,
                 actorUserId: actor.id,
@@ -676,6 +680,10 @@ export class CrmCustomersWriteRepository {
           const now = new Date();
           const authorName = toUserDisplayName(actor);
           const activityType = toInteractionActivityType(params.channel);
+          const customerDisplayName = await this.getCustomerDisplayName(
+            tx,
+            customer.id,
+          );
           const activity = await tx.crmActivities.create({
             data: {
               customer_id: customer.id,
@@ -731,8 +739,8 @@ export class CrmCustomersWriteRepository {
             ...(await this.createNotifications(tx, {
               receiverUserIds: [customer.deal.owner_id],
               typeCode: CRM_NOTIFICATION_TYPE.INTERACTION_LOGGED,
-              title: 'Interaction logged',
-              message: `A ${params.channel} interaction was logged for customer #${customer.id}.`,
+              title: 'Đã ghi nhận tương tác',
+              message: `Cửa hàng "${customerDisplayName}" vừa có tương tác mới qua kênh ${params.channel}.`,
               customerId: customer.id,
               dealId: customer.deal.id,
               actorUserId: actor.id,
@@ -908,6 +916,10 @@ export class CrmCustomersWriteRepository {
           const previousStatus = deal.status;
           const changed = previousPipelineStage !== params.pipelineStage;
           const now = new Date();
+          const customerDisplayName = await this.getCustomerDisplayName(
+            tx,
+            customer.id,
+          );
 
           if (!changed) {
             const currentDealDetail = await tx.crmDealDetails.findUnique({
@@ -993,8 +1005,8 @@ export class CrmCustomersWriteRepository {
             ...(await this.createNotifications(tx, {
               receiverUserIds: [deal.owner_id],
               typeCode: CRM_NOTIFICATION_TYPE.PIPELINE_STAGE_CHANGED,
-              title: 'Pipeline stage changed',
-              message: `Customer #${customer.id} moved from ${previousPipelineStage} to ${params.pipelineStage}.`,
+              title: 'Cập nhật giai đoạn pipeline',
+              message: `Cửa hàng "${customerDisplayName}" vừa chuyển từ ${previousPipelineStage} sang ${params.pipelineStage}.`,
               customerId: customer.id,
               dealId: deal.id,
               actorUserId: actor.id,
@@ -1019,8 +1031,10 @@ export class CrmCustomersWriteRepository {
                 deal_id: deal.id,
                 actor_user_id: actor.id,
                 receiver_user_id: deal.owner_id,
-                title: 'Customer feedback captured',
-                message: failureNote ?? `Failure reason: ${failureReason}`,
+                title: 'Ghi nhận feedback khách hàng',
+                message:
+                  failureNote ??
+                  `Cửa hàng "${customerDisplayName}" có lý do thất bại: ${failureReason}`,
                 payload: {
                   pipelineStage: params.pipelineStage,
                   failureReason,
@@ -1182,6 +1196,10 @@ export class CrmCustomersWriteRepository {
             previousProductPackage !== params.productPackage ||
             previousDealValue !== nextDealValue;
           const now = new Date();
+          const customerDisplayName = await this.getCustomerDisplayName(
+            tx,
+            customer.id,
+          );
 
           if (changed) {
             await tx.crmDeals.update({
@@ -1215,8 +1233,8 @@ export class CrmCustomersWriteRepository {
               ...(await this.createNotifications(tx, {
                 receiverUserIds: [deal.owner_id],
                 typeCode: CRM_NOTIFICATION_TYPE.PRODUCT_PACKAGE_CHANGED,
-                title: 'Product package changed',
-                message: `Customer #${customer.id} package changed to ${params.productPackage}.`,
+                title: 'Cập nhật gói sản phẩm',
+                message: `Cửa hàng "${customerDisplayName}" vừa được đổi gói sản phẩm sang ${params.productPackage}.`,
                 customerId: customer.id,
                 dealId: deal.id,
                 actorUserId: actor.id,
@@ -1432,6 +1450,22 @@ export class CrmCustomersWriteRepository {
     });
 
     return receiverUserIds;
+  }
+
+  private async getCustomerDisplayName(
+    tx: Prisma.TransactionClient,
+    customerId: number,
+  ): Promise<string> {
+    const businessProfile = await tx.crmCustomerBusinessProfiles.findFirst({
+      where: {
+        customer_id: customerId,
+      },
+      select: {
+        shop_name: true,
+      },
+    });
+
+    return businessProfile?.shop_name?.trim() || 'Không rõ tên';
   }
 
   private publishNotificationCreated(receiverUserIds: number[]): void {
@@ -1663,10 +1697,10 @@ export class CrmCustomersWriteRepository {
   ): string {
     const action =
       params.assigneeId === null
-        ? 'Lead was unassigned.'
-        : `Lead was assigned to user #${params.assigneeId}.`;
+        ? 'Lead đã được bỏ phân công.'
+        : 'Lead đã được giao cho người phụ trách mới.';
 
-    return params.note ? `${action} Note: ${params.note}` : action;
+    return params.note ? `${action} Ghi chú: ${params.note}` : action;
   }
 
   private buildInteractionActivityDescription(
@@ -1674,7 +1708,7 @@ export class CrmCustomersWriteRepository {
     outcomeCode: string,
     summary: string,
   ): string {
-    return `Interaction ${channel} logged with outcome ${outcomeCode}. Summary: ${summary}`;
+    return `Đã ghi nhận tương tác qua kênh ${channel} với kết quả ${outcomeCode}. Tóm tắt: ${summary}`;
   }
 
   private buildPipelineStageActivityDescription(params: {
@@ -1685,19 +1719,19 @@ export class CrmCustomersWriteRepository {
     failureNote?: string | null;
   }): string {
     const parts = [
-      `Pipeline stage changed from "${params.fromStage}" to "${params.toStage}".`,
+      `Giai đoạn pipeline đã chuyển từ "${params.fromStage}" sang "${params.toStage}".`,
     ];
 
     if (params.failureReason) {
-      parts.push(`Failure reason: ${params.failureReason}.`);
+      parts.push(`Lý do thất bại: ${params.failureReason}.`);
     }
 
     if (params.failureNote) {
-      parts.push(`Failure note: ${params.failureNote}.`);
+      parts.push(`Ghi chú thất bại: ${params.failureNote}.`);
     }
 
     if (params.note) {
-      parts.push(`Note: ${params.note}`);
+      parts.push(`Ghi chú: ${params.note}`);
     }
 
     return parts.join(' ');
@@ -1711,17 +1745,17 @@ export class CrmCustomersWriteRepository {
     note?: string;
   }): string {
     const parts = [
-      `Product package changed from "${params.fromPackage ?? 'null'}" to "${params.toPackage}".`,
+      `Gói sản phẩm đã chuyển từ "${params.fromPackage ?? 'null'}" sang "${params.toPackage}".`,
     ];
 
     if (params.previousDealValue !== params.dealValue) {
       parts.push(
-        `Deal value changed from "${params.previousDealValue ?? 0}" to "${params.dealValue ?? 0}".`,
+        `Giá trị deal đã thay đổi từ "${params.previousDealValue ?? 0}" sang "${params.dealValue ?? 0}".`,
       );
     }
 
     if (params.note) {
-      parts.push(`Note: ${params.note}`);
+      parts.push(`Ghi chú: ${params.note}`);
     }
 
     return parts.join(' ');
@@ -1748,15 +1782,15 @@ export class CrmCustomersWriteRepository {
     note?: string;
   }): string {
     const parts = [
-      `Customer created from source "${params.source}" with product package "${params.productPackage}".`,
+      `Khách hàng được tạo từ nguồn "${params.source}" với gói sản phẩm "${params.productPackage}".`,
     ];
 
     if (params.assigneeId !== null) {
-      parts.push(`Assigned to user #${params.assigneeId}.`);
+      parts.push('Đã giao cho người phụ trách.');
     }
 
     if (params.note) {
-      parts.push(`Note: ${params.note}`);
+      parts.push(`Ghi chú: ${params.note}`);
     }
 
     return parts.join(' ');
