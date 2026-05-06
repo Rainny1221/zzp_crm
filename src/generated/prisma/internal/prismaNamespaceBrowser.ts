@@ -2445,6 +2445,8 @@ export const CrmCustomerProfilesScalarFieldEnum = {
   gmv_monthly: 'gmv_monthly',
   customer_tier_code: 'customer_tier_code',
   owner_id: 'owner_id',
+  is_authorized: 'is_authorized',
+  authorized_at: 'authorized_at',
   created_at: 'created_at'
 } as const
 

@@ -20,8 +20,13 @@ export const CRM_SYNC_PROCESSABLE_STATUSES: CrmSyncJobStatus[] = [
   CRM_SYNC_JOB_STATUS.FAILED,
 ];
 
+/** Users with this role_id are CRM seller leads/deals synced from signup + TikTok auth. */
+export const CRM_SYNC_ELIGIBLE_ROLE_ID = 6 as const;
+
 export const CRM_SYNC_EVENT_TYPE = {
   USER_CREATED: 'USER_CREATED',
+  TIKTOK_AUTH_CREATED: 'TIKTOK_AUTH_CREATED',
+  TIKTOK_AUTH_UPDATED: 'TIKTOK_AUTH_UPDATED',
 } as const;
 
 export type CrmSyncEventType =
@@ -31,6 +36,21 @@ export const buildCrmSyncEventKey = (
   eventType: CrmSyncEventType,
   entityId: number,
 ): string => `${eventType}:${entityId}`;
+
+export const buildCrmSyncUserCreatedEventKey = (userId: number): string =>
+  `${CRM_SYNC_EVENT_TYPE.USER_CREATED}:${userId}`;
+
+export const buildCrmSyncTiktokAuthCreatedEventKey = (
+  userId: number,
+  authorizationId: number,
+): string =>
+  `${CRM_SYNC_EVENT_TYPE.TIKTOK_AUTH_CREATED}:${userId}:${authorizationId}`;
+
+export const buildCrmSyncTiktokAuthUpdatedEventKey = (
+  userId: number,
+  authorizationId: number,
+): string =>
+  `${CRM_SYNC_EVENT_TYPE.TIKTOK_AUTH_UPDATED}:${userId}:${authorizationId}`;
 
 export const CRM_SYNC_QUEUE = {
   NAME: 'crm-sync',
@@ -166,6 +186,7 @@ export const CRM_SYNC_LOG = {
     REQUEUE_JOB: 'CRM_SYNC_REQUEUE_JOB',
     PROCESS_JOB: 'CRM_SYNC_PROCESS_JOB',
     SYNC_FROM_USER: 'CRM_SYNC_FROM_USER',
+    SYNC_SELLER_SNAPSHOT: 'CRM_SYNC_SELLER_SNAPSHOT',
     BACKFILL: 'CRM_SYNC_BACKFILL',
     ENQUEUE_JOB: 'CRM_SYNC_ENQUEUE_JOB',
     REGISTER_REPEATABLE_JOB: 'CRM_SYNC_REGISTER_REPEATABLE_JOB',

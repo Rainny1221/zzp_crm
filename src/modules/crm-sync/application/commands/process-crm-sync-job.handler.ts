@@ -12,8 +12,7 @@ import {
 import type { CrmSyncEntity } from '../../domain/entities/crm-sync.entity';
 import type { ICrmSyncRepository } from '../../domain/repositories/i-crm-sync.repository';
 import { I_CRM_SYNC_REPOSITORY } from '../../domain/repositories/i-crm-sync.repository';
-import type { ICrmSyncWriterRepository } from '../../domain/repositories/i-crm-sync-writer.repository';
-import { I_CRM_SYNC_WRITER_REPOSITORY } from '../../domain/repositories/i-crm-sync-writer.repository';
+import { CrmSellerSyncService } from '../crm-seller-sync.service';
 import {
   ProcessCrmSyncJobCommand,
   ProcessCrmSyncJobResult,
@@ -28,8 +27,7 @@ export class ProcessCrmSyncJobHandler implements ICommandHandler<
     @Inject(I_CRM_SYNC_REPOSITORY)
     private readonly syncRepo: ICrmSyncRepository,
 
-    @Inject(I_CRM_SYNC_WRITER_REPOSITORY)
-    private readonly writerRepo: ICrmSyncWriterRepository,
+    private readonly crmSellerSync: CrmSellerSyncService,
 
     private readonly logger: AppLoggerService,
   ) {}
@@ -87,9 +85,30 @@ export class ProcessCrmSyncJobHandler implements ICommandHandler<
         };
       }
 
-      const result = await this.writerRepo.syncFromUser(claimedJob.userId);
+      const outcome = await this.crmSellerSync.syncUser(claimedJob.userId);
 
       await this.syncRepo.markSuccess(claimedJob.id);
+
+      if (outcome.skipped) {
+        this.logger.info({
+          message: 'CRM sync job completed — seller sync skipped (ineligible user)',
+          context: ProcessCrmSyncJobHandler.name,
+          module: CRM_SYNC_LOG.MODULE,
+          action: CRM_SYNC_LOG.ACTIONS.PROCESS_JOB,
+          entityType: CRM_SYNC_LOG.ENTITIES.JOB,
+          entityId: claimedJob.id,
+          meta: {
+            jobId: claimedJob.id,
+            userId: claimedJob.userId,
+          },
+        });
+
+        return {
+          id: claimedJob.id,
+          status: CRM_SYNC_JOB_STATUS.SUCCESS,
+          skipped: true,
+        };
+      }
 
       this.logger.info({
         message: 'CRM sync job processed successfully',
@@ -101,14 +120,14 @@ export class ProcessCrmSyncJobHandler implements ICommandHandler<
         meta: {
           jobId: claimedJob.id,
           userId: claimedJob.userId,
-          result,
+          result: outcome.result,
         },
       });
 
       return {
         id: claimedJob.id,
         status: CRM_SYNC_JOB_STATUS.SUCCESS,
-        result,
+        result: outcome.result,
       };
     } catch (error: unknown) {
       const message =

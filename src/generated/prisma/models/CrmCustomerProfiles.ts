@@ -47,6 +47,8 @@ export type CrmCustomerProfilesMinAggregateOutputType = {
   gmv_monthly: runtime.Decimal | null
   customer_tier_code: string | null
   owner_id: number | null
+  is_authorized: boolean | null
+  authorized_at: Date | null
   created_at: Date | null
 }
 
@@ -57,6 +59,8 @@ export type CrmCustomerProfilesMaxAggregateOutputType = {
   gmv_monthly: runtime.Decimal | null
   customer_tier_code: string | null
   owner_id: number | null
+  is_authorized: boolean | null
+  authorized_at: Date | null
   created_at: Date | null
 }
 
@@ -67,6 +71,8 @@ export type CrmCustomerProfilesCountAggregateOutputType = {
   gmv_monthly: number
   customer_tier_code: number
   owner_id: number
+  is_authorized: number
+  authorized_at: number
   created_at: number
   _all: number
 }
@@ -93,6 +99,8 @@ export type CrmCustomerProfilesMinAggregateInputType = {
   gmv_monthly?: true
   customer_tier_code?: true
   owner_id?: true
+  is_authorized?: true
+  authorized_at?: true
   created_at?: true
 }
 
@@ -103,6 +111,8 @@ export type CrmCustomerProfilesMaxAggregateInputType = {
   gmv_monthly?: true
   customer_tier_code?: true
   owner_id?: true
+  is_authorized?: true
+  authorized_at?: true
   created_at?: true
 }
 
@@ -113,6 +123,8 @@ export type CrmCustomerProfilesCountAggregateInputType = {
   gmv_monthly?: true
   customer_tier_code?: true
   owner_id?: true
+  is_authorized?: true
+  authorized_at?: true
   created_at?: true
   _all?: true
 }
@@ -210,6 +222,8 @@ export type CrmCustomerProfilesGroupByOutputType = {
   gmv_monthly: runtime.Decimal | null
   customer_tier_code: string | null
   owner_id: number | null
+  is_authorized: boolean
+  authorized_at: Date | null
   created_at: Date
   _count: CrmCustomerProfilesCountAggregateOutputType | null
   _avg: CrmCustomerProfilesAvgAggregateOutputType | null
@@ -243,6 +257,8 @@ export type CrmCustomerProfilesWhereInput = {
   gmv_monthly?: Prisma.DecimalNullableFilter<"CrmCustomerProfiles"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: Prisma.StringNullableFilter<"CrmCustomerProfiles"> | string | null
   owner_id?: Prisma.IntNullableFilter<"CrmCustomerProfiles"> | number | null
+  is_authorized?: Prisma.BoolFilter<"CrmCustomerProfiles"> | boolean
+  authorized_at?: Prisma.DateTimeNullableFilter<"CrmCustomerProfiles"> | Date | string | null
   created_at?: Prisma.DateTimeFilter<"CrmCustomerProfiles"> | Date | string
   user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   source?: Prisma.XOR<Prisma.CrmSourcesScalarRelationFilter, Prisma.CrmSourcesWhereInput>
@@ -260,6 +276,8 @@ export type CrmCustomerProfilesOrderByWithRelationInput = {
   gmv_monthly?: Prisma.SortOrderInput | Prisma.SortOrder
   customer_tier_code?: Prisma.SortOrderInput | Prisma.SortOrder
   owner_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_authorized?: Prisma.SortOrder
+  authorized_at?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   source?: Prisma.CrmSourcesOrderByWithRelationInput
@@ -280,6 +298,8 @@ export type CrmCustomerProfilesWhereUniqueInput = Prisma.AtLeast<{
   gmv_monthly?: Prisma.DecimalNullableFilter<"CrmCustomerProfiles"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: Prisma.StringNullableFilter<"CrmCustomerProfiles"> | string | null
   owner_id?: Prisma.IntNullableFilter<"CrmCustomerProfiles"> | number | null
+  is_authorized?: Prisma.BoolFilter<"CrmCustomerProfiles"> | boolean
+  authorized_at?: Prisma.DateTimeNullableFilter<"CrmCustomerProfiles"> | Date | string | null
   created_at?: Prisma.DateTimeFilter<"CrmCustomerProfiles"> | Date | string
   user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   source?: Prisma.XOR<Prisma.CrmSourcesScalarRelationFilter, Prisma.CrmSourcesWhereInput>
@@ -297,6 +317,8 @@ export type CrmCustomerProfilesOrderByWithAggregationInput = {
   gmv_monthly?: Prisma.SortOrderInput | Prisma.SortOrder
   customer_tier_code?: Prisma.SortOrderInput | Prisma.SortOrder
   owner_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_authorized?: Prisma.SortOrder
+  authorized_at?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   _count?: Prisma.CrmCustomerProfilesCountOrderByAggregateInput
   _avg?: Prisma.CrmCustomerProfilesAvgOrderByAggregateInput
@@ -315,12 +337,16 @@ export type CrmCustomerProfilesScalarWhereWithAggregatesInput = {
   gmv_monthly?: Prisma.DecimalNullableWithAggregatesFilter<"CrmCustomerProfiles"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: Prisma.StringNullableWithAggregatesFilter<"CrmCustomerProfiles"> | string | null
   owner_id?: Prisma.IntNullableWithAggregatesFilter<"CrmCustomerProfiles"> | number | null
+  is_authorized?: Prisma.BoolWithAggregatesFilter<"CrmCustomerProfiles"> | boolean
+  authorized_at?: Prisma.DateTimeNullableWithAggregatesFilter<"CrmCustomerProfiles"> | Date | string | null
   created_at?: Prisma.DateTimeWithAggregatesFilter<"CrmCustomerProfiles"> | Date | string
 }
 
 export type CrmCustomerProfilesCreateInput = {
   gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: string | null
+  is_authorized?: boolean
+  authorized_at?: Date | string | null
   created_at?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutCrmCustomerProfileInput
   source: Prisma.CrmSourcesCreateNestedOneWithoutCustomersInput
@@ -338,6 +364,8 @@ export type CrmCustomerProfilesUncheckedCreateInput = {
   gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: string | null
   owner_id?: number | null
+  is_authorized?: boolean
+  authorized_at?: Date | string | null
   created_at?: Date | string
   deal?: Prisma.CrmDealsUncheckedCreateNestedOneWithoutCustomerInput
   assignments?: Prisma.CrmDealAssignmentsUncheckedCreateNestedManyWithoutCustomerInput
@@ -348,6 +376,8 @@ export type CrmCustomerProfilesUncheckedCreateInput = {
 export type CrmCustomerProfilesUpdateInput = {
   gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_authorized?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  authorized_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutCrmCustomerProfileNestedInput
   source?: Prisma.CrmSourcesUpdateOneRequiredWithoutCustomersNestedInput
@@ -365,6 +395,8 @@ export type CrmCustomerProfilesUncheckedUpdateInput = {
   gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_authorized?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  authorized_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deal?: Prisma.CrmDealsUncheckedUpdateOneWithoutCustomerNestedInput
   assignments?: Prisma.CrmDealAssignmentsUncheckedUpdateManyWithoutCustomerNestedInput
@@ -379,12 +411,16 @@ export type CrmCustomerProfilesCreateManyInput = {
   gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: string | null
   owner_id?: number | null
+  is_authorized?: boolean
+  authorized_at?: Date | string | null
   created_at?: Date | string
 }
 
 export type CrmCustomerProfilesUpdateManyMutationInput = {
   gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_authorized?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  authorized_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -395,6 +431,8 @@ export type CrmCustomerProfilesUncheckedUpdateManyInput = {
   gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_authorized?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  authorized_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -420,6 +458,8 @@ export type CrmCustomerProfilesCountOrderByAggregateInput = {
   gmv_monthly?: Prisma.SortOrder
   customer_tier_code?: Prisma.SortOrder
   owner_id?: Prisma.SortOrder
+  is_authorized?: Prisma.SortOrder
+  authorized_at?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
 }
 
@@ -437,6 +477,8 @@ export type CrmCustomerProfilesMaxOrderByAggregateInput = {
   gmv_monthly?: Prisma.SortOrder
   customer_tier_code?: Prisma.SortOrder
   owner_id?: Prisma.SortOrder
+  is_authorized?: Prisma.SortOrder
+  authorized_at?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
 }
 
@@ -447,6 +489,8 @@ export type CrmCustomerProfilesMinOrderByAggregateInput = {
   gmv_monthly?: Prisma.SortOrder
   customer_tier_code?: Prisma.SortOrder
   owner_id?: Prisma.SortOrder
+  is_authorized?: Prisma.SortOrder
+  authorized_at?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
 }
 
@@ -641,6 +685,8 @@ export type CrmCustomerProfilesUncheckedUpdateManyWithoutOwnerNestedInput = {
 export type CrmCustomerProfilesCreateWithoutFeedbackInput = {
   gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: string | null
+  is_authorized?: boolean
+  authorized_at?: Date | string | null
   created_at?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutCrmCustomerProfileInput
   source: Prisma.CrmSourcesCreateNestedOneWithoutCustomersInput
@@ -657,6 +703,8 @@ export type CrmCustomerProfilesUncheckedCreateWithoutFeedbackInput = {
   gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: string | null
   owner_id?: number | null
+  is_authorized?: boolean
+  authorized_at?: Date | string | null
   created_at?: Date | string
   deal?: Prisma.CrmDealsUncheckedCreateNestedOneWithoutCustomerInput
   assignments?: Prisma.CrmDealAssignmentsUncheckedCreateNestedManyWithoutCustomerInput
@@ -682,6 +730,8 @@ export type CrmCustomerProfilesUpdateToOneWithWhereWithoutFeedbackInput = {
 export type CrmCustomerProfilesUpdateWithoutFeedbackInput = {
   gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_authorized?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  authorized_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutCrmCustomerProfileNestedInput
   source?: Prisma.CrmSourcesUpdateOneRequiredWithoutCustomersNestedInput
@@ -698,6 +748,8 @@ export type CrmCustomerProfilesUncheckedUpdateWithoutFeedbackInput = {
   gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_authorized?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  authorized_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deal?: Prisma.CrmDealsUncheckedUpdateOneWithoutCustomerNestedInput
   assignments?: Prisma.CrmDealAssignmentsUncheckedUpdateManyWithoutCustomerNestedInput
@@ -707,6 +759,8 @@ export type CrmCustomerProfilesUncheckedUpdateWithoutFeedbackInput = {
 export type CrmCustomerProfilesCreateWithoutNotificationsInput = {
   gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: string | null
+  is_authorized?: boolean
+  authorized_at?: Date | string | null
   created_at?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutCrmCustomerProfileInput
   source: Prisma.CrmSourcesCreateNestedOneWithoutCustomersInput
@@ -723,6 +777,8 @@ export type CrmCustomerProfilesUncheckedCreateWithoutNotificationsInput = {
   gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: string | null
   owner_id?: number | null
+  is_authorized?: boolean
+  authorized_at?: Date | string | null
   created_at?: Date | string
   deal?: Prisma.CrmDealsUncheckedCreateNestedOneWithoutCustomerInput
   assignments?: Prisma.CrmDealAssignmentsUncheckedCreateNestedManyWithoutCustomerInput
@@ -748,6 +804,8 @@ export type CrmCustomerProfilesUpdateToOneWithWhereWithoutNotificationsInput = {
 export type CrmCustomerProfilesUpdateWithoutNotificationsInput = {
   gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_authorized?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  authorized_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutCrmCustomerProfileNestedInput
   source?: Prisma.CrmSourcesUpdateOneRequiredWithoutCustomersNestedInput
@@ -764,6 +822,8 @@ export type CrmCustomerProfilesUncheckedUpdateWithoutNotificationsInput = {
   gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_authorized?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  authorized_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deal?: Prisma.CrmDealsUncheckedUpdateOneWithoutCustomerNestedInput
   assignments?: Prisma.CrmDealAssignmentsUncheckedUpdateManyWithoutCustomerNestedInput
@@ -773,6 +833,8 @@ export type CrmCustomerProfilesUncheckedUpdateWithoutNotificationsInput = {
 export type CrmCustomerProfilesCreateWithoutSourceInput = {
   gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: string | null
+  is_authorized?: boolean
+  authorized_at?: Date | string | null
   created_at?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutCrmCustomerProfileInput
   owner?: Prisma.UserCreateNestedOneWithoutOwnedCrmCustomerProfilesInput
@@ -788,6 +850,8 @@ export type CrmCustomerProfilesUncheckedCreateWithoutSourceInput = {
   gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: string | null
   owner_id?: number | null
+  is_authorized?: boolean
+  authorized_at?: Date | string | null
   created_at?: Date | string
   deal?: Prisma.CrmDealsUncheckedCreateNestedOneWithoutCustomerInput
   assignments?: Prisma.CrmDealAssignmentsUncheckedCreateNestedManyWithoutCustomerInput
@@ -831,12 +895,16 @@ export type CrmCustomerProfilesScalarWhereInput = {
   gmv_monthly?: Prisma.DecimalNullableFilter<"CrmCustomerProfiles"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: Prisma.StringNullableFilter<"CrmCustomerProfiles"> | string | null
   owner_id?: Prisma.IntNullableFilter<"CrmCustomerProfiles"> | number | null
+  is_authorized?: Prisma.BoolFilter<"CrmCustomerProfiles"> | boolean
+  authorized_at?: Prisma.DateTimeNullableFilter<"CrmCustomerProfiles"> | Date | string | null
   created_at?: Prisma.DateTimeFilter<"CrmCustomerProfiles"> | Date | string
 }
 
 export type CrmCustomerProfilesCreateWithoutDealInput = {
   gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: string | null
+  is_authorized?: boolean
+  authorized_at?: Date | string | null
   created_at?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutCrmCustomerProfileInput
   source: Prisma.CrmSourcesCreateNestedOneWithoutCustomersInput
@@ -853,6 +921,8 @@ export type CrmCustomerProfilesUncheckedCreateWithoutDealInput = {
   gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: string | null
   owner_id?: number | null
+  is_authorized?: boolean
+  authorized_at?: Date | string | null
   created_at?: Date | string
   assignments?: Prisma.CrmDealAssignmentsUncheckedCreateNestedManyWithoutCustomerInput
   notifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutCustomerInput
@@ -878,6 +948,8 @@ export type CrmCustomerProfilesUpdateToOneWithWhereWithoutDealInput = {
 export type CrmCustomerProfilesUpdateWithoutDealInput = {
   gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_authorized?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  authorized_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutCrmCustomerProfileNestedInput
   source?: Prisma.CrmSourcesUpdateOneRequiredWithoutCustomersNestedInput
@@ -894,6 +966,8 @@ export type CrmCustomerProfilesUncheckedUpdateWithoutDealInput = {
   gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_authorized?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  authorized_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignments?: Prisma.CrmDealAssignmentsUncheckedUpdateManyWithoutCustomerNestedInput
   notifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutCustomerNestedInput
@@ -903,6 +977,8 @@ export type CrmCustomerProfilesUncheckedUpdateWithoutDealInput = {
 export type CrmCustomerProfilesCreateWithoutAssignmentsInput = {
   gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: string | null
+  is_authorized?: boolean
+  authorized_at?: Date | string | null
   created_at?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutCrmCustomerProfileInput
   source: Prisma.CrmSourcesCreateNestedOneWithoutCustomersInput
@@ -919,6 +995,8 @@ export type CrmCustomerProfilesUncheckedCreateWithoutAssignmentsInput = {
   gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: string | null
   owner_id?: number | null
+  is_authorized?: boolean
+  authorized_at?: Date | string | null
   created_at?: Date | string
   deal?: Prisma.CrmDealsUncheckedCreateNestedOneWithoutCustomerInput
   notifications?: Prisma.CrmNotificationsUncheckedCreateNestedManyWithoutCustomerInput
@@ -944,6 +1022,8 @@ export type CrmCustomerProfilesUpdateToOneWithWhereWithoutAssignmentsInput = {
 export type CrmCustomerProfilesUpdateWithoutAssignmentsInput = {
   gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_authorized?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  authorized_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutCrmCustomerProfileNestedInput
   source?: Prisma.CrmSourcesUpdateOneRequiredWithoutCustomersNestedInput
@@ -960,6 +1040,8 @@ export type CrmCustomerProfilesUncheckedUpdateWithoutAssignmentsInput = {
   gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_authorized?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  authorized_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deal?: Prisma.CrmDealsUncheckedUpdateOneWithoutCustomerNestedInput
   notifications?: Prisma.CrmNotificationsUncheckedUpdateManyWithoutCustomerNestedInput
@@ -969,6 +1051,8 @@ export type CrmCustomerProfilesUncheckedUpdateWithoutAssignmentsInput = {
 export type CrmCustomerProfilesCreateWithoutUserInput = {
   gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: string | null
+  is_authorized?: boolean
+  authorized_at?: Date | string | null
   created_at?: Date | string
   source: Prisma.CrmSourcesCreateNestedOneWithoutCustomersInput
   owner?: Prisma.UserCreateNestedOneWithoutOwnedCrmCustomerProfilesInput
@@ -984,6 +1068,8 @@ export type CrmCustomerProfilesUncheckedCreateWithoutUserInput = {
   gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: string | null
   owner_id?: number | null
+  is_authorized?: boolean
+  authorized_at?: Date | string | null
   created_at?: Date | string
   deal?: Prisma.CrmDealsUncheckedCreateNestedOneWithoutCustomerInput
   assignments?: Prisma.CrmDealAssignmentsUncheckedCreateNestedManyWithoutCustomerInput
@@ -999,6 +1085,8 @@ export type CrmCustomerProfilesCreateOrConnectWithoutUserInput = {
 export type CrmCustomerProfilesCreateWithoutOwnerInput = {
   gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: string | null
+  is_authorized?: boolean
+  authorized_at?: Date | string | null
   created_at?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutCrmCustomerProfileInput
   source: Prisma.CrmSourcesCreateNestedOneWithoutCustomersInput
@@ -1014,6 +1102,8 @@ export type CrmCustomerProfilesUncheckedCreateWithoutOwnerInput = {
   source_code: string
   gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: string | null
+  is_authorized?: boolean
+  authorized_at?: Date | string | null
   created_at?: Date | string
   deal?: Prisma.CrmDealsUncheckedCreateNestedOneWithoutCustomerInput
   assignments?: Prisma.CrmDealAssignmentsUncheckedCreateNestedManyWithoutCustomerInput
@@ -1045,6 +1135,8 @@ export type CrmCustomerProfilesUpdateToOneWithWhereWithoutUserInput = {
 export type CrmCustomerProfilesUpdateWithoutUserInput = {
   gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_authorized?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  authorized_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   source?: Prisma.CrmSourcesUpdateOneRequiredWithoutCustomersNestedInput
   owner?: Prisma.UserUpdateOneWithoutOwnedCrmCustomerProfilesNestedInput
@@ -1060,6 +1152,8 @@ export type CrmCustomerProfilesUncheckedUpdateWithoutUserInput = {
   gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_authorized?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  authorized_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deal?: Prisma.CrmDealsUncheckedUpdateOneWithoutCustomerNestedInput
   assignments?: Prisma.CrmDealAssignmentsUncheckedUpdateManyWithoutCustomerNestedInput
@@ -1089,12 +1183,16 @@ export type CrmCustomerProfilesCreateManySourceInput = {
   gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: string | null
   owner_id?: number | null
+  is_authorized?: boolean
+  authorized_at?: Date | string | null
   created_at?: Date | string
 }
 
 export type CrmCustomerProfilesUpdateWithoutSourceInput = {
   gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_authorized?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  authorized_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutCrmCustomerProfileNestedInput
   owner?: Prisma.UserUpdateOneWithoutOwnedCrmCustomerProfilesNestedInput
@@ -1110,6 +1208,8 @@ export type CrmCustomerProfilesUncheckedUpdateWithoutSourceInput = {
   gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_authorized?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  authorized_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deal?: Prisma.CrmDealsUncheckedUpdateOneWithoutCustomerNestedInput
   assignments?: Prisma.CrmDealAssignmentsUncheckedUpdateManyWithoutCustomerNestedInput
@@ -1123,6 +1223,8 @@ export type CrmCustomerProfilesUncheckedUpdateManyWithoutSourceInput = {
   gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   owner_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_authorized?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  authorized_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -1132,12 +1234,16 @@ export type CrmCustomerProfilesCreateManyOwnerInput = {
   source_code: string
   gmv_monthly?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: string | null
+  is_authorized?: boolean
+  authorized_at?: Date | string | null
   created_at?: Date | string
 }
 
 export type CrmCustomerProfilesUpdateWithoutOwnerInput = {
   gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_authorized?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  authorized_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutCrmCustomerProfileNestedInput
   source?: Prisma.CrmSourcesUpdateOneRequiredWithoutCustomersNestedInput
@@ -1153,6 +1259,8 @@ export type CrmCustomerProfilesUncheckedUpdateWithoutOwnerInput = {
   source_code?: Prisma.StringFieldUpdateOperationsInput | string
   gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_authorized?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  authorized_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deal?: Prisma.CrmDealsUncheckedUpdateOneWithoutCustomerNestedInput
   assignments?: Prisma.CrmDealAssignmentsUncheckedUpdateManyWithoutCustomerNestedInput
@@ -1166,6 +1274,8 @@ export type CrmCustomerProfilesUncheckedUpdateManyWithoutOwnerInput = {
   source_code?: Prisma.StringFieldUpdateOperationsInput | string
   gmv_monthly?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   customer_tier_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_authorized?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  authorized_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -1225,6 +1335,8 @@ export type CrmCustomerProfilesSelect<ExtArgs extends runtime.Types.Extensions.I
   gmv_monthly?: boolean
   customer_tier_code?: boolean
   owner_id?: boolean
+  is_authorized?: boolean
+  authorized_at?: boolean
   created_at?: boolean
   user?: boolean | Prisma.CrmCustomerProfiles$userArgs<ExtArgs>
   source?: boolean | Prisma.CrmSourcesDefaultArgs<ExtArgs>
@@ -1243,6 +1355,8 @@ export type CrmCustomerProfilesSelectCreateManyAndReturn<ExtArgs extends runtime
   gmv_monthly?: boolean
   customer_tier_code?: boolean
   owner_id?: boolean
+  is_authorized?: boolean
+  authorized_at?: boolean
   created_at?: boolean
   user?: boolean | Prisma.CrmCustomerProfiles$userArgs<ExtArgs>
   source?: boolean | Prisma.CrmSourcesDefaultArgs<ExtArgs>
@@ -1256,6 +1370,8 @@ export type CrmCustomerProfilesSelectUpdateManyAndReturn<ExtArgs extends runtime
   gmv_monthly?: boolean
   customer_tier_code?: boolean
   owner_id?: boolean
+  is_authorized?: boolean
+  authorized_at?: boolean
   created_at?: boolean
   user?: boolean | Prisma.CrmCustomerProfiles$userArgs<ExtArgs>
   source?: boolean | Prisma.CrmSourcesDefaultArgs<ExtArgs>
@@ -1269,10 +1385,12 @@ export type CrmCustomerProfilesSelectScalar = {
   gmv_monthly?: boolean
   customer_tier_code?: boolean
   owner_id?: boolean
+  is_authorized?: boolean
+  authorized_at?: boolean
   created_at?: boolean
 }
 
-export type CrmCustomerProfilesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "source_code" | "gmv_monthly" | "customer_tier_code" | "owner_id" | "created_at", ExtArgs["result"]["crmCustomerProfiles"]>
+export type CrmCustomerProfilesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "source_code" | "gmv_monthly" | "customer_tier_code" | "owner_id" | "is_authorized" | "authorized_at" | "created_at", ExtArgs["result"]["crmCustomerProfiles"]>
 export type CrmCustomerProfilesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.CrmCustomerProfiles$userArgs<ExtArgs>
   source?: boolean | Prisma.CrmSourcesDefaultArgs<ExtArgs>
@@ -1312,6 +1430,11 @@ export type $CrmCustomerProfilesPayload<ExtArgs extends runtime.Types.Extensions
     gmv_monthly: runtime.Decimal | null
     customer_tier_code: string | null
     owner_id: number | null
+    /**
+     * TikTok authorize snapshot; source of truth is tiktok_shop_authorizations (not users).
+     */
+    is_authorized: boolean
+    authorized_at: Date | null
     created_at: Date
   }, ExtArgs["result"]["crmCustomerProfiles"]>
   composites: {}
@@ -1749,6 +1872,8 @@ export interface CrmCustomerProfilesFieldRefs {
   readonly gmv_monthly: Prisma.FieldRef<"CrmCustomerProfiles", 'Decimal'>
   readonly customer_tier_code: Prisma.FieldRef<"CrmCustomerProfiles", 'String'>
   readonly owner_id: Prisma.FieldRef<"CrmCustomerProfiles", 'Int'>
+  readonly is_authorized: Prisma.FieldRef<"CrmCustomerProfiles", 'Boolean'>
+  readonly authorized_at: Prisma.FieldRef<"CrmCustomerProfiles", 'DateTime'>
   readonly created_at: Prisma.FieldRef<"CrmCustomerProfiles", 'DateTime'>
 }
     

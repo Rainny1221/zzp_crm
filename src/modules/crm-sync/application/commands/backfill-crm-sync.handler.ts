@@ -41,14 +41,17 @@ export class BackfillCrmSyncHandler implements ICommandHandler<
     });
 
     try {
-      const users = await this.enqueueRepo.findUsersMissingSyncJobs(
+      const sellers = await this.enqueueRepo.findSellersMissingCrmFromAuth(
         command.limit,
       );
       let enqueued = 0;
       let dispatched = 0;
 
-      for (const user of users) {
-        const result = await this.enqueueRepo.enqueueUserCreatedJob(user.id);
+      for (const row of sellers) {
+        const result = await this.enqueueRepo.enqueueTiktokAuthCreatedSyncJob(
+          row.userId,
+          row.authorizationId,
+        );
 
         if (result.enqueued) {
           enqueued += 1;
@@ -59,10 +62,10 @@ export class BackfillCrmSyncHandler implements ICommandHandler<
 
       const result = {
         limit: command.limit,
-        scanned: users.length,
+        scanned: sellers.length,
         enqueued,
         dispatched,
-        skipped: users.length - enqueued,
+        skipped: sellers.length - enqueued,
       };
 
       this.logger.info({

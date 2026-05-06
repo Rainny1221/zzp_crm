@@ -7,16 +7,16 @@ import type { LogEntry } from 'src/common/logging/application/log-entry';
 import { AppLoggerService } from 'src/logger/app-logger.service';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Prisma } from 'src/generated/prisma/client';
+import type {
+  CrmSellerSyncSnapshot,
+  CrmSellerSyncUpsertResult,
+} from '../../domain/crm-seller-sync.types';
 import type { ICrmSyncWriterRepository } from '../../domain/repositories/i-crm-sync-writer.repository';
 import {
   CRM_SYNC_DEFAULTS,
   CRM_SYNC_LOG,
   CRM_SYNC_TRANSACTION,
 } from '../../domain/crm-sync.constants';
-
-type SyncFromUserResult = Awaited<
-  ReturnType<ICrmSyncWriterRepository['syncFromUser']>
->;
 
 @Injectable()
 export class CrmSyncWriterPrismaRepository implements ICrmSyncWriterRepository {
@@ -25,25 +25,27 @@ export class CrmSyncWriterPrismaRepository implements ICrmSyncWriterRepository {
     private readonly logger: AppLoggerService,
   ) {}
 
-  async syncFromUser(userId: number): Promise<SyncFromUserResult> {
+  async syncSellerSnapshot(
+    snapshot: CrmSellerSyncSnapshot,
+  ): Promise<CrmSellerSyncUpsertResult> {
+    const { userId } = snapshot;
+
     this.logger.info({
-      message: 'CRM sync from user started',
+      message: 'CRM seller snapshot upsert started',
       context: CrmSyncWriterPrismaRepository.name,
       module: CRM_SYNC_LOG.MODULE,
-      action: CRM_SYNC_LOG.ACTIONS.SYNC_FROM_USER,
+      action: CRM_SYNC_LOG.ACTIONS.SYNC_SELLER_SNAPSHOT,
       entityType: CRM_SYNC_LOG.ENTITIES.USER,
       entityId: userId,
       meta: {
         userId,
+        isAuthorized: snapshot.isAuthorized,
+        hasAuthorizedAt: snapshot.authorizedAt !== null,
       },
     });
 
     try {
-      const [user, stage, productPackage] = await Promise.all([
-        this.prisma.user.findUnique({
-          where: { id: userId },
-          select: { id: true },
-        }),
+      const [stage, productPackage] = await Promise.all([
         this.prisma.crmPipelineStages.findUnique({
           where: { code: CRM_SYNC_DEFAULTS.PIPELINE_STAGE_CODE },
           select: { code: true, mapped_status_code: true },
@@ -54,34 +56,12 @@ export class CrmSyncWriterPrismaRepository implements ICrmSyncWriterRepository {
         }),
       ]);
 
-      if (!user) {
-        this.logger.warn({
-          message: 'CRM sync user not found',
-          context: CrmSyncWriterPrismaRepository.name,
-          module: CRM_SYNC_LOG.MODULE,
-          action: CRM_SYNC_LOG.ACTIONS.SYNC_FROM_USER,
-          entityType: CRM_SYNC_LOG.ENTITIES.USER,
-          entityId: userId,
-          meta: {
-            userId,
-          },
-        });
-
-        throw ErrorFactory.create(
-          ErrorCode.USER_NOT_FOUND,
-          `User ${userId} not found`,
-          {
-            userId,
-          },
-        );
-      }
-
       if (!stage) {
         this.logger.error({
           message: 'CRM sync pipeline stage not found',
           context: CrmSyncWriterPrismaRepository.name,
           module: CRM_SYNC_LOG.MODULE,
-          action: CRM_SYNC_LOG.ACTIONS.SYNC_FROM_USER,
+          action: CRM_SYNC_LOG.ACTIONS.SYNC_SELLER_SNAPSHOT,
           entityType: CRM_SYNC_LOG.ENTITIES.PIPELINE_STAGE,
           entityId: CRM_SYNC_DEFAULTS.PIPELINE_STAGE_CODE,
           meta: {
@@ -105,7 +85,7 @@ export class CrmSyncWriterPrismaRepository implements ICrmSyncWriterRepository {
           message: 'CRM sync product package not found',
           context: CrmSyncWriterPrismaRepository.name,
           module: CRM_SYNC_LOG.MODULE,
-          action: CRM_SYNC_LOG.ACTIONS.SYNC_FROM_USER,
+          action: CRM_SYNC_LOG.ACTIONS.SYNC_SELLER_SNAPSHOT,
           entityType: CRM_SYNC_LOG.ENTITIES.PRODUCT_PACKAGE,
           entityId: CRM_SYNC_DEFAULTS.PRODUCT_PACKAGE_CODE,
           meta: {
@@ -124,8 +104,10 @@ export class CrmSyncWriterPrismaRepository implements ICrmSyncWriterRepository {
         );
       }
 
-      const result = await this.prisma.$transaction<SyncFromUserResult>(
-        async (tx: Prisma.TransactionClient): Promise<SyncFromUserResult> => {
+      const result = await this.prisma.$transaction<CrmSellerSyncUpsertResult>(
+        async (
+          tx: Prisma.TransactionClient,
+        ): Promise<CrmSellerSyncUpsertResult> => {
           await tx.$queryRaw<Array<{ set_config: string }>>`
             SELECT set_config(
               'lock_timeout',
@@ -135,14 +117,19 @@ export class CrmSyncWriterPrismaRepository implements ICrmSyncWriterRepository {
           `;
 
           const profile = await tx.crmCustomerProfiles.upsert({
-            where: { user_id: user.id },
-            update: {},
+            where: { user_id: userId },
+            update: {
+              is_authorized: snapshot.isAuthorized,
+              authorized_at: snapshot.authorizedAt,
+            },
             create: {
-              user_id: user.id,
+              user_id: userId,
               source_code: CRM_SYNC_DEFAULTS.SOURCE_CODE,
               gmv_monthly: null,
               customer_tier_code: CRM_SYNC_DEFAULTS.CUSTOMER_TIER_CODE,
               owner_id: null,
+              is_authorized: snapshot.isAuthorized,
+              authorized_at: snapshot.authorizedAt,
             },
           });
 
@@ -193,10 +180,10 @@ export class CrmSyncWriterPrismaRepository implements ICrmSyncWriterRepository {
       );
 
       this.logger.info({
-        message: 'CRM sync from user completed',
+        message: 'CRM seller snapshot upsert completed',
         context: CrmSyncWriterPrismaRepository.name,
         module: CRM_SYNC_LOG.MODULE,
-        action: CRM_SYNC_LOG.ACTIONS.SYNC_FROM_USER,
+        action: CRM_SYNC_LOG.ACTIONS.SYNC_SELLER_SNAPSHOT,
         entityType: CRM_SYNC_LOG.ENTITIES.USER,
         entityId: userId,
         meta: {
@@ -208,10 +195,10 @@ export class CrmSyncWriterPrismaRepository implements ICrmSyncWriterRepository {
       return result;
     } catch (error: unknown) {
       const logEntry: LogEntry = {
-        message: 'CRM sync from user failed',
+        message: 'CRM seller snapshot upsert failed',
         context: CrmSyncWriterPrismaRepository.name,
         module: CRM_SYNC_LOG.MODULE,
-        action: CRM_SYNC_LOG.ACTIONS.SYNC_FROM_USER,
+        action: CRM_SYNC_LOG.ACTIONS.SYNC_SELLER_SNAPSHOT,
         entityType: CRM_SYNC_LOG.ENTITIES.USER,
         entityId: userId,
         meta: {
@@ -233,7 +220,7 @@ export class CrmSyncWriterPrismaRepository implements ICrmSyncWriterRepository {
 
       throw ErrorFactory.create(
         ErrorCode.CRM_SYNC_PROCESSING_FAILED,
-        'Failed to sync CRM data from user',
+        'Failed to upsert CRM seller snapshot',
         {
           userId,
           error: toErrorMeta(error),

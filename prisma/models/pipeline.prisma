@@ -30,7 +30,10 @@ model CrmCustomerProfiles {
   gmv_monthly        Decimal? @db.Decimal(18, 2)
   customer_tier_code String?
   owner_id           Int?
-  created_at         DateTime @default(now()) @db.Timestamptz(6)
+  /// TikTok authorize snapshot; source of truth is tiktok_shop_authorizations (not users).
+  is_authorized Boolean   @default(false)
+  authorized_at DateTime? @db.Timestamptz(6)
+  created_at    DateTime  @default(now()) @db.Timestamptz(6)
 
   user   User?      @relation(fields: [user_id], references: [id])
   source CrmSources @relation(fields: [source_code], references: [code])

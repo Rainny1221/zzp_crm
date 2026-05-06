@@ -7,7 +7,16 @@ export interface EnqueueCrmSyncJobResult {
   enqueued: boolean;
 }
 
+export type SellerMissingCrmSyncRow = {
+  userId: number;
+  authorizationId: number;
+};
+
 export interface ICrmSyncEnqueueRepository {
-  findUsersMissingSyncJobs(limit: number): Promise<Array<{ id: number }>>;
-  enqueueUserCreatedJob(userId: number): Promise<EnqueueCrmSyncJobResult>;
+  /** Role-6 sellers with a valid TikTok auth row but no `crm_customer_profiles` row yet. */
+  findSellersMissingCrmFromAuth(limit: number): Promise<SellerMissingCrmSyncRow[]>;
+  enqueueTiktokAuthCreatedSyncJob(
+    userId: number,
+    authorizationId: number,
+  ): Promise<EnqueueCrmSyncJobResult>;
 }
